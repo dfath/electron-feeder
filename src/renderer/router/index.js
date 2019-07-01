@@ -72,6 +72,19 @@ export const constantRouterMap = [
     ]
   },
 
+  {
+    path: '/excel',
+    component: Layout,
+    children: [
+      {
+        path: 'excel',
+        name: 'Excel',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Excel', icon: 'excel' }
+      }
+    ]
+  },
+
   { path: '*', redirect: '/404', hidden: true }
 ]
 
