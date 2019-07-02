@@ -3,16 +3,16 @@
     <h1>Upload File Excel</h1>
     <el-row  type="flex" justify="center" >
   <el-col :span="24">
-    <div class="grid-content bg-purple">
-      <el-row  type="flex" justify="end" >
-        <el-col :span="6">
-          <div>
-             <el-button type="info">Download contoh file Excel</el-button>
+    <div class="grid-content">
+      <el-row type="flex" justify="end" >
+        <el-col :span="5" :xs="12" :sm="8" :md="6" :lg="5" :xl="5" >
+          <div class="grid-content">
+             <el-button center type="info">Download contoh file Excel</el-button>
           </div>
         </el-col>
-        <el-col :span="6">
-          <div>
-             <el-button type="success">Kirim ke Feeder PDDikti</el-button>
+        <el-col :span="5" :xs="12" :sm="8" :md="6" :lg="5" :xl="5">
+          <div class="grid-content" >
+             <el-button center type="success">Kirim ke Feeder PDDikti</el-button>
           </div>
         </el-col>
       </el-row>
@@ -20,7 +20,8 @@
    
     <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
     
-    </div></el-col>
+    </div>
+    </el-col>
 </el-row>
     
     <el-table :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
@@ -68,31 +69,8 @@ export default {
   margin-bottom: 1rem;
   margin-right: auto;
   margin-left: auto;
+  width: auto;
+  text-align: center;
 }
-  .el-row {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
+
 </style>
