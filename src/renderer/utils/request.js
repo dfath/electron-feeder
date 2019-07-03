@@ -1,15 +1,20 @@
 import axios from 'axios'
+// import { baseUrl } from '../../../vue.config'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
 
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api的base_url
-  timeout: 15000 // 请求超时时间
+  timeout: 15000,
+  headers: {
+    'Access-Control-Allow-Origin': '*'
+  }
+  // 请求超时时间
 })
-
 // request拦截器
 service.interceptors.request.use(config => {
+  console.log(config)
   if (store.getters.token) {
     config.headers['X-Token'] = store.getters.token// 让每个请求携带自定义token 请根据实际情况自行修改
   }
@@ -27,9 +32,10 @@ service.interceptors.response.use(
   * code为非20000是抛错 可结合自己业务进行修改
   */
     const res = response.data
-    if (res.code !== 20000) {
+    if (parseInt(res.error_code) !== 0) {
+      console.log('disini')
       Message({
-        message: res.message,
+        message: res.error_desc,
         type: 'error',
         duration: 5 * 1000
       })
@@ -48,6 +54,7 @@ service.interceptors.response.use(
       }
       return Promise.reject('error')
     } else {
+      console.log('here')
       return response.data
     }
   },

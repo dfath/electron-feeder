@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
-      <h3 class="title">vue-element-admin</h3>
+      <h3 class="title">OpenFeeder</h3>
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
           <svg-icon icon-class="user" />
@@ -30,33 +30,33 @@
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
-
+// import { isvalidUsername } from '@/utils/validate'
 export default {
   name: 'login',
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
-      } else {
-        callback()
-      }
-    }
-    const validatePass = (rule, value, callback) => {
-      if (value.length < 5) {
-        callback(new Error('密码不能小于5位'))
-      } else {
-        callback()
-      }
-    }
+    // const validateUsername = (rule, value, callback) => {
+    //   console.log(rule)
+    //   if (!isvalidUsername(value)) {
+    //     callback(new Error('Username salah atau tidak ditemukan'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
+    // const validatePass = (rule, value, callback) => {
+    //   if (value.length < 5) {
+    //     callback(new Error('Password salah'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
     return {
       loginForm: {
-        username: 'admin',
-        password: 'admin'
+        username: '043115',
+        password: 'f@12ma51'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePass }]
+        username: [{ required: true, trigger: 'blur' }], /* validator: validateUsername*/
+        password: [{ required: true, trigger: 'blur' }] /* validator: validatePass*/
       },
       loading: false,
       pwdType: 'password'
@@ -72,6 +72,7 @@ export default {
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
+        console.log(valid)
         if (valid) {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
