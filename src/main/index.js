@@ -22,8 +22,10 @@ function createWindow() {
     useContentSize: true,
     width: 1366,
     webPreferences: { webSecurity: false }
+
   })
 
+  mainWindow.maximize()
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
