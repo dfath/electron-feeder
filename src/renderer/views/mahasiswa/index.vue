@@ -68,7 +68,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit"  />
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
@@ -119,7 +119,6 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
 import { fetchPv, createArticle, updateArticle } from '@/api/article'
 
 import waves from '@/directive/waves' // waves directive
@@ -235,10 +234,6 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = null
-        this.listLoading = false
-      })
     },
     handleClick(tab, event) {
       console.log(tab, event)
@@ -246,7 +241,6 @@ export default {
 
     handleFilter() {
       this.listQuery.page = 1
-      this.getList()
     },
     handleModifyStatus(row, status) {
       this.$message({

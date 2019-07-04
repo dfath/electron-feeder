@@ -102,9 +102,6 @@ export default {
   width: auto;
   text-align: center;
 }
-<<<<<<< HEAD
-
-=======
   .el-row {
     margin-bottom: 20px;
     &:last-child {
@@ -134,5 +131,4 @@ export default {
   .placeholder-container div {
   margin: 10px;
   }
->>>>>>> origin/sabil
 </style>

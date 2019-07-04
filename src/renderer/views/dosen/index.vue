@@ -62,8 +62,6 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
-
 export default {
   props: {
     items: {
@@ -106,10 +104,6 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = null
-        this.listLoading = false
-      })
     },
     handleClick(tab, event) {
       console.log(tab, event)
