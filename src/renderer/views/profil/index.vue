@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div>
-      <el-table border :data="tableProfil">
+      <el-table border :data="tableProfilPTygbenar">
         <el-table-column min-width="50" prop="name" label=""></el-table-column>
         <el-table-column min-width="150" prop="isi">
         </el-table-column>
@@ -102,27 +102,18 @@ export default {
       default: () => []
     }
   },
+  created() {
+    this.getProfilPT()
+  },
   data() {
     return {
       list: null,
       listLoading: true,
       activeName: 'first',
-
-      tableData: [{
-        id: 1,
-        name: 'Dakota Rice',
-        job: 'Develop',
-        salary: '$36.738',
-        country: 'Niger',
-        city: 'Oud-Turnhout'
-      },
-      {
-        id: 2,
-        name: 'Minerva Hooper',
-        job: 'Marketing',
-        salary: '$23,789',
-        country: 'Curaçao',
-        city: 'Sinaai-Waas'
+      profil: [],
+      tableProfilPTygbenar: [{
+        name: 'Kode PT',
+        isi: '00000'
       }],
       tableProfil: [{
         name: 'Kode PT',
@@ -214,15 +205,24 @@ export default {
       return statusMap[status]
     }
   },
-  created() {
-    this.fetchData()
-  },
   methods: {
     fetchData() {
       this.listLoading = true
     },
     handleClick(tab, event) {
       console.log(tab, event)
+    },
+    getProfilPT() {
+      this.loading = true
+      this.$store.dispatch('GetProfilPT').then(() => {
+        this.loading = false
+        this.profil = this.$store.getters.profilPT
+        console.log(this.profil)
+        this.tableProfilPTygbenar.isi = this.profil[0].kode_perguruan_tinggi
+        console.log(this.tableProfilPTygbenar)
+      }).catch(() => {
+        this.loading = false
+      })
     }
   }
 }
