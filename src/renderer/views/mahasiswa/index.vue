@@ -25,53 +25,49 @@
       </el-checkbox>
     </div>
 
-    <el-table
-      :data="tableData"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @sort-change="sortChange"
-    >
-      <el-table-column label="No." prop="id" sortable="custom" align="center" width="80">
+    <el-table border :data="tableData">
+      <el-table-column min-width="50" type="index" label="No."></el-table-column>
+      <el-table-column min-width="150" prop="nama"
+                      label="Nama">
       </el-table-column>
-      <el-table-column label="Nama" prop="nama" width="150px" align="center">
+      <el-table-column min-width="200" prop="nim"
+                      label="NIM">
       </el-table-column>
-      <el-table-column label="NIM" prop="nim" min-width="150px">
+      <el-table-column min-width="150" prop="gender"
+                      label="L/P">
       </el-table-column>
-      <el-table-column label="L/P" prop="gender" width="110px" align="center">
+      <el-table-column min-width="150" prop="agama"
+                      label="Agama">
       </el-table-column>
-      <el-table-column label="Agama" prop="agama" width="110px" align="center">
+      <el-table-column min-width="150" prop="tglahir"
+                      label="Tanggal Lahir">
       </el-table-column>
-      <el-table-column label="Tanggal Lahir" prop="tglahir" width="80px">
-        <template slot-scope="scope">
-          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />
-        </template>
+      <el-table-column min-width="150" prop="prodi"
+                      label="Program Studi">
       </el-table-column>
-      <el-table-column label="Program Studi" prop="prodi" align="center" width="95">
+      <el-table-column min-width="150" prop="status"
+                      label="Status">
       </el-table-column>
-      <el-table-column label="Status" prop="status" class-name="status-col" width="100">
-      </el-table-column>
-      <el-table-column label="Angkatan" prop="angkatan" class-name="status-col" width="100">
+      <el-table-column min-width="150" prop="angkatan"
+                      label="Angkatan">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             Edit
           </el-button>
-          <el-button v-if="row.status!='published'" size="mini" type="success" @click="handleModifyStatus(row,'published')">
-            Publish
+          <el-button v-if="row.status!='AKTIF'" size="mini" type="success" @click="handleModifyStatus(row,'AKTIF')">
+            Aktif
           </el-button>
-          <el-button v-if="row.status!='draft'" size="mini" @click="handleModifyStatus(row,'draft')">
-            Draft
+          <el-button v-if="row.status!='LULUS'" size="mini" @click="handleModifyStatus(row,'LULUS')">
+            Lulus
           </el-button>
-          <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleModifyStatus(row,'deleted')">
-            Delete
+          <el-button v-if="row.status!='DO'" size="mini" type="danger" @click="handleModifyStatus(row,'DO')">
+            DO
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
@@ -118,11 +114,14 @@
         <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
+
   </div>
 </template>
 
 <script>
-import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
+import { getList } from '@/api/table'
+import { fetchPv, createArticle, updateArticle } from '@/api/article'
+
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -137,6 +136,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
   acc[cur.key] = cur.display_name
   return acc
 }, {})
+
 export default {
   name: 'ComplexTable',
   components: { Pagination },
@@ -162,6 +162,8 @@ export default {
   },
   data() {
     return {
+      activeName: 'first',
+
       tableKey: 0,
       list: null,
       total: 0,
@@ -177,7 +179,7 @@ export default {
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
       sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
-      statusOptions: ['published', 'draft', 'deleted'],
+      statusOptions: ['AKTIF', 'LULUS', 'DO'],
       showReviewer: false,
       temp: {
         id: undefined,
@@ -202,6 +204,7 @@ export default {
         title: [{ required: true, message: 'title is required', trigger: 'blur' }]
       },
       downloadLoading: false,
+
       tableData: [{
         id: 1,
         nama: 'Luthfi Fachriza',
@@ -212,24 +215,35 @@ export default {
         prodi: 'Sistem dan Teknologi Informasi',
         status: 'AKTIF',
         angkatan: '2016'
+      },
+      {
+        id: 2,
+        nama: 'Makrifat Sabil Haq',
+        nim: '18216031',
+        gender: 'L',
+        agama: 'Islam',
+        tglahir: '25-07-1998',
+        prodi: 'Sistem dan Teknologi Informasi',
+        status: 'AKTIF',
+        angkatan: '2016'
       }]
     }
   },
   created() {
-    this.getList()
+    this.fetchData()
   },
   methods: {
-    getList() {
+    fetchData() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.total = response.data.total
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
+      getList(this.listQuery).then(response => {
+        this.list = null
+        this.listLoading = false
       })
     },
+    handleClick(tab, event) {
+      console.log(tab, event)
+    },
+
     handleFilter() {
       this.listQuery.page = 1
       this.getList()

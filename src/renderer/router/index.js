@@ -38,28 +38,6 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
     path: '/form',
     component: Layout,
     children: [
@@ -80,7 +58,73 @@ export const constantRouterMap = [
         path: 'excel',
         name: 'Excel',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Excel', icon: 'excel' }
+        meta: { title: 'Excel', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/profil',
+    component: Layout,
+    children: [
+      {
+        path: 'profil',
+        name: 'Profil',
+        component: () => import('@/views/profil/index'),
+        meta: { title: 'Profil', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/mahasiswa',
+    component: Layout,
+    children: [
+      {
+        path: 'mahasiswa',
+        name: 'Mahasiswa',
+        component: () => import('@/views/mahasiswa/index'),
+        meta: { title: 'Mahasiswa', icon: 'user' }
+      }
+    ]
+  },
+  {
+    path: '/dosen',
+    component: Layout,
+    redirect: '/dosen/dosen',
+    name: 'Dosen',
+    meta: { title: 'Dosen', icon: 'user' },
+    children: [
+      {
+        path: 'dosen',
+        name: 'Dosen',
+        component: () => import('@/views/dosen/index'),
+        meta: { title: 'Dosen', icon: 'user' }
+      },
+      {
+        path: 'penugasan',
+        name: 'Penugasan',
+        component: () => import('@/views/penugasan/index'),
+        meta: { title: 'Penugasan', icon: 'tree' }
+      }
+    ]
+  },
+  {
+    path: '/perkuliahan',
+    component: Layout,
+    redirect: '/perkuliahan/matakuliah',
+    name: 'Perkuliahan',
+    meta: { title: 'Perkuliahan', icon: 'table' },
+    children: [
+      {
+        path: 'matakuliah',
+        name: 'Mata Kuliah',
+        component: () => import('@/views/matakuliah/index'),
+        meta: { title: 'Mata Kuliah', icon: 'eye' }
+      },
+      {
+        path: 'kelaskuliah',
+        name: 'Kelas Perkuliahan',
+        component: () => import('@/views/kelaskuliah/index'),
+        meta: { title: 'Kelas Perkuliahan', icon: 'password' }
       }
     ]
   },
