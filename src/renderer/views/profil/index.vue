@@ -3,7 +3,7 @@
     <div>
       <el-table border :data="tableProfilPTygbenar">
         <el-table-column min-width="50" prop="name" label=""></el-table-column>
-        <el-table-column min-width="150" prop="isi">
+        <el-table-column min-width="150" prop="isi">{{ this.tableProfilPTygbenar.isi }}
         </el-table-column>
       </el-table>
     </div>
@@ -218,7 +218,7 @@ export default {
         this.loading = false
         this.profil = this.$store.getters.profilPT
         console.log(this.profil)
-        this.tableProfilPTygbenar.isi = this.profil[0].kode_perguruan_tinggi
+        this.tableProfilPTygbenar[0].isi = this.profil[0].kode_perguruan_tinggi
         console.log(this.tableProfilPTygbenar)
       }).catch(() => {
         this.loading = false
