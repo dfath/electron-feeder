@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div>
-      <el-table border :data="tableProfilPTygbenar">
+      <el-table border :data="tableProfilPT">
         <el-table-column min-width="50" prop="name" label=""></el-table-column>
-        <el-table-column min-width="150" prop="isi">{{ this.tableProfilPTygbenar.isi }}
+        <el-table-column min-width="150" prop="isi">
         </el-table-column>
       </el-table>
     </div>
@@ -110,34 +110,30 @@ export default {
       list: null,
       listLoading: true,
       activeName: 'first',
-      profil: [],
-      tableProfilPTygbenar: [{
+      profil: null,
+      tableProfilPT: [{
         name: 'Kode PT',
-        isi: '00000'
-      }],
-      tableProfil: [{
-        name: 'Kode PT',
-        isi: '043115'
+        isi: ''
       },
       {
         name: 'Nama PT',
-        isi: 'Sekolah Tinggi Farmasi Bandung'
+        isi: ''
       },
       {
         name: 'Telepon',
-        isi: '7830760'
+        isi: ''
       },
       {
         name: 'Faxmile',
-        isi: '7830760'
+        isi: ''
       },
       {
         name: 'Email',
-        isi: 'contacct@stfb.ac.id'
+        isi: ''
       },
       {
         name: 'Website',
-        isi: 'www.stfb.ac.id'
+        isi: ''
       }],
 
       tableInfoPT: [{
@@ -217,9 +213,14 @@ export default {
       this.$store.dispatch('GetProfilPT').then(() => {
         this.loading = false
         this.profil = this.$store.getters.profilPT
+        console.log(this.$store.getters.profilPT)
         console.log(this.profil)
-        this.tableProfilPTygbenar[0].isi = this.profil[0].kode_perguruan_tinggi
-        console.log(this.tableProfilPTygbenar)
+        this.tableProfilPT[0].isi = this.profil.kode_perguruan_tinggi
+        this.tableProfilPT[1].isi = this.profil.nama_perguruan_tinggi
+        this.tableProfilPT[2].isi = this.profil.telepon
+        this.tableProfilPT[3].isi = this.profil.faximile
+        this.tableProfilPT[4].isi = this.profil.email
+        this.tableProfilPT[5].isi = this.profil.website
       }).catch(() => {
         this.loading = false
       })

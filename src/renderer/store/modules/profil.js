@@ -21,7 +21,7 @@ const user = {
         getProfilPT(token).then(response => {
           console.log(response.data)
           const data = response.data
-          commit('SET_PROFILPT', data)
+          commit('SET_PROFILPT', data[0])
           console.log(store.getters.profilPT)
           resolve()
         }).catch(error => {
