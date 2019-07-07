@@ -1,67 +1,34 @@
 <template>
   <div class="app-container">
-    <el-table border :data="tableData">
-      <el-table-column min-width="50" type="index" label="No."></el-table-column>
-      <el-table-column min-width="150" prop="nama"
+    <el-table border :data="tableDosen" height="570" style="width: 100%">
+      <!-- <el-table-column min-width="50" type="index" label="No."></el-table-column> -->
+      <el-table-column min-width="250" prop="nama_dosen"
                       label="Nama">
       </el-table-column>
-      <el-table-column min-width="200" prop="nim"
-                      label="NIM">
+      <el-table-column min-width="100" prop="nidn"
+                      label="NIDN/NUP/NIDK">
       </el-table-column>
-      <el-table-column min-width="150" prop="gender"
+      <el-table-column min-width="150" prop="nip"
+                      label="NIP">
+      </el-table-column>
+      <el-table-column min-width="50" prop="jenis_kelamin"
                       label="L/P">
       </el-table-column>
-      <el-table-column min-width="150" prop="agama"
+      <el-table-column min-width="100" prop="nama_agama"
                       label="Agama">
       </el-table-column>
-      <el-table-column min-width="150" prop="tglahir"
+      <el-table-column min-width="100" prop="tanggal_lahir"
                       label="Tanggal Lahir">
       </el-table-column>
-      <el-table-column min-width="150" prop="prodi"
-                      label="Program Studi">
-      </el-table-column>
-      <el-table-column min-width="150" prop="status"
+      <el-table-column min-width="100" prop="nama_status_aktif"
                       label="Status">
-      </el-table-column>
-      <el-table-column min-width="150" prop="angkatan"
-                      label="Angkatan">
-      </el-table-column>
-      <el-table-column min-width="150"
-                      header-align="right"
-                      label="Actions">
-        <div slot-scope="{row}" class="text-right">
-          <el-tooltip content="Info"
-                      :open-delay="300"
-                      placement="top">
-            <p-button type="info" size="sm" icon>
-              <i class="nc-icon nc-alert-circle-i"></i>
-            </p-button>
-          </el-tooltip>
-
-
-          <el-tooltip content="Settings"
-                      :open-delay="300"
-                      placement="top">
-            <p-button type="success" size="sm" icon>
-              <i class="nc-icon nc-settings"></i>
-            </p-button>
-          </el-tooltip>
-
-          <el-tooltip content="Delete"
-                      :open-delay="300"
-                      placement="top">
-            <p-button type="danger" size="sm" icon>
-              <i class="nc-icon nc-simple-delete"></i>
-            </p-button>
-          </el-tooltip>
-
-        </div>
       </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
+
 export default {
   props: {
     items: {
@@ -71,39 +38,26 @@ export default {
   },
   data() {
     return {
-      list: null,
       listLoading: true,
-      activeName: 'first',
-
-      tableData: [{
-        id: 1,
-        nama: 'Luthfi Fachriza',
-        nim: '18216027',
-        gender: 'L',
-        agama: 'Islam',
-        tglahir: '28-01-1999',
-        prodi: 'Sistem dan Teknologi Informasi',
-        status: 'AKTIF',
-        angkatan: '2016'
-      }]
-    }
-  },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
+      tableDosen: []
     }
   },
   created() {
-    this.fetchData()
+    this.getListDosen()
   },
   methods: {
-    fetchData() {
+    getListDosen() {
       this.listLoading = true
+      this.$store.dispatch('GetListDosen').then(() => {
+        this.listLoading = true
+        this.tableDosen = this.$store.getters.dosen
+        console.log(this.$store.getters.dosen)
+
+        // ListDosen
+        console.log(this.tableDosen)
+      }).catch(() => {
+        this.listLoading = false
+      })
     },
     handleClick(tab, event) {
       console.log(tab, event)
