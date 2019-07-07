@@ -10,14 +10,11 @@ const getters = {
   introduction: state => state.user.introduction,
   roles: state => state.user.roles,
   permission_routes: state => state.permission.routes,
-<<<<<<< Updated upstream
-=======
   profilPT: state => state.profil.profilPT,
   prodi: state => state.prodi.prodi,
   periode: state => state.periode.periode,
   dosen: state => state.dosen.dosen,
 
->>>>>>> Stashed changes
   errorLogs: state => state.errorLog.logs
 }
 export default getters

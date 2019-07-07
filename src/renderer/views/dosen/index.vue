@@ -49,10 +49,6 @@ export default {
   methods: {
     getListDosen() {
       this.listLoading = true
-<<<<<<< Updated upstream
-      getList(this.listQuery).then(response => {
-        this.list = null
-=======
       this.$store.dispatch('GetListDosen').then(() => {
         this.listLoading = true
         this.tableDosen = this.$store.getters.dosen
@@ -61,7 +57,6 @@ export default {
         // ListDosen
         console.log(this.tableDosen)
       }).catch(() => {
->>>>>>> Stashed changes
         this.listLoading = false
       })
     },
