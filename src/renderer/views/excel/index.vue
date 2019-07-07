@@ -99,8 +99,6 @@ export default {
   margin-bottom: 1rem;
   margin-right: auto;
   margin-left: auto;
-  width: auto;
-  text-align: center;
 }
   .el-row {
     margin-bottom: 20px;

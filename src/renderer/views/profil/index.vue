@@ -1,82 +1,82 @@
 <template>
-  <div class='app-container'>   
+  <div class="app-container">
     <div>
-      <el-table border :data='tableProfilPT'>
-        <el-table-column min-width='50' prop='name' label=''></el-table-column>
-        <el-table-column min-width='150' prop='isi'>
+      <el-table border :data="tableProfil">
+        <el-table-column min-width="50" prop="name" label=""></el-table-column>
+        <el-table-column min-width="150" prop="isi">
         </el-table-column>
       </el-table>
     </div>
     <br>
     <br>
     <div>
-      <el-tabs type='border-card'>
+      <el-tabs type="border-card">
         <el-tab-pane>
-          <span slot='label'><i class='el-icon-location-outline'></i> Alamat</span>
+          <span slot="label"><i class="el-icon-location-outline"></i> Alamat</span>
           Alamat
-          <el-table border :data='tableAlamat'>
-            <el-table-column min-width='50' prop='name'></el-table-column>
-            <el-table-column min-width='150' prop='isi'>
+          <el-table border :data="tableAlamat">
+            <el-table-column min-width="50" prop="name"></el-table-column>
+            <el-table-column min-width="150" prop="isi">
             </el-table-column>
           </el-table>
 
         </el-tab-pane>
         <el-tab-pane>
-          <span slot='label'><i class='el-icon-info'></i> Informasi PT</span>
+          <span slot="label"><i class="el-icon-info"></i> Informasi PT</span>
           Informasi PT
 
-          <el-table border :data='tableInfoPT'>
-            <el-table-column min-width='50' prop='name'></el-table-column>
-            <el-table-column min-width='150' prop='isi'>
+          <el-table border :data="tableInfoPT">
+            <el-table-column min-width="50" prop="name"></el-table-column>
+            <el-table-column min-width="150" prop="isi">
             </el-table-column>
           </el-table>
 
 
         </el-tab-pane>
         <el-tab-pane>
-          <span slot='label'><i class='el-icon-document'></i> Akta Pendirian</span>
+          <span slot="label"><i class="el-icon-document"></i> Akta Pendirian</span>
           Akta Pendirian
         </el-tab-pane>
         <el-tab-pane>
-          <span slot='label'><i class='el-icon-news'></i> Program Studi</span>
+          <span slot="label"><i class="el-icon-news"></i> Program Studi</span>
           Program Studi
-          <el-table border :data='tableData'>
-            <el-table-column min-width='50' type='index'></el-table-column>
-            <el-table-column min-width='150' prop='name'
-                            label='Name'>
+          <el-table border :data="tableData">
+            <el-table-column min-width="50" type="index"></el-table-column>
+            <el-table-column min-width="150" prop="name"
+                            label="Name">
             </el-table-column>
-            <el-table-column min-width='200' prop='job'
-                            label='Job Position'>
+            <el-table-column min-width="200" prop="job"
+                            label="Job Position">
             </el-table-column>
-            <el-table-column min-width='150' prop='salary'
-                            label='Salary'>
+            <el-table-column min-width="150" prop="salary"
+                            label="Salary">
             </el-table-column>
-            <el-table-column min-width='150'
-                            header-align='right'
-                            label='Actions'>
-              <div slot-scope='' class='text-right'>
-                <el-tooltip content='Info'
-                            :open-delay='300'
-                            placement='top'>
-                  <p-button type='info' size='sm' icon>
-                    <i class='nc-icon nc-alert-circle-i'></i>
+            <el-table-column min-width="150"
+                            header-align="right"
+                            label="Actions">
+              <div slot-scope="{row}" class="text-right">
+                <el-tooltip content="Info"
+                            :open-delay="300"
+                            placement="top">
+                  <p-button type="info" size="sm" icon>
+                    <i class="nc-icon nc-alert-circle-i"></i>
                   </p-button>
                 </el-tooltip>
 
 
-                <el-tooltip content='Settings'
-                            :open-delay='300'
-                            placement='top'>
-                  <p-button type='success' size='sm' icon>
-                    <i class='nc-icon nc-settings'></i>
+                <el-tooltip content="Settings"
+                            :open-delay="300"
+                            placement="top">
+                  <p-button type="success" size="sm" icon>
+                    <i class="nc-icon nc-settings"></i>
                   </p-button>
                 </el-tooltip>
 
-                <el-tooltip content='Delete'
-                            :open-delay='300'
-                            placement='top'>
-                  <p-button type='danger' size='sm' icon>
-                    <i class='nc-icon nc-simple-delete'></i>
+                <el-tooltip content="Delete"
+                            :open-delay="300"
+                            placement="top">
+                  <p-button type="danger" size="sm" icon>
+                    <i class="nc-icon nc-simple-delete"></i>
                   </p-button>
                 </el-tooltip>
 
@@ -86,7 +86,7 @@
 
         </el-tab-pane>
         <el-tab-pane>
-          <span slot='label'><i class='el-icon-date'></i> Periode Pelaporan Pengajuan</span>
+          <span slot="label"><i class="el-icon-date"></i> Periode Pelaporan Pengajuan</span>
           Periode Pelaporan Pengajuan
         </el-tab-pane>
       </el-tabs>
@@ -95,39 +95,60 @@
 </template>
 
 <script>
+import { getList } from '@/api/table'
+
 export default {
-  created() {
-    this.getProfilPT()
+  props: {
+    items: {
+      type: Array,
+      default: () => []
+    }
   },
   data() {
     return {
       list: null,
       listLoading: true,
       activeName: 'first',
-      profil: null,
-      tableProfilPT: [{
+
+      tableData: [{
+        id: 1,
+        name: 'Dakota Rice',
+        job: 'Develop',
+        salary: '$36.738',
+        country: 'Niger',
+        city: 'Oud-Turnhout'
+      },
+      {
+        id: 2,
+        name: 'Minerva Hooper',
+        job: 'Marketing',
+        salary: '$23,789',
+        country: 'Curaçao',
+        city: 'Sinaai-Waas'
+      }],
+      tableProfil: [{
         name: 'Kode PT',
-        isi: ''
+        isi: '043115'
       },
       {
         name: 'Nama PT',
-        isi: ''
+        isi: 'Sekolah Tinggi Farmasi Bandung'
       },
       {
         name: 'Telepon',
-        isi: ''
+        isi: '7830760'
       },
       {
         name: 'Faxmile',
-        isi: ''
+        isi: '7830760'
       },
       {
         name: 'Email',
-        isi: ''
+        isi: 'contacct@stfb.ac.id'
       },
       {
         name: 'Website',
-        isi: ''
+        isi: 'www.stfb.ac.id'
       }],
 
       tableInfoPT: [{
@@ -156,7 +177,7 @@ export default {
       }],
       tableAlamat: [{
         name: 'Jalan',
-        isi: ''
+        isi: 'Jalan Soekarno Hatta No 754, Cibiru Bandung'
       },
       {
         name: 'Dusun',
@@ -172,16 +193,17 @@ export default {
       },
       {
         name: 'Kodepos',
-        isi: ''
+        isi: '40161'
       },
       {
         name: 'Kecamatan',
-        isi: ''
+        isi: 'Kota Bandung'
       },
       {
         name: 'Lintang Bujur',
-        isi: ''
+        isi: 'Bujur'
       }]
+
     }
   },
   filters: {
@@ -194,38 +216,19 @@ export default {
       return statusMap[status]
     }
   },
+  created() {
+    this.fetchData()
+  },
   methods: {
     fetchData() {
       this.listLoading = true
+      getList(this.listQuery).then(response => {
+        this.list = null
+        this.listLoading = false
+      })
     },
     handleClick(tab, event) {
       console.log(tab, event)
-    },
-    getProfilPT() {
-      this.listLoading = true
-      this.$store.dispatch('GetProfilPT').then(() => {
-        this.listLoading = true
-        this.profil = this.$store.getters.profilPT
-        console.log(this.$store.getters.profilPT)
-        console.log(this.profil)
-        this.tableProfilPT[0].isi = this.profil.kode_perguruan_tinggi
-        this.tableProfilPT[1].isi = this.profil.nama_perguruan_tinggi
-        this.tableProfilPT[2].isi = this.profil.telepon
-        this.tableProfilPT[3].isi = this.profil.faximile
-        this.tableProfilPT[4].isi = this.profil.email
-        this.tableProfilPT[5].isi = this.profil.website
-
-        // Alamat
-        this.tableAlamat[0].isi = this.profil.jalan
-        this.tableAlamat[1].isi = this.profil.dusun
-        this.tableAlamat[2].isi = this.profil.rt_rw
-        this.tableAlamat[3].isi = this.profil.kelurahan
-        this.tableAlamat[4].isi = this.profil.kode_pos
-        this.tableAlamat[5].isi = this.profil.nama_wilayah
-        this.tableAlamat[6].isi = this.profil.lintang_bujur
-      }).catch(() => {
-        this.listLoading = false
-      })
     }
   }
 }

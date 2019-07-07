@@ -2,17 +2,20 @@ import request from '@/utils/request'
 
 export function login(username, password) {
   return request({
-    url: '/ws/live2.php',
+    url: '/user/login',
     method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    },
     data: {
-      'act': 'GetToken',
       username,
       password
     }
+  })
+}
+
+export function getInfo(token) {
+  return request({
+    url: '/user/info',
+    method: 'get',
+    params: { token }
   })
 }
 

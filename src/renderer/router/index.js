@@ -179,6 +179,8 @@ export const constantRouterMap = [
       }
     ]
   },
+<<<<<<< Updated upstream
+=======
 
   {
     path: '/form',
@@ -192,18 +194,7 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/profilmhs',
-    component: Layout,
-    children: [
-      {
-        path: 'profilmhs',
-        name: 'Profil Mahasiswa',
-        component: () => import('@/views/profilmhs/index'),
-        meta: { title: 'Profil Mahasiswa', icon: 'user' }
-      }
-    ]
-  },
+>>>>>>> Stashed changes
 
   { path: '*', redirect: '/404', hidden: true }
 ]
