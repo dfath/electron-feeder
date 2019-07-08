@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-table border :data="tableDosen" height="570" style="width: 100%">
+    <el-table border :data="tableDosen" max-height="570" style="width: 100%">
       <!-- <el-table-column min-width="50" type="index" label="No."></el-table-column> -->
       <el-table-column min-width="250" prop="nama_dosen"
                       label="Nama">
