@@ -11,14 +11,10 @@ const getters = {
   roles: state => state.user.roles,
   permission_routes: state => state.permission.routes,
   profilPT: state => state.profil.profilPT,
-<<<<<<< HEAD
   prodi: state => state.prodi.prodi,
   periode: state => state.periode.periode,
   dosen: state => state.dosen.dosen,
-
-=======
   listMahasiswa: state => state.list.listMahasiswa,
->>>>>>> viewmahasiswa
   errorLogs: state => state.errorLog.logs
 }
 export default getters
