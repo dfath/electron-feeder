@@ -19,7 +19,7 @@ const store = new Vuex.Store({
     profil,
     prodi,
     periode,
-    dosen
+    dosen,
     list
   },
   getters
