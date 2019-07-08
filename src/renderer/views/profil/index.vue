@@ -54,7 +54,7 @@
             <el-table-column min-width="150"
                             header-align="right"
                             label="Actions">
-              <div slot-scope="{row}" class="text-right">
+              <div slot-scope="" class="text-right">
                 <el-tooltip content="Info"
                             :open-delay="300"
                             placement="top">
@@ -211,7 +211,7 @@ export default {
     getProfilPT() {
       this.loading = true
       this.$store.dispatch('GetProfilPT').then(() => {
-        this.loading = false
+        this.loading = true
         this.profil = this.$store.getters.profilPT
         console.log(this.$store.getters.profilPT)
         console.log(this.profil)

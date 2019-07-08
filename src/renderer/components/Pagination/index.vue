@@ -34,7 +34,7 @@ export default {
     pageSizes: {
       type: Array,
       default() {
-        return [10, 20, 30, 50]
+        return [5, 10, 20, 30, 50, 100]
       }
     },
     layout: {
@@ -59,7 +59,7 @@ export default {
       get() {
         return this.page
       },
-      set(val) {
+      set: function(val) {
         this.$emit('update:page', val)
       }
     },
@@ -67,7 +67,7 @@ export default {
       get() {
         return this.limit
       },
-      set(val) {
+      set: function(val) {
         this.$emit('update:limit', val)
       }
     }

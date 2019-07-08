@@ -1,3 +1,4 @@
+
 <template>
   <div class="app-container">
     <div class="filter-container">
@@ -25,31 +26,31 @@
       </el-checkbox>
     </div>
 
-    <el-table border :data="tableData">
-      <el-table-column min-width="50" type="index" label="No."></el-table-column>
-      <el-table-column min-width="150" prop="nama"
+    <el-table v-loading="listLoading" border :data="tablelistMahasiswa">
+      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column min-width="200" prop="nama_mahasiswa"
                       label="Nama">
       </el-table-column>
-      <el-table-column min-width="200" prop="nim"
+      <el-table-column min-width="150" prop="nim"
                       label="NIM">
       </el-table-column>
-      <el-table-column min-width="150" prop="gender"
+      <el-table-column min-width="150" prop="jenis_kelamin"
                       label="L/P">
       </el-table-column>
-      <el-table-column min-width="150" prop="agama"
+      <el-table-column min-width="150" prop="nama_agama"
                       label="Agama">
       </el-table-column>
-      <el-table-column min-width="150" prop="tglahir"
+      <el-table-column min-width="150" prop="tanggal_lahir"
                       label="Tanggal Lahir">
       </el-table-column>
-      <el-table-column min-width="150" prop="prodi"
+      <el-table-column min-width="250" prop="nama_program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="150" prop="status"
+      <el-table-column min-width="150" prop="nama_status_mahasiswa"
                       label="Status">
       </el-table-column>
-      <el-table-column min-width="150" prop="angkatan"
-                      label="Angkatan">
+      <el-table-column min-width="150" prop="nama_periode_masuk"
+                      label="Periode Masuk">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -68,7 +69,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit"  />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
@@ -120,7 +121,6 @@
 
 <script>
 import { fetchPv, createArticle, updateArticle } from '@/api/article'
-
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -135,7 +135,6 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
   acc[cur.key] = cur.display_name
   return acc
 }, {})
-
 export default {
   name: 'ComplexTable',
   components: { Pagination },
@@ -162,18 +161,15 @@ export default {
   data() {
     return {
       activeName: 'first',
-
       tableKey: 0,
       list: null,
+      listMahasiswa: null,
+      tablelistMahasiswa: null,
       total: 0,
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 20,
-        importance: undefined,
-        title: undefined,
-        type: undefined,
-        sort: '+id'
+        limit: 5
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
@@ -203,7 +199,6 @@ export default {
         title: [{ required: true, message: 'title is required', trigger: 'blur' }]
       },
       downloadLoading: false,
-
       tableData: [{
         id: 1,
         nama: 'Luthfi Fachriza',
@@ -229,16 +224,42 @@ export default {
     }
   },
   created() {
+    this.getTotal()
     this.fetchData()
   },
   methods: {
+    indexMethod(index) {
+      if (this.listQuery.page > 1) {
+        return index + 1 + (this.listQuery.limit * (this.listQuery.page - 1))
+      } else {
+        return index + 1
+      }
+    },
+    getTotal() {
+      this.$store.dispatch('GetListMahasiswa', '').then(() => {
+        this.listLoading = false
+        this.total = this.$store.getters.listMahasiswa.length
+        console.log(this.total)
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
     fetchData() {
       this.listLoading = true
+      this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
+        this.listLoading = true
+        this.listMahasiswa = this.$store.getters.listMahasiswa
+        console.log(this.listMahasiswa)
+        this.tablelistMahasiswa = this.listMahasiswa
+        console.log(this.tablelistMahasiswa)
+        this.listLoading = false
+      }).catch(() => {
+        this.listLoading = false
+      })
     },
     handleClick(tab, event) {
       console.log(tab, event)
     },
-
     handleFilter() {
       this.listQuery.page = 1
     },
