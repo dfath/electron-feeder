@@ -29,7 +29,7 @@
       <el-table-column min-width="150"
                       header-align="right"
                       label="Actions">
-        <div slot-scope="{row}" class="text-right">
+        <div slot-scope="" class="text-right">
           <el-tooltip content="Info"
                       :open-delay="300"
                       placement="top">

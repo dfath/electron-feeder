@@ -51,6 +51,7 @@
             <el-table-column min-width='150' prop='salary'
                             label='Salary'>
             </el-table-column>
+<<<<<<< HEAD
             <el-table-column min-width='150'
                             header-align='right'
                             label='Actions'>
@@ -60,6 +61,17 @@
                             placement='top'>
                   <p-button type='info' size='sm' icon>
                     <i class='nc-icon nc-alert-circle-i'></i>
+=======
+            <el-table-column min-width="150"
+                            header-align="right"
+                            label="Actions">
+              <div slot-scope="" class="text-right">
+                <el-tooltip content="Info"
+                            :open-delay="300"
+                            placement="top">
+                  <p-button type="info" size="sm" icon>
+                    <i class="nc-icon nc-alert-circle-i"></i>
+>>>>>>> viewmahasiswa
                   </p-button>
                 </el-tooltip>
 
@@ -204,7 +216,11 @@ export default {
     getProfilPT() {
       this.listLoading = true
       this.$store.dispatch('GetProfilPT').then(() => {
+<<<<<<< HEAD
         this.listLoading = true
+=======
+        this.loading = true
+>>>>>>> viewmahasiswa
         this.profil = this.$store.getters.profilPT
         console.log(this.$store.getters.profilPT)
         console.log(this.profil)
