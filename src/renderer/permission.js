@@ -12,6 +12,10 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
+      if (to.path === '/mahasiswa/upload') {
+        store.dispatch('SetDestination', 'biodatamahasiswa')
+        console.log(store.getters.destination)
+      }
       next()
     }
   } else {

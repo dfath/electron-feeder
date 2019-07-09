@@ -7,22 +7,16 @@
           <el-row  type="flex" justify="end" >
             <el-col :span="6">
               <div>
-                <el-button type="info">Download contoh file Excel</el-button>
+                <el-button v-waves type="info" icon="el-icon-download" >
+        Download Contoh File Excel
+      </el-button>
               </div>
             </el-col>
             <el-col :span="6">
               <div>
-                <el-popover
-                  placement="top"
-                  width="160"
-                  v-model="visible">
-                  <p>Apakah Anda yakin untuk mengirimkan data ini?</p>
-                  <div style="text-align: right; margin: 0">
-                    <el-button size="mini" type="text" @click="visible = false">Tidak</el-button>
-                    <el-button type="primary" size="mini" @click="visible = false">Ya</el-button>
-                  </div>
-                  <el-button type="success" slot="reference">Kirim ke Feeder PDDikti</el-button>
-                </el-popover>
+                <el-button v-waves type="success" icon="el-icon-upload2" @click="handleUpload" >
+        Kirim ke Feeder PDDikti
+      </el-button>
               </div>
             </el-col>
           </el-row>
@@ -50,17 +44,20 @@
 
 <script>
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
+import store from '@/store'
 import BackToTop from '@/components/BackToTop'
+import waves from '@/directive/waves'
 
 export default {
   name: 'UploadExcel',
   components: { UploadExcelComponent, BackToTop },
+  directives: { waves },
   data() {
     return {
       tableData: [],
       tableHeader: [],
       visible: false,
-
+      destination: null,
       myBackToTopStyle: {
         right: '50px',
         bottom: '50px',
@@ -85,8 +82,22 @@ export default {
       return false
     },
     handleSuccess({ results, header }) {
+      this.destination = store.getters.destination
+      console.log('uploadsucces', results)
+      console.log(this.destination)
+      if (this.destination === 'biodatamahasiswa') {
+        store.dispatch('SetBiodataMahasiswa', results)
+      }
       this.tableData = results
       this.tableHeader = header
+    },
+    handleUpload() {
+      this.destination = store.getters.destination
+      if (this.destination !== null) {
+        if (this.destination === 'biodatamahasiswa') {
+          store.dispatch('InsertBiodataMahasiswa')
+        }
+      }
     }
   }
 }

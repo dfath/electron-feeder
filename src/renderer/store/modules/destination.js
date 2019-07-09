@@ -1,7 +1,4 @@
-import { insertBiodataMahasiswa } from '@/api/insertBiodataMahasiswa'
-import store from '@/store'
-
-const user = {
+const destination = {
   state: {
     destination: null
   },
@@ -13,10 +10,10 @@ const user = {
   },
 
   actions: {
-    SetDestination({ commit }, destination_name){
+    SetDestination({ commit }, destination_name) {
       commit('SET_DESTINATION', destination_name)
     }
   }
 }
 
-export default user
+export default destination

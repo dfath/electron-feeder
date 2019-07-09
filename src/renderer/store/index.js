@@ -6,8 +6,9 @@ import profil from './modules/profil'
 import prodi from './modules/prodi'
 import periode from './modules/periode'
 import dosen from './modules/dosen'
-
+import destination from './modules/destination'
 import list from './modules/list'
+import insert from './modules/insert'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -20,7 +21,9 @@ const store = new Vuex.Store({
     prodi,
     periode,
     dosen,
-    list
+    list,
+    destination,
+    insert
   },
   getters
 })

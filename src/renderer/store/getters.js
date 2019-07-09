@@ -15,6 +15,7 @@ const getters = {
   periode: state => state.periode.periode,
   dosen: state => state.dosen.dosen,
   listMahasiswa: state => state.list.listMahasiswa,
+  destination: state => state.destination.destination,
   errorLogs: state => state.errorLog.logs
 }
 export default getters
