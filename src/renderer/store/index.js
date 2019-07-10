@@ -5,6 +5,7 @@ import user from './modules/user'
 import profil from './modules/profil'
 import prodi from './modules/prodi'
 import periode from './modules/periode'
+import contoh from './modules/contoh'
 import dosen from './modules/dosen'
 import destination from './modules/destination'
 import list from './modules/list' // List Mahasiswa
@@ -27,7 +28,8 @@ const store = new Vuex.Store({
     listmatakuliah,
     listkurikulum,
     destination,
-    insert
+    insert,
+    contoh
   },
   getters
 })

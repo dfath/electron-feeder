@@ -9,7 +9,7 @@
       </el-timeline-item>
     </el-timeline> -->
 
-    <el-table border :data='tableInfoPT'>
+    <el-table border :data='tableInfoPT' :show-header="false">
       <el-table-column min-width='100' prop='name'></el-table-column>
       <el-table-column min-width='100' prop='isi'>
       </el-table-column>

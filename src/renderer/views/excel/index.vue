@@ -7,9 +7,9 @@
           <el-row  type="flex" justify="end" >
             <el-col :span="6">
               <div>
-                <el-button v-waves type="info" icon="el-icon-download" >
-                  Download Contoh File Excel
-                </el-button>
+                <el-button v-waves type="info" icon="el-icon-download" @click="handleDownload" >
+        Download Contoh File Excel
+      </el-button>
               </div>
             </el-col>
             <el-col :span="6">
@@ -84,6 +84,7 @@ export default {
     handleSuccess({ results, header }) {
       this.destination = store.getters.destination
       console.log('uploadsucces', results)
+      console.log(JSON.stringify(results[0]))
       console.log(this.destination)
       if (this.destination === 'biodatamahasiswa') {
         store.dispatch('SetBiodataMahasiswa', results)
@@ -114,6 +115,9 @@ export default {
           }
         }
       }
+    },
+    handleDownload() {
+      store.dispatch('GetContoh')
     }
   }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import { baseUrl } from '../../../vue.config'
-import { Message, MessageBox } from 'element-ui'
+import { Message } from 'element-ui'
 import store from '../store'
 
 // 创建axios实例
@@ -35,24 +35,23 @@ service.interceptors.response.use(
     console.log(res)
     if (parseInt(res.error_code) !== 0) {
       console.log('disini')
-      Message({
-        message: res.error_desc,
-        type: 'error',
-        duration: 5 * 1000
-      })
-
-      // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
-          confirmButtonText: '重新登录',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('FedLogOut').then(() => {
-            location.reload()// 为了重新实例化vue-router对象 避免bug
-          })
+      if (parseInt(res.error_code) !== 100) {
+        Message({
+          message: res.error_desc,
+          type: 'error',
+          duration: 5 * 1000
         })
+      } else {
+        Message({
+          message: 'Token expired, memuat ulang halaman..',
+          type: 'warning',
+          duration: 5 * 1000
+        })
+        store.dispatch('Renew').then(
+          location.reload()
+        )
       }
+
       return Promise.reject('error')
     } else {
       console.log('here')
