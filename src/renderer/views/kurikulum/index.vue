@@ -26,45 +26,45 @@
       </el-checkbox>
     </div>
 
-    <el-table v-loading="listLoading" border :data="tablelistMahasiswa">
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="200" prop="nama_mahasiswa"
-                      label="Nama">
+    <el-table v-loading="listLoading" border :data="tablelistKurikulum">
+      <el-table-column min-width="45" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column min-width="168" prop="nama_kurikulum"
+                      label="Nama Kurikulum">
       </el-table-column>
-      <el-table-column min-width="100" prop="nim"
-                      label="NIM">
-      </el-table-column>
-      <el-table-column min-width="50" prop="jenis_kelamin"
-                      label="L/P">
-      </el-table-column>
-      <el-table-column min-width="100" prop="nama_agama"
-                      label="Agama">
-      </el-table-column>
-      <el-table-column min-width="100" prop="tanggal_lahir"
-                      label="Tanggal Lahir">
-      </el-table-column>
-      <el-table-column min-width="200" prop="nama_program_studi"
+      <el-table-column min-width="85" prop="nama_program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_status_mahasiswa"
-                      label="Status">
+      <el-table-column min-width="100" prop="semester_mulai_berlaku"
+                      label="Mulai Berlaku">
       </el-table-column>
-      <el-table-column min-width="150" prop="nama_periode_masuk"
-                      label="Periode Masuk">
+      <el-table-column min-width="50" prop=""
+                      label="Aturan Jumlah sks">
+        <el-table-column min-width="45" prop="jumlah_sks_lulus"
+                        label="Lulus">
+        </el-table-column>
+        <el-table-column min-width="45" prop="jumlah_sks_wajib"
+                        label="Wajib">
+        </el-table-column>
+        <el-table-column min-width="50" prop="jumlah_sks_pilihan"
+                        label="Pilihan">
+        </el-table-column>
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="300" class-name="small-padding fixed-width">
+      <el-table-column min-width="50" prop=""
+                      label="Jumlah sks Matakuliah">
+        <el-table-column min-width="50" prop="jumlah_sks_mata_kuliah_wajib"
+                        label="Wajib">
+        </el-table-column>
+        <el-table-column min-width="50" prop="jumlah_sks_mata_kuliah_pilihan"
+                        label="Pilihan">
+        </el-table-column>
+      </el-table-column>
+      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             Edit
           </el-button>
-          <el-button v-if="row.status!='AKTIF'" size="mini" type="success" @click="handleModifyStatus(row,'AKTIF')">
-            Aktif
-          </el-button>
-          <el-button v-if="row.status!='LULUS'" size="mini" @click="handleModifyStatus(row,'LULUS')">
-            Lulus
-          </el-button>
-          <el-button v-if="row.status!='DO'" size="mini" type="danger" @click="handleModifyStatus(row,'DO')">
-            DO
+          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+            Delete
           </el-button>
         </template>
       </el-table-column>
@@ -163,8 +163,8 @@ export default {
       activeName: 'first',
       tableKey: 0,
       list: null,
-      listMahasiswa: null,
-      tablelistMahasiswa: null,
+      listKurikulum: null,
+      tablelistKurikulum: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -198,29 +198,7 @@ export default {
         timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
         title: [{ required: true, message: 'title is required', trigger: 'blur' }]
       },
-      downloadLoading: false,
-      tableData: [{
-        id: 1,
-        nama: 'Luthfi Fachriza',
-        nim: '18216027',
-        gender: 'L',
-        agama: 'Islam',
-        tglahir: '28-01-1999',
-        prodi: 'Sistem dan Teknologi Informasi',
-        status: 'AKTIF',
-        angkatan: '2016'
-      },
-      {
-        id: 2,
-        nama: 'Makrifat Sabil Haq',
-        nim: '18216031',
-        gender: 'L',
-        agama: 'Islam',
-        tglahir: '25-07-1998',
-        prodi: 'Sistem dan Teknologi Informasi',
-        status: 'AKTIF',
-        angkatan: '2016'
-      }]
+      downloadLoading: false
     }
   },
   created() {
@@ -236,9 +214,9 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetListMahasiswa', '').then(() => {
+      this.$store.dispatch('GetListKurikulum', '').then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.listMahasiswa.length
+        this.total = this.$store.getters.listKurikulum.length
         console.log(this.total)
       }).catch(() => {
         this.listLoading = false
@@ -246,12 +224,12 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
+      this.$store.dispatch('GetListKurikulum', this.listQuery).then(() => {
         this.listLoading = true
-        this.listMahasiswa = this.$store.getters.listMahasiswa
-        console.log(this.listMahasiswa)
-        this.tablelistMahasiswa = this.listMahasiswa
-        console.log(this.tablelistMahasiswa)
+        this.listKurikulum = this.$store.getters.listKurikulum
+        console.log(this.listKurikulum)
+        this.tablelistKurikulum = this.listKurikulum
+        console.log(this.tablelistKurikulum)
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
@@ -368,20 +346,6 @@ export default {
       fetchPv(pv).then(response => {
         this.pvData = response.data.pvData
         this.dialogPvVisible = true
-      })
-    },
-    handleDownload() {
-      this.downloadLoading = true
-      import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-        const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
-        const data = this.formatJson(filterVal, this.list)
-        excel.export_json_to_excel({
-          header: tHeader,
-          data,
-          filename: 'table-list'
-        })
-        this.downloadLoading = false
       })
     },
     formatJson(filterVal, jsonData) {

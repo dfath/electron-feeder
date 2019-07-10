@@ -133,6 +133,12 @@ export const constantRouterMap = [
         meta: { title: 'Mata Kuliah', icon: 'eye' }
       },
       {
+        path: 'insertmatakuliah',
+        name: 'Insert MataKuliah',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert MataKuliah', icon: 'eye' }
+      },
+      {
         path: 'substansikuliah',
         name: 'Substansi Kuliah',
         component: () => import('@/views/matakuliah/index'),
@@ -141,8 +147,14 @@ export const constantRouterMap = [
       {
         path: 'kurikulum',
         name: 'Kurikulum',
-        component: () => import('@/views/matakuliah/index'),
+        component: () => import('@/views/kurikulum/index'),
         meta: { title: 'Kurikulum', icon: 'education' }
+      },
+      {
+        path: 'insertkurikulum',
+        name: 'Insert Kurikulum',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Kurikulum', icon: 'education' }
       },
       {
         path: 'kelaskuliah',

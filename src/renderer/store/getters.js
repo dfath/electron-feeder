@@ -15,6 +15,8 @@ const getters = {
   periode: state => state.periode.periode,
   dosen: state => state.dosen.dosen,
   listMahasiswa: state => state.list.listMahasiswa,
+  listMataKuliah: state => state.listmatakuliah.listMataKuliah, // List MataKuliah
+  listKurikulum: state => state.listkurikulum.listKurikulum, // List Kurikulum
   destination: state => state.destination.destination,
   errorLogs: state => state.errorLog.logs
 }

@@ -16,24 +16,27 @@
       <el-table-column
         prop="kode_prodi"
         label="Kode Program Studi"
-        width="180">
+        width="175">
       </el-table-column>
       <el-table-column
         prop="nama_program_studi"
         label="Nama Program Studi"
-        width="180">
+        width="170">
       </el-table-column>
       <el-table-column
         prop="status_prodi"
-        label="Status">
+        label="Status"
+        width="75">
       </el-table-column>
       <el-table-column
         prop="jenjang_pendidikan"
-        label="Jenjang">
+        label="Jenjang"
+        width="88">
       </el-table-column>
       <el-table-column
         prop="periode_pelaporan"
-        label="Periode Pelaporan">
+        label="Periode Pelaporan"
+        width="150">
       </el-table-column>
     </el-table>
   </div>
@@ -60,7 +63,6 @@ export default {
         this.listLoading = true
         this.periode = this.$store.getters.periode
         console.log(this.$store.getters.periode)
-
         // Periode
         console.log(this.periode)
       }).catch(() => {

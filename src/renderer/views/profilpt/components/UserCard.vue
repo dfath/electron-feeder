@@ -6,10 +6,7 @@
 
     <div class="user-profile">
       <div class="box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
-          <div>STFB</div>
-          {{ user.role }}
-        </pan-thumb>
+          <div class="user-name"><svg-icon class-name="size-icon" icon-class="peoples" /></div>
       </div>
       <div class="box-center">
         <div class="user-name text-center">{{ user.name }}</div>
@@ -157,6 +154,7 @@ export default {
    .user-name {
      font-weight: bold;
      text-align: center;
+     font-size: 25px;
    }
    .box-center {
      padding-top: 10px;
@@ -199,5 +197,9 @@ export default {
      font-weight: bold;
      color: #1A69B6;
    }
+ }
+ .size-icon {
+   height: 100px;
+   width: 200px;
  }
 </style>

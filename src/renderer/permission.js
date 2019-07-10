@@ -15,6 +15,16 @@ router.beforeEach((to, from, next) => {
       if (to.path === '/mahasiswa/upload') {
         store.dispatch('SetDestination', 'biodatamahasiswa')
         console.log(store.getters.destination)
+      } else {
+        if (to.path === '/perkuliahan/insertmatakuliah') {
+          store.dispatch('SetDestination', 'matakuliah')
+          console.log(store.getters.destination)
+        } else {
+          if (to.path === '/perkuliahan/insertkurikulum') {
+            store.dispatch('SetDestination', 'kurikulum')
+            console.log(store.getters.destination)
+          }
+        }
       }
       next()
     }

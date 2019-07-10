@@ -9,20 +9,22 @@
       <el-table-column
         prop="kode_program_studi"
         label="Kode Program Studi"
-        width="180">
+        width="125">
       </el-table-column>
       <el-table-column
         prop="nama_program_studi"
         label="Nama Program Studi"
-        width="180">
+        width="170">
       </el-table-column>
       <el-table-column
         prop="status"
-        label="Status">
+        label="Status"
+        width="75">
       </el-table-column>
       <el-table-column
         prop="nama_jenjang_pendidikan"
-        label="Jenjang">
+        label="Jenjang"
+        width="75">
       </el-table-column>
       <el-table-column
         prop=""
@@ -30,7 +32,8 @@
       </el-table-column>
       <el-table-column
         prop=""
-        label="Jumlah Dosen">
+        label="Jumlah Dosen"
+        width="80">
       </el-table-column>
     </el-table>
   </div>

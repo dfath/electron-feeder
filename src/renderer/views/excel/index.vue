@@ -8,15 +8,15 @@
             <el-col :span="6">
               <div>
                 <el-button v-waves type="info" icon="el-icon-download" >
-        Download Contoh File Excel
-      </el-button>
+                  Download Contoh File Excel
+                </el-button>
               </div>
             </el-col>
             <el-col :span="6">
               <div>
                 <el-button v-waves type="success" icon="el-icon-upload2" @click="handleUpload" >
-        Kirim ke Feeder PDDikti
-      </el-button>
+                  Kirim ke Feeder PDDikti
+                </el-button>
               </div>
             </el-col>
           </el-row>
@@ -87,6 +87,14 @@ export default {
       console.log(this.destination)
       if (this.destination === 'biodatamahasiswa') {
         store.dispatch('SetBiodataMahasiswa', results)
+      } else {
+        if (this.destination === 'matakuliah') {
+          store.dispatch('SetMataKuliah', results)
+        } else {
+          if (this.destination === 'kurikulum') {
+            store.dispatch('SetKurikulum', results)
+          }
+        }
       }
       this.tableData = results
       this.tableHeader = header
@@ -96,6 +104,14 @@ export default {
       if (this.destination !== null) {
         if (this.destination === 'biodatamahasiswa') {
           store.dispatch('InsertBiodataMahasiswa')
+        } else {
+          if (this.destination === 'matakuliah') {
+            store.dispatch('InsertMataKuliah')
+          } else {
+            if (this.destination === 'kurikulum') {
+              store.dispatch('InsertKurikulum')
+            }
+          }
         }
       }
     }
