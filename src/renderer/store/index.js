@@ -5,6 +5,7 @@ import user from './modules/user'
 import profil from './modules/profil'
 import prodi from './modules/prodi'
 import periode from './modules/periode'
+import contoh from './modules/contoh'
 import dosen from './modules/dosen'
 import destination from './modules/destination'
 import list from './modules/list'
@@ -23,7 +24,8 @@ const store = new Vuex.Store({
     dosen,
     list,
     destination,
-    insert
+    insert,
+    contoh
   },
   getters
 })
