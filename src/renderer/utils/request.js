@@ -44,11 +44,15 @@ service.interceptors.response.use(
       } else {
         Message({
           message: 'Token expired, memuat ulang halaman..',
-          type: 'warning',
-          duration: 5 * 1000
+          type: 'Info',
+          duration: 2 * 1000
         })
-        store.dispatch('Renew').then(
-          location.reload()
+        store.dispatch('Renew').then(() => {
+          const newdata = JSON.parse(response.config.data)
+          newdata.token = store.getters.token
+          response.config.data = JSON.stringify(newdata)
+          return service.request(response.config)
+        }
         )
       }
 

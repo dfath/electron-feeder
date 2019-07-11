@@ -227,6 +227,24 @@ export default {
     this.getTotal()
     this.fetchData()
   },
+  computed: {
+    fetchData() {
+      if (this.total === 0) {
+        this.getTotal()
+      }
+      this.listLoading = true
+      this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
+        this.listLoading = true
+        this.listMahasiswa = this.$store.getters.listMahasiswa
+        console.log(this.listMahasiswa)
+        this.tablelistMahasiswa = this.listMahasiswa
+        console.log(this.tablelistMahasiswa)
+        this.listLoading = false
+      }).catch(() => {
+        this.listLoading = false
+      })
+    }
+  },
   methods: {
     indexMethod(index) {
       if (this.listQuery.page > 1) {
@@ -240,19 +258,6 @@ export default {
         this.listLoading = false
         this.total = this.$store.getters.listMahasiswa.length
         console.log(this.total)
-      }).catch(() => {
-        this.listLoading = false
-      })
-    },
-    fetchData() {
-      this.listLoading = true
-      this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
-        this.listLoading = true
-        this.listMahasiswa = this.$store.getters.listMahasiswa
-        console.log(this.listMahasiswa)
-        this.tablelistMahasiswa = this.listMahasiswa
-        console.log(this.tablelistMahasiswa)
-        this.listLoading = false
       }).catch(() => {
         this.listLoading = false
       })
