@@ -25,31 +25,25 @@
       </el-checkbox>
     </div>
 
-    <el-table v-loading="listLoading" border :data="tablelistMahasiswa">
-      <el-table-column min-width="100" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="150" prop="nama_mahasiswa"
-                      label="Nama">
+    <el-table v-loading="listLoading" border :data="tablelistNilaiPerkuliahanKelas">
+      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column min-width="100" prop="kode_mata_kuliah"
+                      label="Kode MK">
       </el-table-column>
-      <el-table-column min-width="85" prop="nim"
-                      label="NIM">
+      <el-table-column min-width="150" prop="nama_mata_kuliah"
+                      label="Nama MK">
       </el-table-column>
-      <el-table-column min-width="45" prop="jenis_kelamin"
-                      label="L/P">
+      <el-table-column min-width="50" prop="nama_kelas_kuliah"
+                      label="Nama Kelas">
       </el-table-column>
-      <el-table-column min-width="85" prop="nama_agama"
-                      label="Agama">
+      <el-table-column min-width="50" prop="sks_mata_kuliah"
+                      label="Bobot MK (sks)">
       </el-table-column>
-      <el-table-column min-width="100" prop="tanggal_lahir"
-                      label="Tanggal Lahir">
+      <el-table-column min-width="50" prop="jumlah_mahasiswa_krs"
+                      label="Peserta Kelas">
       </el-table-column>
-      <el-table-column min-width="125" prop="nama_program_studi"
-                      label="Program Studi">
-      </el-table-column>
-      <el-table-column min-width="100" prop="nama_status_mahasiswa"
-                      label="Status">
-      </el-table-column>
-      <el-table-column min-width="130" prop="nama_periode_masuk"
-                      label="Periode Masuk">
+      <el-table-column min-width="50" prop="jumlah_mahasiswa_dapat_nilai"
+                      label="Peserta Sudah Dinilai">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="300" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -162,8 +156,8 @@ export default {
       activeName: 'first',
       tableKey: 0,
       list: null,
-      listMahasiswa: null,
-      tablelistMahasiswa: null,
+      listNilaiPerkuliahanKelas: null,
+      tablelistNilaiPerkuliahanKelas: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -213,9 +207,9 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetListMahasiswa', '').then(() => {
+      this.$store.dispatch('GetListNilaiPerkuliahanKelas', '').then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.listMahasiswa.length
+        this.total = this.$store.getters.listNilaiPerkuliahanKelas.length
         console.log(this.total)
       }).catch(() => {
         this.listLoading = false
@@ -223,12 +217,12 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
+      this.$store.dispatch('GetListNilaiPerkuliahanKelas', this.listQuery).then(() => {
         this.listLoading = true
-        this.listMahasiswa = this.$store.getters.listMahasiswa
-        console.log(this.listMahasiswa)
-        this.tablelistMahasiswa = this.listMahasiswa
-        console.log(this.tablelistMahasiswa)
+        this.listNilaiPerkuliahanKelas = this.$store.getters.listNilaiPerkuliahanKelas
+        console.log(this.listNilaiPerkuliahanKelas)
+        this.tablelistNilaiPerkuliahanKelas = this.listNilaiPerkuliahanKelas
+        console.log(this.tablelistNilaiPerkuliahanKelas)
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false

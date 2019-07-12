@@ -9,8 +9,15 @@ import contoh from './modules/contoh'
 import dosen from './modules/dosen'
 import destination from './modules/destination'
 import list from './modules/list' // List Mahasiswa
+import listpenugasansemuadosen from './modules/listpenugasansemuadosen' // List Penugasan Dosen
 import listmatakuliah from './modules/listmatakuliah' // List MataKuliah
 import listkurikulum from './modules/listkurikulum' // List Kurikulum
+import listkelaskuliah from './modules/listkelaskuliah' // List Kelas Kuliah
+import listnilaiperkuliahankelas from './modules/listnilaiperkuliahankelas' // List Nilai Perkuliahan Kelas
+import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Aktivitas Kuliah Mahasiswa
+import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa' // List Aktivitas Mahasiswa
+import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/DO
+
 import insert from './modules/insert'
 import getters from './getters'
 
@@ -25,9 +32,15 @@ const store = new Vuex.Store({
     periode,
     dosen,
     list,
+    listpenugasansemuadosen,
     listmatakuliah,
     listkurikulum,
+    listkelaskuliah,
+    listnilaiperkuliahankelas,
+    aktivitaskuliahmahasiswa,
+    listaktivitasmahasiswa,
     destination,
+    listmahasiswalulusdo,
     insert,
     contoh
   },

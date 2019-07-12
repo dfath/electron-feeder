@@ -1,7 +1,7 @@
 <template>
   <div class="user-activity">
     <div class="post">
-      <el-table border :data='tableAlamat' >
+      <el-table border :data='tableAlamat' :show-header="false">
         <el-table-column min-width='50' prop='name'></el-table-column>
         <el-table-column min-width='150' prop='isi'>
         </el-table-column>

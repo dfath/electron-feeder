@@ -25,31 +25,22 @@
       </el-checkbox>
     </div>
 
-    <el-table v-loading="listLoading" border :data="tablelistMahasiswa">
-      <el-table-column min-width="100" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="150" prop="nama_mahasiswa"
-                      label="Nama">
-      </el-table-column>
-      <el-table-column min-width="85" prop="nim"
-                      label="NIM">
-      </el-table-column>
-      <el-table-column min-width="45" prop="jenis_kelamin"
-                      label="L/P">
-      </el-table-column>
-      <el-table-column min-width="85" prop="nama_agama"
-                      label="Agama">
-      </el-table-column>
-      <el-table-column min-width="100" prop="tanggal_lahir"
-                      label="Tanggal Lahir">
-      </el-table-column>
-      <el-table-column min-width="125" prop="nama_program_studi"
+    <el-table v-loading="listLoading" border :data="tablelistAktivitasMahasiswa">
+      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column min-width="75" prop="nama_prodi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_status_mahasiswa"
-                      label="Status">
+      <el-table-column min-width="100" prop="nama_semester"
+                      label="Semester">
       </el-table-column>
-      <el-table-column min-width="130" prop="nama_periode_masuk"
-                      label="Periode Masuk">
+      <el-table-column min-width="125" prop="nama_jenis_aktivitas"
+                      label="Jenis">
+      </el-table-column>
+      <el-table-column min-width="200" prop="judul"
+                      label="Judul">
+      </el-table-column>
+      <el-table-column min-width="75" prop="tanggal_sk_tugas"
+                      label="Tanggal SK">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="300" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -162,8 +153,8 @@ export default {
       activeName: 'first',
       tableKey: 0,
       list: null,
-      listMahasiswa: null,
-      tablelistMahasiswa: null,
+      listAktivitasMahasiswa: null,
+      tablelistAktivitasMahasiswa: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -213,9 +204,9 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetListMahasiswa', '').then(() => {
+      this.$store.dispatch('GetListAktivitasMahasiswa', '').then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.listMahasiswa.length
+        this.total = this.$store.getters.listAktivitasMahasiswa.length
         console.log(this.total)
       }).catch(() => {
         this.listLoading = false
@@ -223,12 +214,12 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
+      this.$store.dispatch('GetListAktivitasMahasiswa', this.listQuery).then(() => {
         this.listLoading = true
-        this.listMahasiswa = this.$store.getters.listMahasiswa
-        console.log(this.listMahasiswa)
-        this.tablelistMahasiswa = this.listMahasiswa
-        console.log(this.tablelistMahasiswa)
+        this.listAktivitasMahasiswa = this.$store.getters.listAktivitasMahasiswa
+        console.log(this.listAktivitasMahasiswa)
+        this.tablelistAktivitasMahasiswa = this.listAktivitasMahasiswa
+        console.log(this.tablelistAktivitasMahasiswa)
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false

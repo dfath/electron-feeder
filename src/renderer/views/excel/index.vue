@@ -94,6 +94,14 @@ export default {
         } else {
           if (this.destination === 'kurikulum') {
             store.dispatch('SetKurikulum', results)
+          } else {
+            if (this.destination === 'lulusdo') {
+              store.dispatch('SetMahasiswaLulusDO', results)
+            } else {
+              if (this.destination === 'aktivitas') {
+                store.dispatch('SetAktivitasMahasiswa', results)
+              }
+            }
           }
         }
       }
@@ -111,6 +119,14 @@ export default {
           } else {
             if (this.destination === 'kurikulum') {
               store.dispatch('InsertKurikulum')
+            } else {
+              if (this.destination === 'lulusdo') {
+                store.dispatch('InsertMahasiswaLulusDO')
+              } else {
+                if (this.destination === 'aktivitas') {
+                  store.dispatch('InsertAktivitasMahasiswa')
+                }
+              }
             }
           }
         }

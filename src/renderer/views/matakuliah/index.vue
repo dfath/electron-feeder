@@ -27,7 +27,7 @@
     </div>
 
     <el-table v-loading="listLoading" border :data="tablelistMataKuliah">
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column min-width="75" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="50" prop="kode_mata_kuliah"
                       label="Kode MK">
       </el-table-column>
@@ -37,10 +37,10 @@
       <el-table-column min-width="75" prop="sks_mata_kuliah"
                       label="Bobot MK (sks)">
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_program_studi"
+      <el-table-column min-width="150" prop="nama_program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="100" prop="id_jenis_mata_kuliah"
+      <el-table-column min-width="50" prop="id_jenis_mata_kuliah"
                       label="Jenis MK">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="300" class-name="small-padding fixed-width">
