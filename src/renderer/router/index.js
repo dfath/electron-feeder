@@ -81,6 +81,13 @@ export const constantRouterMap = [
         name: 'Upload Biodata Mahasiswa',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Upload Biodata', icon: 'table' }
+      },
+      {
+        path: 'edit',
+        name: 'Edit Mahasiswa',
+        hidden: true,
+        component: () => import('@/views/mahasiswa/edit'),
+        meta: { title: 'Edit Biodata Mahasiswa', icon: 'form' }
       }
     ]
   },

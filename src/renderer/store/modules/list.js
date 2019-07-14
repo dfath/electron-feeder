@@ -14,6 +14,7 @@ const user = {
 
   actions: {
     GetListMahasiswa({ commit, state }, listQuery) {
+      console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
       let offset = null

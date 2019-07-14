@@ -1,6 +1,7 @@
 import axios from 'axios'
 // import { baseUrl } from '../../../vue.config'
 import { Message } from 'element-ui'
+import router from '../router'
 import store from '../store'
 
 // 创建axios实例
@@ -15,9 +16,6 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   console.log(config)
-  if (store.getters.token) {
-    config.headers['X-Token'] = store.getters.token// 让每个请求携带自定义token 请根据实际情况自行修改
-  }
   return config
 }, error => {
   // Do something with request error
@@ -43,13 +41,13 @@ service.interceptors.response.use(
         })
       } else {
         Message({
-          message: 'Token expired, memuat ulang halaman..',
-          type: 'warning',
-          duration: 5 * 1000
+          message: 'Token expired, silahkan login ulang untuk mendapatkan token baru',
+          type: 'Info',
+          duration: 2 * 1000
         })
-        store.dispatch('Renew').then(
-          location.reload()
-        )
+        store.dispatch('FedLogOut').then(() => {
+          router.push('/login')
+        })
       }
 
       return Promise.reject('error')

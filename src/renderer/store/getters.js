@@ -5,6 +5,9 @@ const getters = {
   visitedViews: state => state.tagsView.visitedViews,
   // cachedViews: state => state.tagsView.cachedViews,
   token: state => state.user.token,
+  username: state => state.user.username,
+  password: state => state.user.password,
+  frompath: state => state.user.frompath,
   avatar: state => state.user.avatar,
   name: state => state.user.name,
   introduction: state => state.user.introduction,
@@ -25,6 +28,7 @@ const getters = {
   listMahasiswaLulusDO: state => state.listmahasiswalulusdo.listMahasiswaLulusDO, // List Mahasiswa Lulus/DO
   destination: state => state.destination.destination,
   errorLogs: state => state.errorLog.logs,
-  contohbiodatamahasiswa: state => state.contoh.contohbiodatamahasiswa.contohbiodatamahasiswa
+  contohbiodatamahasiswa: state => state.contoh.contohbiodatamahasiswa.contohbiodatamahasiswa,
+  editbiodatamahasiswa: state => state.getbiodatamahasiswa.editbiodatamahasiswa
 }
 export default getters

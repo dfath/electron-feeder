@@ -18,6 +18,7 @@ import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Akt
 import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa' // List Aktivitas Mahasiswa
 import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/DO
 
+import getbiodatamahasiswa from './modules/getbiodatamahasiswa' // List Kurikulum
 import insert from './modules/insert'
 import getters from './getters'
 
@@ -42,6 +43,7 @@ const store = new Vuex.Store({
     destination,
     listmahasiswalulusdo,
     insert,
+    getbiodatamahasiswa,
     contoh
   },
   getters
