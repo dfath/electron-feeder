@@ -11,6 +11,7 @@ import destination from './modules/destination'
 import list from './modules/list' // List Mahasiswa
 import listmatakuliah from './modules/listmatakuliah' // List MataKuliah
 import listkurikulum from './modules/listkurikulum' // List Kurikulum
+import getbiodatamahasiswa from './modules/getbiodatamahasiswa' // List Kurikulum
 import insert from './modules/insert'
 import getters from './getters'
 
@@ -29,6 +30,7 @@ const store = new Vuex.Store({
     listkurikulum,
     destination,
     insert,
+    getbiodatamahasiswa,
     contoh
   },
   getters

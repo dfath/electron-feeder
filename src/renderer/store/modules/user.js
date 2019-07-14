@@ -6,9 +6,8 @@ const user = {
     token: getToken(),
     name: '',
     avatar: '',
-    username: '',
-    password: '',
-    roles: []
+    roles: [],
+    frompath: ''
   },
 
   mutations: {
@@ -24,36 +23,17 @@ const user = {
     SET_ROLES: (state, roles) => {
       state.roles = roles
     },
-    SET_USER: (state, userInfo) => {
-      state.username = userInfo.username
-      state.password = userInfo.password
+    SET_FROM: (state, frompath) => {
+      state.frompath = frompath
     }
   },
 
   actions: {
     // 登录
-    Login({ commit, state }, userInfo) {
+    Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
-      commit('SET_USER', userInfo)
       return new Promise((resolve, reject) => {
         login(username, userInfo.password).then(response => {
-          console.log(response.data)
-          const data = response.data
-          setToken(data.token)
-          console.log(data.token)
-          commit('SET_TOKEN', data.token)
-          resolve()
-        }).catch(error => {
-          console.log('error')
-          reject(error)
-        })
-      })
-    },
-    Renew({ commit, state }) {
-      const username = state.username
-      const password = state.password
-      return new Promise((resolve, reject) => {
-        login(username, password).then(response => {
           console.log(response.data)
           const data = response.data
           setToken(data.token)
@@ -82,7 +62,6 @@ const user = {
         })
       })
     },
-
     // 前端 登出
     FedLogOut({ commit }) {
       return new Promise(resolve => {
@@ -90,6 +69,9 @@ const user = {
         commit('SET_TOKEN', '')
         resolve()
       })
+    },
+    SetFromPath({ commit }, frompath) {
+      commit('SET_FROM', frompath)
     }
   }
 }

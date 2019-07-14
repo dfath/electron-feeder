@@ -54,8 +54,8 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="300" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
+          <el-button type="primary" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
+              Edit
           </el-button>
           <el-button v-if="row.status!='AKTIF'" size="mini" type="success" @click="handleModifyStatus(row,'AKTIF')">
             Aktif
@@ -224,7 +224,6 @@ export default {
     }
   },
   created() {
-    this.getTotal()
     this.fetchData()
   },
   computed: {
@@ -327,13 +326,11 @@ export default {
       })
     },
     handleUpdate(row) {
-      this.temp = Object.assign({}, row) // copy obj
-      this.temp.timestamp = new Date(this.temp.timestamp)
-      this.dialogStatus = 'update'
-      this.dialogFormVisible = true
-      this.$nextTick(() => {
-        this.$refs['dataForm'].clearValidate()
+      this.$store.dispatch('GetBiodataMahasiswa', row.id_mahasiswa).then(() => {
+        this.$router.push('/mahasiswa/edit')
+        console.log('edit mahasiswa ini')
       })
+      console.log(row)
     },
     updateData() {
       this.$refs['dataForm'].validate((valid) => {

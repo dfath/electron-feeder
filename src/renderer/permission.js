@@ -6,6 +6,7 @@ import 'nprogress/nprogress.css'// Progress 进度条样式
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  console.log('ini dari', from.path)
   if (store.getters.token) {
     console.log('ada token', to.path)
     if (to.path === '/login') {
@@ -29,6 +30,9 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
+    if (from.path !== '/') {
+      store.dispatch('SetFromPath', from.path)
+    }
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {

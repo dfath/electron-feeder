@@ -77,7 +77,14 @@ export default {
           this.loading = true
           this.$store.dispatch('Login', this.loginForm).then(() => {
             this.loading = false
-            this.$router.push({ path: '/' })
+            if (this.$store.getters.frompath !== '') {
+              console.log('stuck')
+              const from = this.$store.getters.frompath
+              console.log(from)
+              this.$router.push({ path: from })
+            } else {
+              this.$router.push({ path: '/' })
+            }
           }).catch(() => {
             this.loading = false
           })
