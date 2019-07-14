@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="Nama Mahasiswa">
-        <el-input v-model="form.name"></el-input>
+        <el-input v-model="setName"></el-input>
       </el-form-item>
       <el-form-item label="Activity zone">
         <el-select v-model="form.region" placeholder="please select your zone">
@@ -68,16 +68,11 @@ export default {
     this.setName()
   },
   computed: {
-    editbio() {
-      return store.getters.editbiodatamahasiswa
+    setName() {
+      return store.getters.editbiodatamahasiswa[0].nama_mahasiswa
     }
   },
   methods: {
-    setName() {
-      this.form.name = store.getters.editbiodatamahasiswa[0].nama_mahasiswa
-      console.log(store.getters.editbiodatamahasiswa)
-      console.log('nama', this.form.name)
-    },
     onSubmit() {
       this.$message('submit!')
     },
