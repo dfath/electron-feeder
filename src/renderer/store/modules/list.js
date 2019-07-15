@@ -3,11 +3,15 @@ import store from '@/store'
 
 const user = {
   state: {
+    listQueryMahasiswa: null,
     listMahasiswa: null,
     totalMahasiswa: null
   },
 
   mutations: {
+    SET_LIST_QUERY_MAHASISWA: (state, listQueryMahasiswa) => {
+      state.listQueryMahasiswa = listQueryMahasiswa
+    },
     SET_LIST_MAHASISWA: (state, listMahasiswa) => {
       state.listMahasiswa = listMahasiswa
     },
@@ -27,6 +31,8 @@ const user = {
       } else {
         offset = listQuery.limit * (listQuery.page - 1)
       }
+      listQuery.offset = offset
+      commit('SET_LIST_QUERY_MAHASISWA', listQuery)
       console.log(listQuery.page)
       console.log(listQuery.limit)
       console.log(offset)

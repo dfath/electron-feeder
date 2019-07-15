@@ -2,6 +2,9 @@ import Vue from 'vue'
 import { getBiodataMahasiswa } from '@/api/getBiodataMahasiswa'
 import { deleteBiodataMahasiswa } from '@/api/deleteBiodataMahasiswa'
 import { editBiodataMahasiswa } from '@/api/editBiodataMahasiswa'
+import { getListMahasiswa } from '@/api/getListMahasiswa'
+import { Message } from 'element-ui'
+import router from '@/router'
 import store from '@/store'
 
 const user = {
@@ -50,7 +53,25 @@ const user = {
         editBiodataMahasiswa(token, biodata).then(response => {
           console.log(response.data)
           console.log('biodata editan di store', store.getters.editbiodatamahasiswa)
-          resolve()
+        }).then(() => {
+          const listQuery = store.getters.listQueryMahasiswa
+          const limit = listQuery.limit
+          const offset = listQuery.offset
+          getListMahasiswa(token, limit, offset).then(response => {
+            console.log(response.data)
+            const data = response.data
+            commit('SET_LIST_MAHASISWA', data)
+            Message({
+              message: 'Berhasil Update Biodata Mahasiswa',
+              type: 'success',
+              duration: 5 * 1000
+            })
+            router.push('/mahasiswa/data')
+            resolve()
+          }).catch(error => {
+            console.log('error')
+            reject(error)
+          })
         }).catch(error => {
           console.log('error')
           reject(error)
