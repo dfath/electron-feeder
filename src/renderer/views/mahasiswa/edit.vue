@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="Nama Mahasiswa">
-        <el-input v-model="setName"></el-input>
+        <el-input v-model="setName.nama_mahasiswa"></el-input>
       </el-form-item>
       <el-form-item label="NIM">
         <el-input v-model="setNIM"></el-input>
@@ -40,7 +40,7 @@
         <el-input type="textarea" v-model="form.desc"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Create</el-button>
+        <el-button type="primary" @click="onSubmit">Update</el-button>
         <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
     </el-form>
@@ -64,22 +64,14 @@ export default {
       }
     }
   },
-  created() {
-    this.setName()
-    // this.setNIM()
-    // this.setGender()
-    // this.setReligion()
-    // this.setBirth()
-    // this.setProdi()
-    // this.setStatus()
-    // this.setPeriode()
-  },
   computed: {
-    setName() {
-      return store.getters.editbiodatamahasiswa[0].nama_mahasiswa
-    },
-    setNIM() {
-      return store.getters.editbiodatamahasiswa[0].nim
+    setName: {
+      get() {
+        return store.getters.editbiodatamahasiswa[0]
+      },
+      set(value) {
+        store.commit('GET_BIODATA_MAHASISWA', value)
+      }
     }
     // setGender() {
     //   return store.getters.editbiodatamahasiswa[0].jenis_kelamin
@@ -102,7 +94,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$message('submit!')
+      console.log(store.getters.editbiodatamahasiswa[0])
+      store.dispatch('EditBiodataMahasiswa')
     },
     onCancel() {
       this.$message({

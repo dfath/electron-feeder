@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { getBiodataMahasiswa } from '@/api/getBiodataMahasiswa'
 import { deleteBiodataMahasiswa } from '@/api/deleteBiodataMahasiswa'
+import { editBiodataMahasiswa } from '@/api/editBiodataMahasiswa'
 import store from '@/store'
 
 const user = {
@@ -38,6 +39,17 @@ const user = {
         deleteBiodataMahasiswa(token, id).then(response => {
           console.log('biodata di store', store.getters.editbiodatamahasiswa)
           console.log('sekarang mau didelete')
+          resolve()
+        })
+      })
+    },
+    EditBiodataMahasiswa({ commit }) {
+      const token = store.getters.token
+      const biodata = store.getters.editbiodatamahasiswa[0]
+      return new Promise((resolve, reject) => {
+        editBiodataMahasiswa(token, biodata).then(response => {
+          console.log(response.data)
+          console.log('biodata editan di store', store.getters.editbiodatamahasiswa)
           resolve()
         }).catch(error => {
           console.log('error')

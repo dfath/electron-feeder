@@ -160,7 +160,6 @@ export default {
       tableKey: 0,
       list: null,
       listMahasiswa: null,
-      tablelistMahasiswa: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -201,6 +200,11 @@ export default {
     this.fetchData()
   },
   computed: {
+    tablelistMahasiswa() {
+      return this.$store.getters.listMahasiswa
+    }
+  },
+  methods: {
     fetchData() {
       this.getData()
     }
@@ -212,11 +216,11 @@ export default {
       }
       this.listLoading = true
       this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
-        this.listLoading = true
-        this.listMahasiswa = this.$store.getters.listMahasiswa
-        console.log(this.listMahasiswa)
-        this.tablelistMahasiswa = this.listMahasiswa
-        console.log(this.tablelistMahasiswa)
+        // this.listLoading = true
+        // this.listMahasiswa = this.$store.getters.listMahasiswa
+        // console.log(this.listMahasiswa)
+        // this.tablelistMahasiswa = this.listMahasiswa
+        // console.log(this.tablelistMahasiswa)
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
@@ -230,9 +234,9 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetListMahasiswa', '').then(() => {
+      this.$store.dispatch('GetTotalMahasiswa', '').then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.listMahasiswa.length
+        this.total = this.$store.getters.totalMahasiswa
         console.log(this.total)
       }).catch(() => {
         this.listLoading = false
