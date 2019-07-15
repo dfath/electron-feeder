@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px">
       <el-form-item label="Nama Mahasiswa">
-        <el-input v-model="setName"></el-input>
+        <el-input v-model="setName.nama_mahasiswa"></el-input>
       </el-form-item>
       <el-form-item label="Activity zone">
         <el-select v-model="form.region" placeholder="please select your zone">
@@ -40,7 +40,7 @@
         <el-input type="textarea" v-model="form.desc"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Create</el-button>
+        <el-button type="primary" @click="onSubmit">Update</el-button>
         <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
     </el-form>
@@ -64,17 +64,20 @@ export default {
       }
     }
   },
-  created() {
-    this.setName()
-  },
   computed: {
-    setName() {
-      return store.getters.editbiodatamahasiswa[0].nama_mahasiswa
+    setName: {
+      get() {
+        return store.getters.editbiodatamahasiswa[0]
+      },
+      set(value) {
+        store.commit('GET_BIODATA_MAHASISWA', value)
+      }
     }
   },
   methods: {
     onSubmit() {
-      this.$message('submit!')
+      console.log(store.getters.editbiodatamahasiswa[0])
+      store.dispatch('EditBiodataMahasiswa')
     },
     onCancel() {
       this.$message({
