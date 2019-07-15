@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    (data periode 2019/2020 Ganjil)
+    <!-- (data periode 2019/2020 Ganjil) -->
     <el-table
       :data="prodi"
       border

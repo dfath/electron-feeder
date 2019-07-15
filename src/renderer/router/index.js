@@ -36,7 +36,6 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-
   // {
   //   path: '/profil',
   //   component: Layout,
@@ -49,7 +48,6 @@ export const constantRouterMap = [
   //     }
   //   ]
   // },
-
   {
     path: '/profilpt',
     component: Layout,
@@ -58,7 +56,7 @@ export const constantRouterMap = [
         path: 'profilpt',
         name: 'Profil',
         component: () => import('@/views/profilpt/index'),
-        meta: { title: 'Profil', icon: 'user' }
+        meta: { title: 'Profil', icon: 'clipboard' }
       }
     ]
   },
@@ -74,13 +72,13 @@ export const constantRouterMap = [
         path: 'data',
         name: 'Data Mahasiswa',
         component: () => import('@/views/mahasiswa/index'),
-        meta: { title: 'Data Mahasiswa', icon: 'user' }
+        meta: { title: ' Data Mahasiswa', icon: 'list' }
       },
       {
         path: 'upload',
         name: 'Upload Biodata Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Upload Biodata', icon: 'table' }
+        meta: { title: ' Upload Biodata', icon: 'table' }
       },
       {
         path: 'edit',
@@ -92,18 +90,18 @@ export const constantRouterMap = [
     ]
   },
 
-  {
-    path: '/excel',
-    component: Layout,
-    children: [
-      {
-        path: 'excel',
-        name: 'Upload Mahasiswa',
-        component: () => import('@/views/excel/index'),
-        meta: { title: 'Excel', icon: 'table' }
-      }
-    ]
-  },
+  // {
+  //   path: '/excel',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'excel',
+  //       name: 'Upload Mahasiswa',
+  //       component: () => import('@/views/excel/index'),
+  //       meta: { title: 'Excel', icon: 'table' }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/dosen',
@@ -127,6 +125,55 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: '/matakuliah',
+    component: Layout,
+    redirect: '/listmatakuliah',
+    name: 'Mata Kuliah',
+    meta: { title: 'Mata Kuliah', icon: 'eye' },
+    children: [
+      {
+        path: 'listmatakuliah',
+        name: 'List Mata Kuliah',
+        component: () => import('@/views/matakuliah/index'),
+        meta: { title: 'List Mata Kuliah', icon: 'eye' }
+      },
+      {
+        path: 'insertmatakuliah',
+        name: 'Insert Mata Kuliah',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Mata Kuliah', icon: 'eye' }
+      },
+      {
+        path: 'substansikuliah',
+        name: 'Substansi Kuliah',
+        component: () => import('@/views/matakuliah/index'),
+        meta: { title: 'Substansi Kuliah', icon: 'eye-open' }
+      }
+    ]
+  },
+  {
+    path: '/kurikulum',
+    component: Layout,
+    redirect: '/listkurikulum',
+    name: 'Kurikulum',
+    meta: { title: 'Kurikulum', icon: 'table' },
+    children: [
+      {
+        path: 'listkurikulum',
+        name: 'List Kurikulum',
+        component: () => import('@/views/kurikulum/index'),
+        meta: { title: 'List Kurikulum', icon: 'education' }
+      },
+      {
+        path: 'insertkurikulum',
+        name: 'Insert Kurikulum',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Kurikulum', icon: 'education' }
+      }
+    ]
+  },
+
+  {
     path: '/perkuliahan',
     component: Layout,
     redirect: '/perkuliahan/matakuliah',
@@ -134,40 +181,16 @@ export const constantRouterMap = [
     meta: { title: 'Perkuliahan', icon: 'table' },
     children: [
       {
-        path: 'matakuliah',
-        name: 'Mata Kuliah',
-        component: () => import('@/views/matakuliah/index'),
-        meta: { title: 'Mata Kuliah', icon: 'eye' }
-      },
-      {
-        path: 'insertmatakuliah',
-        name: 'Insert MataKuliah',
-        component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert MataKuliah', icon: 'eye' }
-      },
-      {
-        path: 'substansikuliah',
-        name: 'Substansi Kuliah',
-        component: () => import('@/views/matakuliah/index'),
-        meta: { title: 'Substansi Kuliah', icon: 'eye-open' }
-      },
-      {
-        path: 'kurikulum',
-        name: 'Kurikulum',
-        component: () => import('@/views/kurikulum/index'),
-        meta: { title: 'Kurikulum', icon: 'education' }
-      },
-      {
-        path: 'insertkurikulum',
-        name: 'Insert Kurikulum',
-        component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Kurikulum', icon: 'education' }
-      },
-      {
         path: 'kelaskuliah',
         name: 'Kelas Perkuliahan',
         component: () => import('@/views/kelaskuliah/index'),
         meta: { title: 'Kelas Perkuliahan', icon: 'peoples' }
+      },
+      {
+        path: 'insertkelaskuliah',
+        name: 'Insert Kelas Kuliah',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Kelas Kuliah', icon: 'peoples' }
       },
       {
         path: 'nilaikuliah',
@@ -180,6 +203,12 @@ export const constantRouterMap = [
         name: 'Aktivitas Kuliah Mahasiswa',
         component: () => import('@/views/aktivitaskuliah/index'),
         meta: { title: 'Aktivitas Kuliah Mahasiswa', icon: 'skill' }
+      },
+      {
+        path: 'insertaktivitaskuliahmahasiswa',
+        name: 'Insert Aktivitas Kuliah Mahasiswa',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Aktivitas Kuliah Mahasiswa', icon: 'skill' }
       },
       {
         path: 'hitungaktivitaskuliah',
@@ -220,18 +249,18 @@ export const constantRouterMap = [
     ]
   },
 
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Form',
+  //       component: () => import('@/views/form/index'),
+  //       meta: { title: 'Form', icon: 'form' }
+  //     }
+  //   ]
+  // },
 
   { path: '*', redirect: '/404', hidden: true }
 ]

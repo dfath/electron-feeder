@@ -10,14 +10,14 @@
         <el-col :span="16" :xs="24">
           <el-card>
             <el-tabs v-model="activeTab">
-              <el-tab-pane label="Alamat" name="activity">
-                <activity />
+              <el-tab-pane label="Alamat" name="alamat">
+                <alamat />
               </el-tab-pane>
-              <el-tab-pane label="Informasi PT" name="timeline">
-                <timeline />
+              <el-tab-pane label="Informasi PT" name="info">
+                <info />
               </el-tab-pane>
-              <el-tab-pane label="Akta Pendirian" name="account">
-                <account />
+              <el-tab-pane label="Akta Pendirian" name="akta">
+                <akta />
               </el-tab-pane>
               <el-tab-pane label="Program Studi" name="prodi">
                 <prodi />
@@ -37,18 +37,18 @@
 <script>
 import { mapGetters } from 'vuex'
 import UserCard from './components/UserCard'
-import Activity from './components/Activity'
-import Timeline from './components/Timeline'
-import Account from './components/Account'
+import Alamat from './components/Alamat'
+import Info from './components/Info'
+import Akta from './components/Akta'
 import Prodi from './components/Prodi'
 import Pelaporan from './components/Pelaporan'
 export default {
   name: 'Profile',
-  components: { UserCard, Activity, Timeline, Account, Prodi, Pelaporan },
+  components: { UserCard, Alamat, Info, Akta, Prodi, Pelaporan },
   data() {
     return {
       user: {},
-      activeTab: 'activity'
+      activeTab: 'alamat'
     }
   },
   computed: {

@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
-    Keterangan 
+    <!-- Keterangan 
 
     1. Menampilkan periode yang dibukakan di luar periode aktif pada setiap program studi. 
     2. Periode perlaporan yang terbuka untuk prodi berstatus aktif, antara lain : 
       - 2018/2019 Genap
       - 2018/2019 Pendek
       - 2019/2020 Ganjil
-    3. Untuk pelaporan di luar periode aktif, Admin PT dapat melakukan pengajuan periode pelaporan pada laman forlap terlebih dahulu.
+    3. Untuk pelaporan di luar periode aktif, Admin PT dapat melakukan pengajuan periode pelaporan pada laman forlap terlebih dahulu. -->
     <el-table
       :data="periode"
       border

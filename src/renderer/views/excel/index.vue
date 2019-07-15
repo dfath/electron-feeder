@@ -100,6 +100,10 @@ export default {
             } else {
               if (this.destination === 'aktivitas') {
                 store.dispatch('SetAktivitasMahasiswa', results)
+              } else {
+                if (this.destination === 'kelaskuliah') {
+                  store.dispatch('SetKelasKuliah', results)
+                }
               }
             }
           }
@@ -125,6 +129,10 @@ export default {
               } else {
                 if (this.destination === 'aktivitas') {
                   store.dispatch('InsertAktivitasMahasiswa')
+                } else {
+                  if (this.destination === 'kelaskuliah') {
+                    store.dispatch('InsertKelasKuliah')
+                  }
                 }
               }
             }

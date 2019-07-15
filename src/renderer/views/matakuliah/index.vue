@@ -43,19 +43,13 @@
       <el-table-column min-width="50" prop="id_jenis_mata_kuliah"
                       label="Jenis MK">
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="300" class-name="small-padding fixed-width">
+      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
+          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
+              Edit
           </el-button>
-          <el-button v-if="row.status!='AKTIF'" size="mini" type="success" @click="handleModifyStatus(row,'AKTIF')">
-            Aktif
-          </el-button>
-          <el-button v-if="row.status!='LULUS'" size="mini" @click="handleModifyStatus(row,'LULUS')">
-            Lulus
-          </el-button>
-          <el-button v-if="row.status!='DO'" size="mini" type="danger" @click="handleModifyStatus(row,'DO')">
-            DO
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
+              Delete
           </el-button>
         </template>
       </el-table-column>
@@ -324,14 +318,18 @@ export default {
       })
     },
     handleDelete(row) {
-      this.$notify({
-        title: 'Success',
-        message: 'Delete Successfully',
-        type: 'success',
-        duration: 2000
+      this.$store.dispatch('DeleteBiodataMahasiswa', row.id_mahasiswa).then(() => {
+        console.log('delete mahasiswa ini')
+        console.log(row)
+
+        this.$notify({
+          title: 'Success',
+          message: 'Delete Successfully',
+          type: 'success',
+          duration: 2000
+        })
+        this.getData()
       })
-      const index = this.list.indexOf(row)
-      this.list.splice(index, 1)
     },
     handleFetchPv(pv) {
       fetchPv(pv).then(response => {

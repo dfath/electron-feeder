@@ -1,7 +1,7 @@
 <template>
   <el-card style="margin-bottom:20px;">
     <div slot="header" class="clearfix">
-      <span>Profile PT</span>
+      <svg-icon icon-class="skill" /><span>Profil PT</span>
     </div>
 
     <div class="user-profile">

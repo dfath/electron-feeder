@@ -27,7 +27,7 @@
 
     <el-table v-loading="listLoading" border :data="tablelistAktivitasMahasiswa">
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="75" prop="nama_prodi"
+      <el-table-column min-width="100" prop="nama_prodi"
                       label="Program Studi">
       </el-table-column>
       <el-table-column min-width="100" prop="nama_semester"
@@ -42,19 +42,13 @@
       <el-table-column min-width="75" prop="tanggal_sk_tugas"
                       label="Tanggal SK">
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="300" class-name="small-padding fixed-width">
+      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
             Edit
           </el-button>
-          <el-button v-if="row.status!='AKTIF'" size="mini" type="success" @click="handleModifyStatus(row,'AKTIF')">
-            Aktif
-          </el-button>
-          <el-button v-if="row.status!='LULUS'" size="mini" @click="handleModifyStatus(row,'LULUS')">
-            Lulus
-          </el-button>
-          <el-button v-if="row.status!='DO'" size="mini" type="danger" @click="handleModifyStatus(row,'DO')">
-            DO
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
+            Delete
           </el-button>
         </template>
       </el-table-column>

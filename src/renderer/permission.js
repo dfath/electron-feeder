@@ -17,11 +17,11 @@ router.beforeEach((to, from, next) => {
         store.dispatch('SetDestination', 'biodatamahasiswa')
         console.log(store.getters.destination)
       } else {
-        if (to.path === '/perkuliahan/insertmatakuliah') {
+        if (to.path === '/matakuliah/insertmatakuliah') {
           store.dispatch('SetDestination', 'matakuliah')
           console.log(store.getters.destination)
         } else {
-          if (to.path === '/perkuliahan/insertkurikulum') {
+          if (to.path === '/kurikulum/insertkurikulum') {
             store.dispatch('SetDestination', 'kurikulum')
             console.log(store.getters.destination)
           } else {
@@ -32,6 +32,11 @@ router.beforeEach((to, from, next) => {
               if (to.path === '/perkuliahan/insertaktivitasmahasiswa') {
                 store.dispatch('SetDestination', 'aktivitas')
                 console.log(store.getters.destination)
+              } else {
+                if (to.path === '/perkuliahan/insertkelaskuliah') {
+                  store.dispatch('SetDestination', 'kelaskuliah')
+                  console.log(store.getters.destination)
+                }
               }
             }
           }
