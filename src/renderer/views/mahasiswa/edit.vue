@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px">
+    <el-form ref="form" :model="form" label-width="120px" v-loading="loading">
       <el-form-item label="Nama Mahasiswa">
         <el-input v-model="setName.nama_mahasiswa"></el-input>
       </el-form-item>
@@ -61,7 +61,8 @@ export default {
         type: [],
         resource: '',
         desc: ''
-      }
+      },
+      loading: false
     }
   },
   computed: {
@@ -95,7 +96,10 @@ export default {
   methods: {
     onSubmit() {
       console.log(store.getters.editbiodatamahasiswa[0])
-      store.dispatch('EditBiodataMahasiswa')
+      this.loading = true
+      store.dispatch('EditBiodataMahasiswa').then(() => {
+        this.loading = false
+      })
     },
     onCancel() {
       this.$message({
