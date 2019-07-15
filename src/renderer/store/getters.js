@@ -29,6 +29,7 @@ const getters = {
   destination: state => state.destination.destination,
   errorLogs: state => state.errorLog.logs,
   contohbiodatamahasiswa: state => state.contoh.contohbiodatamahasiswa.contohbiodatamahasiswa,
-  editbiodatamahasiswa: state => state.getbiodatamahasiswa.editbiodatamahasiswa
+  editbiodatamahasiswa: state => state.getbiodatamahasiswa.editbiodatamahasiswa,
+  deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa
 }
 export default getters

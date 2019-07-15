@@ -1,6 +1,7 @@
 import { insertBiodataMahasiswa } from '@/api/insertBiodataMahasiswa'
 import store from '@/store'
 import { Message } from 'element-ui'
+// import { Notification } from 'element-ui'
 
 const insertbiodatamahasiswa = {
   state: {
@@ -33,6 +34,12 @@ const insertbiodatamahasiswa = {
               type: 'success',
               duration: 5 * 1000
             })
+            // Notification({
+            //   title: 'Success',
+            //   message: 'Export Successfully',
+            //   type: 'success',
+            //   duration: 2000
+            // })
             console.log(response.data)
             commit('INSERT_BIODATA_MAHASISWA')
             console.log('setelahinsert', state.biodatamahasiswa)

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import { getBiodataMahasiswa } from '@/api/getBiodataMahasiswa'
-import { deleteBiodataMahasiswa } from '@/api/deleteBiodataMahasiswa'
 import store from '@/store'
 
 const user = {

@@ -4,23 +4,23 @@
       <el-form-item label="Nama Mahasiswa">
         <el-input v-model="setName"></el-input>
       </el-form-item>
-      <el-form-item label="Activity zone">
-        <el-select v-model="form.region" placeholder="please select your zone">
-          <el-option label="Zone one" value="shanghai"></el-option>
-          <el-option label="Zone two" value="beijing"></el-option>
+      <el-form-item label="NIM">
+        <el-input v-model="setNIM"></el-input>
+      </el-form-item>
+      <el-form-item label="Jenis Kelamin">
+        <el-select v-model="setGender" placeholder="please select your gender">
+          <el-option label="L" value="L"></el-option>
+          <el-option label="P" value="P"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="Pick a date" v-model="form.date1" style="width: 100%;"></el-date-picker>
-        </el-col>
-        <el-col class="line" :span="2">-</el-col>
-        <el-col :span="11">
-          <el-time-picker type="fixed-time" placeholder="Pick a time" v-model="form.date2" style="width: 100%;"></el-time-picker>
-        </el-col>
+
+      <el-form-item label="Nama Agama">
+        <el-input v-model="setReligion"></el-input>
       </el-form-item>
-      <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery"></el-switch>
+      <el-form-item label="Tanggal Lahir">
+        <el-col :span="11">
+          <el-date-picker type="date" placeholder="Pick a date" v-model="setBirth" style="width: 100%;"></el-date-picker>
+        </el-col>
       </el-form-item>
       <el-form-item label="Activity type">
         <el-checkbox-group v-model="form.type">
@@ -30,10 +30,10 @@
           <el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
         </el-checkbox-group>
       </el-form-item>
-      <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor"></el-radio>
-          <el-radio label="Venue"></el-radio>
+      <el-form-item label="Status">
+        <el-radio-group v-model="setStatus">
+          <el-radio label="AKTIF"></el-radio>
+          <el-radio label="LULUS"></el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="Activity form">
@@ -66,11 +66,39 @@ export default {
   },
   created() {
     this.setName()
+    // this.setNIM()
+    // this.setGender()
+    // this.setReligion()
+    // this.setBirth()
+    // this.setProdi()
+    // this.setStatus()
+    // this.setPeriode()
   },
   computed: {
     setName() {
       return store.getters.editbiodatamahasiswa[0].nama_mahasiswa
+    },
+    setNIM() {
+      return store.getters.editbiodatamahasiswa[0].nim
     }
+    // setGender() {
+    //   return store.getters.editbiodatamahasiswa[0].jenis_kelamin
+    // },
+    // setReligion() {
+    //   return store.getters.editbiodatamahasiswa[0].nama_agama
+    // },
+    // setBirth() {
+    //   return store.getters.editbiodatamahasiswa[0].tanggal_lahir
+    // },
+    // setProdi() {
+    //   return store.getters.editbiodatamahasiswa[0].nama_program_studi
+    // },
+    // setStatus() {
+    //   return store.getters.editbiodatamahasiswa[0].nama_status_mahasiswa
+    // },
+    // setPeriode() {
+    //   return store.getters.editbiodatamahasiswa[0].nama_periode_masuk
+    // }
   },
   methods: {
     onSubmit() {
