@@ -207,9 +207,7 @@ export default {
   methods: {
     fetchData() {
       this.getData()
-    }
-  },
-  methods: {
+    },
     getData() {
       if (this.total === 0) {
         this.getTotal()
