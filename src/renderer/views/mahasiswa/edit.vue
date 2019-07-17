@@ -175,10 +175,7 @@ export default {
       })
     },
     onCancel() {
-      this.$message({
-        message: 'cancel!',
-        type: 'warning'
-      })
+      this.$router.push('/mahasiswa/data')
     }
   }
 }

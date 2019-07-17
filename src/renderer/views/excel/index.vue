@@ -86,39 +86,30 @@ export default {
       console.log('uploadsucces', results)
       console.log(JSON.stringify(results[0]))
       console.log(this.destination)
-      if (this.destination === 'biodatamahasiswa') {
-        store.dispatch('SetBiodataMahasiswa', results)
-      } else {
-        if (this.destination === 'matakuliah') {
-          store.dispatch('SetMataKuliah', results)
-        } else {
-          if (this.destination === 'kurikulum') {
-            store.dispatch('SetKurikulum', results)
-          } else {
-            if (this.destination === 'lulusdo') {
-              store.dispatch('SetMahasiswaLulusDO', results)
-            } else {
-              if (this.destination === 'aktivitas') {
-                store.dispatch('SetAktivitasMahasiswa', results)
-              } else {
-                if (this.destination === 'kelaskuliah') {
-                  store.dispatch('SetKelasKuliah', results)
-                } else {
-                  if (this.destination === 'perkuliahanmahasiswa') {
-                    store.dispatch('SetPerkuliahanMahasiswa', results)
-                  }
-                }
-              }
-            }
-          }
-        }
+      const dispatchdest = {
+        'biodatamahasiswa': 'SetBiodataMahasiswa',
+        'matakuliah': 'SetMataKuliah',
+        'kurikulum': 'SetKurikulum',
+        'lulusdo': 'SetMahasiswaLulusDO',
+        'aktivitas': 'SetAktivitasMahasiswa',
+        'kelaskuliah': 'SetKelasKuliah'
       }
+      store.dispatch(dispatchdest[this.destination], results)
       this.tableData = results
       this.tableHeader = header
     },
     handleUpload() {
       this.destination = store.getters.destination
+      const dispatchdest = {
+        'biodatamahasiswa': 'InsertBiodataMahasiswa',
+        'matakuliah': 'InsertMataKuliah',
+        'kurikulum': 'InsertKurikulum',
+        'lulusdo': 'InsertMahasiswaLulusDO',
+        'aktivitas': 'InsertAktivitasMahasiswa',
+        'kelaskuliah': 'InsertKelasKuliah'
+      }
       if (this.destination !== null) {
+<<<<<<< HEAD
         if (this.destination === 'biodatamahasiswa') {
           store.dispatch('InsertBiodataMahasiswa')
         } else {
@@ -146,6 +137,9 @@ export default {
             }
           }
         }
+=======
+        store.dispatch(dispatchdest[this.destination])
+>>>>>>> 580758eb8c1df2465d11113a2888ebf420a505e6
       }
     },
     handleDownload() {
