@@ -103,6 +103,10 @@ export default {
               } else {
                 if (this.destination === 'kelaskuliah') {
                   store.dispatch('SetKelasKuliah', results)
+                } else {
+                  if (this.destination === 'perkuliahanmahasiswa') {
+                    store.dispatch('SetPerkuliahanMahasiswa', results)
+                  }
                 }
               }
             }
@@ -132,6 +136,10 @@ export default {
                 } else {
                   if (this.destination === 'kelaskuliah') {
                     store.dispatch('InsertKelasKuliah')
+                  } else {
+                    if (this.destination === 'perkuliahanmahasiswa') {
+                      store.dispatch('InsertPerkuliahanMahasiswa')
+                    }
                   }
                 }
               }

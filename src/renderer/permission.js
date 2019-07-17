@@ -36,6 +36,11 @@ router.beforeEach((to, from, next) => {
                 if (to.path === '/perkuliahan/insertkelaskuliah') {
                   store.dispatch('SetDestination', 'kelaskuliah')
                   console.log(store.getters.destination)
+                } else {
+                  if (to.path === '/perkuliahan/insertperkuliahanmahasiswa') {
+                    store.dispatch('SetDestination', 'perkuliahanmahasiswa')
+                    console.log(store.getters.destination)
+                  }
                 }
               }
             }
