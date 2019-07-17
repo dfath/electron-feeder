@@ -106,40 +106,11 @@ export default {
         'kurikulum': 'InsertKurikulum',
         'lulusdo': 'InsertMahasiswaLulusDO',
         'aktivitas': 'InsertAktivitasMahasiswa',
-        'kelaskuliah': 'InsertKelasKuliah'
+        'kelaskuliah': 'InsertKelasKuliah',
+        'perkuliahanmahasiswa': 'InsertPerkuliahanMahasiswa'
       }
       if (this.destination !== null) {
-<<<<<<< HEAD
-        if (this.destination === 'biodatamahasiswa') {
-          store.dispatch('InsertBiodataMahasiswa')
-        } else {
-          if (this.destination === 'matakuliah') {
-            store.dispatch('InsertMataKuliah')
-          } else {
-            if (this.destination === 'kurikulum') {
-              store.dispatch('InsertKurikulum')
-            } else {
-              if (this.destination === 'lulusdo') {
-                store.dispatch('InsertMahasiswaLulusDO')
-              } else {
-                if (this.destination === 'aktivitas') {
-                  store.dispatch('InsertAktivitasMahasiswa')
-                } else {
-                  if (this.destination === 'kelaskuliah') {
-                    store.dispatch('InsertKelasKuliah')
-                  } else {
-                    if (this.destination === 'perkuliahanmahasiswa') {
-                      store.dispatch('InsertPerkuliahanMahasiswa')
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-=======
         store.dispatch(dispatchdest[this.destination])
->>>>>>> 580758eb8c1df2465d11113a2888ebf420a505e6
       }
     },
     handleDownload() {
