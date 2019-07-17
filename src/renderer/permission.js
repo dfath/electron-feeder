@@ -13,35 +13,15 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
     } else {
-      if (to.path === '/mahasiswa/upload') {
-        store.dispatch('SetDestination', 'biodatamahasiswa')
-        console.log(store.getters.destination)
-      } else {
-        if (to.path === '/matakuliah/insertmatakuliah') {
-          store.dispatch('SetDestination', 'matakuliah')
-          console.log(store.getters.destination)
-        } else {
-          if (to.path === '/kurikulum/insertkurikulum') {
-            store.dispatch('SetDestination', 'kurikulum')
-            console.log(store.getters.destination)
-          } else {
-            if (to.path === '/perkuliahan/insertmahasiswalulusdo') {
-              store.dispatch('SetDestination', 'lulusdo')
-              console.log(store.getters.destination)
-            } else {
-              if (to.path === '/perkuliahan/insertaktivitasmahasiswa') {
-                store.dispatch('SetDestination', 'aktivitas')
-                console.log(store.getters.destination)
-              } else {
-                if (to.path === '/perkuliahan/insertkelaskuliah') {
-                  store.dispatch('SetDestination', 'kelaskuliah')
-                  console.log(store.getters.destination)
-                }
-              }
-            }
-          }
-        }
+      const dispatchdest = {
+        '/mahasiswa/upload': 'biodatamahasiswa',
+        '/matakuliah/insertmatakuliah': 'matakuliah',
+        '/kurikulum/insertkurikulum': 'kurikulum',
+        '/perkuliahan/insertmahasiswalulusdo': 'lulusdo',
+        '/perkuliahan/insertaktivitasmahasiswa': 'aktivitas',
+        '/perkuliahan/insertkelaskuliah': 'kelaskuliah'
       }
+      store.dispatch('SetDestination', dispatchdest[to.path])
       next()
     }
   } else {

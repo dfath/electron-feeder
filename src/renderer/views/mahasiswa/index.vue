@@ -117,6 +117,8 @@ import { fetchPv, createArticle, updateArticle } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { Message, MessageBox } from 'element-ui'
+
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
   { key: 'US', display_name: 'USA' },
@@ -309,17 +311,26 @@ export default {
       console.log(row)
     },
     handleDelete(row) {
-      this.$store.dispatch('DeleteBiodataMahasiswa', row.id_mahasiswa).then(() => {
-        console.log('delete mahasiswa ini')
-        console.log(row)
-
-        this.$notify({
-          title: 'Success',
-          message: 'Delete Successfully',
-          type: 'success',
-          duration: 2000
+      MessageBox.confirm('Apakah Anda ingin menghapus Biodata ini?', 'Confirm Delete', {
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('DeleteBiodataMahasiswa', row.id_mahasiswa).then(() => {
+          console.log('delete mahasiswa ini')
+          console.log(row)
+          Message({
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
+          })
+          this.getData()
         })
-        this.getData()
+      }).catch(() => {
+        Message({
+          type: 'info',
+          message: 'Delete canceled'
+        })
       })
     },
     updateData() {
