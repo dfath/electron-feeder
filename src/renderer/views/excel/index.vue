@@ -92,7 +92,8 @@ export default {
         'kurikulum': 'SetKurikulum',
         'lulusdo': 'SetMahasiswaLulusDO',
         'aktivitas': 'SetAktivitasMahasiswa',
-        'kelaskuliah': 'SetKelasKuliah'
+        'kelaskuliah': 'SetKelasKuliah',
+        'perkuliahanmahasiswa': 'SetPerkuliahanMahasiswa'
       }
       store.dispatch(dispatchdest[this.destination], results)
       this.tableData = results
@@ -106,7 +107,8 @@ export default {
         'kurikulum': 'InsertKurikulum',
         'lulusdo': 'InsertMahasiswaLulusDO',
         'aktivitas': 'InsertAktivitasMahasiswa',
-        'kelaskuliah': 'InsertKelasKuliah'
+        'kelaskuliah': 'InsertKelasKuliah',
+        'perkuliahanmahasiswa': 'InsertPerkuliahanMahasiswa'
       }
       if (this.destination !== null) {
         store.dispatch(dispatchdest[this.destination])

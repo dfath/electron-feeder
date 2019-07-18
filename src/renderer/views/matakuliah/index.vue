@@ -18,7 +18,7 @@
       <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
         Buat Baru
       </el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" >
+      <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
         Import Excel
       </el-button>
       <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
@@ -109,6 +109,8 @@ import { fetchPv, createArticle, updateArticle } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { Message, MessageBox } from 'element-ui'
+
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
   { key: 'US', display_name: 'USA' },
@@ -149,7 +151,7 @@ export default {
       tableKey: 0,
       list: null,
       listMataKuliah: null,
-      tablelistMataKuliah: null,
+      // tablelistMataKuliah: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -187,10 +189,33 @@ export default {
     }
   },
   created() {
-    this.getTotal()
     this.fetchData()
   },
+  computed: {
+    tablelistMataKuliah() {
+      return this.$store.getters.listMataKuliah
+    }
+  },
   methods: {
+    fetchData() {
+      this.getData()
+    },
+    getData() {
+      if (this.total === 0) {
+        this.getTotal()
+      }
+      this.listLoading = true
+      this.$store.dispatch('GetListMataKuliah', this.listQuery).then(() => {
+        // this.listLoading = true
+        // this.listMataKuliah = this.$store.getters.listMataKuliah
+        // console.log(this.listMataKuliah)
+        // this.tablelistMataKuliah = this.listMataKuliah
+        // console.log(this.tablelistMataKuliah)
+        this.listLoading = false
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
     indexMethod(index) {
       if (this.listQuery.page > 1) {
         return index + 1 + (this.listQuery.limit * (this.listQuery.page - 1))
@@ -199,23 +224,10 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetListMataKuliah', '').then(() => {
+      this.$store.dispatch('GetTotalMataKuliah', '').then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.listMataKuliah.length
+        this.total = this.$store.getters.totalMataKuliah
         console.log(this.total)
-      }).catch(() => {
-        this.listLoading = false
-      })
-    },
-    fetchData() {
-      this.listLoading = true
-      this.$store.dispatch('GetListMataKuliah', this.listQuery).then(() => {
-        this.listLoading = true
-        this.listMataKuliah = this.$store.getters.listMataKuliah
-        console.log(this.listMataKuliah)
-        this.tablelistMataKuliah = this.listMataKuliah
-        console.log(this.tablelistMataKuliah)
-        this.listLoading = false
       }).catch(() => {
         this.listLoading = false
       })
@@ -265,6 +277,9 @@ export default {
       this.$nextTick(() => {
         this.$refs['dataForm'].clearValidate()
       })
+    },
+    handleUpload() {
+      this.$router.push('/matakuliah/insertmatakuliah')
     },
     createData() {
       this.$refs['dataForm'].validate((valid) => {
@@ -318,17 +333,26 @@ export default {
       })
     },
     handleDelete(row) {
-      this.$store.dispatch('DeleteBiodataMahasiswa', row.id_mahasiswa).then(() => {
-        console.log('delete mahasiswa ini')
-        console.log(row)
-
-        this.$notify({
-          title: 'Success',
-          message: 'Delete Successfully',
-          type: 'success',
-          duration: 2000
+      MessageBox.confirm('Apakah Anda ingin menghapus Mata Kuliah ini?', 'Confirm Delete', {
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('DeleteMataKuliah', row.id_matkul).then(() => {
+          console.log('delete matkul ini')
+          console.log(row)
+          Message({
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
+          })
+          this.getData()
         })
-        this.getData()
+      }).catch(() => {
+        Message({
+          type: 'info',
+          message: 'Delete canceled'
+        })
       })
     },
     handleFetchPv(pv) {
