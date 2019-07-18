@@ -25,6 +25,10 @@ const user = {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
+      let filter = '1=1 ORDER BY id_periode DESC, nim'
+      if (listQuery.filter) {
+        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY id_periode DESC, nim`
+      }
       let offset = null
       if (listQuery.page === 1) {
         offset = ''
@@ -37,7 +41,7 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListMahasiswa(token, limit, offset).then(response => {
+        getListMahasiswa(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data
           commit('SET_LIST_MAHASISWA', data)
@@ -51,7 +55,11 @@ const user = {
     },
     GetTotalMahasiswa({ commit }, listQuery) {
       const token = store.getters.token
-      const limit = listQuery.limit
+      const limit = 0
+      let filter = '1=1 ORDER BY id_periode DESC, nim'
+      if (listQuery.filter) {
+        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY id_periode DESC, nim`
+      }
       let offset = null
       if (listQuery.page === 1) {
         offset = ''
@@ -62,7 +70,7 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListMahasiswa(token, limit, offset).then(response => {
+        getListMahasiswa(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data.length
           commit('SET_TOTAL_MAHASISWA', data)
