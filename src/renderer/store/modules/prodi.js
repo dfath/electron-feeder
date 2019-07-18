@@ -15,8 +15,9 @@ const user = {
   actions: {
     GetProdi({ commit, state }) {
       const token = store.getters.token
+      const filter = ''
       return new Promise((resolve, reject) => {
-        getProdi(token).then(response => {
+        getProdi(token, filter).then(response => {
           console.log(response.data)
           const data = response.data
           console.log(data)

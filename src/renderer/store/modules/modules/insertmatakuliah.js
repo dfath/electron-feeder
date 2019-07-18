@@ -1,4 +1,5 @@
 import { insertMataKuliah } from '@/api/insertMataKuliah'
+import { getProdi } from '@/api/getProdi'
 import store from '@/store'
 import { Message } from 'element-ui'
 
@@ -27,16 +28,28 @@ const insertmatakuliah = {
       console.log('insertmatakuliah', matakuliah)
       matakuliah.forEach(function(data) {
         return new Promise((resolve, reject) => {
-          insertMataKuliah(token, data).then(response => {
-            Message({
-              message: 'Berhasil Input Matakuliah',
-              type: 'success',
-              duration: 5 * 1000
+          const filter = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
+          getProdi(token, filter).then(response => {
+            data.id_prodi = response.data[0].id_prodi
+          }).then(() => {
+            console.log(data)
+            delete (data.kode_program_studi)
+            delete (data.nama_program_studi)
+            delete (data.nama_jenjang_pendidikan)
+            insertMataKuliah(token, data).then(response => {
+              Message({
+                message: 'Berhasil Input Matakuliah',
+                type: 'success',
+                duration: 5 * 1000
+              })
+              console.log(response.data)
+              commit('INSERT_MATAKULIAH')
+              console.log('setelahinsert', state.matakuliah)
+              resolve()
+            }).catch(error => {
+              console.log('error')
+              reject(error)
             })
-            console.log(response.data)
-            commit('INSERT_MATAKULIAH')
-            console.log('setelahinsert', state.matakuliah)
-            resolve()
           }).catch(error => {
             console.log('error')
             reject(error)

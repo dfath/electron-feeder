@@ -1,29 +1,27 @@
 <template>
   <div class="app-container">
-    <div class="filter-container">
-      <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-select v-model="listQuery.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
-        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-      </el-select>
-      <el-select v-model="listQuery.type" placeholder="Type" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-      </el-select>
-      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
-        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
-      </el-select>
-      <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
+    <el-row type="flex" class="filter-container">
+      <el-col :span="12">
+        <el-input v-model="listQuery.filter" placeholder="Nama Mahasiswa" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
         Search
-      </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
-        Buat Baru
-      </el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" >
-        Import Excel
-      </el-button>
-      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-        reviewer
-      </el-checkbox>
-    </div>
+        </el-button>
+      </el-col>
+      <el-col :span="12">
+        <el-row type="flex" justify="end">
+          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
+              Buat Baru
+            </el-button>
+          </el-col>
+           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
+              Import Excel
+            </el-button>
+           </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
 
     <el-table v-loading="listLoading" border :data="tablelistMahasiswa">
       <el-table-column min-width="100" type="index" :index="indexMethod" label="No."></el-table-column>
@@ -163,7 +161,8 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5
+        limit: 5,
+        filter: null
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
@@ -231,7 +230,7 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetTotalMahasiswa', '').then(() => {
+      this.$store.dispatch('GetTotalMahasiswa', this.listQuery).then(() => {
         this.listLoading = false
         this.total = this.$store.getters.totalMahasiswa
         console.log(this.total)
@@ -239,11 +238,16 @@ export default {
         this.listLoading = false
       })
     },
+    handleUpload() {
+      this.$router.push('/mahasiswa/upload')
+    },
     handleClick(tab, event) {
       console.log(tab, event)
     },
     handleFilter() {
       this.listQuery.page = 1
+      this.getTotal()
+      this.getData()
     },
     handleModifyStatus(row, status) {
       this.$message({

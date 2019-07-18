@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getProdi(token) {
+export function getProdi(token, filter) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -11,7 +11,7 @@ export function getProdi(token) {
     data: {
       'act': 'GetProdi',
       token,
-      'filter': '',
+      filter,
       'limit': 20,
       'offset': 0
     }
