@@ -38,7 +38,6 @@
           <span slot="label"><i class="el-icon-location" /> Alamat</span>
           Alamat
 
-          <el-form inline="true" ref="form" :model="form" label-width="120px" v-loading="loading">
             <el-form-item label="NIK">
               <el-input v-model="setName.nik"></el-input>
             </el-form-item>
@@ -115,11 +114,6 @@
               <el-input v-model="setName.nomor_kps"></el-input>
             </el-form-item>
 
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit">Update</el-button>
-              <el-button @click="onCancel">Cancel</el-button>
-            </el-form-item>
-          </el-form>
 
         </el-tab-pane>
         <el-tab-pane>
@@ -288,7 +282,6 @@
           <span slot="label"><i class="el-icon-location" /> Wali</span>
           Wali
 
-          <el-form ref="form" :model="form" label-width="120px" v-loading="loading">
             <el-form-item label="NIK">
               <el-input v-model="setName.nik_wali"></el-input>
             </el-form-item>        
@@ -360,12 +353,6 @@
                 <el-option label="Lebih dari Rp 20,000,000"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="onSubmit">Update</el-button>
-              <el-button @click="onCancel">Cancel</el-button>
-            </el-form-item>
-          </el-form>
-
         </el-tab-pane>
         <!-- <el-tab-pane>
           <span slot="label"><i class="el-icon-location" /> Kebutuhan Khusus</span>
