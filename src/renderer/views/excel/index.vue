@@ -92,7 +92,8 @@ export default {
         'kurikulum': 'SetKurikulum',
         'lulusdo': 'SetMahasiswaLulusDO',
         'aktivitas': 'SetAktivitasMahasiswa',
-        'kelaskuliah': 'SetKelasKuliah'
+        'kelaskuliah': 'SetKelasKuliah',
+        'perkuliahanmahasiswa': 'SetPerkuliahanMahasiswa'
       }
       store.dispatch(dispatchdest[this.destination], results)
       this.tableData = results

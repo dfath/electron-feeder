@@ -20,7 +20,7 @@ router.beforeEach((to, from, next) => {
         '/perkuliahan/insertmahasiswalulusdo': 'lulusdo',
         '/perkuliahan/insertaktivitasmahasiswa': 'aktivitas',
         '/perkuliahan/insertkelaskuliah': 'kelaskuliah',
-        '/perkuliahan/insertperkuliahanmahasiswa': 'perkuliahanmahasiswa'        
+        '/perkuliahan/insertperkuliahanmahasiswa': 'perkuliahanmahasiswa'
       }
       store.dispatch('SetDestination', dispatchdest[to.path])
       next()
