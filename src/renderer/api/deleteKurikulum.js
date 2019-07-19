@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListKelasKuliah(token, limit, offset, filter) {
+export function deleteKurikulum(token, id_kurikulum) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -9,11 +9,11 @@ export function getListKelasKuliah(token, limit, offset, filter) {
       'Access-Control-Allow-Origin': '*'
     },
     data: {
-      'act': 'GetListKelasKuliah',
+      'act': 'DeleteKurikulum',
       token,
-      filter,
-      limit,
-      offset
+      'key': {
+        id_kurikulum
+      }
     }
   })
 }

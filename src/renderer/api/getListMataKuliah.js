@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListMataKuliah(token, limit, offset) {
+export function getListMataKuliah(token, limit, offset, filter) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -11,7 +11,7 @@ export function getListMataKuliah(token, limit, offset) {
     data: {
       'act': 'GetListMataKuliah',
       token,
-      'filter': '1=1 ORDER BY kode_mata_kuliah DESC',
+      filter,
       limit,
       offset
     }

@@ -1,29 +1,27 @@
 <template>
   <div class="app-container">
-    <div class="filter-container">
-      <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-select v-model="listQuery.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
-        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-      </el-select>
-      <el-select v-model="listQuery.type" placeholder="Type" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-      </el-select>
-      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
-        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
-      </el-select>
-      <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
-        Search
-      </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
-        Buat Baru
-      </el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" >
-        Import Excel
-      </el-button>
-      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-        reviewer
-      </el-checkbox>
-    </div>
+    <el-row type="flex" class="filter-container">
+      <el-col :span="12">
+        <el-input v-model="listQuery.filter" placeholder="Nama Kurikulum" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
+          Search
+        </el-button>
+      </el-col>
+      <el-col :span="12">
+        <el-row type="flex" justify="end">
+          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
+              Buat Baru
+            </el-button>
+          </el-col>
+           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" >
+              Import Excel
+            </el-button>
+           </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
 
     <el-table v-loading="listLoading" border :data="tablelistKurikulum">
       <el-table-column min-width="45" type="index" :index="indexMethod" label="No."></el-table-column>
@@ -123,6 +121,8 @@ import { fetchPv, createArticle, updateArticle } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { Message, MessageBox } from 'element-ui'
+
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
   { key: 'US', display_name: 'USA' },
@@ -163,12 +163,12 @@ export default {
       tableKey: 0,
       list: null,
       listKurikulum: null,
-      tablelistKurikulum: null,
       total: 0,
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5
+        limit: 5,
+        filter: null
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
@@ -201,10 +201,33 @@ export default {
     }
   },
   created() {
-    this.getTotal()
     this.fetchData()
   },
+  computed: {
+    tablelistKurikulum() {
+      return this.$store.getters.listKurikulum
+    }
+  },
   methods: {
+    fetchData() {
+      this.getData()
+    },
+    getData() {
+      if (this.total === 0) {
+        this.getTotal()
+      }
+      this.listLoading = true
+      this.$store.dispatch('GetListKurikulum', this.listQuery).then(() => {
+        // this.listLoading = true
+        // this.listKurikulum = this.$store.getters.listKurikulum
+        // console.log(this.listKurikulum)
+        // this.tablelistKurikulum = this.listKurikulum
+        // console.log(this.tablelistKurikulum)
+        this.listLoading = false
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
     indexMethod(index) {
       if (this.listQuery.page > 1) {
         return index + 1 + (this.listQuery.limit * (this.listQuery.page - 1))
@@ -213,23 +236,10 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetListKurikulum', '').then(() => {
+      this.$store.dispatch('GetTotalKurikulum', this.listQuery).then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.listKurikulum.length
+        this.total = this.$store.getters.totalKurikulum
         console.log(this.total)
-      }).catch(() => {
-        this.listLoading = false
-      })
-    },
-    fetchData() {
-      this.listLoading = true
-      this.$store.dispatch('GetListKurikulum', this.listQuery).then(() => {
-        this.listLoading = true
-        this.listKurikulum = this.$store.getters.listKurikulum
-        console.log(this.listKurikulum)
-        this.tablelistKurikulum = this.listKurikulum
-        console.log(this.tablelistKurikulum)
-        this.listLoading = false
       }).catch(() => {
         this.listLoading = false
       })
@@ -239,6 +249,8 @@ export default {
     },
     handleFilter() {
       this.listQuery.page = 1
+      this.getTotal()
+      this.getData()
     },
     handleModifyStatus(row, status) {
       this.$message({
@@ -332,14 +344,27 @@ export default {
       })
     },
     handleDelete(row) {
-      this.$notify({
-        title: 'Success',
-        message: 'Delete Successfully',
-        type: 'success',
-        duration: 2000
+      MessageBox.confirm('Apakah Anda ingin menghapus Biodata ini?', 'Confirm Delete', {
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('DeleteKurikulum', row.id_kurikulum).then(() => {
+          console.log('delete kurikulum ini')
+          console.log(row)
+          Message({
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
+          })
+          this.getData()
+        })
+      }).catch(() => {
+        Message({
+          type: 'info',
+          message: 'Delete canceled'
+        })
       })
-      const index = this.list.indexOf(row)
-      this.list.splice(index, 1)
     },
     handleFetchPv(pv) {
       fetchPv(pv).then(response => {

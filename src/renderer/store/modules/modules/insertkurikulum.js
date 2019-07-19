@@ -1,4 +1,5 @@
 import { insertKurikulum } from '@/api/insertKurikulum'
+import { getProdi } from '@/api/getProdi'
 import store from '@/store'
 import { Message } from 'element-ui'
 
@@ -27,16 +28,29 @@ const insertkurikulum = {
       console.log('insertkurikulum', kurikulum)
       kurikulum.forEach(function(data) {
         return new Promise((resolve, reject) => {
-          insertKurikulum(token, data).then(response => {
-            Message({
-              message: 'Berhasil Input Kurikulum',
-              type: 'success',
-              duration: 5 * 1000
+          const filter = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
+          getProdi(token, filter).then(response => {
+            data.id_prodi = response.data[0].id_prodi
+          }).then(() => {
+            console.log(data)
+            delete (data.kode_program_studi)
+            delete (data.nama_program_studi)
+            delete (data.nama_jenjang_pendidikan)
+
+            insertKurikulum(token, data).then(response => {
+              Message({
+                message: 'Berhasil Input Kurikulum',
+                type: 'success',
+                duration: 5 * 1000
+              })
+              console.log(response.data)
+              commit('INSERT_KURIKULUM')
+              console.log('setelahinsert', state.kurikulum)
+              resolve()
+            }).catch(error => {
+              console.log('error')
+              reject(error)
             })
-            console.log(response.data)
-            commit('INSERT_KURIKULUM')
-            console.log('setelahinsert', state.kurikulum)
-            resolve()
           }).catch(error => {
             console.log('error')
             reject(error)

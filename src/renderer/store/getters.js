@@ -24,6 +24,7 @@ const getters = {
   listMataKuliah: state => state.listmatakuliah.listMataKuliah, // List MataKuliah
   totalMataKuliah: state => state.listmatakuliah.totalMataKuliah,
   listKurikulum: state => state.listkurikulum.listKurikulum, // List Kurikulum
+  totalKurikulum: state => state.listkurikulum.totalKurikulum,
   listKelasKuliah: state => state.listkelaskuliah.listKelasKuliah, // List Kelas Kuliah
   listNilaiPerkuliahanKelas: state => state.listnilaiperkuliahankelas.listNilaiPerkuliahanKelas, // List Nilai Perkuliahan Kelas
   aktivitasKuliahMahasiswa: state => state.aktivitaskuliahmahasiswa.aktivitasKuliahMahasiswa, // Aktivitas Kuliah Mahasiswa
@@ -34,6 +35,7 @@ const getters = {
   contohbiodatamahasiswa: state => state.contoh.contohbiodatamahasiswa.contohbiodatamahasiswa,
   editbiodatamahasiswa: state => state.getbiodatamahasiswa.editbiodatamahasiswa,
   deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa,
-  deletematakuliah: state => state.listmatakuliah.deletematakuliah
+  deletematakuliah: state => state.listmatakuliah.deletematakuliah,
+  deletekurikulum: state => state.listkurikulum.deletekurikulum
 }
 export default getters

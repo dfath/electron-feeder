@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListKurikulum(token, limit, offset) {
+export function getListKurikulum(token, limit, offset, filter) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -11,7 +11,7 @@ export function getListKurikulum(token, limit, offset) {
     data: {
       'act': 'GetListKurikulum',
       token,
-      'filter': '1=1 ORDER BY semester_mulai_berlaku DESC',
+      filter,
       limit,
       offset
     }
