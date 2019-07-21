@@ -18,7 +18,7 @@ const user = {
     GetProfilPT({ commit, state }) {
       const token = store.getters.token
       return new Promise((resolve, reject) => {
-        getProfilPT(token).then(response => {
+        getProfilPT(token, '').then(response => {
           console.log(response.data)
           const data = response.data
           commit('SET_PROFILPT', data[0])
