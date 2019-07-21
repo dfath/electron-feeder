@@ -17,3 +17,20 @@ export function getProdi(token, filter) {
     }
   })
 }
+export function getAllProdi(token, filter) {
+  return request({
+    url: '/ws/live2.php',
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
+    data: {
+      'act': 'GetAllProdi',
+      token,
+      filter,
+      'limit': 20,
+      'offset': 0
+    }
+  })
+}

@@ -5,6 +5,7 @@ import insertkelaskuliah from './modules/insertkelaskuliah'
 import insertperkuliahanmahasiswa from './modules/insertperkuliahanmahasiswa'
 import insertaktivitasmahasiswa from './modules/insertaktivitasmahasiswa'
 import insertmahasiswalulusdo from './modules/insertmahasiswalulusdo'
+import insertriwayatpendidikanmahasiswa from './modules/insertriwayatpendidikanmahasiswa'
 
 const insert = {
   modules: {
@@ -14,7 +15,8 @@ const insert = {
     insertkelaskuliah,
     insertperkuliahanmahasiswa,
     insertaktivitasmahasiswa,
-    insertmahasiswalulusdo
+    insertmahasiswalulusdo,
+    insertriwayatpendidikanmahasiswa
   }
 }
 

@@ -15,6 +15,7 @@ router.beforeEach((to, from, next) => {
     } else {
       const dispatchdest = {
         '/mahasiswa/upload': 'biodatamahasiswa',
+        '/mahasiswa/riwayatpendidikan': 'riwayatpendidikan',
         '/matakuliah/insertmatakuliah': 'matakuliah',
         '/kurikulum/insertkurikulum': 'kurikulum',
         '/perkuliahan/insertmahasiswalulusdo': 'lulusdo',
