@@ -1,4 +1,5 @@
 import { insertAktivitasMahasiswa } from '@/api/insertAktivitasMahasiswa'
+import { getProdi } from '@/api/getProdi'
 import store from '@/store'
 import { Message } from 'element-ui'
 
@@ -26,22 +27,31 @@ const insertaktivitasmahasiswa = {
       const aktivitasmahasiswa = state.aktivitasmahasiswa
       console.log('insertaktivitasmahasiswa', aktivitasmahasiswa)
       aktivitasmahasiswa.forEach(function(data) {
-        return new Promise((resolve, reject) => {
-          insertAktivitasMahasiswa(token, data).then(response => {
+        async function getIDs() {
+          try {
+            const filter_prodi = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
+
+            const response_prodi = await getProdi(token, filter_prodi)
+            data.id_prodi = response_prodi.data[0].id_prodi
+            console.log(data)
+            delete (data.kode_program_studi)
+            delete (data.nama_program_studi)
+            delete (data.nama_jenjang_pendidikan)
+
+            const response_insert = await insertAktivitasMahasiswa(token, data)
             Message({
               message: 'Berhasil Input Aktivitas Mahasiswa',
               type: 'success',
               duration: 5 * 1000
             })
-            console.log(response.data)
+            console.log(response_insert.data)
             commit('INSERT_AKTIVITAS_MAHASISWA')
             console.log('setelahinsert', state.aktivitasmahasiswa)
-            resolve()
-          }).catch(error => {
-            console.log('error')
-            reject(error)
-          })
-        })
+          } catch (err) {
+            alert(err) // TypeError: failed to get IDs
+          }
+        }
+        getIDs()
       })
     }
   }

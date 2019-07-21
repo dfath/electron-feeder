@@ -2,23 +2,33 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
+// Profil Perguruan Tinggi
 import profil from './modules/profil'
 import prodi from './modules/prodi'
 import periode from './modules/periode'
 import contoh from './modules/contoh'
-import listdosen from './modules/listdosen'
 import destination from './modules/destination'
+// Mahasiswa
 import list from './modules/list' // List Mahasiswa
+import getbiodatamahasiswa from './modules/getbiodatamahasiswa' // List Kurikulum
+import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa' // List Kurikulum
+// Dosen
+import listdosen from './modules/listdosen'
 import listpenugasansemuadosen from './modules/listpenugasansemuadosen' // List Penugasan Dosen
+// Mata Kuliah
 import listmatakuliah from './modules/listmatakuliah' // List MataKuliah
+// Kurikulum
 import listkurikulum from './modules/listkurikulum' // List Kurikulum
+// Kelas Perkuliahan
 import listkelaskuliah from './modules/listkelaskuliah' // List Kelas Kuliah
 import listnilaiperkuliahankelas from './modules/listnilaiperkuliahankelas' // List Nilai Perkuliahan Kelas
+// Aktivitas Kuliah Mahasiswa
 import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Aktivitas Kuliah Mahasiswa
+// Aktivitas Mahasiswa
 import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa' // List Aktivitas Mahasiswa
+// Mahasiswa Lulus/DO
 import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/DO
 
-import getbiodatamahasiswa from './modules/getbiodatamahasiswa' // List Kurikulum
 import insert from './modules/insert'
 import getters from './getters'
 
@@ -44,6 +54,7 @@ const store = new Vuex.Store({
     listmahasiswalulusdo,
     insert,
     getbiodatamahasiswa,
+    getlistriwayatpendidikanmahasiswa,
     contoh
   },
   getters
