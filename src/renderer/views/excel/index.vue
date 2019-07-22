@@ -94,7 +94,9 @@ export default {
         'aktivitas': 'SetAktivitasMahasiswa',
         'kelaskuliah': 'SetKelasKuliah',
         'perkuliahanmahasiswa': 'SetPerkuliahanMahasiswa',
-        'riwayatpendidikan': 'SetRiwayatPendidikanMahasiswa'
+        'riwayatpendidikan': 'SetRiwayatPendidikanMahasiswa',
+        'nilaiperkuliahan': 'SetNilaiPerkuliahan',
+        'prestasimahasiswa': 'SetPrestasiMahasiswa'
       }
       store.dispatch(dispatchdest[this.destination], results)
       this.tableData = results
@@ -110,7 +112,9 @@ export default {
         'aktivitas': 'InsertAktivitasMahasiswa',
         'kelaskuliah': 'InsertKelasKuliah',
         'perkuliahanmahasiswa': 'InsertPerkuliahanMahasiswa',
-        'riwayatpendidikan': 'InsertRiwayatPendidikanMahasiswa'
+        'riwayatpendidikan': 'InsertRiwayatPendidikanMahasiswa',
+        'nilaiperkuliahan': 'InsertNilaiPerkuliahan',
+        'prestasimahasiswa': 'InsertPrestasiMahasiswa'
       }
       if (this.destination !== null) {
         store.dispatch(dispatchdest[this.destination])

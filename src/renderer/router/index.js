@@ -92,6 +92,12 @@ export const constantRouterMap = [
         name: 'Upload Riwayat Pendidikan Mahasiswa',
         component: () => import('@/views/excel/index'),
         meta: { title: ' Upload Riwayat Pendidikan', icon: 'excel' }
+      },
+      {
+        path: 'prestasimahasiswa',
+        name: 'Insert Prestasi Mahasiswa',
+        component: () => import('@/views/excel/index'),
+        meta: { title: ' Upload Prestasi Mahasiswa', icon: 'excel' }
       }
     ]
   },
@@ -203,6 +209,12 @@ export const constantRouterMap = [
         name: 'Nilai Perkuliahan',
         component: () => import('@/views/nilaikuliah/index'),
         meta: { title: 'Nilai Perkuliahan', icon: 'star' }
+      },
+      {
+        path: 'insertnilaiperkuliahan',
+        name: 'Insert Nilai Perkuliahan',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Nilai Perkuliahan', icon: 'excel' }
       },
       {
         path: 'aktivitaskuliah',

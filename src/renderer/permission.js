@@ -16,12 +16,14 @@ router.beforeEach((to, from, next) => {
       const dispatchdest = {
         '/mahasiswa/upload': 'biodatamahasiswa',
         '/mahasiswa/riwayatpendidikan': 'riwayatpendidikan',
+        '/mahasiswa/prestasimahasiswa': 'prestasimahasiswa',
         '/matakuliah/insertmatakuliah': 'matakuliah',
         '/kurikulum/insertkurikulum': 'kurikulum',
         '/perkuliahan/insertmahasiswalulusdo': 'lulusdo',
         '/perkuliahan/insertaktivitasmahasiswa': 'aktivitas',
         '/perkuliahan/insertkelaskuliah': 'kelaskuliah',
-        '/perkuliahan/insertperkuliahanmahasiswa': 'perkuliahanmahasiswa'
+        '/perkuliahan/insertperkuliahanmahasiswa': 'perkuliahanmahasiswa',
+        '/perkuliahan/insertnilaiperkuliahan': 'nilaiperkuliahan'
       }
       store.dispatch('SetDestination', dispatchdest[to.path])
       next()
