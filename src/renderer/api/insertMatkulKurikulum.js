@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListPenugasanSemuaDosen(token, limit, offset) {
+export function insertMatkulKurikulum(token, record) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -9,11 +9,9 @@ export function getListPenugasanSemuaDosen(token, limit, offset) {
       'Access-Control-Allow-Origin': '*'
     },
     data: {
-      'act': 'GetListPenugasanSemuaDosen',
+      'act': 'InsertMatkulKurikulum',
       token,
-      'filter': '1=1 ORDER BY id_tahun_ajaran DESC',
-      limit,
-      offset
+      record
     }
   })
 }

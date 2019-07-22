@@ -1,27 +1,27 @@
-import { getListAktivitasMahasiswa } from '@/api/getListAktivitasMahasiswa'
+import { getListPenugasanDosen } from '@/api/getListPenugasanDosen'
 import store from '@/store'
 
 const user = {
   state: {
-    listAktivitasMahasiswa: null,
-    listQueryAktivitasMahasiswa: null,
-    totalAktivitasMahasiswa: null
+    listPenugasanDosen: null,
+    listQueryPenugasanDosen: null,
+    totalPenugasanDosen: null
   },
 
   mutations: {
-    SET_LIST_QUERY_AKTIVITAS_MAHASISWA: (state, listQueryKurikulum) => {
+    SET_LIST_QUERY_PENUGASAN_DOSEN: (state, listQueryKurikulum) => {
       state.listQueryKurikulum = listQueryKurikulum
     },
-    SET_LIST_AKTIVITAS_MAHASISWA: (state, listKurikulum) => {
+    SET_LIST_PENUGASAN_DOSEN: (state, listKurikulum) => {
       state.listKurikulum = listKurikulum
     },
-    SET_TOTAL_AKTIVITAS_MAHASISWA: (state, totalKurikulum) => {
+    SET_TOTAL_PENUGASAN_DOSEN: (state, totalKurikulum) => {
       state.totalKurikulum = totalKurikulum
     }
   },
 
   actions: {
-    GetListAktivitasMahasiswa({ commit, state }, listQuery) {
+    GetListPenugasanDosen({ commit, state }, listQuery) {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
@@ -36,16 +36,16 @@ const user = {
         offset = listQuery.limit * (listQuery.page - 1)
       }
       listQuery.offset = offset
-      commit('SET_LIST_QUERY_AKTIVITAS_MAHASISWA', listQuery)
+      commit('SET_LIST_QUERY_PENUGASAN_DOSEN', listQuery)
       console.log(listQuery.page)
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListAktivitasMahasiswa(token, limit, offset, filter).then(response => {
+        getListPenugasanDosen(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data
-          commit('SET_LIST_AKTIVITAS_MAHASISWA', data)
-          console.log(store.getters.listAktivitasMahasiswa)
+          commit('SET_LIST_PENUGASAN_DOSEN', data)
+          console.log(store.getters.listPenugasanDosen)
           resolve()
         }).catch(error => {
           console.log('error')

@@ -14,9 +14,11 @@ import getbiodatamahasiswa from './modules/getbiodatamahasiswa' // List Kurikulu
 import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa' // List Kurikulum
 // Dosen
 import listdosen from './modules/listdosen'
-import listpenugasansemuadosen from './modules/listpenugasansemuadosen' // List Penugasan Dosen
+import listpenugasandosen from './modules/listpenugasandosen' // List Penugasan Dosen
 // Mata Kuliah
 import listmatakuliah from './modules/listmatakuliah' // List MataKuliah
+// Substansi Kuliah
+import listsubstansikuliah from './modules/listsubstansikuliah'
 // Kurikulum
 import listkurikulum from './modules/listkurikulum' // List Kurikulum
 // Kelas Perkuliahan
@@ -43,8 +45,9 @@ const store = new Vuex.Store({
     periode,
     listdosen,
     list,
-    listpenugasansemuadosen,
+    listpenugasandosen,
     listmatakuliah,
+    listsubstansikuliah,
     listkurikulum,
     listkelaskuliah,
     listnilaiperkuliahankelas,

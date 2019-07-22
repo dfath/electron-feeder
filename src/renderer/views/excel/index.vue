@@ -20,8 +20,7 @@
               </div>
             </el-col>
           </el-row>
-      
-      
+
         <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
         
         </div></el-col>
@@ -88,13 +87,19 @@ export default {
       console.log(this.destination)
       const dispatchdest = {
         'biodatamahasiswa': 'SetBiodataMahasiswa',
+        'riwayatpendidikan': 'SetRiwayatPendidikanMahasiswa',
         'matakuliah': 'SetMataKuliah',
         'kurikulum': 'SetKurikulum',
-        'lulusdo': 'SetMahasiswaLulusDO',
-        'aktivitas': 'SetAktivitasMahasiswa',
+        'matkulkurikulum': 'SetMatkulKurikulum',
         'kelaskuliah': 'SetKelasKuliah',
+        'pesertakelaskuliah': 'SetPesertaKelasKuliah',
+        'dosenpengajarkelaskuliah': 'SetDosenPengajarKelasKuliah',
         'perkuliahanmahasiswa': 'SetPerkuliahanMahasiswa',
-        'riwayatpendidikan': 'SetRiwayatPendidikanMahasiswa'
+        'aktivitas': 'SetAktivitasMahasiswa',
+        'anggotaaktivitas': 'SetAnggotaAktivitasMahasiswa',
+        'lulusdo': 'SetMahasiswaLulusDO',
+        'bimbing': 'SetBimbingMahasiswa',
+        'uji': 'SetUjiMahasiswa'
       }
       store.dispatch(dispatchdest[this.destination], results)
       this.tableData = results
@@ -104,13 +109,20 @@ export default {
       this.destination = store.getters.destination
       const dispatchdest = {
         'biodatamahasiswa': 'InsertBiodataMahasiswa',
+        'riwayatpendidikan': 'InsertRiwayatPendidikanMahasiswa',
+
         'matakuliah': 'InsertMataKuliah',
         'kurikulum': 'InsertKurikulum',
-        'lulusdo': 'InsertMahasiswaLulusDO',
-        'aktivitas': 'InsertAktivitasMahasiswa',
+        'matkulkurikulum': 'InsertMatkulKurikulum',
         'kelaskuliah': 'InsertKelasKuliah',
+        'pesertakelaskuliah': 'InsertPesertaKelasKuliah',
+        'dosenpengajarkelaskuliah': 'InsertDosenPengajarKelasKuliah',
         'perkuliahanmahasiswa': 'InsertPerkuliahanMahasiswa',
-        'riwayatpendidikan': 'InsertRiwayatPendidikanMahasiswa'
+        'aktivitas': 'InsertAktivitasMahasiswa',
+        'anggotaaktivitas': 'InsertAnggotaAktivitasMahasiswa',
+        'lulusdo': 'InsertMahasiswaLulusDO',
+        'bimbing': 'InsertBimbingMahasiswa',
+        'uji': 'InsertUjiMahasiswa'
       }
       if (this.destination !== null) {
         store.dispatch(dispatchdest[this.destination])

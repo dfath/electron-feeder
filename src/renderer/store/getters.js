@@ -32,6 +32,8 @@ const getters = {
   deletematakuliah: state => state.listmatakuliah.deletematakuliah,
   listMataKuliah: state => state.listmatakuliah.listMataKuliah, // List MataKuliah
   totalMataKuliah: state => state.listmatakuliah.totalMataKuliah,
+  // Substansi Kuliah
+  listsubstansiKuliah: state => state.listsubstansikuliah.listsubstansiKuliah,
   // Kurikulum
   contohkurikulum: state => state.contoh.contohkurikulum.contohkurikulum,
   listKurikulum: state => state.listkurikulum.listKurikulum, // List Kurikulum
@@ -48,6 +50,7 @@ const getters = {
   // Aktivitas Mahasiswa
   contohaktivitasmahasiswa: state => state.contoh.contohaktivitasmahasiswa.contohaktivitasmahasiswa,
   listAktivitasMahasiswa: state => state.listaktivitasmahasiswa.listAktivitasMahasiswa, // List Aktivitas Mahasiswa
+  listAnggotaAktivitasMahasiswa: state => state.listanggotaaktivitasmahasiswa.listAnggotaAktivitasMahasiswa, // List Anggota Aktivitas Mahasiswa
   // Mahasiswa Lulus/DO
   listMahasiswaLulusDO: state => state.listmahasiswalulusdo.listMahasiswaLulusDO, // List Mahasiswa Lulus/DO
   contohmahasiswalulusdo: state => state.contoh.contohmahasiswalulusdo.contohmahasiswalulusdo,

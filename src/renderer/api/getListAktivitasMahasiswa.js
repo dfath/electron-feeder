@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListAktivitasMahasiswa(token, limit, offset) {
+export function getListAktivitasMahasiswa(token, limit, offset, filter) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -11,7 +11,7 @@ export function getListAktivitasMahasiswa(token, limit, offset) {
     data: {
       'act': 'GetListAktivitasMahasiswa',
       token,
-      'filter': '1=1 ORDER BY id_semester DESC',
+      filter,
       limit,
       offset
     }

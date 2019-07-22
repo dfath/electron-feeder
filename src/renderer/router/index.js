@@ -36,18 +36,6 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-  // {
-  //   path: '/profil',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'profil',
-  //       name: 'Profil',
-  //       component: () => import('@/views/profil/index'),
-  //       meta: { title: 'Profil', icon: 'form' }
-  //     }
-  //   ]
-  // },
   {
     path: '/profilpt',
     component: Layout,
@@ -72,7 +60,7 @@ export const constantRouterMap = [
         path: 'data',
         name: 'Data Mahasiswa',
         component: () => import('@/views/mahasiswa/index'),
-        meta: { title: ' Data Mahasiswa', icon: 'list' }
+        meta: { title: ' Data Mahasiswa', icon: 'insertanggota' }
       },
       {
         path: 'upload',
@@ -127,6 +115,12 @@ export const constantRouterMap = [
         name: 'Penugasan',
         component: () => import('@/views/penugasan/index'),
         meta: { title: 'Penugasan', icon: 'tree' }
+      },
+      {
+        path: 'insertdosenpengajarkelaskuliah',
+        name: 'Inserta Dosen Pengajar Kelas Kuliah',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Dosen Pengajar Kelas Kuliah', icon: 'people' }
       }
     ]
   },
@@ -175,6 +169,12 @@ export const constantRouterMap = [
         name: 'Insert Kurikulum',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Kurikulum', icon: 'excel' }
+      },
+      {
+        path: 'insertmatkulkurikulum',
+        name: 'Insert Matkul Kurikulum',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Matkul Kurikulum', icon: 'excel' }
       }
     ]
   },
@@ -197,6 +197,12 @@ export const constantRouterMap = [
         name: 'Insert Kelas Kuliah',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Kelas Kuliah', icon: 'excel' }
+      },
+      {
+        path: 'insertpesertakelaskuliah',
+        name: 'Inserta Peserta Kelas Kuliah',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Peserta Kelas Kuliah', icon: 'peoples' }
       },
       {
         path: 'nilaikuliah',
@@ -223,18 +229,6 @@ export const constantRouterMap = [
         meta: { title: 'Hitung Aktivitas Perkuliahan Mahasiswa', icon: 'money' }
       },
       {
-        path: 'aktivitasmahasiswa',
-        name: 'Aktivitas Mahasiswa',
-        component: () => import('@/views/aktivitas/index'),
-        meta: { title: 'Aktivitas Mahasiswa', icon: 'skill' }
-      },
-      {
-        path: 'insertaktivitasmahasiswa',
-        name: 'Insert Aktivitas Mahasiswa',
-        component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Aktivitas Mahasiswa', icon: 'excel' }
-      },
-      {
         path: 'ta',
         name: 'Tugas Akhir/Skripsi/Tesis/Disertasi Mahasiswa',
         component: () => import('@/views/matakuliah/index'),
@@ -251,6 +245,51 @@ export const constantRouterMap = [
         name: 'Insert Mahasiswa Lulus/DO',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Mahasiswa Lulus/DO', icon: 'excel' }
+      }
+    ]
+  },
+  {
+    path: '/aktivitas',
+    component: Layout,
+    redirect: '/aktivitas/listaktivitas',
+    name: 'Aktivitas',
+    meta: { title: 'Aktivitas', icon: 'skill' },
+    children: [
+      {
+        path: 'listaktivitasmahasiswa',
+        name: 'List Aktivitas Mahasiswa',
+        component: () => import('@/views/aktivitas/index'),
+        meta: { title: 'List Aktivitas Mahasiswa', icon: 'skill' }
+      },
+      {
+        path: 'insertaktivitasmahasiswa',
+        name: 'Insert Aktivitas Mahasiswa',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Aktivitas Mahasiswa', icon: 'excel' }
+      },
+      // {
+      //   path: 'listanggotaaktivitasmahasiswa',
+      //   name: 'List Anggota Aktivitas Mahasiswa',
+      //   component: () => import('@/views/aktivitas/index'), // perlu diganti nanti jangan lupa
+      //   meta: { title: 'List Anggota Aktivitas Mahasiswa', icon: 'skill' }
+      // },
+      {
+        path: 'insertanggotaaktivitasmahasiswa',
+        name: 'Insert Anggota Aktivitas Mahasiswa',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Anggota Aktivitas Mahasiswa', icon: 'skill' }
+      },
+      {
+        path: 'insertujimahasiswa',
+        name: 'Insert Uji Mahasiswa',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Uji Mahasiswa', icon: 'excel' }
+      },
+      {
+        path: 'insertbimbingmahasiswa',
+        name: 'Insert Bimbing Mahasiswa',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Bimbing Mahasiswa', icon: 'excel' }
       }
     ]
   },

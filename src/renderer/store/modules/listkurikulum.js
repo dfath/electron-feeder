@@ -27,10 +27,6 @@ const user = {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
-      let filter = '1=1 ORDER BY semester_mulai_berlaku DESC'
-      if (listQuery.filter) {
-        filter = `nama_kurikulum LIKE '%${listQuery.filter}%' ORDER BY semester_mulai_berlaku DESC`
-      }
       let offset = null
       if (listQuery.page === 1) {
         offset = ''
@@ -43,7 +39,7 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListKurikulum(token, limit, offset, filter).then(response => {
+        getListKurikulum(token, limit, offset).then(response => {
           console.log(response.data)
           const data = response.data
           commit('SET_LIST_KURIKULUM', data)

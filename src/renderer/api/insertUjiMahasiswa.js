@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListDosen(token, limit, offset, filter) {
+export function insertUjiMahasiswa(token, record) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -9,11 +9,9 @@ export function getListDosen(token, limit, offset, filter) {
       'Access-Control-Allow-Origin': '*'
     },
     data: {
-      'act': 'GetListDosen',
+      'act': 'InsertUjiMahasiswa',
       token,
-      filter,
-      limit,
-      offset
+      record
     }
   })
 }
