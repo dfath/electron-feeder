@@ -12,6 +12,8 @@ import insertbimbingmahasiswa from './modules/insertbimbingmahasiswa'
 import insertanggotaaktivitasmahasiswa from './modules/insertanggotaaktivitasmahasiswa'
 import insertmahasiswalulusdo from './modules/insertmahasiswalulusdo'
 import insertriwayatpendidikanmahasiswa from './modules/insertriwayatpendidikanmahasiswa'
+import insertnilaiperkuliahan from './modules/insertnilaiperkuliahan'
+import insertprestasimahasiswa from './modules/insertprestasimahasiswa'
 
 const insert = {
   modules: {
@@ -28,7 +30,9 @@ const insert = {
     insertujimahasiswa,
     insertanggotaaktivitasmahasiswa,
     insertmahasiswalulusdo,
-    insertriwayatpendidikanmahasiswa
+    insertriwayatpendidikanmahasiswa,
+    insertnilaiperkuliahan,
+    insertprestasimahasiswa
   }
 }
 

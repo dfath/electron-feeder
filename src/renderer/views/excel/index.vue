@@ -99,7 +99,9 @@ export default {
         'anggotaaktivitas': 'SetAnggotaAktivitasMahasiswa',
         'lulusdo': 'SetMahasiswaLulusDO',
         'bimbing': 'SetBimbingMahasiswa',
-        'uji': 'SetUjiMahasiswa'
+        'uji': 'SetUjiMahasiswa',
+        'nilaiperkuliahan': 'SetNilaiPerkuliahan',
+        'prestasimahasiswa': 'SetPrestasiMahasiswa'
       }
       store.dispatch(dispatchdest[this.destination], results)
       this.tableData = results
@@ -118,11 +120,17 @@ export default {
         'pesertakelaskuliah': 'InsertPesertaKelasKuliah',
         'dosenpengajarkelaskuliah': 'InsertDosenPengajarKelasKuliah',
         'perkuliahanmahasiswa': 'InsertPerkuliahanMahasiswa',
+<<<<<<< HEAD
         'aktivitas': 'InsertAktivitasMahasiswa',
         'anggotaaktivitas': 'InsertAnggotaAktivitasMahasiswa',
         'lulusdo': 'InsertMahasiswaLulusDO',
         'bimbing': 'InsertBimbingMahasiswa',
         'uji': 'InsertUjiMahasiswa'
+=======
+        'riwayatpendidikan': 'InsertRiwayatPendidikanMahasiswa',
+        'nilaiperkuliahan': 'InsertNilaiPerkuliahan',
+        'prestasimahasiswa': 'InsertPrestasiMahasiswa'
+>>>>>>> 141e1353093a2e9d9a906d4712795db0eef36c76
       }
       if (this.destination !== null) {
         store.dispatch(dispatchdest[this.destination])
