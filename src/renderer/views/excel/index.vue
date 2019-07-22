@@ -112,7 +112,6 @@ export default {
       const dispatchdest = {
         'biodatamahasiswa': 'InsertBiodataMahasiswa',
         'riwayatpendidikan': 'InsertRiwayatPendidikanMahasiswa',
-
         'matakuliah': 'InsertMataKuliah',
         'kurikulum': 'InsertKurikulum',
         'matkulkurikulum': 'InsertMatkulKurikulum',
@@ -120,17 +119,13 @@ export default {
         'pesertakelaskuliah': 'InsertPesertaKelasKuliah',
         'dosenpengajarkelaskuliah': 'InsertDosenPengajarKelasKuliah',
         'perkuliahanmahasiswa': 'InsertPerkuliahanMahasiswa',
-<<<<<<< HEAD
         'aktivitas': 'InsertAktivitasMahasiswa',
         'anggotaaktivitas': 'InsertAnggotaAktivitasMahasiswa',
         'lulusdo': 'InsertMahasiswaLulusDO',
         'bimbing': 'InsertBimbingMahasiswa',
-        'uji': 'InsertUjiMahasiswa'
-=======
-        'riwayatpendidikan': 'InsertRiwayatPendidikanMahasiswa',
+        'uji': 'InsertUjiMahasiswa',
         'nilaiperkuliahan': 'InsertNilaiPerkuliahan',
         'prestasimahasiswa': 'InsertPrestasiMahasiswa'
->>>>>>> 141e1353093a2e9d9a906d4712795db0eef36c76
       }
       if (this.destination !== null) {
         store.dispatch(dispatchdest[this.destination])
