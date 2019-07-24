@@ -1,8 +1,8 @@
 {
-  "name": "electron-vue-admin",
-  "version": "3.0.0",
-  "author": "Pan <panfree23@gmail.com>",
-  "description": "An electron-vue project",
+  "name": "open-feeder",
+  "version": "1.0.0",
+  "author": "Suteki Technology",
+  "description": "Open Source Feeder Importer for PDDIKTI",
   "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "electron-vue-admin",
+    "productName": "OpenFeeder",
     "appId": "org.simulatedgreg.electron-vue",
     "directories": {
       "output": "build"
