@@ -17,42 +17,60 @@ const getters = {
   profilPT: state => state.profil.profilPT,
   prodi: state => state.prodi.prodi,
   periode: state => state.periode.periode,
-  listDosen: state => state.listdosen.listDosen,
   // Mahasiswa
   listMahasiswa: state => state.list.listMahasiswa,
   contohbiodatamahasiswa: state => state.contoh.contohbiodatamahasiswa.contohbiodatamahasiswa,
-  editbiodatamahasiswa: state => state.getbiodatamahasiswa.editbiodatamahasiswa,
+  updatebiodatamahasiswa: state => state.getbiodatamahasiswa.updatebiodatamahasiswa,
   deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa,
   listRiwayatPendidikanMahasiswa: state => state.getlistriwayatpendidikanmahasiswa.listRiwayatPendidikanMahasiswa,
   listQueryMahasiswa: state => state.list.listQueryMahasiswa,
   totalMahasiswa: state => state.list.totalMahasiswa,
+  // Dosen
+  listDosen: state => state.listdosen.listDosen,
+  totalDosen: state => state.listdosen.totalDosen,
   listPenugasanSemuaDosen: state => state.listpenugasansemuadosen.listPenugasanSemuaDosen, // List Penugasan Semua Dosen
+  totalPenugasanSemuaDosen: state => state.listpenugasansemuadosen.totalPenugasanSemuaDosen,
+  contohdosenpengajarkelaskuliah: state => state.contoh.contohdosenpengajarkelaskuliah.contohdosenpengajarkelaskuliah,
   // Mata Kuliah
-  contohmatakuliah: state => state.contoh.contohmatakuliah.contohmatakuliah,
-  deletematakuliah: state => state.listmatakuliah.deletematakuliah,
   listMataKuliah: state => state.listmatakuliah.listMataKuliah, // List MataKuliah
+  contohmatakuliah: state => state.contoh.contohmatakuliah.contohmatakuliah,
+  updatematakuliah: state => state.getdetailmatakuliah.updatematakuliah,
+  // deletematakuliah: state => state.listmatakuliah.deletematakuliah,
+  listQueryMataKuliah: state => state.listmatakuliah.listQueryMataKuliah,
   totalMataKuliah: state => state.listmatakuliah.totalMataKuliah,
   // Substansi Kuliah
-  listsubstansiKuliah: state => state.listsubstansikuliah.listsubstansiKuliah,
+  listSubstansiKuliah: state => state.listsubstansikuliah.listSubstansiKuliah,
+  totalSubstansiKuliah: state => state.listsubstansikuliah.totalSubstansiKuliah,
   // Kurikulum
   contohkurikulum: state => state.contoh.contohkurikulum.contohkurikulum,
   listKurikulum: state => state.listkurikulum.listKurikulum, // List Kurikulum
   totalKurikulum: state => state.listkurikulum.totalKurikulum,
   deletekurikulum: state => state.listkurikulum.deletekurikulum,
+  // Matkul Kurikulum
+  contohmatkulkurikulum: state => state.contoh.contohmatkulkurikulum.contohmatkulkurikulum,
   // Kelas Perkuliahan
   listKelasKuliah: state => state.listkelaskuliah.listKelasKuliah, // List Kelas Kuliah
+  totalKelasKuliah: state => state.listkelaskuliah.totalKelasKuliah,
   contohkelaskuliah: state => state.contoh.contohkelaskuliah.contohkelaskuliah,
+  contohpesertakelaskuliah: state => state.contoh.contohpesertakelaskuliah.contohpesertakelaskuliah,
   // Aktivitas Kuliah Mahasiswa
   aktivitasKuliahMahasiswa: state => state.aktivitaskuliahmahasiswa.aktivitasKuliahMahasiswa, // Aktivitas Kuliah Mahasiswa
+  totalAktivitasKuliahMahasiswa: state => state.aktivitaskuliahmahasiswa.totalAktivitasKuliahMahasiswa,
   contohperkuliahan: state => state.contoh.contohperkuliahan.contohperkuliahan,
-
+  // Nilai Perkuliahan Kelas
   listNilaiPerkuliahanKelas: state => state.listnilaiperkuliahankelas.listNilaiPerkuliahanKelas, // List Nilai Perkuliahan Kelas
+  totalNilaiPerkuliahanKelas: state => state.listnilaiperkuliahankelas.totalNilaiPerkuliahanKelas,
   // Aktivitas Mahasiswa
   contohaktivitasmahasiswa: state => state.contoh.contohaktivitasmahasiswa.contohaktivitasmahasiswa,
   listAktivitasMahasiswa: state => state.listaktivitasmahasiswa.listAktivitasMahasiswa, // List Aktivitas Mahasiswa
+  totalAktivitasMahasiswa: state => state.listaktivitasmahasiswa.totalAktivitasMahasiswa,
   listAnggotaAktivitasMahasiswa: state => state.listanggotaaktivitasmahasiswa.listAnggotaAktivitasMahasiswa, // List Anggota Aktivitas Mahasiswa
+  contohanggotaaktivitasmahasiswa: state => state.contoh.contohanggotaaktivitasmahasiswa.contohanggotaaktivitasmahasiswa,
+  contohbimbingmahasiswa: state => state.contoh.contohbimbingmahasiswa.contohbimbingmahasiswa,
+  contohujimahasiswa: state => state.contoh.contohujimahasiswa.contohujimahasiswa,
   // Mahasiswa Lulus/DO
   listMahasiswaLulusDO: state => state.listmahasiswalulusdo.listMahasiswaLulusDO, // List Mahasiswa Lulus/DO
+  totalMahasiswaLulusDO: state => state.listmahasiswalulusdo.totalMahasiswaLulusDO,
   contohmahasiswalulusdo: state => state.contoh.contohmahasiswalulusdo.contohmahasiswalulusdo,
   destination: state => state.destination.destination,
   errorLogs: state => state.errorLog.logs

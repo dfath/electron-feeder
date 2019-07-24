@@ -38,13 +38,12 @@ const insertanggotaaktivitasmahasiswa = {
           delete data.id_semester
           delete data.judul
 
-          filter = `nama_mahasiswa LIKE '%${data.nama_mahasiswa}%' AND nim LIKE '%${data.nim}%' AND tanggal_daftar = '${data.tanggal_daftar}'`
+          filter = `nama_mahasiswa LIKE '%${data.nama_mahasiswa}%' AND nim LIKE '%${data.nim}%'`
           res = await getListRiwayatPendidikanMahasiswa(token, '', '', filter)
           data.id_registrasi_mahasiswa = res.data[0].id_registrasi_mahasiswa
 
           delete (data.nama_mahasiswa)
           delete (data.nim)
-          delete (data.tanggal_daftar)
 
           res = await insertAnggotaAktivitasMahasiswa(token, data)
           Message({

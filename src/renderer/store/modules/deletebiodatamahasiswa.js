@@ -4,12 +4,12 @@ import store from '@/store'
 
 const user = {
   state: {
-    editbiodatamahasiswa: null
+    updatebiodatamahasiswa: null
   },
 
   mutations: {
-    GET_BIODATA_MAHASISWA: (state, editbiodatamahasiswa) => {
-      Vue.set(state, 'editbiodatamahasiswa', editbiodatamahasiswa)
+    GET_BIODATA_MAHASISWA: (state, updatebiodatamahasiswa) => {
+      Vue.set(state, 'updatebiodatamahasiswa', updatebiodatamahasiswa)
     }
   },
 
@@ -22,7 +22,7 @@ const user = {
           console.log(response.data)
           const data = response.data
           commit('GET_BIODATA_MAHASISWA', data)
-          console.log('biodata di store', store.getters.editbiodatamahasiswa)
+          console.log('biodata di store', store.getters.updatebiodatamahasiswa)
           resolve()
         }).catch(error => {
           console.log('error')
@@ -35,7 +35,7 @@ const user = {
       console.log(id)
       return new Promise((resolve, reject) => {
         deleteBiodataMahasiswa(token, id).then(response => {
-          console.log('biodata di store', store.getters.editbiodatamahasiswa)
+          console.log('biodata di store', store.getters.updatebiodatamahasiswa)
           console.log('sekarang mau didelete')
           resolve()
         }).catch(error => {

@@ -1,21 +1,33 @@
 
 import contohbiodatamahasiswa from './contohfile/contohbiodatamahasiswa'
+import contohdosenpengajarkelaskuliah from './contohfile/contohdosenpengajarkelaskuliah'
 import contohmatakuliah from './contohfile/contohmatakuliah'
 import contohkurikulum from './contohfile/contohkurikulum'
+import contohmatkulkurikulum from './contohfile/contohmatkulkurikulum'
 import contohkelaskuliah from './contohfile/contohkelaskuliah'
+import contohpesertakelaskuliah from './contohfile/contohpesertakelaskuliah'
 import contohperkuliahan from './contohfile/contohperkuliahan'
 import contohaktivitasmahasiswa from './contohfile/contohaktivitasmahasiswa'
+import contohanggotaaktivitasmahasiswa from './contohfile/contohanggotaaktivitasmahasiswa'
+import contohbimbingmahasiswa from './contohfile/contohbimbingmahasiswa'
+import contohujimahasiswa from './contohfile/contohujimahasiswa'
 import contohmahasiswalulusdo from './contohfile/contohmahasiswalulusdo'
 import store from '@/store'
 
 const contoh = {
   modules: {
     contohbiodatamahasiswa,
+    contohdosenpengajarkelaskuliah,
     contohmatakuliah,
     contohkurikulum,
+    contohmatkulkurikulum,
     contohkelaskuliah,
+    contohpesertakelaskuliah,
     contohperkuliahan,
     contohaktivitasmahasiswa,
+    contohanggotaaktivitasmahasiswa,
+    contohbimbingmahasiswa,
+    contohujimahasiswa,
     contohmahasiswalulusdo
   },
   actions: {
@@ -24,11 +36,17 @@ const contoh = {
       const destination = store.getters.destination
       const dispatchdest = {
         'biodatamahasiswa': 'contohbiodatamahasiswa',
+        'dosenpengajarkelaskuliah': 'contohdosenpengajarkelaskuliah',
         'matakuliah': 'contohmatakuliah',
         'kurikulum': 'contohkurikulum',
+        'matkulkurikulum': 'contohmatkulkurikulum',
         'kelaskuliah': 'contohkelaskuliah',
+        'pesertakelaskuliah': 'contohpesertakelaskuliah',
         'perkuliahanmahasiswa': 'contohperkuliahan',
         'aktivitas': 'contohaktivitasmahasiswa',
+        'anggotaaktivitas': 'contohanggotaaktivitasmahasiswa',
+        'bimbing': 'contohbimbingmahasiswa',
+        'uji': 'contohujimahasiswa',
         'lulusdo': 'contohmahasiswalulusdo'
       }
       if (destination !== null) {

@@ -1,10 +1,11 @@
+
 <template>
   <div class="app-container">
     <el-row type="flex" class="filter-container">
       <el-col :span="12">
-        <el-input v-model="listQuery.filter" placeholder="Nama Kurikulum" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        <el-input v-model="listQuery.filter" placeholder="Nama Mahasiswa" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
-          Search
+        Search
         </el-button>
       </el-col>
       <el-col :span="12">
@@ -23,37 +24,28 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistKurikulum">
-      <el-table-column min-width="45" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="168" prop="nama_kurikulum"
-                      label="Nama Kurikulum">
+    <el-table v-loading="listLoading" border :data="tablelistMataKuliah">
+      <el-table-column min-width="75" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column min-width="50" prop="kode_mata_kuliah"
+                      label="NIM">
       </el-table-column>
-      <el-table-column min-width="85" prop="nama_program_studi"
+      <el-table-column min-width="150" prop="nama_mata_kuliah"
+                      label="Nama Mahasiswa">
+      </el-table-column>
+      <el-table-column min-width="150" prop="nama_program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="100" prop="semester_mulai_berlaku"
-                      label="Mulai Berlaku">
+      <el-table-column min-width="50" prop="id_jenis_mata_kuliah"
+                      label="Semester">
       </el-table-column>
-      <el-table-column min-width="50" prop=""
-                      label="Aturan Jumlah sks">
-        <el-table-column min-width="45" prop="jumlah_sks_lulus"
-                        label="Lulus">
-        </el-table-column>
-        <el-table-column min-width="45" prop="jumlah_sks_wajib"
-                        label="Wajib">
-        </el-table-column>
-        <el-table-column min-width="50" prop="jumlah_sks_pilihan"
-                        label="Pilihan">
-        </el-table-column>
+      <el-table-column min-width="50" prop="id_jenis_mata_kuliah"
+                      label="Jenis">
       </el-table-column>
-      <el-table-column min-width="50" prop=""
-                      label="Jumlah sks Matakuliah">
-        <el-table-column min-width="50" prop="jumlah_sks_mata_kuliah_wajib"
-                        label="Wajib">
-        </el-table-column>
-        <el-table-column min-width="50" prop="jumlah_sks_mata_kuliah_pilihan"
-                        label="Pilihan">
-        </el-table-column>
+      <el-table-column min-width="50" prop="id_jenis_mata_kuliah"
+                      label="Judul">
+      </el-table-column>
+      <el-table-column min-width="50" prop="id_jenis_mata_kuliah"
+                      label="Tanggal SK">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -73,7 +65,6 @@
 
 <script>
 import waves from '@/directive/waves' // waves directive
-import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import { Message, MessageBox } from 'element-ui'
 
@@ -83,7 +74,7 @@ export default {
   directives: { waves },
   data() {
     return {
-      listKurikulum: null,
+      listMataKuliah: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -98,8 +89,8 @@ export default {
     this.fetchData()
   },
   computed: {
-    tablelistKurikulum() {
-      return this.$store.getters.listKurikulum
+    tablelistMataKuliah() {
+      return this.$store.getters.listMataKuliah
     }
   },
   methods: {
@@ -111,7 +102,7 @@ export default {
         this.getTotal()
       }
       this.listLoading = true
-      this.$store.dispatch('GetListKurikulum', this.listQuery).then(() => {
+      this.$store.dispatch('GetListMataKuliah', this.listQuery).then(() => {
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
@@ -125,16 +116,16 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetTotalKurikulum', this.listQuery).then(() => {
+      this.$store.dispatch('GetTotalMataKuliah', this.listQuery).then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.totalKurikulum
+        this.total = this.$store.getters.totalMataKuliah
         console.log(this.total)
       }).catch(() => {
         this.listLoading = false
       })
     },
     handleUpload() {
-      this.$router.push('/kurikulum/insertkurikulum')
+      this.$router.push('/matakuliah/insertmatakuliah')
     },
     handleClick(tab, event) {
       console.log(tab, event)
@@ -165,17 +156,6 @@ export default {
     //   }
     //   this.handleFilter()
     // },
-    resetTemp() {
-      this.temp = {
-        id: undefined,
-        importance: 1,
-        remark: '',
-        timestamp: new Date(),
-        title: '',
-        status: 'published',
-        type: ''
-      }
-    },
     handleCreate() {
       this.resetTemp()
       this.dialogStatus = 'create'
@@ -236,13 +216,13 @@ export default {
     //   })
     // },
     handleDelete(row) {
-      MessageBox.confirm('Apakah Anda ingin menghapus Biodata ini?', 'Confirm Delete', {
+      MessageBox.confirm('Apakah Anda ingin menghapus Mata Kuliah ini?', 'Confirm Delete', {
         confirmButtonText: 'Ya',
         cancelButtonText: 'Tidak',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch('DeleteKurikulum', row.id_kurikulum).then(() => {
-          console.log('delete kurikulum ini')
+        this.$store.dispatch('DeleteMataKuliah', row.id_matkul).then(() => {
+          console.log('delete matkul ini')
           console.log(row)
           Message({
             message: 'Delete Successfully',
@@ -257,15 +237,6 @@ export default {
           message: 'Delete canceled'
         })
       })
-    },
-    formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
     }
   }
 }

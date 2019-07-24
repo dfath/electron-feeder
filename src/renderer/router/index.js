@@ -60,7 +60,7 @@ export const constantRouterMap = [
         path: 'data',
         name: 'Data Mahasiswa',
         component: () => import('@/views/mahasiswa/index'),
-        meta: { title: ' Data Mahasiswa', icon: 'insertanggota' }
+        meta: { title: ' Data Mahasiswa', icon: 'peoples' }
       },
       {
         path: 'upload',
@@ -111,22 +111,22 @@ export const constantRouterMap = [
     meta: { title: 'Dosen', icon: 'user' },
     children: [
       {
-        path: 'dosen',
-        name: 'Dosen',
+        path: 'listdosen',
+        name: 'List Dosen',
         component: () => import('@/views/dosen/index'),
-        meta: { title: 'Dosen', icon: 'user' }
+        meta: { title: 'List Dosen', icon: 'user' }
       },
       {
-        path: 'penugasan',
-        name: 'Penugasan',
+        path: 'listpenugasan',
+        name: 'List Penugasan Dosen',
         component: () => import('@/views/penugasan/index'),
-        meta: { title: 'Penugasan', icon: 'tree' }
+        meta: { title: 'List Penugasan Dosen', icon: 'tree' }
       },
       {
         path: 'insertdosenpengajarkelaskuliah',
         name: 'Inserta Dosen Pengajar Kelas Kuliah',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Dosen Pengajar Kelas Kuliah', icon: 'people' }
+        meta: { title: 'Insert Dosen Pengajar Kelas Kuliah', icon: 'excel' }
       }
     ]
   },
@@ -150,9 +150,16 @@ export const constantRouterMap = [
         meta: { title: 'Insert Mata Kuliah', icon: 'excel' }
       },
       {
+        path: 'edit',
+        name: 'Edit Mata Kuliah',
+        hidden: true,
+        component: () => import('@/views/matakuliah/edit'),
+        meta: { title: 'Edit Mata Kuliah', icon: 'form' }
+      },
+      {
         path: 'substansikuliah',
         name: 'Substansi Kuliah',
-        component: () => import('@/views/matakuliah/index'),
+        component: () => import('@/views/substansikuliah/index'),
         meta: { title: 'Substansi Kuliah', icon: 'eye-open' }
       }
     ]
@@ -184,19 +191,18 @@ export const constantRouterMap = [
       }
     ]
   },
-
   {
-    path: '/perkuliahan',
+    path: '/kelaskuliah',
     component: Layout,
-    redirect: '/perkuliahan/matakuliah',
-    name: 'Perkuliahan',
-    meta: { title: 'Perkuliahan', icon: 'table' },
+    redirect: '/listkelaskuliah',
+    name: 'Kelas',
+    meta: { title: 'Kelas', icon: 'table' },
     children: [
       {
-        path: 'kelaskuliah',
-        name: 'Kelas Perkuliahan',
+        path: 'listkelaskuliah',
+        name: 'List Kelas Perkuliahan',
         component: () => import('@/views/kelaskuliah/index'),
-        meta: { title: 'Kelas Perkuliahan', icon: 'peoples' }
+        meta: { title: 'List Kelas Perkuliahan', icon: 'peoples' }
       },
       {
         path: 'insertkelaskuliah',
@@ -208,13 +214,23 @@ export const constantRouterMap = [
         path: 'insertpesertakelaskuliah',
         name: 'Inserta Peserta Kelas Kuliah',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Peserta Kelas Kuliah', icon: 'peoples' }
-      },
+        meta: { title: 'Insert Peserta Kelas Kuliah', icon: 'excel' }
+      }
+    ]
+  },
+
+  {
+    path: '/perkuliahan',
+    component: Layout,
+    redirect: '/perkuliahan/matakuliah',
+    name: 'Perkuliahan',
+    meta: { title: 'Perkuliahan', icon: 'table' },
+    children: [
       {
         path: 'nilaikuliah',
-        name: 'Nilai Perkuliahan',
+        name: 'List Nilai Perkuliahan',
         component: () => import('@/views/nilaikuliah/index'),
-        meta: { title: 'Nilai Perkuliahan', icon: 'star' }
+        meta: { title: 'List Nilai Perkuliahan', icon: 'star' }
       },
       {
         path: 'insertnilaiperkuliahan',
@@ -233,31 +249,19 @@ export const constantRouterMap = [
         name: 'Insert Aktivitas Kuliah Mahasiswa',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Aktivitas Kuliah Mahasiswa', icon: 'excel' }
-      },
-      {
-        path: 'hitungaktivitaskuliah',
-        name: 'Hitung Aktivitas Perkuliahan Mahasiswa',
-        component: () => import('@/views/matakuliah/index'),
-        meta: { title: 'Hitung Aktivitas Perkuliahan Mahasiswa', icon: 'money' }
-      },
-      {
-        path: 'ta',
-        name: 'Tugas Akhir/Skripsi/Tesis/Disertasi Mahasiswa',
-        component: () => import('@/views/matakuliah/index'),
-        meta: { title: 'Tugas Akhir/Skripsi/Tesis/Disertasi Mahasiswa', icon: 'theme' }
-      },
-      {
-        path: 'daftarlulusdo',
-        name: 'Daftar Mahasiswa Lulus/Drop Out',
-        component: () => import('@/views/lulusdo/index'),
-        meta: { title: 'Daftar Mahasiswa Lulus/Drop Out', icon: 'message' }
-      },
-      {
-        path: 'insertmahasiswalulusdo',
-        name: 'Insert Mahasiswa Lulus/DO',
-        component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Mahasiswa Lulus/DO', icon: 'excel' }
       }
+      // {
+      //   path: 'hitungaktivitaskuliah',
+      //   name: 'Hitung Aktivitas Perkuliahan Mahasiswa',
+      //   component: () => import('@/views/matakuliah/index'),
+      //   meta: { title: 'Hitung Aktivitas Perkuliahan Mahasiswa', icon: 'money' }
+      // }
+      // {
+      //   path: 'ta',
+      //   name: 'Tugas Akhir/Skripsi/Tesis/Disertasi Mahasiswa',
+      //   component: () => import('@/views/tugasakhir/index'),
+      //   meta: { title: 'Tugas Akhir/Skripsi/Tesis/Disertasi Mahasiswa', icon: 'theme' }
+      // }
     ]
   },
   {
@@ -289,19 +293,40 @@ export const constantRouterMap = [
         path: 'insertanggotaaktivitasmahasiswa',
         name: 'Insert Anggota Aktivitas Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Anggota Aktivitas Mahasiswa', icon: 'skill' }
-      },
-      {
-        path: 'insertujimahasiswa',
-        name: 'Insert Uji Mahasiswa',
-        component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Uji Mahasiswa', icon: 'excel' }
+        meta: { title: 'Insert Anggota Aktivitas Mahasiswa', icon: 'excel' }
       },
       {
         path: 'insertbimbingmahasiswa',
         name: 'Insert Bimbing Mahasiswa',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Bimbing Mahasiswa', icon: 'excel' }
+      },
+      {
+        path: 'insertujimahasiswa',
+        name: 'Insert Uji Mahasiswa',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Uji Mahasiswa', icon: 'excel' }
+      }
+    ]
+  },
+  {
+    path: '/lulusdo',
+    component: Layout,
+    redirect: '/daftarlulusdo',
+    name: 'Lulus/DO',
+    meta: { title: 'Lulus/DO', icon: 'table' },
+    children: [
+      {
+        path: 'daftarlulusdo',
+        name: 'Daftar Mahasiswa Lulus/Drop Out',
+        component: () => import('@/views/lulusdo/index'),
+        meta: { title: 'Daftar Mahasiswa Lulus/Drop Out', icon: 'message' }
+      },
+      {
+        path: 'insertmahasiswalulusdo',
+        name: 'Insert Mahasiswa Lulus/DO',
+        component: () => import('@/views/excel/index'),
+        meta: { title: 'Insert Mahasiswa Lulus/DO', icon: 'excel' }
       }
     ]
   },

@@ -1,6 +1,4 @@
 import { getListMataKuliah } from '@/api/getListMataKuliah'
-import { deleteMataKuliah } from '@/api/deleteMataKuliah'
-
 import store from '@/store'
 
 const user = {
@@ -11,16 +9,15 @@ const user = {
   },
 
   mutations: {
-    SET_LIST_QUERY_MATAKULIAH: (state, listQueryMataKuliah) => {
+    SET_LIST_QUERY_MATA_KULIAH: (state, listQueryMataKuliah) => {
       state.listQueryMataKuliah = listQueryMataKuliah
     },
-    SET_LIST_MATAKULIAH: (state, listMataKuliah) => {
+    SET_LIST_MATA_KULIAH: (state, listMataKuliah) => {
       state.listMataKuliah = listMataKuliah
     },
-    SET_TOTAL_MATAKULIAH: (state, totalMataKuliah) => {
+    SET_TOTAL_MATA_KULIAH: (state, totalMataKuliah) => {
       state.totalMataKuliah = totalMataKuliah
     }
-
   },
 
   actions: {
@@ -28,6 +25,10 @@ const user = {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
+      let filter = '1=1 ORDER BY kode_mata_kuliah ASC'
+      if (listQuery.filter) {
+        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY kode_mata_kuliah ASC`
+      }
       let offset = null
       if (listQuery.page === 1) {
         offset = ''
@@ -35,15 +36,15 @@ const user = {
         offset = listQuery.limit * (listQuery.page - 1)
       }
       listQuery.offset = offset
-      commit('SET_LIST_QUERY_MATAKULIAH', listQuery)
+      commit('SET_LIST_QUERY_MATA_KULIAH', listQuery)
       console.log(listQuery.page)
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListMataKuliah(token, limit, offset).then(response => {
+        getListMataKuliah(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data
-          commit('SET_LIST_MATAKULIAH', data)
+          commit('SET_LIST_MATA_KULIAH', data)
           console.log(store.getters.listMataKuliah)
           resolve()
         }).catch(error => {
@@ -54,7 +55,11 @@ const user = {
     },
     GetTotalMataKuliah({ commit }, listQuery) {
       const token = store.getters.token
-      const limit = listQuery.limit
+      const limit = 0
+      let filter = '1=1 ORDER BY kode_mata_kuliah ASC'
+      if (listQuery.filter) {
+        filter = `nama_dosen LIKE '%${listQuery.filter}%' ORDER BY kode_mata_kuliah ASC`
+      }
       let offset = null
       if (listQuery.page === 1) {
         offset = ''
@@ -65,10 +70,10 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListMataKuliah(token, limit, offset).then(response => {
+        getListMataKuliah(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data.length
-          commit('SET_TOTAL_MATAKULIAH', data)
+          commit('SET_TOTAL_MATA_KULIAH', data)
           console.log(store.getters.totalMataKuliah)
           resolve()
         }).catch(error => {
@@ -76,18 +81,18 @@ const user = {
           reject(error)
         })
       })
-    },
-    DeleteMataKuliah({ commit }, id) {
-      const token = store.getters.token
-      console.log(id)
-      return new Promise((resolve, reject) => {
-        deleteMataKuliah(token, id).then(response => {
-          console.log('matakuliah di store', store.getters.editmatakuliahmahasiswa)
-          console.log('sekarang mau didelete')
-          resolve()
-        })
-      })
     }
+    // DeleteMataKuliah({ commit }, id) {
+    //   const token = store.getters.token
+    //   console.log(id)
+    //   return new Promise((resolve, reject) => {
+    //     deleteMataKuliah(token, id).then(response => {
+    //       console.log('matakuliah di store', store.getters.updatematakuliahmahasiswa)
+    //       console.log('sekarang mau didelete')
+    //       resolve()
+    //     })
+    //   })
+    // }
   }
 }
 

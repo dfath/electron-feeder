@@ -4,12 +4,12 @@ import store from '@/store'
 
 const user = {
   state: {
-    editkurikulum: null
+    updatekurikulum: null
   },
 
   mutations: {
-    GET_LIST_KURIKULUM: (state, editkurikulum) => {
-      Vue.set(state, 'editkurikulum', editkurikulum)
+    GET_LIST_KURIKULUM: (state, updatekurikulum) => {
+      Vue.set(state, 'updatekurikulum', updatekurikulum)
     }
   },
 
@@ -22,7 +22,7 @@ const user = {
           console.log(response.data)
           const data = response.data
           commit('GET_LIST_KURIKULUM', data)
-          console.log('kurikulum di store', store.getters.editkurikulum)
+          console.log('kurikulum di store', store.getters.updatekurikulum)
           resolve()
         }).catch(error => {
           console.log('error')
@@ -35,7 +35,7 @@ const user = {
       console.log(id)
       return new Promise((resolve, reject) => {
         deleteKurikulum(token, id).then(response => {
-          console.log('kurikulum di store', store.getters.editkurikulum)
+          console.log('kurikulum di store', store.getters.updatekurikulum)
           console.log('sekarang mau didelete')
           resolve()
         }).catch(error => {

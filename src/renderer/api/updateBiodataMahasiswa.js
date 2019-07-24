@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function editBiodataMahasiswa(token, biodata) {
+export function updateBiodataMahasiswa(token, biodata) {
   return request({
     url: '/ws/live2.php',
     method: 'post',

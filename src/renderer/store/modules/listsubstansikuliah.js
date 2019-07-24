@@ -28,6 +28,10 @@ const user = {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
+      let filter = '1=1 ORDER BY nama_substansi DESC'
+      if (listQuery.filter) {
+        filter = `nama_substansi LIKE '%${listQuery.filter}%' ORDER BY nama_substansi DESC`
+      }
       let offset = null
       if (listQuery.page === 1) {
         offset = ''
@@ -40,7 +44,7 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListSubstansiKuliah(token, limit, offset).then(response => {
+        getListSubstansiKuliah(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data
           commit('SET_LIST_SUBSTANSI_KULIAH', data)
@@ -55,6 +59,10 @@ const user = {
     GetTotalSubstansiKuliah({ commit }, listQuery) {
       const token = store.getters.token
       const limit = listQuery.limit
+      let filter = '1=1 ORDER BY nama_substansi DESC'
+      if (listQuery.filter) {
+        filter = `nama_substansi LIKE '%${listQuery.filter}%' ORDER BY nama_substansi DESC`
+      }
       let offset = null
       if (listQuery.page === 1) {
         offset = ''
@@ -65,7 +73,7 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListSubstansiKuliah(token, limit, offset).then(response => {
+        getListSubstansiKuliah(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data.length
           commit('SET_TOTAL_SUBSTANSI_KULIAH', data)
@@ -82,7 +90,7 @@ const user = {
     //   console.log(id)
     //   return new Promise((resolve, reject) => {
     //     deleteSubstansiKuliah(token, id).then(response => {
-    //       console.log('substansikuliah di store', store.getters.editsubstansikuliahmahasiswa)
+    //       console.log('substansikuliah di store', store.getters.updatesubstansikuliahmahasiswa)
     //       console.log('sekarang mau didelete')
     //       resolve()
     //     })

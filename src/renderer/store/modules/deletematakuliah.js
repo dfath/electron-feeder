@@ -4,12 +4,12 @@ import store from '@/store'
 
 const user = {
   state: {
-    editmatakuliah: null
+    updatematakuliah: null
   },
 
   mutations: {
-    GET_LIST_MATA_KULIAH: (state, editmatakuliah) => {
-      Vue.set(state, 'editmatakuliah', editmatakuliah)
+    GET_LIST_MATA_KULIAH: (state, updatematakuliah) => {
+      Vue.set(state, 'updatematakuliah', updatematakuliah)
     }
   },
 
@@ -22,7 +22,7 @@ const user = {
           console.log(response.data)
           const data = response.data
           commit('GET_LIST_MATA_KULIAH', data)
-          console.log('matakuliah di store', store.getters.editmatakuliah)
+          console.log('matakuliah di store', store.getters.updatematakuliah)
           resolve()
         }).catch(error => {
           console.log('error')
@@ -35,7 +35,7 @@ const user = {
       console.log(id)
       return new Promise((resolve, reject) => {
         deleteMataKuliah(token, id).then(response => {
-          console.log('matakuliah di store', store.getters.editmatakuliah)
+          console.log('matakuliah di store', store.getters.updatematakuliah)
           console.log('sekarang mau didelete')
           resolve()
         }).catch(error => {

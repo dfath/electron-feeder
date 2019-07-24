@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { getBiodataMahasiswa } from '@/api/getBiodataMahasiswa'
+import { updateBiodataMahasiswa } from '@/api/updateBiodataMahasiswa'
 import { deleteBiodataMahasiswa } from '@/api/deleteBiodataMahasiswa'
-import { editBiodataMahasiswa } from '@/api/editBiodataMahasiswa'
 import { getListMahasiswa } from '@/api/getListMahasiswa'
 import { Message } from 'element-ui'
 import router from '@/router'
@@ -9,12 +9,12 @@ import store from '@/store'
 
 const user = {
   state: {
-    editbiodatamahasiswa: null
+    updatebiodatamahasiswa: null
   },
 
   mutations: {
-    GET_BIODATA_MAHASISWA: (state, editbiodatamahasiswa) => {
-      Vue.set(state, 'editbiodatamahasiswa', editbiodatamahasiswa)
+    GET_BIODATA_MAHASISWA: (state, updatebiodatamahasiswa) => {
+      Vue.set(state, 'updatebiodatamahasiswa', updatebiodatamahasiswa)
     }
   },
 
@@ -27,7 +27,7 @@ const user = {
           console.log(response.data)
           const data = response.data
           commit('GET_BIODATA_MAHASISWA', data)
-          console.log('biodata di store', store.getters.editbiodatamahasiswa)
+          console.log('biodata di store', store.getters.updatebiodatamahasiswa)
           resolve()
         }).catch(error => {
           console.log('error')
@@ -40,19 +40,19 @@ const user = {
       console.log(id)
       return new Promise((resolve, reject) => {
         deleteBiodataMahasiswa(token, id).then(response => {
-          console.log('biodata di store', store.getters.editbiodatamahasiswa)
+          console.log('biodata di store', store.getters.updatebiodatamahasiswa)
           console.log('sekarang mau didelete')
           resolve()
         })
       })
     },
-    EditBiodataMahasiswa({ commit }) {
+    UpdateBiodataMahasiswa({ commit }) {
       const token = store.getters.token
-      const biodata = store.getters.editbiodatamahasiswa[0]
+      const biodata = store.getters.updatebiodatamahasiswa[0]
       return new Promise((resolve, reject) => {
-        editBiodataMahasiswa(token, biodata).then(response => {
+        updateBiodataMahasiswa(token, biodata).then(response => {
           console.log(response.data)
-          console.log('biodata editan di store', store.getters.editbiodatamahasiswa)
+          console.log('biodata updatean di store', store.getters.updatebiodatamahasiswa)
         }).then(() => {
           const listQuery = store.getters.listQueryMahasiswa
           const limit = listQuery.limit

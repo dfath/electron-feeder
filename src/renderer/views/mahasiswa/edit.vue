@@ -463,7 +463,7 @@ export default {
   computed: {
     setName: {
       get() {
-        return store.getters.editbiodatamahasiswa[0]
+        return store.getters.updatebiodatamahasiswa[0]
       },
       set(value) {
         store.commit('GET_BIODATA_MAHASISWA', value)
@@ -472,9 +472,9 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(store.getters.editbiodatamahasiswa[0])
+      console.log(store.getters.updatebiodatamahasiswa[0])
       this.loading = true
-      store.dispatch('EditBiodataMahasiswa').then(() => {
+      store.dispatch('UpdateBiodataMahasiswa').then(() => {
         this.loading = false
       })
     },

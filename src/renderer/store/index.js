@@ -10,13 +10,15 @@ import contoh from './modules/contoh'
 import destination from './modules/destination'
 // Mahasiswa
 import list from './modules/list' // List Mahasiswa
-import getbiodatamahasiswa from './modules/getbiodatamahasiswa' // List Kurikulum
+import getbiodatamahasiswa from './modules/getbiodatamahasiswa'
 import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa' // List Kurikulum
 // Dosen
 import listdosen from './modules/listdosen'
 import listpenugasandosen from './modules/listpenugasandosen' // List Penugasan Dosen
+import listpenugasansemuadosen from './modules/listpenugasansemuadosen' // List Penugasan Semua Dosen
 // Mata Kuliah
 import listmatakuliah from './modules/listmatakuliah' // List MataKuliah
+import getdetailmatakuliah from './modules/getdetailmatakuliah'
 // Substansi Kuliah
 import listsubstansikuliah from './modules/listsubstansikuliah'
 // Kurikulum
@@ -46,6 +48,7 @@ const store = new Vuex.Store({
     listdosen,
     list,
     listpenugasandosen,
+    listpenugasansemuadosen,
     listmatakuliah,
     listsubstansikuliah,
     listkurikulum,
@@ -57,6 +60,7 @@ const store = new Vuex.Store({
     listmahasiswalulusdo,
     insert,
     getbiodatamahasiswa,
+    getdetailmatakuliah,
     getlistriwayatpendidikanmahasiswa,
     contoh
   },

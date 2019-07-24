@@ -20,16 +20,16 @@ router.beforeEach((to, from, next) => {
         '/matakuliah/insertmatakuliah': 'matakuliah',
         '/kurikulum/insertkurikulum': 'kurikulum',
         '/kurikulum/insertmatkulkurikulum': 'matkulkurikulum',
-        '/perkuliahan/insertkelaskuliah': 'kelaskuliah',
-        '/perkuliahan/insertpesertakelaskuliah': 'pesertakelaskuliah',
+        '/kelaskuliah/insertkelaskuliah': 'kelaskuliah',
+        '/kelaskuliah/insertpesertakelaskuliah': 'pesertakelaskuliah',
         '/dosen/insertdosenpengajarkelaskuliah': 'dosenpengajarkelaskuliah',
         '/perkuliahan/insertperkuliahanmahasiswa': 'perkuliahanmahasiswa',
+        '/perkuliahan/insertnilaiperkuliahan': 'nilaiperkuliahan',
         '/aktivitas/insertaktivitasmahasiswa': 'aktivitas',
         '/aktivitas/insertanggotaaktivitasmahasiswa': 'anggotaaktivitas',
-        '/perkuliahan/insertmahasiswalulusdo': 'lulusdo',
         '/aktivitas/insertbimbingmahasiswa': 'bimbing',
         '/aktivitas/insertujimahasiswa': 'uji',
-        '/perkuliahan/insertnilaiperkuliahan': 'nilaiperkuliahan'
+        '/lulusdo/insertmahasiswalulusdo': 'lulusdo'
       }
       store.dispatch('SetDestination', dispatchdest[to.path])
       next()
