@@ -23,15 +23,19 @@ import getdetailmatakuliah from './modules/getdetailmatakuliah'
 import listsubstansikuliah from './modules/listsubstansikuliah'
 // Kurikulum
 import listkurikulum from './modules/listkurikulum' // List Kurikulum
+import getdetailkurikulum from './modules/getdetailkurikulum'
 // Kelas Perkuliahan
 import listkelaskuliah from './modules/listkelaskuliah' // List Kelas Kuliah
+import getdetailkelaskuliah from './modules/getdetailkelaskuliah'
 import listnilaiperkuliahankelas from './modules/listnilaiperkuliahankelas' // List Nilai Perkuliahan Kelas
 // Aktivitas Kuliah Mahasiswa
 import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Aktivitas Kuliah Mahasiswa
 // Aktivitas Mahasiswa
 import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa' // List Aktivitas Mahasiswa
+import getdetailaktivitasmahasiswa from './modules/getdetailaktivitasmahasiswa'
 // Mahasiswa Lulus/DO
 import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/DO
+import getdetailmahasiswalulusdo from './modules/getdetailmahasiswalulusdo'
 
 import insert from './modules/insert'
 import getters from './getters'
@@ -42,27 +46,41 @@ const store = new Vuex.Store({
   modules: {
     app,
     user,
+    // Profil PT
     profil,
     prodi,
     periode,
-    listdosen,
+    // Mahasiswa
     list,
+    getbiodatamahasiswa,
+    getlistriwayatpendidikanmahasiswa,
+    // Dosen
+    listdosen,
     listpenugasandosen,
     listpenugasansemuadosen,
+    // Mata Kuliah
     listmatakuliah,
+    getdetailmatakuliah,
     listsubstansikuliah,
+    // Kurikulum
     listkurikulum,
+    getdetailkurikulum,
+    // Kelas Kuliah
     listkelaskuliah,
+    getdetailkelaskuliah,
+    // Perkuliahan
     listnilaiperkuliahankelas,
     aktivitaskuliahmahasiswa,
+    // Aktivitas Mahasiswa
     listaktivitasmahasiswa,
-    destination,
+    getdetailaktivitasmahasiswa,
+    // Mahasiswa Lulus DO
     listmahasiswalulusdo,
+    getdetailmahasiswalulusdo,
+    // Lainnya
     insert,
-    getbiodatamahasiswa,
-    getdetailmatakuliah,
-    getlistriwayatpendidikanmahasiswa,
-    contoh
+    contoh,
+    destination
   },
   getters
 })

@@ -42,7 +42,7 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="warning" size="mini" icon="el-icon-update" @click="handleUpdate(row)">
+          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
             Edit
           </el-button>
           <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
@@ -187,15 +187,13 @@ export default {
     //     }
     //   })
     // },
-    // handleUpdate(row) {
-    //   this.temp = Object.assign({}, row) // copy obj
-    //   this.temp.timestamp = new Date(this.temp.timestamp)
-    //   this.dialogStatus = 'update'
-    //   this.dialogFormVisible = true
-    //   this.$nextTick(() => {
-    //     this.$refs['dataForm'].clearValidate()
-    //   })
-    // },
+    handleUpdate(row) {
+      this.$store.dispatch('GetDetailAktivitasMahasiswa', row.id_aktivitas).then(() => {
+        this.$router.push('/aktivitas/edit')
+        console.log('edit aktivitas ini')
+      })
+      console.log(row)
+    },
     // updateData() {
     //   this.$refs['dataForm'].validate((valid) => {
     //     if (valid) {
@@ -226,7 +224,7 @@ export default {
         cancelButtonText: 'Tidak',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch('DeleteAktivitasMahasiswa', row.id_kelaskuliah).then(() => {
+        this.$store.dispatch('DeleteAktivitasMahasiswa', row.id_aktivitas).then(() => {
           console.log('delete kelaskuliah ini')
           console.log(row)
           Message({

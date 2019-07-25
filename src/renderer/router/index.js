@@ -184,6 +184,13 @@ export const constantRouterMap = [
         meta: { title: 'Insert Kurikulum', icon: 'excel' }
       },
       {
+        path: 'edit',
+        name: 'Edit Kurikulum',
+        hidden: true,
+        component: () => import('@/views/kurikulum/edit'),
+        meta: { title: 'Edit Kurikulum', icon: 'form' }
+      },
+      {
         path: 'insertmatkulkurikulum',
         name: 'Insert Matkul Kurikulum',
         component: () => import('@/views/excel/index'),
@@ -209,6 +216,13 @@ export const constantRouterMap = [
         name: 'Insert Kelas Kuliah',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Kelas Kuliah', icon: 'excel' }
+      },
+      {
+        path: 'edit',
+        name: 'Edit Kelas Kuliah',
+        hidden: true,
+        component: () => import('@/views/kelaskuliah/edit'),
+        meta: { title: 'Edit Kelas Kuliah', icon: 'form' }
       },
       {
         path: 'insertpesertakelaskuliah',
@@ -239,6 +253,13 @@ export const constantRouterMap = [
         meta: { title: 'Insert Nilai Perkuliahan', icon: 'excel' }
       },
       {
+        path: 'edit',
+        name: 'Edit Nilai Perkuliahan',
+        hidden: true,
+        component: () => import('@/views/nilaikuliah/edit'),
+        meta: { title: 'Edit Nilai Perkuliahan', icon: 'form' }
+      },
+      {
         path: 'aktivitaskuliah',
         name: 'Aktivitas Kuliah Mahasiswa',
         component: () => import('@/views/aktivitaskuliah/index'),
@@ -250,6 +271,13 @@ export const constantRouterMap = [
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Aktivitas Kuliah Mahasiswa', icon: 'excel' }
       }
+      // {
+      //   path: 'edit',
+      //   name: 'Edit Aktivitas Kuliah Mahasiswa',
+      //   hidden: true,
+      //   component: () => import('@/views/aktivitaskuliah/edit'),
+      //   meta: { title: 'Edit Aktivitas Kuliah Mahasiswa', icon: 'form' }
+      // }
       // {
       //   path: 'hitungaktivitaskuliah',
       //   name: 'Hitung Aktivitas Perkuliahan Mahasiswa',
@@ -283,6 +311,13 @@ export const constantRouterMap = [
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Aktivitas Mahasiswa', icon: 'excel' }
       },
+      {
+        path: 'edit',
+        name: 'Edit Aktivitas Mahasiswa',
+        hidden: true,
+        component: () => import('@/views/aktivitas/edit'),
+        meta: { title: 'Edit Aktivitas Mahasiswa', icon: 'form' }
+      },
       // {
       //   path: 'listanggotaaktivitasmahasiswa',
       //   name: 'List Anggota Aktivitas Mahasiswa',
@@ -312,12 +347,12 @@ export const constantRouterMap = [
   {
     path: '/lulusdo',
     component: Layout,
-    redirect: '/daftarlulusdo',
+    redirect: '/listlulusdo',
     name: 'Lulus/DO',
     meta: { title: 'Lulus/DO', icon: 'table' },
     children: [
       {
-        path: 'daftarlulusdo',
+        path: 'listlulusdo',
         name: 'Daftar Mahasiswa Lulus/Drop Out',
         component: () => import('@/views/lulusdo/index'),
         meta: { title: 'Daftar Mahasiswa Lulus/Drop Out', icon: 'message' }
@@ -327,6 +362,13 @@ export const constantRouterMap = [
         name: 'Insert Mahasiswa Lulus/DO',
         component: () => import('@/views/excel/index'),
         meta: { title: 'Insert Mahasiswa Lulus/DO', icon: 'excel' }
+      },
+      {
+        path: 'edit',
+        name: 'Edit Aktivitas Mahasiswa',
+        hidden: true,
+        component: () => import('@/views/lulusdo/edit'),
+        meta: { title: 'Edit Aktivitas Mahasiswa', icon: 'form' }
       }
     ]
   },

@@ -45,12 +45,12 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="warning" size="mini" icon="el-icon-update" @click="handleUpdate(row)">
+          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
             Edit
           </el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
+          <!-- <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
             Delete
-          </el-button>
+          </el-button> -->
         </template>
       </el-table-column>
     </el-table>
@@ -190,15 +190,13 @@ export default {
     //     }
     //   })
     // },
-    // handleUpdate(row) {
-    //   this.temp = Object.assign({}, row) // copy obj
-    //   this.temp.timestamp = new Date(this.temp.timestamp)
-    //   this.dialogStatus = 'update'
-    //   this.dialogFormVisible = true
-    //   this.$nextTick(() => {
-    //     this.$refs['dataForm'].clearValidate()
-    //   })
-    // },
+    handleUpdate(row) {
+      this.$store.dispatch('GetDetailNilaiPerkuliahanKelas', row.id_matkul).then(() => {
+        this.$router.push('/nilaikuliah/edit')
+        console.log('edit nilaikuliah ini')
+      })
+      console.log(row)
+    },
     // updateData() {
     //   this.$refs['dataForm'].validate((valid) => {
     //     if (valid) {

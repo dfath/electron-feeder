@@ -1,5 +1,4 @@
 import { getListKurikulum } from '@/api/getListKurikulum'
-import { deleteKurikulum } from '@/api/deleteKurikulum'
 
 import store from '@/store'
 
@@ -81,17 +80,6 @@ const user = {
         }).catch(error => {
           console.log('error')
           reject(error)
-        })
-      })
-    },
-    DeleteKurikulum({ commit }, id) {
-      const token = store.getters.token
-      console.log(id)
-      return new Promise((resolve, reject) => {
-        deleteKurikulum(token, id).then(response => {
-          console.log('kurikulum di store', store.getters.updatekurikulum)
-          console.log('sekarang mau didelete')
-          resolve()
         })
       })
     }

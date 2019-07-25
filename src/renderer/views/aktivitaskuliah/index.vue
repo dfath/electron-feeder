@@ -56,14 +56,14 @@
                       label="sks Total">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
-        <template slot-scope="{row}">
-          <el-button type="warning" size="mini" icon="el-icon-update" @click="handleUpdate(row)">
+        <!-- <template slot-scope="{row}">
+          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
             Edit
           </el-button>
           <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
             Delete
           </el-button>
-        </template>
+        </template> -->
       </el-table-column>
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
@@ -203,13 +203,11 @@ export default {
     //   })
     // },
     // handleUpdate(row) {
-    //   this.temp = Object.assign({}, row) // copy obj
-    //   this.temp.timestamp = new Date(this.temp.timestamp)
-    //   this.dialogStatus = 'update'
-    //   this.dialogFormVisible = true
-    //   this.$nextTick(() => {
-    //     this.$refs['dataForm'].clearValidate()
+    //   this.$store.dispatch('GetDetailMataKuliah', row.id_matkul).then(() => {
+    //     this.$router.push('/matakuliah/edit')
+    //     console.log('edit matakuliah ini')
     //   })
+    //   console.log(row)
     // },
     // updateData() {
     //   this.$refs['dataForm'].validate((valid) => {

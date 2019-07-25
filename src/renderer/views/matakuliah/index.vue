@@ -43,7 +43,7 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="warning" size="mini" icon="el-icon-update" @click="handleUpdate(row)">
+          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
               Edit
           </el-button>
           <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">

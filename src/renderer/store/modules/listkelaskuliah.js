@@ -1,5 +1,4 @@
 import { getListKelasKuliah } from '@/api/getListKelasKuliah'
-// import { deleteKelasKuliah } from '@/api/deleteKelasKuliah'
 
 import store from '@/store'
 
@@ -29,7 +28,7 @@ const user = {
       const limit = listQuery.limit
       let filter = '1=1 ORDER BY id_semester DESC'
       if (listQuery.filter) {
-        filter = `nama_kelas_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC`
+        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC`
       }
       let offset = null
       if (listQuery.page === 1) {
@@ -60,7 +59,7 @@ const user = {
       const limit = 0
       let filter = '1=1 ORDER BY id_semester DESC'
       if (listQuery.filter) {
-        filter = `nama_kelas_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC`
+        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC`
       }
       let offset = null
       if (listQuery.page === 1) {
