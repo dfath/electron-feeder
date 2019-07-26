@@ -21,15 +21,34 @@
           Sign in
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div>
+      <el-form-item>
+        <el-button type="secondary" style="width:100%;" @click="handleSetting">
+          Setting URL Feeder
+        </el-button>
+      </el-form-item>
     </el-form>
+<el-dialog :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
+        <el-form-item label="URL Feeder" prop="title">
+         <el-input name="url" type="text" placeholder="http://localhost:8082"/>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">
+          Cancel
+        </el-button>
+        <el-button type="primary">
+          Confirm
+        </el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
+import { MessageBox } from 'element-ui'
+import Store from '@/utils/elstore'
 // import { isvalidUsername } from '@/utils/validate'
 export default {
   name: 'login',
@@ -59,7 +78,17 @@ export default {
         password: [{ required: true, trigger: 'blur' }] /* validator: validatePass*/
       },
       loading: false,
-      pwdType: 'password'
+      pwdType: 'password',
+      temp: {
+        id: undefined,
+        importance: 1,
+        remark: '',
+        timestamp: new Date(),
+        title: '',
+        type: '',
+        status: 'published'
+      },
+      dialogFormVisible: false
     }
   },
   methods: {
@@ -92,6 +121,29 @@ export default {
           console.log('error submit!!')
           return false
         }
+      })
+    },
+    handleSave(value) {
+      const store = new Store({
+        configName: 'baseURL',
+        defaults: {
+          baseURL: value
+        }
+      })
+      store.set('baseURL', value)
+    },
+    handleSetting() {
+      MessageBox.prompt('Masukkan URL Feeder PDDIKTI', 'Setting URL', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        inputErrorMessage: 'Invalid Email'
+      }).then(({ value }) => {
+        this.handleSave(value)
+        this.$message({
+          type: 'success',
+          message: 'URL Feeder telah diset ke:' + value
+        })
+        window.location.reload()
       })
     }
   }

@@ -3,10 +3,29 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import router from '../router'
 import store from '../store'
+import electron from 'electron'
+import path from 'path'
+import fs from 'fs'
+
+function parseDataFile(filePath, prop, defaults) {
+  // from https://medium.com/cameron-nokes/how-to-store-user-data-in-electron-3ba6bf66bc1e
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath))
+    return data[prop]
+  } catch (error) {
+    // if there was some kind of error, return the passed in defaults instead.
+    return defaults
+  }
+}
+
+const defaults = process.env.BASE_API
+const userDataPath = (electron.app || electron.remote.app).getPath('userData')
+const urlpath = path.join(userDataPath, 'baseURL.json')
+const baseURL = parseDataFile(urlpath, 'baseURL', defaults)
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.BASE_API, // api的base_url
+  baseURL: baseURL, // api的base_url
   timeout: 15000,
   headers: {
     'Access-Control-Allow-Origin': '*'
