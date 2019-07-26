@@ -58,7 +58,7 @@ const user = {
       const limit = 0
       let filter = '1=1 ORDER BY kode_mata_kuliah ASC'
       if (listQuery.filter) {
-        filter = `nama_dosen LIKE '%${listQuery.filter}%' ORDER BY kode_mata_kuliah ASC`
+        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY kode_mata_kuliah ASC`
       }
       let offset = null
       if (listQuery.page === 1) {

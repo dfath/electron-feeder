@@ -38,22 +38,6 @@ const user = {
         })
       })
     },
-    GetListMataKuliah({ commit }, id) {
-      const token = store.getters.token
-      console.log(id)
-      return new Promise((resolve, reject) => {
-        getListMataKuliah(token, id).then(response => {
-          console.log(response.data)
-          const data = response.data
-          commit('GET_LIST_MATA_KULIAH', data)
-          console.log('matakuliah di store', store.getters.updatematakuliah)
-          resolve()
-        }).catch(error => {
-          console.log('error')
-          reject(error)
-        })
-      })
-    },
     DeleteMataKuliah({ commit }, id) {
       const token = store.getters.token
       console.log(id)
