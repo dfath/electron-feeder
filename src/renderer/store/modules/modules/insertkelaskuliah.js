@@ -30,6 +30,7 @@ const insertkelaskuliah = {
       kelaskuliah.forEach(function(data) {
         async function getIDs() {
           try {
+            commit('SET_LOADING', true)
             const filter_prodi = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
 
             const response_prodi = await getProdi(token, filter_prodi)
@@ -56,7 +57,9 @@ const insertkelaskuliah = {
             console.log(response_insert.data)
             commit('INSERT_KELAS_KULIAH')
             console.log('setelahinsert', state.kelaskuliah)
+            commit('SET_LOADING', false)
           } catch (err) {
+            commit('SET_LOADING', false)
             alert(err) // TypeError: failed to get IDs
           }
         }

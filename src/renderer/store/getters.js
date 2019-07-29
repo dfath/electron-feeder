@@ -85,6 +85,7 @@ const getters = {
   updatelulusdo: state => state.getdetailmahasiswalulusdo.updatelulusdo,
   // Lainnya
   destination: state => state.destination.destination,
+  loading: state => state.loading.loading,
   errorLogs: state => state.errorLog.logs
 }
 export default getters

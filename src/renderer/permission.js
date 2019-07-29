@@ -2,6 +2,7 @@ import router from './router'
 import store from './store'
 import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css'// Progress 进度条样式
+import { Message } from 'element-ui'
 
 const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
@@ -39,6 +40,13 @@ router.beforeEach((to, from, next) => {
     }
     if (whiteList.indexOf(to.path) !== -1) {
       next()
+      setTimeout(() => {
+        Message({
+          message: 'Token Anda sudah hampir expired silahkan logout dan login ulang untuk mencegah error',
+          type: 'warning',
+          duration: 5 * 1000
+        })
+      }, 2700000)
     } else {
       next('/login')
       NProgress.done()

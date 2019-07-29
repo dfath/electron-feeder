@@ -15,6 +15,7 @@ import contohbimbingmahasiswa from './contohfile/contohbimbingmahasiswa'
 import contohujimahasiswa from './contohfile/contohujimahasiswa'
 import contohmahasiswalulusdo from './contohfile/contohmahasiswalulusdo'
 import store from '@/store'
+import { Message } from 'element-ui'
 
 const contoh = {
   modules: {
@@ -69,6 +70,11 @@ const contoh = {
           header: tHeader,
           data,
           filename: 'contoh-' + destination
+        })
+        Message({
+          message: 'Download contoh file excel berhasil, cek folder penyimpananan Anda',
+          type: 'success',
+          duration: 5 * 1000
         })
       })
     }

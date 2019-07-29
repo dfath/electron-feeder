@@ -2,13 +2,13 @@
   <div class="app-container">
     <el-form ref="form" :model="form" :rules="rules" label-width="120px" v-loading="loading">
       <el-form-item label="Program Studi" required="true">
-        <el-input v-model="setKelasKuliah.id_prodi" disabled="true"></el-input>
+        <el-input v-model="setKelasKuliah.nama_program_studi" disabled="true"></el-input>
       </el-form-item>
       <el-form-item label="Semester" required="true">
         <el-input v-model="setKelasKuliah.id_semester" disabled="true"></el-input>
       </el-form-item>
-      <el-form-item label="Mata Kuliah" required="true">
-        <el-input v-model="setKelasKuliah.id_matkul"></el-input>
+      <el-form-item label="Mata Kuliah" required="true" >
+        <el-input v-model="setKelasKuliah.nama_mata_kuliah" disabled="true"></el-input>
       </el-form-item>
       <!-- <el-form-item label="Bobot Mata Kuliah">
         <el-input v-model="setKelasKuliah.jumlah_sks_lulus"></el-input>
