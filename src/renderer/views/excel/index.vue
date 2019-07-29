@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div v-loading="loading" class="app-container">
     <h1>Upload File Excel</h1>
     <el-row  type="flex" justify="center" >
       <el-col :span="24">
@@ -7,14 +7,14 @@
           <el-row  type="flex" justify="end" >
             <el-col :span="6">
               <div>
-                <el-button v-waves type="info" icon="el-icon-download" @click="handleDownload" >
+                <el-button v-waves type="info" icon="el-icon-download" @click="handleDownload">
         Download Contoh File Excel
       </el-button>
               </div>
             </el-col>
             <el-col :span="6">
               <div>
-                <el-button v-waves type="success" icon="el-icon-upload2" @click="handleUpload" >
+                <el-button ref="kirim" v-waves type="success" icon="el-icon-upload2" @click="handleUpload" :disabled="disablekirim" >
                   Kirim ke Feeder PDDikti
                 </el-button>
               </div>
@@ -65,7 +65,13 @@ export default {
         'border-radius': '4px',
         'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         background: '#e7eaf1'// 按钮的背景颜色 The background color of the button
-      }
+      },
+      disablekirim: true
+    }
+  },
+  computed: {
+    loading() {
+      return store.getters.loading
     }
   },
   methods: {
@@ -106,6 +112,7 @@ export default {
       store.dispatch(dispatchdest[this.destination], results)
       this.tableData = results
       this.tableHeader = header
+      this.disablekirim = false
     },
     handleUpload() {
       this.destination = store.getters.destination
@@ -129,6 +136,9 @@ export default {
       }
       if (this.destination !== null) {
         store.dispatch(dispatchdest[this.destination])
+        this.tableData = []
+        this.tableHeader = []
+        this.disablekirim = true
       }
     },
     handleDownload() {

@@ -8,10 +8,9 @@
         <el-input v-model="setMatkul.nama_mata_kuliah"></el-input>
       </el-form-item>
       <el-form-item label="Program Studi Pengampu">
-        <el-select v-model="setMatkul.nama_program_studi" placeholder="Please select your program studi pengampu">
-          <el-option label="D3 Farmasi" value="D3 Farmasi"></el-option>
-          <el-option label="S1 Farmasi" value="S1 Farmasi"></el-option>
-          <el-option label="Profesi Profesi Apoteker" value="Profesi Profesi Apoteker"></el-option>
+        <!-- https://github.com/vuejs/vue-loader/issues/715 -->
+        <el-select v-model="setMatkul.id_prodi" placeholder="Please select your program studi pengampu">
+          <el-option v-for="item of prodioption" :key="item" :label="item.nama_jenjang_pendidikan + ' ' + item.nama_program_studi" :value="item.id_prodi"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Jenis Mata Kuliah">
@@ -71,11 +70,18 @@ export default {
         resource: '',
         desc: ''
       },
+      prodioption: [],
       loading: false,
       checkList: ['selected and disabled', 'Option A'],
       nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu']
 
     }
+  },
+  created() {
+    store.dispatch('GetProdi').then(() => {
+      this.prodioption = store.getters.prodi
+      console.log(this.prodioption)
+    })
   },
   computed: {
     setMatkul: {

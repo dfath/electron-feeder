@@ -23,6 +23,7 @@ const insertbiodatamahasiswa = {
       console.log('ini biodata', state.biodatamahasiswa)
     },
     InsertBiodataMahasiswa({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const biodata = state.biodatamahasiswa
       console.log('insertbiodata', biodata)
@@ -43,9 +44,11 @@ const insertbiodatamahasiswa = {
             console.log(response.data)
             commit('INSERT_BIODATA_MAHASISWA')
             console.log('setelahinsert', state.biodatamahasiswa)
+            commit('SET_LOADING', false)
             resolve()
           }).catch(error => {
             console.log('error')
+            commit('SET_LOADING', false)
             reject(error)
           })
         })

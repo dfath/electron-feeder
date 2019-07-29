@@ -39,6 +39,7 @@ import getdetailmahasiswalulusdo from './modules/getdetailmahasiswalulusdo'
 
 import insert from './modules/insert'
 import getters from './getters'
+import loading from './modules/loading'
 
 Vue.use(Vuex)
 
@@ -80,7 +81,8 @@ const store = new Vuex.Store({
     // Lainnya
     insert,
     contoh,
-    destination
+    destination,
+    loading
   },
   getters
 })
