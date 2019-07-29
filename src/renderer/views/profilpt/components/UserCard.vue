@@ -1,7 +1,7 @@
 <template>
   <el-card style="margin-bottom:20px;">
     <div slot="header" class="clearfix">
-      <svg-icon icon-class="skill" /><span>Profil PT</span>
+      <span>Profil PT</span>
     </div>
 
     <div class="user-profile">
@@ -24,7 +24,7 @@
       </div> -->
 
       <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>Profil PT</span></div>
+        <!-- <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>Profil PT</span></div> -->
         <div class="user-bio-section-body">
           <div class="progress-item">
             <span class="bold">Kode PT</span>

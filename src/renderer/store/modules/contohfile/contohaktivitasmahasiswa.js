@@ -15,17 +15,17 @@ const contohaktivitasmahasiswa = {
         'tanggal_sk_tugas'
       ],
       data: [[
-        '0',
+        '1',
         '1',
         '48201',
         'Farmasi',
         'S1',
-        '20191',
-        'Studi Suteki',
-        'semester satu',
+        '20182',
+        'Optimasi Bahasa Pemrograman JavaScript dengan Framework VueJS',
+        '',
         'Bandung',
         '',
-        ''
+        '2018-09-20'
       ]]
     }
   }

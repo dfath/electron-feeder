@@ -27,9 +27,9 @@ const user = {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
-      let filter = '1=1 ORDER BY nim DESC'
+      let filter = '1=1 ORDER BY angkatan DESC, nim ASC, nama_mahasiswa'
       if (listQuery.filter) {
-        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY nim DESC`
+        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY angkatan DESC, nim ASC, nama_mahasiswa`
       }
       let offset = null
       if (listQuery.page === 1) {
@@ -58,9 +58,9 @@ const user = {
     GetTotalMahasiswaLulusDO({ commit }, listQuery) {
       const token = store.getters.token
       const limit = 0
-      let filter = '1=1 ORDER BY nim DESC'
+      let filter = '1=1 ORDER BY angkatan DESC, nim ASC, nama_mahasiswa'
       if (listQuery.filter) {
-        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY nim DESC`
+        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY angkatan DESC, nim ASC, nama_mahasiswa`
       }
       let offset = null
       if (listQuery.page === 1) {

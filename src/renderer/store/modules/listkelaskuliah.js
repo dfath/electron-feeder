@@ -26,9 +26,9 @@ const user = {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
-      let filter = '1=1 ORDER BY id_semester DESC'
+      let filter = '1=1 ORDER BY id_semester DESC, kode_mata_kuliah ASC'
       if (listQuery.filter) {
-        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC`
+        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC, kode_mata_kuliah ASC`
       }
       let offset = null
       if (listQuery.page === 1) {
@@ -57,9 +57,9 @@ const user = {
     GetTotalKelasKuliah({ commit }, listQuery) {
       const token = store.getters.token
       const limit = 0
-      let filter = '1=1 ORDER BY id_semester DESC'
+      let filter = '1=1 ORDER BY id_semester DESC, kode_mata_kuliah ASC'
       if (listQuery.filter) {
-        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC`
+        filter = `nama_mata_kuliah LIKE '%${listQuery.filter}%' ORDER BY id_semester DESC, kode_mata_kuliah ASC`
       }
       let offset = null
       if (listQuery.page === 1) {

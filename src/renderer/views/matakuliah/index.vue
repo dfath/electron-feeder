@@ -10,11 +10,6 @@
       </el-col>
       <el-col :span="12">
         <el-row type="flex" justify="end">
-          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-            <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
-              Buat Baru
-            </el-button>
-          </el-col>
            <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
               Import Excel

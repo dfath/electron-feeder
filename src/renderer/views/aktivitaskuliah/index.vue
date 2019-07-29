@@ -9,11 +9,6 @@
       </el-col>
       <el-col :span="12">
         <el-row type="flex" justify="end">
-          <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-            <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
-              Buat Baru
-            </el-button>
-          </el-col>
            <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
               Import Excel
@@ -55,16 +50,16 @@
       <el-table-column min-width="50" prop="sks_total"
                       label="sks Total">
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
-        <!-- <template slot-scope="{row}">
+      <!-- <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
+        <template slot-scope="{row}">
           <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
             Edit
           </el-button>
           <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
             Delete
           </el-button>
-        </template> -->
-      </el-table-column>
+        </template>
+      </el-table-column> -->
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
 
@@ -234,7 +229,7 @@ export default {
     //   })
     // },
     handleDelete(row) {
-      MessageBox.confirm('Apakah Anda ingin menghapus Biodata ini?', 'Confirm Delete', {
+      MessageBox.confirm('Apakah Anda ingin menghapus Aktivitas Kuliah ini?', 'Confirm Delete', {
         confirmButtonText: 'Ya',
         cancelButtonText: 'Tidak',
         type: 'warning'

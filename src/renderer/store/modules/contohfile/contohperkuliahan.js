@@ -4,7 +4,6 @@ const contohperkuliahan = {
       header: [
         'nama_mahasiswa',
         'nim',
-        'tanggal_daftar',
         'id_semester',
         'id_status_mahasiswa',
         'ips',
@@ -13,14 +12,13 @@ const contohperkuliahan = {
         'total_sks'
       ],
       data: [[
-        'LUTHFI FACHRIZA SANDI',
-        '18216027',
-        '2019-06-06',
-        '20191',
+        'ADITYA PRATAMA',
+        '11181000',
+        '20182',
         'A',
         '4.00',
         '3.86',
-        '2',
+        '4',
         '144'
       ]]
     }

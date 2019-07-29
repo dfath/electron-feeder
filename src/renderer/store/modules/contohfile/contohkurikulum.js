@@ -12,14 +12,14 @@ const contohkurikulum = {
         'jumlah_sks_pilihan'
       ],
       data: [[
-        'Kurikulum Rasyad 2019',
-        '48401',
+        'Kurikulum Farmasi 2019',
+        '48201',
         'Farmasi',
-        'D3',
-        '20191',
+        'S1',
+        '20182',
         '100',
-        '99',
-        '1'
+        '94',
+        '6'
       ]]
     }
   }

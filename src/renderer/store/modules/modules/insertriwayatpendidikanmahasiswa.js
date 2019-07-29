@@ -22,7 +22,7 @@ const insertriwayatpendidikanmahasiswa = {
   actions: {
     SetRiwayatPendidikanMahasiswa({ commit, state }, data) {
       commit('SET_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
-      console.log('ini riwayatpendidikan mahasiswa', state.riwayatpendidikanmahasiswa)
+      console.log('ini riwayat pendidikan mahasiswa', state.riwayatpendidikanmahasiswa)
     },
     InsertRiwayatPendidikanMahasiswa({ commit, state }) {
       const token = store.getters.token
@@ -70,7 +70,7 @@ const insertriwayatpendidikanmahasiswa = {
           }
           res = await insertRiwayatPendidikanMahasiswa(token, data)
           Message({
-            message: 'Berhasil Input RiwayatPendidikan Mahasiswa',
+            message: 'Berhasil Input Riwayat Pendidikan Mahasiswa',
             type: 'success',
             duration: 5 * 1000
           })

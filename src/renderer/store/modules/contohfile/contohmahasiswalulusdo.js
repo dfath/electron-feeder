@@ -4,7 +4,6 @@ const contohmahasiswalulusdo = {
       header: [
         'nama_mahasiswa',
         'nim',
-        'tanggal_daftar',
         'id_jenis_keluar',
         'tanggal_keluar',
         'keterangan',
@@ -18,20 +17,19 @@ const contohmahasiswalulusdo = {
         'bulan_akhir_bimbingan'
       ],
       data: [[
-        'LUTHFI FACHRIZA SANDI',
-        '18216027',
-        '2019-06-06',
+        'ADITYA PRATAMA',
+        '11181000',
         '1',
-        '2019-07-11',
-        'tidak ada keterangan',
-        'nomor sk ceunah',
-        '2019-07-11',
-        '3.99',
-        'nomor ijazah teh gimana',
+        '2018-12-02',
+        '',
+        '',
+        '',
+        '3.86',
+        '',
         '1',
-        'judul skripsiku apa ya',
-        '2019-01-21',
-        '2019-05-07'
+        'Optimasi Bahasa Pemrograman JavaScript dengan Framework VueJS',
+        '22018-09-10',
+        '2018-11-20'
       ]]
     }
   }

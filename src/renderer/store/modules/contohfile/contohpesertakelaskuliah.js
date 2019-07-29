@@ -10,11 +10,11 @@ const contohpesertakelaskuliah = {
         'nama_kelas'
       ],
       data: [[
-        'MAKRIFAT SABIL HAQ',
-        '18216031',
+        'ADITYA PRATAMA',
+        '11181000',
         'S1 Farmasi',
-        '20191',
-        'TTKI',
+        '20182',
+        'Pemrograman Web',
         '01'
       ]]
     }

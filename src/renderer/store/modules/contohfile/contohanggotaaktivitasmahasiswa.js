@@ -11,10 +11,10 @@ const contohanggotaaktivitasmahasiswa = {
       ],
       data: [[
         'Laporan akhir studi',
-        '20191',
-        'skripsiku bukan untuk pakriza tapi untuk fachriza',
-        'MAKRIFAT SABIL HAQ',
-        '18216031',
+        '20182',
+        'Optimasi Bahasa Pemrograman JavaScript dengan Framework VueJS',
+        'ADITYA PRATAMA',
+        '11181000',
         '1'
       ]]
     }

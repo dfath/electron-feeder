@@ -29,14 +29,14 @@ const insertmahasiswalulusdo = {
       lulusdo.forEach(function(data) {
         async function getIDs() {
           try {
-            const filter = `nama_mahasiswa LIKE '%${data.nama_mahasiswa}%' AND nim LIKE '%${data.nim}%' AND tanggal_daftar = '${data.tanggal_daftar}'`
+            const filter = `nama_mahasiswa LIKE '%${data.nama_mahasiswa}%' AND nim LIKE '%${data.nim}%'`
 
             const response_riwayat = await getListRiwayatPendidikanMahasiswa(token, '', 0, filter)
             data.id_registrasi_mahasiswa = response_riwayat.data[0].id_registrasi_mahasiswa
             console.log(data)
             delete (data.nama_mahasiswa)
             delete (data.nim)
-            delete (data.tanggal_daftar)
+            // delete (data.tanggal_daftar)
 
             const response_insert = await insertMahasiswaLulusDO(token, data)
             Message({

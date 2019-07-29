@@ -24,11 +24,11 @@ const contohmatakuliah = {
         'tanggal_akhir_efektif'
       ],
       data: [[
-        '48401',
+        '48201',
         'Farmasi',
-        'D3',
-        'MKP103099',
-        'WAJIB999',
+        'S1',
+        'APT000',
+        'Pemrograman Web',
         'A',
         'A',
         '4.00',
@@ -37,13 +37,13 @@ const contohmatakuliah = {
         '',
         '',
         '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        ''
+        '1',
+        '1',
+        '1',
+        '1',
+        '1',
+        '2018-08-20',
+        '2018-11-27'
       ]]
     }
   }

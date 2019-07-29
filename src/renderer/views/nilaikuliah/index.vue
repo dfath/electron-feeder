@@ -7,7 +7,7 @@
           Search
         </el-button>
       </el-col>
-      <el-col :span="12">
+      <!-- <el-col :span="12">
         <el-row type="flex" justify="end">
           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
@@ -20,30 +20,30 @@
             </el-button>
            </el-col>
         </el-row>
-      </el-col>
+      </el-col> -->
     </el-row>
 
     <el-table v-loading="listLoading" border :data="tablelistNilaiPerkuliahanKelas">
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="100" prop="kode_mata_kuliah"
+      <el-table-column min-width="50" prop="kode_mata_kuliah"
                       label="Kode MK">
       </el-table-column>
       <el-table-column min-width="150" prop="nama_mata_kuliah"
                       label="Nama MK">
       </el-table-column>
-      <el-table-column min-width="50" prop="nama_kelas_kuliah"
+      <el-table-column min-width="75" prop="nama_kelas_kuliah"
                       label="Nama Kelas">
       </el-table-column>
-      <el-table-column min-width="50" prop="sks_mata_kuliah"
+      <el-table-column min-width="75" prop="sks_mata_kuliah"
                       label="Bobot MK (sks)">
       </el-table-column>
-      <el-table-column min-width="50" prop="jumlah_mahasiswa_krs"
+      <el-table-column min-width="75" prop="jumlah_mahasiswa_krs"
                       label="Peserta Kelas">
       </el-table-column>
-      <el-table-column min-width="50" prop="jumlah_mahasiswa_dapat_nilai"
+      <el-table-column min-width="75" prop="jumlah_mahasiswa_dapat_nilai"
                       label="Peserta Sudah Dinilai">
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
+      <el-table-column label="Actions" align="center" width="100" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
             Edit
@@ -222,7 +222,7 @@ export default {
     //   })
     // },
     handleDelete(row) {
-      MessageBox.confirm('Apakah Anda ingin menghapus Biodata ini?', 'Confirm Delete', {
+      MessageBox.confirm('Apakah Anda ingin menghapus Nilai Kuliah ini?', 'Confirm Delete', {
         confirmButtonText: 'Ya',
         cancelButtonText: 'Tidak',
         type: 'warning'

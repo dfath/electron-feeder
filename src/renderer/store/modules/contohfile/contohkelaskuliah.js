@@ -15,17 +15,17 @@ const contohkelaskuliah = {
         'tanggal_akhir_efektif'
       ],
       data: [[
-        '48401',
+        '48201',
         'Farmasi',
-        'D3',
-        '20191',
-        'EMPK1105',
-        'TTKI',
-        '2.00',
-        '02',
-        '',
-        '',
-        ''
+        'S1',
+        '20182',
+        'APT100',
+        'Pemrograman Web',
+        '4.00',
+        '01',
+        'Pemrograman web mempelajari HTML, CSS, JavaScript dasar',
+        '2018-09-01',
+        '2018-11-26'
       ]]
     }
   }

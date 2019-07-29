@@ -25,6 +25,8 @@ const getters = {
   updatebiodatamahasiswa: state => state.getbiodatamahasiswa.updatebiodatamahasiswa,
   // deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa,
   listRiwayatPendidikanMahasiswa: state => state.getlistriwayatpendidikanmahasiswa.listRiwayatPendidikanMahasiswa,
+  contohriwayatpendidikanmahasiswa: state => state.contoh.contohriwayatpendidikanmahasiswa.contohriwayatpendidikanmahasiswa,
+  contohprestasimahasiswa: state => state.contoh.contohprestasimahasiswa.contohprestasimahasiswa,
   // Dosen
   listDosen: state => state.listdosen.listDosen,
   totalDosen: state => state.listdosen.totalDosen,

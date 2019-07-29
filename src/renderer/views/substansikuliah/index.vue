@@ -8,7 +8,7 @@
         Search
         </el-button>
       </el-col>
-      <el-col :span="12">
+      <!-- <el-col :span="12">
         <el-row type="flex" justify="end">
           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
@@ -21,7 +21,7 @@
             </el-button>
            </el-col>
         </el-row>
-      </el-col>
+      </el-col> -->
     </el-row>
 
     <el-table v-loading="listLoading" border :data="tablelistSubstansiKuliah">
@@ -44,7 +44,7 @@
       <el-table-column min-width="75" prop="sks_simulasi"
                       label="Bobot Simulasi (sks)">
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
+      <!-- <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
               Edit
@@ -53,7 +53,7 @@
               Delete
           </el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
 

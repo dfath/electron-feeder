@@ -1,5 +1,7 @@
 
 import contohbiodatamahasiswa from './contohfile/contohbiodatamahasiswa'
+import contohriwayatpendidikanmahasiswa from './contohfile/contohriwayatpendidikanmahasiswa'
+import contohprestasimahasiswa from './contohfile/contohprestasimahasiswa'
 import contohdosenpengajarkelaskuliah from './contohfile/contohdosenpengajarkelaskuliah'
 import contohmatakuliah from './contohfile/contohmatakuliah'
 import contohkurikulum from './contohfile/contohkurikulum'
@@ -17,6 +19,8 @@ import store from '@/store'
 const contoh = {
   modules: {
     contohbiodatamahasiswa,
+    contohriwayatpendidikanmahasiswa,
+    contohprestasimahasiswa,
     contohdosenpengajarkelaskuliah,
     contohmatakuliah,
     contohkurikulum,
@@ -36,6 +40,8 @@ const contoh = {
       const destination = store.getters.destination
       const dispatchdest = {
         'biodatamahasiswa': 'contohbiodatamahasiswa',
+        'riwayatpendidikan': 'contohriwayatpendidikanmahasiswa',
+        'prestasimahasiswa': 'contohprestasimahasiswa',
         'dosenpengajarkelaskuliah': 'contohdosenpengajarkelaskuliah',
         'matakuliah': 'contohmatakuliah',
         'kurikulum': 'contohkurikulum',

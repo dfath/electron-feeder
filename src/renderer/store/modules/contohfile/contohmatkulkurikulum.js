@@ -17,11 +17,11 @@ const contohmatkulkurikulum = {
         'apakah_wajib'
       ],
       data: [[
-        'Kurikulum Rasyad 2019',
-        'D3 Farmasi',
-        '20191',
-        'MKP103098',
-        'WAJIBHadits',
+        'Kurikulum Farmasi 2019',
+        'S1 Farmasi',
+        '20182',
+        'APT100',
+        'Pemrograman Web',
         'A',
         '1',
         '4.00',

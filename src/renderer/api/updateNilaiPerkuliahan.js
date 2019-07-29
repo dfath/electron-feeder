@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function insertAktivitasKuliahMahasiswa(token, record) {
+export function updateNilaiPerkuliahan(token, key, record) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -9,8 +9,9 @@ export function insertAktivitasKuliahMahasiswa(token, record) {
       'Access-Control-Allow-Origin': '*'
     },
     data: {
-      'act': 'InsertAktivitasKuliahMahasiswa',
+      'act': 'UpdateNilaiPerkuliahanKelas',
       token,
+      key,
       record
     }
   })

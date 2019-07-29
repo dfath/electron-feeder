@@ -13,13 +13,13 @@ const contohbimbingmahasiswa = {
       ],
       data: [[
         'Laporan akhir studi',
-        '20191',
-        'skripsiku bukan untuk pakriza tapi untuk fachriza',
-        'DADIH SUPRIADI',
-        '414097802',
-        '200614091978',
+        '20182',
+        'Optimasi Bahasa Pemrograman JavaScript dengan Framework VueJS',
+        '',
+        '',
+        '',
         '1',
-        '110300'
+        '110400'
       ]]
     }
   }

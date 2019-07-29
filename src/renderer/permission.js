@@ -24,7 +24,6 @@ router.beforeEach((to, from, next) => {
         '/kelaskuliah/insertpesertakelaskuliah': 'pesertakelaskuliah',
         '/dosen/insertdosenpengajarkelaskuliah': 'dosenpengajarkelaskuliah',
         '/perkuliahan/insertperkuliahanmahasiswa': 'perkuliahanmahasiswa',
-        '/perkuliahan/insertnilaiperkuliahan': 'nilaiperkuliahan',
         '/aktivitas/insertaktivitasmahasiswa': 'aktivitas',
         '/aktivitas/insertanggotaaktivitasmahasiswa': 'anggotaaktivitas',
         '/aktivitas/insertbimbingmahasiswa': 'bimbing',

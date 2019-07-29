@@ -247,12 +247,6 @@ export const constantRouterMap = [
         meta: { title: 'List Nilai Perkuliahan', icon: 'star' }
       },
       {
-        path: 'insertnilaiperkuliahan',
-        name: 'Insert Nilai Perkuliahan',
-        component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Nilai Perkuliahan', icon: 'excel' }
-      },
-      {
         path: 'edit',
         name: 'Edit Nilai Perkuliahan',
         hidden: true,
@@ -365,10 +359,10 @@ export const constantRouterMap = [
       },
       {
         path: 'edit',
-        name: 'Edit Aktivitas Mahasiswa',
+        name: 'Edit Mahasiswa Lulus/DO',
         hidden: true,
         component: () => import('@/views/lulusdo/edit'),
-        meta: { title: 'Edit Aktivitas Mahasiswa', icon: 'form' }
+        meta: { title: 'Edit Mahasiswa Lulus/DO', icon: 'form' }
       }
     ]
   },

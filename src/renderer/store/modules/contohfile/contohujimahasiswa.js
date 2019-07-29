@@ -13,13 +13,13 @@ const contohujimahasiswa = {
       ],
       data: [[
         'Laporan akhir studi',
-        '20191',
-        'skripsiku bukan untuk pakriza tapi untuk fachriza',
-        'MIA MIRANTI RUSTAMA',
-        '18117004',
-        '132145898',
+        '20182',
+        'Optimasi Bahasa Pemrograman JavaScript dengan Framework VueJS',
+        '',
+        '',
+        '',
         '1',
-        '110300'
+        '110400'
       ]]
     }
   }
