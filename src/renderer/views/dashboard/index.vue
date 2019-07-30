@@ -1,9 +1,7 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">OpenFeeder 2019</div>
-    <br>
-    <div class="dashboard-text">name:{{name}}</div>
-    <div class="dashboard-text">roles:<span v-for='role in roles' :key='role'>{{role}}</span></div>
+  <div style="text-align: center;" class="dashboard-container">
+    <img style=" width: 100px; height: 100px;"  src="/src/renderer/icons/svg/openfeederlogo.svg">
+    <div class="dashboard-text">Selamat Datang di OpenFeeder v1.0.0</div>
   </div>
 </template>
 

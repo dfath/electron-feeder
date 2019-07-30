@@ -18,7 +18,7 @@
       </template>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img class="user-avatar"  src="/src/renderer/icons/svg/user.svg">
+          <img class="user-avatar"  src="/src/renderer/icons/svg/openfeederlogo.svg">
           <i class="el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu class="user-dropdown" slot="dropdown">
