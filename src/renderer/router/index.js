@@ -83,7 +83,7 @@ export const constantRouterMap = [
       },
       {
         path: 'prestasimahasiswa',
-        name: 'Insert Prestasi Mahasiswa',
+        name: 'Upload Prestasi Mahasiswa',
         component: () => import('@/views/excel/index'),
         meta: { title: ' Upload Prestasi Mahasiswa', icon: 'excel' }
       }
@@ -124,9 +124,9 @@ export const constantRouterMap = [
       },
       {
         path: 'insertdosenpengajarkelaskuliah',
-        name: 'Inserta Dosen Pengajar Kelas Kuliah',
+        name: 'Upload Dosen Pengajar Kelas Kuliah',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Dosen Pengajar Kelas Kuliah', icon: 'excel' }
+        meta: { title: 'Upload Dosen Pengajar Kelas Kuliah', icon: 'excel' }
       }
     ]
   },
@@ -145,9 +145,9 @@ export const constantRouterMap = [
       },
       {
         path: 'insertmatakuliah',
-        name: 'Insert Mata Kuliah',
+        name: 'Upload Mata Kuliah',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Mata Kuliah', icon: 'excel' }
+        meta: { title: 'Upload Mata Kuliah', icon: 'excel' }
       },
       {
         path: 'edit',
@@ -179,9 +179,9 @@ export const constantRouterMap = [
       },
       {
         path: 'insertkurikulum',
-        name: 'Insert Kurikulum',
+        name: 'Upload Kurikulum',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Kurikulum', icon: 'excel' }
+        meta: { title: 'Upload Kurikulum', icon: 'excel' }
       },
       {
         path: 'edit',
@@ -192,9 +192,9 @@ export const constantRouterMap = [
       },
       {
         path: 'insertmatkulkurikulum',
-        name: 'Insert Matkul Kurikulum',
+        name: 'Upload Matkul Kurikulum',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Matkul Kurikulum', icon: 'excel' }
+        meta: { title: 'Upload Matkul Kurikulum', icon: 'excel' }
       }
     ]
   },
@@ -213,9 +213,9 @@ export const constantRouterMap = [
       },
       {
         path: 'insertkelaskuliah',
-        name: 'Insert Kelas Kuliah',
+        name: 'Upload Kelas Kuliah',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Kelas Kuliah', icon: 'excel' }
+        meta: { title: 'Upload Kelas Kuliah', icon: 'excel' }
       },
       {
         path: 'edit',
@@ -228,7 +228,7 @@ export const constantRouterMap = [
         path: 'insertpesertakelaskuliah',
         name: 'Inserta Peserta Kelas Kuliah',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Peserta Kelas Kuliah', icon: 'excel' }
+        meta: { title: 'Upload Peserta Kelas Kuliah', icon: 'excel' }
       }
     ]
   },
@@ -261,9 +261,9 @@ export const constantRouterMap = [
       },
       {
         path: 'insertperkuliahanmahasiswa',
-        name: 'Insert Aktivitas Kuliah Mahasiswa',
+        name: 'Upload Aktivitas Kuliah Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Aktivitas Kuliah Mahasiswa', icon: 'excel' }
+        meta: { title: 'Upload Aktivitas Kuliah Mahasiswa', icon: 'excel' }
       }
       // {
       //   path: 'edit',
@@ -301,9 +301,9 @@ export const constantRouterMap = [
       },
       {
         path: 'insertaktivitasmahasiswa',
-        name: 'Insert Aktivitas Mahasiswa',
+        name: 'Upload Aktivitas Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Aktivitas Mahasiswa', icon: 'excel' }
+        meta: { title: 'Upload Aktivitas Mahasiswa', icon: 'excel' }
       },
       {
         path: 'edit',
@@ -320,21 +320,21 @@ export const constantRouterMap = [
       // },
       {
         path: 'insertanggotaaktivitasmahasiswa',
-        name: 'Insert Anggota Aktivitas Mahasiswa',
+        name: 'Upload Anggota Aktivitas Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Anggota Aktivitas Mahasiswa', icon: 'excel' }
+        meta: { title: 'Upload Anggota Aktivitas Mahasiswa', icon: 'excel' }
       },
       {
         path: 'insertbimbingmahasiswa',
-        name: 'Insert Bimbing Mahasiswa',
+        name: 'Upload Bimbing Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Bimbing Mahasiswa', icon: 'excel' }
+        meta: { title: 'Upload Bimbing Mahasiswa', icon: 'excel' }
       },
       {
         path: 'insertujimahasiswa',
-        name: 'Insert Uji Mahasiswa',
+        name: 'Upload Uji Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Uji Mahasiswa', icon: 'excel' }
+        meta: { title: 'Upload Uji Mahasiswa', icon: 'excel' }
       }
     ]
   },
@@ -342,8 +342,8 @@ export const constantRouterMap = [
     path: '/lulusdo',
     component: Layout,
     redirect: '/listlulusdo',
-    name: 'Lulus/DO',
-    meta: { title: 'Lulus/DO', icon: 'table' },
+    name: 'Lulus/Drop Out',
+    meta: { title: 'Lulus/Drop Out', icon: 'table' },
     children: [
       {
         path: 'listlulusdo',
@@ -353,16 +353,16 @@ export const constantRouterMap = [
       },
       {
         path: 'insertmahasiswalulusdo',
-        name: 'Insert Mahasiswa Lulus/DO',
+        name: 'Upload Mahasiswa Lulus/Drop Out',
         component: () => import('@/views/excel/index'),
-        meta: { title: 'Insert Mahasiswa Lulus/DO', icon: 'excel' }
+        meta: { title: 'Upload Mahasiswa Lulus/Drop Out', icon: 'excel' }
       },
       {
         path: 'edit',
-        name: 'Edit Mahasiswa Lulus/DO',
+        name: 'Edit Mahasiswa Lulus/Drop Out',
         hidden: true,
         component: () => import('@/views/lulusdo/edit'),
-        meta: { title: 'Edit Mahasiswa Lulus/DO', icon: 'form' }
+        meta: { title: 'Edit Mahasiswa Lulus/Drop Out', icon: 'form' }
       }
     ]
   },

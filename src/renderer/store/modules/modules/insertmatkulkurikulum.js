@@ -24,6 +24,7 @@ const insertmatkulkurikulum = {
       console.log('ini matkulkurikulum', state.matkulkurikulum)
     },
     InsertMatkulKurikulum({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const matkulkurikulum = state.matkulkurikulum
       console.log('insertmatkulkurikulum', matkulkurikulum)
@@ -52,8 +53,10 @@ const insertmatkulkurikulum = {
             duration: 5 * 1000
           })
           console.log(res.data)
+          commit('SET_LOADING', false)
           commit('INSERT_MATKUL_KURIKULUM')
         } catch (err) {
+          commit('SET_LOADING', false)
           console.log(err)
         }
       }

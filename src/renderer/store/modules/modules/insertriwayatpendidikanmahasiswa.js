@@ -25,6 +25,7 @@ const insertriwayatpendidikanmahasiswa = {
       console.log('ini riwayat pendidikan mahasiswa', state.riwayatpendidikanmahasiswa)
     },
     InsertRiwayatPendidikanMahasiswa({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const riwayatpendidikanmahasiswa = state.riwayatpendidikanmahasiswa
       console.log('insertriwayatpendidikanmahasiswa', riwayatpendidikanmahasiswa)
@@ -76,7 +77,9 @@ const insertriwayatpendidikanmahasiswa = {
           })
           console.log(res.data)
           commit('INSERT_RIWAYAT_PENDIDIKAN_MAHASISWA')
+          commit('SET_LOADING', false)
         } catch (err) {
+          commit('SET_LOADING', false)
           console.log(err)
         }
       }

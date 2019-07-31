@@ -1,7 +1,7 @@
 
 <template>
   <div class="app-container">
-    <el-row type="flex" class="filter-container">
+    <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
       <el-col :span="12">
         <el-input v-model="listQuery.filter" placeholder="Nama Mahasiswa" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
@@ -74,7 +74,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5,
+        limit: 10,
         filter: null
       },
       downloadLoading: false

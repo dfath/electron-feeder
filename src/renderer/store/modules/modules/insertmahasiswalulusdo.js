@@ -23,6 +23,7 @@ const insertmahasiswalulusdo = {
       console.log('ini lulusdo', state.mahasiswalulusdo)
     },
     InsertMahasiswaLulusDO({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const lulusdo = state.mahasiswalulusdo
       console.log('insertlulusdo', lulusdo)
@@ -40,14 +41,16 @@ const insertmahasiswalulusdo = {
 
             const response_insert = await insertMahasiswaLulusDO(token, data)
             Message({
-              message: 'Berhasil Input Mahasiswa Lulus/DO',
+              message: 'Berhasil Input Mahasiswa Lulus/Drop Out',
               type: 'success',
               duration: 5 * 1000
             })
             console.log(response_insert.data)
             commit('INSERT_MAHASISWA_LULUS_DO')
+            commit('SET_LOADING', false)
             console.log('setelahinsert', state.mahasiswalulusdo)
           } catch (err) {
+            commit('SET_LOADING', false)
             alert(err) // TypeError: failed to get IDs
           }
         }

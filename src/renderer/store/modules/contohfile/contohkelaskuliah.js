@@ -19,7 +19,7 @@ const contohkelaskuliah = {
         'Farmasi',
         'S1',
         '20182',
-        'APT100',
+        'APT000',
         'Pemrograman Web',
         '4.00',
         '01',

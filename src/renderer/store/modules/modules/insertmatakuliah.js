@@ -23,6 +23,7 @@ const insertmatakuliah = {
       console.log('ini matakuliah', state.matakuliah)
     },
     InsertMataKuliah({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const matakuliah = state.matakuliah
       console.log('insertmatakuliah', matakuliah)
@@ -45,8 +46,10 @@ const insertmatakuliah = {
               console.log(response.data)
               commit('INSERT_MATAKULIAH')
               console.log('setelahinsert', state.matakuliah)
+              commit('SET_LOADING', false)
               resolve()
             }).catch(error => {
+              commit('SET_LOADING', false)
               console.log('error')
               reject(error)
             })

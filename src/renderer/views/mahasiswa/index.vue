@@ -23,44 +23,42 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistMahasiswa">
+    <el-table v-loading="listLoading" border :data="tablelistMahasiswa" :cell-style="{padding: '0px', height: '37px'}">
       <el-table-column min-width="100" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="200" prop="nama_mahasiswa"
                       label="Nama">
       </el-table-column>
-      <el-table-column min-width="85" prop="nim"
+      <el-table-column min-width="100" prop="nim"
                       label="NIM">
       </el-table-column>
-      <el-table-column min-width="45" prop="jenis_kelamin"
+      <el-table-column min-width="35" prop="jenis_kelamin"
                       label="L/P">
       </el-table-column>
-      <el-table-column min-width="85" prop="nama_agama"
+      <el-table-column min-width="80" prop="nama_agama"
                       label="Agama">
       </el-table-column>
-      <el-table-column min-width="100" prop="tanggal_lahir"
+      <el-table-column min-width="105" prop="tanggal_lahir"
                       label="Tanggal Lahir">
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_program_studi"
+      <el-table-column min-width="160" prop="nama_program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="75" prop="nama_status_mahasiswa"
+      <el-table-column min-width="110" prop="nama_status_mahasiswa"
                       label="Status">
       </el-table-column>
-      <el-table-column min-width="150" prop="nama_periode_masuk"
+      <el-table-column min-width="125" prop="nama_periode_masuk"
                       label="Periode Masuk">
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
+      <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
-              Edit
-          </el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
-              Delete
-          </el-button>
+          <el-button-group>
+            <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdate(row)"></el-button>
+            <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDelete(row)"></el-button>
+          </el-button-group>
         </template>
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" size="mini"/>
   </div>
 </template>
 
@@ -80,7 +78,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5,
+        limit: 10,
         filter: null
       },
       // rules: {
@@ -172,8 +170,3 @@ export default {
 }
 </script>
 
-<style>
-  /* .el-row {
-    margin: 0.5rem;
-  } */
-</style>

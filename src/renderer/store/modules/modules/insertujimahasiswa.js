@@ -25,6 +25,7 @@ const insertujimahasiswa = {
       console.log('ini uji mahasiswa', state.ujimahasiswa)
     },
     InsertUjiMahasiswa({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const ujimahasiswa = state.ujimahasiswa
       console.log('insertujimahasiswa', ujimahasiswa)
@@ -53,8 +54,10 @@ const insertujimahasiswa = {
             duration: 5 * 1000
           })
           console.log(res.data)
+          commit('SET_LOADING', false)
           commit('INSERT_UJI_MAHASISWA')
         } catch (err) {
+          commit('SET_LOADING', false)
           console.log(err)
         }
       }

@@ -25,6 +25,7 @@ const insertdosenpengajarkelaskuliah = {
       console.log('ini dosenpengajarkelaskuliah', state.dosenpengajarkelaskuliah)
     },
     InsertDosenPengajarKelasKuliah({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const dosenpengajarkelaskuliah = state.dosenpengajarkelaskuliah
       console.log('insertdosenpengajarkelaskuliah', dosenpengajarkelaskuliah)
@@ -63,7 +64,9 @@ const insertdosenpengajarkelaskuliah = {
           })
           console.log(res.data)
           commit('INSERT_DOSEN_PENGAJAR_KELAS_KULIAH')
+          commit('SET_LOADING', false)
         } catch (err) {
+          commit('SET_LOADING', false)
           console.log(err)
         }
       }

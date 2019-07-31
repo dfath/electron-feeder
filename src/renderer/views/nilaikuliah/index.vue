@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row type="flex" class="filter-container">
+    <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
       <el-col :span="12">
         <el-input v-model="listQuery.filter" placeholder="Nama Mata Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
@@ -23,7 +23,7 @@
       </el-col> -->
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistNilaiPerkuliahanKelas">
+    <el-table v-loading="listLoading" border :data="tablelistNilaiPerkuliahanKelas" :cell-style="{padding: '0px', height: '37px'}">
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="50" prop="kode_mata_kuliah"
                       label="Kode MK">
@@ -31,28 +31,28 @@
       <el-table-column min-width="150" prop="nama_mata_kuliah"
                       label="Nama MK">
       </el-table-column>
-      <el-table-column min-width="75" prop="nama_kelas_kuliah"
+      <el-table-column min-width="80" prop="nama_kelas_kuliah"
                       label="Nama Kelas">
       </el-table-column>
-      <el-table-column min-width="75" prop="sks_mata_kuliah"
+      <el-table-column min-width="80" prop="sks_mata_kuliah"
                       label="Bobot MK (sks)">
       </el-table-column>
-      <el-table-column min-width="75" prop="jumlah_mahasiswa_krs"
+      <el-table-column min-width="80" prop="jumlah_mahasiswa_krs"
                       label="Peserta Kelas">
       </el-table-column>
-      <el-table-column min-width="75" prop="jumlah_mahasiswa_dapat_nilai"
+      <el-table-column min-width="80" prop="jumlah_mahasiswa_dapat_nilai"
                       label="Peserta Sudah Dinilai">
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="100" class-name="small-padding fixed-width">
+      <!-- <el-table-column label="Actions" align="center" width="100" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
             Edit
           </el-button>
-          <!-- <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
             Delete
-          </el-button> -->
+          </el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
 
@@ -76,7 +76,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5,
+        limit: 10,
         filter: null
       },
       downloadLoading: false

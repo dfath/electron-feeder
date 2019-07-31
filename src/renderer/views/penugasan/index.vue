@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row type="flex" class="filter-container">
+    <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
       <el-col :span="12">
         <el-input v-model="listQuery.filter" placeholder="Nama Dosen" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
@@ -9,15 +9,15 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistPenugasanSemuaDosen">
+    <el-table v-loading="listLoading" border :data="tablelistPenugasanSemuaDosen" :cell-style="{padding: '0px', height: '26px'}">
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="200" prop="nama_dosen"
                       label="Nama">
       </el-table-column>
-      <el-table-column min-width="100" prop="nidn"
+      <el-table-column min-width="110" prop="nidn"
                       label="NIDN/NUP/NIDK">
       </el-table-column>
-      <el-table-column min-width="50" prop="jenis_kelamin"
+      <el-table-column min-width="35" prop="jenis_kelamin"
                       label="L/P">
       </el-table-column>
       <el-table-column min-width="100" prop="nama_tahun_ajaran"
@@ -26,13 +26,13 @@
       <el-table-column min-width="150" prop="program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="150" prop="nomor_surat_tugas"
+      <el-table-column min-width="105" prop="nomor_surat_tugas"
                       label="No Surat Tugas">
       </el-table-column>
       <el-table-column min-width="100" prop="tanggal_surat_tugas"
                       label="Tanggal Surat Tugas">
       </el-table-column>
-      <el-table-column min-width="100" prop="apakah_homebase"
+      <el-table-column min-width="90" prop="apakah_homebase"
                       label="Homebase?">
       </el-table-column>
     </el-table>
@@ -57,7 +57,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5,
+        limit: 10,
         filter: null
       },
       downloadLoading: false

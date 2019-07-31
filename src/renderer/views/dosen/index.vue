@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row type="flex" class="filter-container">
+    <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
       <el-col :span="12">
         <el-input v-model="listQuery.filter" placeholder="Nama Dosen" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
@@ -9,7 +9,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistDosen">
+    <el-table v-loading="listLoading" border :data="tablelistDosen" :cell-style="{padding: '0px', height: '37px'}">
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="200" prop="nama_dosen"
                       label="Nama">
@@ -61,7 +61,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5,
+        limit: 10,
         filter: null
       },
       dialogFormVisible: false,

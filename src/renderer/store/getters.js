@@ -77,8 +77,8 @@ const getters = {
   contohanggotaaktivitasmahasiswa: state => state.contoh.contohanggotaaktivitasmahasiswa.contohanggotaaktivitasmahasiswa,
   contohbimbingmahasiswa: state => state.contoh.contohbimbingmahasiswa.contohbimbingmahasiswa,
   contohujimahasiswa: state => state.contoh.contohujimahasiswa.contohujimahasiswa,
-  // Mahasiswa Lulus/DO
-  listMahasiswaLulusDO: state => state.listmahasiswalulusdo.listMahasiswaLulusDO, // List Mahasiswa Lulus/DO
+  // Mahasiswa Lulus/Drop Out
+  listMahasiswaLulusDO: state => state.listmahasiswalulusdo.listMahasiswaLulusDO, // List Mahasiswa Lulus/Drop Out
   listQueryMahasiswaLulusDO: state => state.listmahasiswalulusdo.listQueryMahasiswaLulusDO,
   totalMahasiswaLulusDO: state => state.listmahasiswalulusdo.totalMahasiswaLulusDO,
   contohmahasiswalulusdo: state => state.contoh.contohmahasiswalulusdo.contohmahasiswalulusdo,

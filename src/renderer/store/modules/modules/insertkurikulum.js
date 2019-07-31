@@ -23,6 +23,7 @@ const insertkurikulum = {
       console.log('ini kurikulum', state.kurikulum)
     },
     InsertKurikulum({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const kurikulum = state.kurikulum
       console.log('insertkurikulum', kurikulum)
@@ -46,9 +47,11 @@ const insertkurikulum = {
               console.log(response.data)
               commit('INSERT_KURIKULUM')
               console.log('setelahinsert', state.kurikulum)
+              commit('SET_LOADING', false)
               resolve()
             }).catch(error => {
               console.log('error')
+              commit('SET_LOADING', false)
               reject(error)
             })
           }).catch(error => {

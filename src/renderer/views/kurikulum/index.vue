@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row type="flex" class="filter-container">
+    <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
       <el-col :span="12">
         <el-input v-model="listQuery.filter" placeholder="Nama Kurikulum" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
@@ -18,7 +18,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistKurikulum">
+    <el-table v-loading="listLoading" border :data="tablelistKurikulum" :cell-style="{padding: '0px', height: '34px'}">
       <el-table-column min-width="45" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="168" prop="nama_kurikulum"
                       label="Nama Kurikulum">
@@ -43,21 +43,19 @@
       </el-table-column>
       <el-table-column min-width="50" prop=""
                       label="Jumlah sks Matakuliah">
-        <el-table-column min-width="50" prop="jumlah_sks_mata_kuliah_wajib"
+        <el-table-column min-width="52" prop="jumlah_sks_mata_kuliah_wajib"
                         label="Wajib">
         </el-table-column>
-        <el-table-column min-width="50" prop="jumlah_sks_mata_kuliah_pilihan"
+        <el-table-column min-width="52" prop="jumlah_sks_mata_kuliah_pilihan"
                         label="Pilihan">
         </el-table-column>
       </el-table-column>
-      <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
+      <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
-              Edit
-          </el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
-              Delete
-          </el-button>
+          <el-button-group>
+            <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdate(row)"></el-button>
+            <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDelete(row)"></el-button>
+          </el-button-group>
         </template>
       </el-table-column>
     </el-table>
@@ -83,7 +81,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5,
+        limit: 10,
         filter: null
       },
       downloadLoading: false

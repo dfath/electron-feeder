@@ -24,6 +24,7 @@ const insertkelaskuliah = {
       console.log('ini kelas kuliah', state.kelaskuliah)
     },
     InsertKelasKuliah({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const kelaskuliah = state.kelaskuliah
       console.log('insertkelaskuliah', kelaskuliah)

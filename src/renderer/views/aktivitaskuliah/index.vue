@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-row type="flex" class="filter-container">
+    <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
       <el-col :span="12">
         <el-input v-model="listQuery.filter" placeholder="Nama Mahasiswa" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
@@ -18,36 +18,36 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tableaktivitasKuliahMahasiswa">
+    <el-table v-loading="listLoading" border :data="tableaktivitasKuliahMahasiswa" :cell-style="{padding: '0px', height: '33px'}">
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="75" prop="nim"
+      <el-table-column min-width="50" prop="nim"
                       label="NIM">
       </el-table-column>
-      <el-table-column min-width="150" prop="nama_mahasiswa"
+      <el-table-column min-width="100" prop="nama_mahasiswa"
                       label="Nama Mahasiswa">
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_program_studi"
+      <el-table-column min-width="53" prop="nama_program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="50" prop="angkatan"
+      <el-table-column min-width="40" prop="angkatan"
                       label="Angkatan">
       </el-table-column>
-      <el-table-column min-width="125" prop="nama_semester"
+      <el-table-column min-width="60" prop="nama_semester"
                       label="Semester">
       </el-table-column>
-      <el-table-column min-width="75" prop="nama_status_mahasiswa"
+      <el-table-column min-width="50" prop="nama_status_mahasiswa"
                       label="Status">
       </el-table-column>
-      <el-table-column min-width="50" prop="ips"
+      <el-table-column min-width="32" prop="ips"
                       label="IPS">
       </el-table-column>
-      <el-table-column min-width="50" prop="ipk"
+      <el-table-column min-width="32" prop="ipk"
                       label="IPK">
       </el-table-column>
-      <el-table-column min-width="50" prop="sks_semester"
+      <el-table-column min-width="25" prop="sks_semester"
                       label="sks Semester">
       </el-table-column>
-      <el-table-column min-width="50" prop="sks_total"
+      <el-table-column min-width="23" prop="sks_total"
                       label="sks Total">
       </el-table-column>
       <!-- <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
@@ -83,7 +83,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 5,
+        limit: 10,
         filter: null
       },
       downloadLoading: false

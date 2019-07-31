@@ -25,6 +25,7 @@ const insertanggotaaktivitasmahasiswa = {
       console.log('ini anggota aktivitas mahasiswa', state.anggotaaktivitasmahasiswa)
     },
     InsertAnggotaAktivitasMahasiswa({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const anggotaaktivitasmahasiswa = state.anggotaaktivitasmahasiswa
       console.log('insertanggotaaktivitasmahasiswa', anggotaaktivitasmahasiswa)
@@ -53,7 +54,9 @@ const insertanggotaaktivitasmahasiswa = {
           })
           console.log(res.data)
           commit('INSERT_ANGGOTA_AKTIVITAS_MAHASISWA')
+          commit('SET_LOADING', false)
         } catch (err) {
+          commit('SET_LOADING', false)
           console.log(err)
         }
       }

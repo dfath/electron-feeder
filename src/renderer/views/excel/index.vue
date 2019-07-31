@@ -8,8 +8,8 @@
             <el-col :span="6">
               <div>
                 <el-button v-waves type="info" icon="el-icon-download" @click="handleDownload">
-        Download Contoh File Excel
-      </el-button>
+                  Download Contoh File Excel
+                </el-button>
               </div>
             </el-col>
             <el-col :span="6">

@@ -33,8 +33,8 @@ import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Akt
 // Aktivitas Mahasiswa
 import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa' // List Aktivitas Mahasiswa
 import getdetailaktivitasmahasiswa from './modules/getdetailaktivitasmahasiswa'
-// Mahasiswa Lulus/DO
-import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/DO
+// Mahasiswa Lulus/Drop Out
+import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/Drop Out
 import getdetailmahasiswalulusdo from './modules/getdetailmahasiswalulusdo'
 
 import insert from './modules/insert'

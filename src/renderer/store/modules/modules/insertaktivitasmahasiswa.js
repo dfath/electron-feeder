@@ -23,6 +23,7 @@ const insertaktivitasmahasiswa = {
       console.log('ini aktivitas mahasiswa', state.aktivitasmahasiswa)
     },
     InsertAktivitasMahasiswa({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const aktivitasmahasiswa = state.aktivitasmahasiswa
       console.log('insertaktivitasmahasiswa', aktivitasmahasiswa)
@@ -47,7 +48,9 @@ const insertaktivitasmahasiswa = {
             console.log(response_insert.data)
             commit('INSERT_AKTIVITAS_MAHASISWA')
             console.log('setelahinsert', state.aktivitasmahasiswa)
+            commit('SET_LOADING', false)
           } catch (err) {
+            commit('SET_LOADING', false)
             alert(err) // TypeError: failed to get IDs
           }
         }

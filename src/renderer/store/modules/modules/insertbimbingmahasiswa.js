@@ -25,6 +25,7 @@ const insertbimbingmahasiswa = {
       console.log('ini bimbing mahasiswa', state.bimbingmahasiswa)
     },
     InsertBimbingMahasiswa({ commit, state }) {
+      commit('SET_LOADING', true)
       const token = store.getters.token
       const bimbingmahasiswa = state.bimbingmahasiswa
       console.log('insertbimbingmahasiswa', bimbingmahasiswa)
@@ -54,7 +55,9 @@ const insertbimbingmahasiswa = {
           })
           console.log(res.data)
           commit('INSERT_BIMBING_MAHASISWA')
+          commit('SET_LOADING', false)
         } catch (err) {
+          commit('SET_LOADING', false)
           console.log(err)
         }
       }
