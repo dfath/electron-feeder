@@ -1,70 +1,146 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" :rules="rules" label-width="120px" v-loading="loading">
-      <el-form-item label="Program Studi" required="true">
-        <el-input v-model="setKelasKuliah.nama_program_studi" disabled="true"></el-input>
-      </el-form-item>
-      <el-form-item label="Semester" required="true">
-        <el-input v-model="setKelasKuliah.id_semester" disabled="true"></el-input>
-      </el-form-item>
-      <el-form-item label="Mata Kuliah" required="true" >
-        <el-input v-model="setKelasKuliah.nama_mata_kuliah" disabled="true"></el-input>
-      </el-form-item>
-      <!-- <el-form-item label="Bobot Mata Kuliah">
-        <el-input v-model="setKelasKuliah.jumlah_sks_lulus"></el-input>
-      </el-form-item>
-      <el-form-item label="Bobot Tatap Muka">
-        <el-input v-model="setKelasKuliah.jumlah_sks_wajib"></el-input> sks
-      </el-form-item>
-      <el-form-item label="Bobot Praktikum">
-        <el-input v-model="setKelasKuliah.jumlah_sks_pilihan"></el-input> sks
-      </el-form-item>
-      <el-form-item label="Bobot Praktek Lapangan">
-        <el-input v-model="setKelasKuliah.jumlah_sks_pilihan"></el-input> sks
-      </el-form-item>
-      <el-form-item label="Bobot Simulasi">
-        <el-input v-model="setKelasKuliah.jumlah_sks_pilihan"></el-input> sks
-      </el-form-item> -->
-      <el-form-item label="Nama Kelas" required="true">
-        <el-input v-model="setKelasKuliah.nama_kelas_kuliah"></el-input>
-      </el-form-item>
-      <el-form-item label="Bahasan">
-        <el-input type="textarea" v-model="setKelasKuliah.bahasan"></el-input>
-      </el-form-item>
-      <el-form-item label="Tanggal Mulai Efektif">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="Pick a date" v-model="setKelasKuliah.tanggal_mulai_efektif" style="width: 100%;"></el-date-picker>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="Tanggal Akhir Efektif">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="Pick a date" v-model="setKelasKuliah.tanggal_akhir_efektif" style="width: 100%;"></el-date-picker>
-        </el-col>
-      </el-form-item>
+    <el-tabs >
+      <el-tab-pane>
+        <span slot="label"><i class="el-icon-location" /> Edit Kelas</span>
+          <el-form ref="form" :model="form" :rules="rules" label-width="120px" v-loading="loading">
+            <el-form-item label="Program Studi" required="true">
+              <el-input v-model="setKelasKuliah.nama_program_studi" disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="Semester" required="true">
+              <el-input v-model="setKelasKuliah.id_semester" disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="Mata Kuliah" required="true" >
+              <el-input v-model="setKelasKuliah.nama_mata_kuliah" disabled="true"></el-input>
+            </el-form-item>
+            <!-- <el-form-item label="Bobot Mata Kuliah">
+              <el-input v-model="setKelasKuliah.jumlah_sks_lulus"></el-input>
+            </el-form-item>
+            <el-form-item label="Bobot Tatap Muka">
+              <el-input v-model="setKelasKuliah.jumlah_sks_wajib"></el-input> sks
+            </el-form-item>
+            <el-form-item label="Bobot Praktikum">
+              <el-input v-model="setKelasKuliah.jumlah_sks_pilihan"></el-input> sks
+            </el-form-item>
+            <el-form-item label="Bobot Praktek Lapangan">
+              <el-input v-model="setKelasKuliah.jumlah_sks_pilihan"></el-input> sks
+            </el-form-item>
+            <el-form-item label="Bobot Simulasi">
+              <el-input v-model="setKelasKuliah.jumlah_sks_pilihan"></el-input> sks
+            </el-form-item> -->
+            <el-form-item label="Nama Kelas" required="true">
+              <el-input v-model="setKelasKuliah.nama_kelas_kuliah"></el-input>
+            </el-form-item>
+            <el-form-item label="Bahasan">
+              <el-input type="textarea" v-model="setKelasKuliah.bahasan"></el-input>
+            </el-form-item>
+            <el-form-item label="Tanggal Mulai Efektif">
+              <el-col :span="11">
+                <el-date-picker type="date" placeholder="Pick a date" v-model="setKelasKuliah.tanggal_mulai_efektif" style="width: 100%;"></el-date-picker>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="Tanggal Akhir Efektif">
+              <el-col :span="11">
+                <el-date-picker type="date" placeholder="Pick a date" v-model="setKelasKuliah.tanggal_akhir_efektif" style="width: 100%;"></el-date-picker>
+              </el-col>
+            </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">Update</el-button>
-        <el-button @click="onCancel">Cancel</el-button>
-      </el-form-item>
-    </el-form>
+            <el-form-item>
+              <el-button type="primary" @click="onSubmit">Update</el-button>
+              <el-button @click="onCancel">Cancel</el-button>
+            </el-form-item>
+          </el-form>
+
+      </el-tab-pane>
+      <el-tab-pane>
+        <span slot="label"><i class="el-icon-location" /> Peserta Kelas</span>
+
+        <template>
+          <div class="app-container">
+            <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
+              <el-col :span="12">
+                <el-input v-model="listQuery.filter" placeholder="Nama Mata Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+                <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
+                  Search
+                </el-button>
+              </el-col>
+              <el-col :span="12">
+                <el-row type="flex" justify="end">
+                  <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                    <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
+                      Import Excel
+                    </el-button>
+                  </el-col>
+                </el-row>
+              </el-col>
+            </el-row>
+
+            <el-table v-loading="listLoading" border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}">
+              <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+              <el-table-column min-width="75" prop="kode_mata_kuliah"
+                              label="Kode MK">
+              </el-table-column>
+              <el-table-column min-width="150" prop="nama_mata_kuliah"
+                              label="Nama MK">
+              </el-table-column>
+              <el-table-column min-width="55" prop="nama_kelas_kuliah"
+                              label="Nama Kelas">
+              </el-table-column>
+              <el-table-column min-width="45" prop="sks"
+                              label="Bobot MK (sks)">
+              </el-table-column>
+              <el-table-column min-width="100" prop="nama_dosen"
+                              label="Dosen Pengajar">
+              </el-table-column>
+              <el-table-column min-width="38" prop="jumlah_mahasiswa"
+                              label="Peserta Kelas">
+              </el-table-column>
+              <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
+                <template slot-scope="{row}">
+                  <el-button-group>
+                    <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdate(row)"></el-button>
+                    <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDelete(row)"></el-button>
+                  </el-button-group>
+                </template>
+              </el-table-column>
+            </el-table>
+            <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
+
+          </div>
+        </template>
+
+      </el-tab-pane>
+
+      <el-tab-pane>
+      </el-tab-pane>
+    </el-tabs>
+
   </div>
 </template>
 
 <script>
 import store from '@/store'
+import waves from '@/directive/waves' // waves directive
+import { parseTime } from '@/utils'
+import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { Message, MessageBox } from 'element-ui'
+
 export default {
+  name: 'ComplexTable',
+  components: { Pagination },
+  directives: { waves },
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+      pesertaKelasKuliah: null,
+      total: 0,
+      listLoading: true,
+      listQuery: {
+        page: 1,
+        limit: 10,
+        filter: null
       },
+      downloadLoading: false,
+
       loading: false,
       checkList: ['selected and disabled', 'Option A'],
       nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu']
@@ -79,6 +155,10 @@ export default {
       // }
     }
   },
+  created() {
+    this.fetchData()
+  },
+
   computed: {
     setKelasKuliah: {
       get() {
@@ -87,9 +167,94 @@ export default {
       set(value) {
         store.commit('GET_DETAIL_KELAS_KULIAH', value)
       }
+    },
+
+    tablepesertaKelasKuliah() {
+      return this.$store.getters.pesertaKelasKuliah
     }
   },
   methods: {
+    fetchData() {
+      this.getData()
+    },
+    getData() {
+      if (this.total === 0) {
+        this.getTotal()
+      }
+      this.listLoading = true
+      this.$store.dispatch('GetPesertaKelasKuliah', this.listQuery).then(() => {
+        this.listLoading = false
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
+    indexMethod(index) {
+      if (this.listQuery.page > 1) {
+        return index + 1 + (this.listQuery.limit * (this.listQuery.page - 1))
+      } else {
+        return index + 1
+      }
+    },
+    // getTotal() {
+    //   this.$store.dispatch('GetTotalPesertaKelasKuliah', this.listQuery).then(() => {
+    //     this.listLoading = false
+    //     this.total = this.$store.getters.totalPesertaKelasKuliah
+    //     console.log(this.total)
+    //   }).catch(() => {
+    //     this.listLoading = false
+    //   })
+    // },
+    handleUpload() {
+      this.$router.push('/kelaskuliah/insertkelaskuliah')
+    },
+    handleClick(tab, event) {
+      console.log(tab, event)
+    },
+    handleFilter() {
+      this.listQuery.page = 1
+      this.getTotal()
+      this.getData()
+    },
+    handleUpdate(row) {
+      this.$store.dispatch('GetDetailKelasKuliah', row.id_kelas_kuliah).then(() => {
+        this.$router.push('/kelaskuliah/edit')
+        console.log('edit kelaskuliah ini')
+      })
+      console.log(row)
+    },
+    handleDelete(row) {
+      MessageBox.confirm('Apakah Anda ingin menghapus Kelas Kuliah ini?', 'Confirm Delete', {
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('DeleteKelasKuliah', row.id_kelas_kuliah).then(() => {
+          console.log('delete kelaskuliah ini')
+          console.log(row)
+          Message({
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
+          })
+          this.getData()
+        })
+      }).catch(() => {
+        Message({
+          type: 'info',
+          message: 'Delete canceled'
+        })
+      })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => {
+        if (j === 'timestamp') {
+          return parseTime(v[j])
+        } else {
+          return v[j]
+        }
+      }))
+    },
+
     onSubmit() {
       console.log(store.getters.updatekelaskuliah[0])
       this.loading = true

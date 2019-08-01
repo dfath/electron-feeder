@@ -58,6 +58,9 @@ const getters = {
   totalKelasKuliah: state => state.listkelaskuliah.totalKelasKuliah,
   contohkelaskuliah: state => state.contoh.contohkelaskuliah.contohkelaskuliah,
   updatekelaskuliah: state => state.getdetailkelaskuliah.updatekelaskuliah,
+
+  pesertaKelasKuliah: state => state.getpesertakelaskuliah.pesertakelaskuliah,
+  totalPesertaKelasKuliah: state => state.getpesertakelaskuliah.totalPesertaKelasKuliah,
   // deletekelaskuliah: state => state.listkelaskuliah.deletekelaskuliah,
   contohpesertakelaskuliah: state => state.contoh.contohpesertakelaskuliah.contohpesertakelaskuliah,
   // Aktivitas Kuliah Mahasiswa

@@ -28,6 +28,8 @@ import getdetailkurikulum from './modules/getdetailkurikulum'
 import listkelaskuliah from './modules/listkelaskuliah' // List Kelas Kuliah
 import getdetailkelaskuliah from './modules/getdetailkelaskuliah'
 import listnilaiperkuliahankelas from './modules/listnilaiperkuliahankelas' // List Nilai Perkuliahan Kelas
+
+import getpesertakelaskuliah from './modules/getpesertakelaskuliah'
 // Aktivitas Kuliah Mahasiswa
 import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Aktivitas Kuliah Mahasiswa
 // Aktivitas Mahasiswa
@@ -69,6 +71,8 @@ const store = new Vuex.Store({
     // Kelas Kuliah
     listkelaskuliah,
     getdetailkelaskuliah,
+
+    getpesertakelaskuliah,
     // Perkuliahan
     listnilaiperkuliahankelas,
     aktivitaskuliahmahasiswa,
