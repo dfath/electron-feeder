@@ -23,16 +23,38 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistMahasiswa" :cell-style="{padding: '0px', height: '37px'}">
+    <el-button @click="resetDateFilter">reset date filter</el-button>
+    <el-button @click="clearFilter">reset all filters</el-button>
+
+    <el-table 
+      v-loading="listLoading" 
+      border 
+      :data="tablelistMahasiswa" 
+      :cell-style="{padding: '0px', height: '37px'}"
+      max-height="500"
+      size=mini
+      stripe
+      ref="filterTable"
+    >
       <el-table-column min-width="100" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="200" prop="nama_mahasiswa"
                       label="Nama">
       </el-table-column>
-      <el-table-column min-width="100" prop="nim"
-                      label="NIM">
+      <el-table-column 
+        min-width="100" 
+        prop="nim"
+        label="NIM"
+      >
       </el-table-column>
-      <el-table-column min-width="35" prop="jenis_kelamin"
-                      label="L/P">
+      <el-table-column 
+        min-width="40" 
+        prop="jenis_kelamin"
+        label="L/P"
+        sortable
+        column-key="jenis_kelamin"
+        :filters="filterJenisKelamin"
+        :filter-method="filterHandler"  
+      >
       </el-table-column>
       <el-table-column min-width="80" prop="nama_agama"
                       label="Agama">
@@ -40,14 +62,37 @@
       <el-table-column min-width="105" prop="tanggal_lahir"
                       label="Tanggal Lahir">
       </el-table-column>
-      <el-table-column min-width="160" prop="nama_program_studi"
-                      label="Program Studi">
+      <el-table-column 
+        min-width="160" 
+        prop="nama_program_studi"
+        label="Program Studi"
+
+        sortable
+        column-key="nama_program_studi"
+        :filters="filterProdi"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="110" prop="nama_status_mahasiswa"
-                      label="Status">
+      <el-table-column 
+        min-width="110" 
+        prop="nama_status_mahasiswa"
+        label="Status"
+        sortable
+        column-key="nama_status_mahasiswa"
+        :filters="[{text: 'AKTIF', value: 'AKTIF'}, {text: 'Lulus', value: 'Lulus'}, {text: 'Lainnya', value: 'Lainnya'}]"
+        :filter-method="filterHandler"  
+      >
       </el-table-column>
-      <el-table-column min-width="125" prop="nama_periode_masuk"
-                      label="Periode Masuk">
+      <el-table-column 
+        min-width="125" 
+        prop="nama_periode_masuk"
+        label="Periode Masuk"
+
+        sortable
+        column-key="nama_periode_masuk"
+        :filters="[{text: '2018/2019 Genap', value: '2018/2019 Genap'}, {text: '2019/2020 Ganjil', value: '2019/2020 Ganjil'}, {text: '2018/2019 Ganjil', value: '2018/2019 Ganjil'}]"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -66,6 +111,7 @@
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import { Message, MessageBox } from 'element-ui'
+// import store from '@/store'
 
 export default {
   name: 'ComplexTable',
@@ -73,7 +119,7 @@ export default {
   directives: { waves },
   data() {
     return {
-      listMahasiswa: null,
+      // listMahasiswa: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -81,6 +127,14 @@ export default {
         limit: 10,
         filter: null
       },
+      filterJenisKelamin: [
+        { text: 'L', value: 'L' },
+        { text: 'P', value: 'P' }
+      ],
+      filterProdi: [
+        { text: '', value: '' }
+      ],
+      prodi: null,
       // rules: {
       //   type: [{ required: true, message: 'type is required', trigger: 'change' }],
       //   timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
@@ -91,13 +145,37 @@ export default {
   },
   created() {
     this.fetchData()
+    // store.dispatch('GetProdi').then(() => {
+    //   this.prodioption = store.getters.prodi
+    //   console.log('ini prodi dari store ' + this.prodioption)
+    // })
   },
   computed: {
     tablelistMahasiswa() {
       return this.$store.getters.listMahasiswa
     }
+    // filterProdi() {
+    //   return this.$store.getters.prodi
+    // }
   },
   methods: {
+    resetDateFilter() {
+      this.$refs.filterTable.clearFilter('date')
+    },
+    clearFilter() {
+      this.$refs.filterTable.clearFilter()
+    },
+    formatter(row, column) {
+      return row.address
+    },
+    filterTag(value, row) {
+      return row.tag === value
+    },
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
+    },
+
     fetchData() {
       this.getData()
     },
@@ -106,6 +184,7 @@ export default {
         this.getTotal()
       }
       this.listLoading = true
+
       this.$store.dispatch('GetListMahasiswa', this.listQuery).then(() => {
         this.listLoading = false
       }).catch(() => {
@@ -120,10 +199,24 @@ export default {
       }
     },
     getTotal() {
+      this.$store.dispatch('GetProdi').then(() => {
+        this.prodi = this.$store.getters.prodi
+        console.log('ini filter prodi ' + this.prodi[0].nama_jenjang_pendidikan)
+        this.filterProdi[0].text = this.prodi[1].nama_jenjang_pendidikan + ' ' + this.prodi[1].nama_program_studi
+        this.filterProdi[0].value = this.prodi[1].nama_jenjang_pendidikan + ' ' + this.prodi[1].nama_program_studi
+        console.log('ini textnya filter prodi ' + this.filterProdi.text)
+        console.log('ini value-nya filter prodi ' + this.filterProdi.value)
+        this.filterProdi.text = this.prodi[1].nama_jenjang_pendidikan
+        console.log('ini textnya filter prodi setelah diubah ' + this.filterProdi.text)
+        console.log(this.filterProdi)
+      }).catch(() => {
+        this.listLoading = false
+      })
+
       this.$store.dispatch('GetTotalMahasiswa', this.listQuery).then(() => {
         this.listLoading = false
         this.total = this.$store.getters.totalMahasiswa
-        console.log(this.total)
+        console.log('ini total ' + this.total)
       }).catch(() => {
         this.listLoading = false
       })

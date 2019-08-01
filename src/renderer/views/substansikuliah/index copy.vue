@@ -24,82 +24,6 @@
       </el-col> -->
     </el-row>
 
-    <el-button @click="resetDateFilter">reset date filter</el-button>
-    <el-button @click="clearFilter">reset all filters</el-button>
-
-    <el-table
-      v-loading="listLoading"
-      border
-      :cell-style="{padding: '0px', height: '37px'}"
-
-      ref="filterTable"
-      :data="tablelistSubstansiKuliah"
-      style="width: 100%">
-      
-      <el-table-column
-        min-width="20" 
-        type=index
-        label="No."
-      >
-      </el-table-column>
-
-      <el-table-column
-        min-width="150"
-        prop="nama_substansi"
-        label="Nama Substansi"
-        sortable
-        column-key="nama_substansi"
-        :filters="[{text: 'tes4', value: 'tes4'}, {text: 'Substansi 02', value: 'Substansi 02'}, {text: 'Substansi 03', value: 'Substansi 03'}]"
-        :filter-method="filterHandler"
-      >
-      </el-table-column>
-      <el-table-column
-        min-width="75"
-        prop="sks_mata_kuliah"
-        label="Bobot Mata Kuliah (sks)"
-      >
-      </el-table-column>
-      <el-table-column
-        min-width="75"
-        prop="sks_tatap_muka"
-        label="Bobot Tatap Muka (sks)"
-      >
-      </el-table-column>
-      <el-table-column
-        min-width="75"
-        prop="sks_praktek"
-        label="Bobot Praktek (sks)"
-      >
-      </el-table-column>
-      <el-table-column
-        min-width="75"
-        prop="sks_praktek_lapangan"
-        label="Bobot Praktek Lapangan (sks)"
-      >
-      </el-table-column>
-      <el-table-column
-        min-width="75"
-        prop="sks_simulasi"
-        label="Bobot Simulasi (sks)"
-      >
-      </el-table-column>
-
-      <!-- <el-table-column
-        min-width="75"
-        prop="tag"
-        label="Tag"
-        width="100"
-        :filters="[{ text: 'Home', value: 'Home' }, { text: 'Office', value: 'Office' }]"
-        :filter-method="filterTag"
-        filter-placement="bottom-end">
-        <template slot-scope="scope">
-          <el-tag
-            :type="scope.row.tag === 'Home' ? 'primary' : 'success'"
-            disable-transitions>{{scope.row.tag}}</el-tag>
-        </template>
-      </el-table-column> -->
-    </el-table>
-
     <el-table v-loading="listLoading" border :data="tablelistSubstansiKuliah" :cell-style="{padding: '0px', height: '37px'}">
       <el-table-column min-width="75" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="150" prop="nama_substansi"
@@ -147,45 +71,6 @@ export default {
   directives: { waves },
   data() {
     return {
-      tableData: [{
-        no: 1,
-        nama_substansi: 'Substansi 03',
-        sks_mata_kuliah: '2.00',
-        sks_tatap_muka: '2.00',
-        sks_praktek: 0.00,
-        sks_praktek_lapangan: 0,
-        sks_simulasi: 0,
-        tag: 'Home'
-      }, {
-        nama_substansi: 'Substansi 02',
-        sks_mata_kuliah: '2.00',
-        sks_tatap_muka: '2.00',
-        sks_praktek: 0.00,
-        tag: 'Office'
-      }, {
-        nama_substansi: 'Substansi 04',
-        sks_mata_kuliah: '2.00',
-        sks_tatap_muka: '2.00',
-        sks_praktek: 0.00,
-        tag: 'Home'
-      }, {
-        nama_substansi: 'tes4',
-        sks_mata_kuliah: '2.00',
-        sks_tatap_muka: '2.00',
-        sks_praktek: 0.00,
-        tag: 'Office'
-      }, {
-        nama_substansi: 'tes3',
-        sks_mata_kuliah: '2.00',
-        sks_tatap_muka: '2.00',
-        sks_praktek: '0'
-      }, {
-        nama_substansi: 'tes4',
-        sks_mata_kuliah: '4.00',
-        sks_tatap_muka: '3.00',
-        sks_praktek: '1.00'
-      }],
-
       listSubstansiKuliah: null,
       total: 0,
       listLoading: true,
@@ -206,23 +91,6 @@ export default {
     }
   },
   methods: {
-    resetDateFilter() {
-      this.$refs.filterTable.clearFilter('date')
-    },
-    clearFilter() {
-      this.$refs.filterTable.clearFilter()
-    },
-    formatter(row, column) {
-      return row.address
-    },
-    filterTag(value, row) {
-      return row.tag === value
-    },
-    filterHandler(value, row, column) {
-      const property = column['property']
-      return row[property] === value
-    },
-
     fetchData() {
       this.getData()
     },

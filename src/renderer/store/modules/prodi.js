@@ -3,7 +3,7 @@ import store from '@/store'
 
 const user = {
   state: {
-    prodi: {}
+    prodi: null
   },
 
   mutations: {
@@ -22,7 +22,7 @@ const user = {
           const data = response.data
           console.log(data)
           commit('SET_PRODI', data)
-          console.log(store.getters.prodi)
+          console.log('ini prodi di store' + store.getters.prodi)
           resolve()
         }).catch(error => {
           console.log('error')
