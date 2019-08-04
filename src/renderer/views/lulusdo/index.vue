@@ -18,7 +18,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistMahasiswaLulusDO" :cell-style="{padding: '0px', height: '38px'}">
+    <el-table size=mini v-loading="listLoading" border :data="tablelistMahasiswaLulusDO" :cell-style="{padding: '0px', height: '38px'}">
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="100" prop="nim"
                       label="NIM">

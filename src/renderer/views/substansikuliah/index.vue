@@ -24,10 +24,11 @@
       </el-col> -->
     </el-row>
 
-    <el-button @click="resetDateFilter">reset date filter</el-button>
-    <el-button @click="clearFilter">reset all filters</el-button>
+    <!-- <el-button @click="resetDateFilter">reset date filter</el-button>
+    <el-button @click="clearFilter">reset all filters</el-button> -->
 
     <el-table
+      size=mini
       v-loading="listLoading"
       border
       :cell-style="{padding: '0px', height: '37px'}"
@@ -100,37 +101,6 @@
       </el-table-column> -->
     </el-table>
 
-    <el-table v-loading="listLoading" border :data="tablelistSubstansiKuliah" :cell-style="{padding: '0px', height: '37px'}">
-      <el-table-column min-width="75" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="150" prop="nama_substansi"
-                      label="Nama Substansi">
-      </el-table-column>
-      <el-table-column min-width="75" prop="sks_mata_kuliah"
-                      label="Bobot Mata Kuliah (sks)">
-      </el-table-column>
-      <el-table-column min-width="75" prop="sks_tatap_muka"
-                      label="Bobot Tatap Muka (sks)">
-      </el-table-column>
-      <el-table-column min-width="75" prop="sks_praktek"
-                      label="Bobot Praktek (sks)">
-      </el-table-column>
-      <el-table-column min-width="75" prop="sks_praktek_lapangan"
-                      label="Bobot Praktek Lapangan (sks)">
-      </el-table-column>
-      <el-table-column min-width="75" prop="sks_simulasi"
-                      label="Bobot Simulasi (sks)">
-      </el-table-column>
-      <!-- <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
-        <template slot-scope="{row}">
-          <el-button type="warning" size="mini" icon="el-icon-edit" @click="handleUpdate(row)">
-              Edit
-          </el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="handleDelete(row)">
-              Delete
-          </el-button>
-        </template>
-      </el-table-column> -->
-    </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
 
   </div>

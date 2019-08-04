@@ -18,7 +18,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistKurikulum" :cell-style="{padding: '0px', height: '34px'}">
+    <el-table size=mini v-loading="listLoading" border :data="tablelistKurikulum" :cell-style="{padding: '0px', height: '34px'}">
       <el-table-column min-width="45" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="168" prop="nama_kurikulum"
                       label="Nama Kurikulum">

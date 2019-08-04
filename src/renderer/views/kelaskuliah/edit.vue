@@ -1,5 +1,5 @@
 <template>
-       <el-tabs >
+       <el-tabs>
           <el-tab-pane>
             <span slot="label"><i class="el-icon-location"/> Edit Kelas</span>
           <el-form ref="form" :model="form" :rules="rules" label-width="120px" v-loading="loading">
@@ -78,7 +78,7 @@
               </el-col>
             </el-row>
 
-            <el-table border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+            <el-table v-loading="listLoading" border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
               <el-table-column type="selection" width="55"></el-table-column>
               <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
               <el-table-column min-width="75" prop="kode_mata_kuliah"
@@ -135,7 +135,7 @@ export default {
     return {
       pesertaKelasKuliah: null,
       total: 0,
-      listLoading: true,
+      listLoading: false,
       listQuery: {
         page: 1,
         limit: 10,
@@ -186,6 +186,7 @@ export default {
       }
       this.listLoading = true
       this.$store.dispatch('GetPesertaKelasKuliah', this.listQuery).then(() => {
+        console.log('getpeserta done')
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
@@ -271,11 +272,14 @@ export default {
     deleteSelect() {
       console.log(this.multipleSelection)
       const todelete = this.multipleSelection
+      this.listLoading = true
       todelete.forEach(data => {
         console.log(data.id_kelas_kuliah)
         store.dispatch('DeletePesertaKelasKuliah', data)
         store.dispatch('GetPesertaKelasKuliah', data.id_kelas_kuliah)
+        this.getData()
       })
+      // this.listLoading = false
     },
     handleSelectionChange(val) {
       this.multipleSelection = val

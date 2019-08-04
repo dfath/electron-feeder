@@ -11,8 +11,10 @@ export function deletePesertaKelasKuliah(token, id_kelas_kuliah, id_registrasi_m
     data: {
       'act': 'DeletePesertaKelasKuliah',
       token,
-      id_kelas_kuliah,
-      id_registrasi_mahasiswa
+      'key': {
+        id_kelas_kuliah,
+        id_registrasi_mahasiswa
+      }
     }
   })
 }
