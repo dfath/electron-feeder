@@ -2,15 +2,15 @@
   <el-tabs>
     <el-tab-pane>
       <span slot="label"><i class="el-icon-location"/> Edit Kelas</span>
-      <el-form ref="form" :model="form" :rules="rules" label-width="120px" v-loading="loading">
-        <el-form-item label="Program Studi" required="true">
-          <el-input v-model="setKelasKuliah.nama_program_studi" disabled="true"></el-input>
+      <el-form ref="form" label-width="120px" v-loading="loading">
+        <el-form-item label="Program Studi" required>
+          <el-input v-model="setKelasKuliah.nama_program_studi" disabled></el-input>
         </el-form-item>
-        <el-form-item label="Semester" required="true">
-          <el-input v-model="setKelasKuliah.id_semester" disabled="true"></el-input>
+        <el-form-item label="Semester" required>
+          <el-input v-model="setKelasKuliah.id_semester" disabled></el-input>
         </el-form-item>
-        <el-form-item label="Mata Kuliah" required="true" >
-          <el-input v-model="setKelasKuliah.nama_mata_kuliah" disabled="true"></el-input>
+        <el-form-item label="Mata Kuliah" required >
+          <el-input v-model="setKelasKuliah.nama_mata_kuliah" disabled></el-input>
         </el-form-item>
         <!-- <el-form-item label="Bobot Mata Kuliah">
           <el-input v-model="setKelasKuliah.jumlah_sks_lulus"></el-input>
@@ -27,7 +27,7 @@
         <el-form-item label="Bobot Simulasi">
           <el-input v-model="setKelasKuliah.jumlah_sks_pilihan"></el-input> sks
         </el-form-item> -->
-        <el-form-item label="Nama Kelas" required="true">
+        <el-form-item label="Nama Kelas" required>
           <el-input v-model="setKelasKuliah.nama_kelas_kuliah"></el-input>
         </el-form-item>
         <el-form-item label="Bahasan">
@@ -132,7 +132,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        filter: null
+        filter: null,
+        id: store.getters.updatekelaskuliah[0].id_kelas_kuliah
       },
       downloadLoading: false,
       multipleSelection: [],
@@ -177,6 +178,8 @@ export default {
       if (this.total === 0) {
         this.getTotal()
       }
+      const data = store.getters.updatekelaskuliah[0]
+      console.log('ini datakelas kuliah', data)
       this.listLoading = true
       this.$store.dispatch('GetPesertaKelasKuliah', this.listQuery).then(() => {
         console.log('getpeserta done')
@@ -192,15 +195,15 @@ export default {
         return index + 1
       }
     },
-    // getTotal() {
-    //   this.$store.dispatch('GetTotalPesertaKelasKuliah', this.listQuery).then(() => {
-    //     this.listLoading = false
-    //     this.total = this.$store.getters.totalPesertaKelasKuliah
-    //     console.log(this.total)
-    //   }).catch(() => {
-    //     this.listLoading = false
-    //   })
-    // },
+    getTotal() {
+      this.$store.dispatch('GetTotalPesertaKelasKuliah', this.listQuery).then(() => {
+        this.listLoading = false
+        this.total = this.$store.getters.totalPesertaKelasKuliah
+        console.log(this.total)
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
     handleUpload() {
       this.$router.push('/kelaskuliah/insertkelaskuliah')
     },
@@ -269,7 +272,7 @@ export default {
       todelete.forEach(data => {
         console.log(data.id_kelas_kuliah)
         store.dispatch('DeletePesertaKelasKuliah', data)
-        store.dispatch('GetPesertaKelasKuliah', data.id_kelas_kuliah)
+        store.dispatch('GetPesertaKelasKuliah', data.id_kelas_kuliah, this.listQuery)
         // this.getData()
       })
       this.getData()

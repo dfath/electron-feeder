@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { getPesertaKelasKuliah } from '@/api/getPesertaKelasKuliah'
 // import { updateKelasKuliah } from '@/api/updateKelasKuliah'
 import { deletePesertaKelasKuliah } from '@/api/deletePesertaKelasKuliah'
@@ -9,26 +8,71 @@ import store from '@/store'
 
 const user = {
   state: {
-    pesertakelaskuliah: null
+    pesertakelaskuliah: null,
+    listQueryPesertaKelasKuliah: null,
+    totalPesertaKelasKuliah: null
   },
 
   mutations: {
+    SET_LIST_QUERY_PESERTA_KELAS_KULIAH: (state, listQueryPesertaKelasKuliah) => {
+      state.listQueryPesertaKelasKuliah = listQueryPesertaKelasKuliah
+    },
     GET_PESERTA_KELAS_KULIAH: (state, pesertakelaskuliah) => {
-      Vue.set(state, 'pesertakelaskuliah', pesertakelaskuliah)
+      state.pesertakelaskuliah = pesertakelaskuliah
+    },
+    SET_TOTAL_PESERTA_KELAS_KULIAH: (state, totalPesertaKelasKuliah) => {
+      state.totalPesertaKelasKuliah = totalPesertaKelasKuliah
     }
   },
 
   actions: {
-    GetPesertaKelasKuliah({ commit }, id) {
+    GetPesertaKelasKuliah({ commit }, listQuery) {
       const token = store.getters.token
-      console.log(id)
+      console.log(listQuery.id)
+      const filter = `id_kelas_kuliah = '${listQuery.id}'`
+      const limit = listQuery.limit
+      let offset = null
+      if (listQuery.page === 1) {
+        offset = ''
+      } else {
+        offset = listQuery.limit * (listQuery.page - 1)
+      }
+      listQuery.offset = offset
+      commit('SET_LIST_QUERY_PESERTA_KELAS_KULIAH', listQuery)
       return new Promise((resolve, reject) => {
-        getPesertaKelasKuliah(token, id).then(response => {
+        getPesertaKelasKuliah(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data
           console.log('ini data peserta', data)
           commit('GET_PESERTA_KELAS_KULIAH', data)
           console.log('pesertakelaskuliah di store', store.getters.pesertaKelasKuliah)
+          resolve()
+        }).catch(error => {
+          console.log('error')
+          reject(error)
+        })
+      })
+    },
+    GetTotalPesertaKelasKuliah({ commit }, listQuery) {
+      const token = store.getters.token
+      const limit = 0
+      const filter = `id_kelas_kuliah = '${listQuery.id}'`
+      let offset = null
+      console.log(listQuery)
+      if (listQuery.page === 1) {
+        offset = ''
+      } else {
+        offset = listQuery.limit * (listQuery.page - 1)
+      }
+      console.log(listQuery.page)
+      console.log(listQuery.limit)
+      console.log(offset)
+      return new Promise((resolve, reject) => {
+        getPesertaKelasKuliah(token, limit, offset, filter).then(response => {
+          console.log(response.data)
+          const data = response.data.length
+          commit('SET_TOTAL_PESERTA_KELAS_KULIAH', data)
+          console.log(store.getters.totalPesertaKelasKuliah)
           resolve()
         }).catch(error => {
           console.log('error')
