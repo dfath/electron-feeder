@@ -26,7 +26,7 @@ const baseURL = parseDataFile(urlpath, 'baseURL', defaults)
 // 创建axios实例
 const service = axios.create({
   baseURL: baseURL, // api的base_url
-  timeout: 15000,
+  timeout: 150000,
   headers: {
     'Access-Control-Allow-Origin': '*'
   }

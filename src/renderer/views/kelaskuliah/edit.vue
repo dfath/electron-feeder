@@ -270,13 +270,11 @@ export default {
       const todelete = this.multipleSelection
       this.listLoading = true
       todelete.forEach(data => {
-        console.log(data.id_kelas_kuliah)
         store.dispatch('DeletePesertaKelasKuliah', data)
-        store.dispatch('GetPesertaKelasKuliah', data.id_kelas_kuliah, this.listQuery)
+        store.dispatch('GetPesertaKelasKuliah', this.listQuery)
         // this.getData()
       })
       this.getData()
-      this.listLoading = false
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
