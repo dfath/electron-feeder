@@ -9,7 +9,14 @@
       </el-col>
     </el-row>
 
-    <el-table size=mini v-loading="listLoading" border :data="tablelistDosen" :cell-style="{padding: '0px', height: '37px'}">
+    <el-table 
+      size=mini 
+      v-loading="listLoading" 
+      border 
+      stripe
+      :data="tablelistDosen" 
+      :cell-style="{padding: '0px', height: '37px'}"
+    >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="200" prop="nama_dosen"
                       label="Nama">

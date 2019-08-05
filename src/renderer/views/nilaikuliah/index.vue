@@ -23,7 +23,14 @@
       </el-col> -->
     </el-row>
 
-    <el-table size=mini v-loading="listLoading" border :data="tablelistNilaiPerkuliahanKelas" :cell-style="{padding: '0px', height: '37px'}">
+    <el-table 
+      size=mini 
+      v-loading="listLoading" 
+      border 
+      stripe
+      :data="tablelistNilaiPerkuliahanKelas" 
+      :cell-style="{padding: '0px', height: '37px'}"
+    >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="50" prop="kode_mata_kuliah"
                       label="Kode MK">

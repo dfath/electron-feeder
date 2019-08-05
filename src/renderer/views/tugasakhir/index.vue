@@ -19,7 +19,12 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="listLoading" border :data="tablelistMataKuliah">
+    <el-table 
+      v-loading="listLoading" 
+      border 
+      stripe
+      :data="tablelistMataKuliah"
+    >
       <el-table-column min-width="75" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="50" prop="kode_mata_kuliah"
                       label="NIM">

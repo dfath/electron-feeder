@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px" v-loading="loading">
+    <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
       <el-form-item label="Mahasiswa" required="true">
         <el-input v-model="setLulusDO.id_registrasi_mahasiswa" disabled="true"></el-input>
       </el-form-item>

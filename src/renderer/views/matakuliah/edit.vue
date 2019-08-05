@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form ref="form" :model="form" label-width="120px" v-loading="loading">
+    <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
       <el-form-item label="Kode Mata Kuliah">
         <el-input v-model="setMatkul.kode_mata_kuliah"></el-input>
       </el-form-item>

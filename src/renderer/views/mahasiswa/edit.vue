@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
-    <el-tabs >
+    <el-tabs>
       <el-tab-pane>
         <span slot="label"><i class="el-icon-location" /> Edit Mahasiswa</span>
-        <el-form ref="form" :model="form" label-width="120px" v-loading="loading">
+        <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
           <el-form-item label="Nama">
             <el-input v-model="setName.nama_mahasiswa"></el-input>
           </el-form-item>
@@ -360,7 +360,7 @@
             <!-- <el-tab-pane>
               <span slot="label"><i class="el-icon-location" /> Kebutuhan Khusus</span>
               Kebutuhan Khusus
-              <el-form ref="form" :model="form" label-width="120px" v-loading="loading">
+              <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
                 <el-form-item label="Mahasiswa">
                   <el-checkbox-group v-model="setName.nama_kebutuhan_khusus_mahasiswa">
                     <el-checkbox label="1" name="netra">A - Tuna netra</el-checkbox>
@@ -443,6 +443,62 @@
       </el-tab-pane>
       <el-tab-pane>
         <span slot="label"><i class="el-icon-location" /> History Pendidikan</span>
+        <template>
+          <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
+            <el-col :span="12">
+              <el-input v-model="listQuery.filter" placeholder="Nama Peserta Kelas Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+              <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
+                Search
+              </el-button>
+            </el-col>
+            <el-col :span="12">
+              <el-row type="flex" justify="end">
+                <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                  <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
+                    Import Excel
+                  </el-button>
+                </el-col>
+                <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                  <el-button v-waves type="danger" icon="el-icon-delete" @click="deleteSelect" :disabled="disableDelete" >
+                    Delete Selected
+                  </el-button>
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+
+          <el-table size=mini v-loading="listLoading" border :data="tablelistriwayatpendidikanmahasiswa" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55"></el-table-column>
+            <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+            <el-table-column min-width="50" prop="nim"
+                            label="NIM">
+            </el-table-column>
+            <el-table-column min-width="80" prop="nama_jenis_daftar"
+                            label="Jenis Pendaftaran">
+            </el-table-column>
+            <el-table-column min-width="60" prop="nama_periode_masuk"
+                            label="Periode">
+            </el-table-column>
+            <el-table-column min-width="60" prop="tanggal_daftar"
+                            label="Tanggal Masuk">
+            </el-table-column>
+            <el-table-column min-width="100" prop="nama_perguruan_tinggi"
+                            label="Perguruan Tinggi">
+            </el-table-column>
+            <el-table-column min-width="50" prop="nama_program_studi"
+                            label="Program Studi">
+            </el-table-column>
+            <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
+              <template slot-scope="{row}">
+                <el-button-group>
+                  <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdate(row)"></el-button>
+                  <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDelete(row)"></el-button>
+                </el-button-group>
+              </template>
+            </el-table-column>
+              </el-table>
+          <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
+        </template>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -450,24 +506,32 @@
 
 <script>
 import store from '@/store'
+import waves from '@/directive/waves' // waves directive
+import { parseTime } from '@/utils'
+import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { Message, MessageBox } from 'element-ui'
+
 export default {
+  name: 'ComplexTable',
+  components: { Pagination },
+  directives: { waves },
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+      listriwayatpendidikanmahasiswa: null,
+      total: 0,
+      listLoading: false,
+      listQuery: {
+        page: 1,
+        limit: 10,
+        filter: null
       },
-      loading: false,
-      checkList: ['selected and disabled', 'Option A'],
-      nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu']
-
+      downloadLoading: false,
+      multipleSelection: [],
+      disableDelete: true
     }
+  },
+  created() {
+    this.fetchData()
   },
   computed: {
     setName: {
@@ -477,9 +541,105 @@ export default {
       set(value) {
         store.commit('GET_BIODATA_MAHASISWA', value)
       }
+    },
+    tablelistriwayatpendidikanmahasiswa() {
+      return this.$store.getters.listriwayatpendidikanmahasiswa
     }
   },
   methods: {
+    fetchData() {
+      this.getData()
+    },
+    getData() {
+      if (this.total === 0) {
+        this.getTotal()
+      }
+      this.listLoading = true
+      this.$store.dispatch('GetListRiwayatPendidikanMahasiswa', this.listQuery).then(() => {
+        console.log('getlistriwayatpendidikanmahasiswa done')
+        this.listLoading = false
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
+    indexMethod(index) {
+      if (this.listQuery.page > 1) {
+        return index + 1 + (this.listQuery.limit * (this.listQuery.page - 1))
+      } else {
+        return index + 1
+      }
+    },
+    handleUpload() {
+      this.$router.push('/mahasiswa/riwayatpendidikan')
+    },
+    handleClick(tab, event) {
+      console.log(tab, event)
+    },
+    handleFilter() {
+      this.listQuery.page = 1
+      this.getTotal()
+      this.getData()
+    },
+    // handleUpdate(row) {
+    //   this.$store.dispatch('GetDetailKelasKuliah', row.id_registrasi_mahasiswa).then(() => {
+    //     this.$router.push('/riwayatpendidikanmahasiswa/edit')
+    //     console.log('edit riwayatpendidikanmahasiswa ini')
+    //   })
+    //   console.log(row)
+    // },
+    handleDelete(row) {
+      MessageBox.confirm('Apakah Anda ingin menghapus Riwayat Pendidikan Mahasiswa ini?', 'Confirm Delete', {
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('DeleteRiwayatPendidikanMahasiswa', row).then(() => {
+          console.log('delete riwayatpendidikanmahasiswa ini')
+          console.log(row)
+          Message({
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
+          })
+          this.getData()
+        })
+      }).catch(() => {
+        Message({
+          type: 'info',
+          message: 'Delete canceled'
+        })
+      })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => {
+        if (j === 'timestamp') {
+          return parseTime(v[j])
+        } else {
+          return v[j]
+        }
+      }))
+    },
+    deleteSelect() {
+      console.log(this.multipleSelection)
+      const todelete = this.multipleSelection
+      this.listLoading = true
+      todelete.forEach(data => {
+        console.log(data.id_registrasi_mahasiswa)
+        store.dispatch('DeleteRiwayatPendidikanMahasiswa', data)
+        store.dispatch('GetListRiwayatPendidikanMahasiswa', data.id_registrasi_mahasiswa)
+        // this.getData()
+      })
+      this.getData()
+      this.listLoading = false
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+      if (this.multipleSelection.length > 0) {
+        this.disableDelete = false
+      } else {
+        this.disableDelete = true
+      }
+    },
     onSubmit() {
       console.log(store.getters.updatebiodatamahasiswa[0])
       this.loading = true

@@ -1,51 +1,30 @@
+import Vue from 'vue'
 import { getListRiwayatPendidikanMahasiswa } from '@/api/getListRiwayatPendidikanMahasiswa'
+import { deleteRiwayatPendidikanMahasiswa } from '@/api/deleteRiwayatPendidikanMahasiswa'
 import store from '@/store'
 
 const user = {
   state: {
-    listQueryRiwayatPendidikanMahasiswa: null,
-    listRiwayatPendidikanMahasiswa: null,
-    totalRiwayatPendidikanMahasiswa: null
+    listriwayatpendidikanmahasiswa: null
   },
 
   mutations: {
-    SET_LIST_QUERY_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, listQueryRiwayatPendidikanMahasiswa) => {
-      state.listQueryRiwayatPendidikanMahasiswa = listQueryRiwayatPendidikanMahasiswa
-    },
-    SET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, listRiwayatPendidikanMahasiswa) => {
-      state.listRiwayatPendidikanMahasiswa = listRiwayatPendidikanMahasiswa
-    },
-    SET_TOTAL_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, totalRiwayatPendidikanMahasiswa) => {
-      state.totalRiwayatPendidikanMahasiswa = totalRiwayatPendidikanMahasiswa
+    GET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, listriwayatpendidikanmahasiswa) => {
+      Vue.set(state, 'listriwayatpendidikanmahasiswa', listriwayatpendidikanmahasiswa)
     }
   },
 
   actions: {
-    GetListRiwayatPendidikanMahasiswa({ commit, state }, listQuery) {
-      console.log(store.getters.username)
+    GetListRiwayatPendidikanMahasiswa({ commit }, id) {
       const token = store.getters.token
-      const limit = listQuery.limit
-      let filter = '1=1 ORDER BY id_periode DESC, nim'
-      if (listQuery.filter) {
-        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY id_periode DESC, nim`
-      }
-      let offset = null
-      if (listQuery.page === 1) {
-        offset = ''
-      } else {
-        offset = listQuery.limit * (listQuery.page - 1)
-      }
-      listQuery.offset = offset
-      commit('SET_LIST_QUERY_RIWAYAT_PENDIDIKAN_MAHASISWA', listQuery)
-      console.log(listQuery.page)
-      console.log(listQuery.limit)
-      console.log(offset)
+      console.log(id)
       return new Promise((resolve, reject) => {
-        getListRiwayatPendidikanMahasiswa(token, limit, offset, filter).then(response => {
+        getListRiwayatPendidikanMahasiswa(token, id).then(response => {
           console.log(response.data)
           const data = response.data
-          commit('SET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
-          console.log(store.getters.listRiwayatPendidikanMahasiswa)
+          console.log('ini data riwayat pendidikan mahasiswa', data)
+          commit('GET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
+          console.log('listriwayatpendidikanmahasiswa di store', store.getters.listriwayatpendidikanmahasiswa)
           resolve()
         }).catch(error => {
           console.log('error')
@@ -53,32 +32,12 @@ const user = {
         })
       })
     },
-    GetTotalRiwayatPendidikanMahasiswa({ commit }, listQuery) {
+    DeleteRiwayatPendidikanMahasiswa({ commit }, data) {
       const token = store.getters.token
-      const limit = 0
-      let filter = '1=1 ORDER BY id_periode DESC, nim'
-      if (listQuery.filter) {
-        filter = `nama_mahasiswa LIKE '%${listQuery.filter}%' ORDER BY id_periode DESC, nim`
-      }
-      let offset = null
-      if (listQuery.page === 1) {
-        offset = ''
-      } else {
-        offset = listQuery.limit * (listQuery.page - 1)
-      }
-      console.log(listQuery.page)
-      console.log(listQuery.limit)
-      console.log(offset)
       return new Promise((resolve, reject) => {
-        getListRiwayatPendidikanMahasiswa(token, limit, offset, filter).then(response => {
-          console.log(response.data)
-          const data = response.data.length
-          commit('SET_TOTAL_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
-          console.log(store.getters.totalRiwayatPendidikanMahasiswa)
+        deleteRiwayatPendidikanMahasiswa(token, data.id_registrasi_mahasiswa).then(response => {
+          console.log(response)
           resolve()
-        }).catch(error => {
-          console.log('error')
-          reject(error)
         })
       })
     }

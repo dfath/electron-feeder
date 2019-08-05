@@ -32,7 +32,7 @@
       v-loading="listLoading"
       border
       :cell-style="{padding: '0px', height: '37px'}"
-
+      stripe
       ref="filterTable"
       :data="tablelistSubstansiKuliah"
       style="width: 100%">

@@ -24,7 +24,7 @@ const getters = {
   contohbiodatamahasiswa: state => state.contoh.contohbiodatamahasiswa.contohbiodatamahasiswa,
   updatebiodatamahasiswa: state => state.getbiodatamahasiswa.updatebiodatamahasiswa,
   // deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa,
-  listRiwayatPendidikanMahasiswa: state => state.getlistriwayatpendidikanmahasiswa.listRiwayatPendidikanMahasiswa,
+  listriwayatpendidikanmahasiswa: state => state.getlistriwayatpendidikanmahasiswa.listriwayatpendidikanmahasiswa,
   contohriwayatpendidikanmahasiswa: state => state.contoh.contohriwayatpendidikanmahasiswa.contohriwayatpendidikanmahasiswa,
   contohprestasimahasiswa: state => state.contoh.contohprestasimahasiswa.contohprestasimahasiswa,
   // Dosen
@@ -51,6 +51,7 @@ const getters = {
   updatekurikulum: state => state.getdetailkurikulum.updatekurikulum,
   // deletekurikulum: state => state.getdetailkurikulum.deletekurikulum,
   // Matkul Kurikulum
+  matkulkurikulum: state => state.getmatkulkurikulum.matkulkurikulum,
   contohmatkulkurikulum: state => state.contoh.contohmatkulkurikulum.contohmatkulkurikulum,
   // Kelas Perkuliahan
   listKelasKuliah: state => state.listkelaskuliah.listKelasKuliah, // List Kelas Kuliah

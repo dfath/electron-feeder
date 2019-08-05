@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListRiwayatPendidikanMahasiswa(token, id_mahasiswa) {
+export function deleteMatkulKurikulum(token, id_kurikulum, id_matkul) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -9,11 +9,12 @@ export function getListRiwayatPendidikanMahasiswa(token, id_mahasiswa) {
       'Access-Control-Allow-Origin': '*'
     },
     data: {
-      'act': 'GetListRiwayatPendidikanMahasiswa',
+      'act': 'DeleteMatkulKurikulum',
       token,
-      'filter': `id_mahasiswa = '${id_mahasiswa}'`,
-      'limit': '',
-      'offset': 0
+      'key': {
+        id_kurikulum,
+        id_matkul
+      }
     }
   })
 }

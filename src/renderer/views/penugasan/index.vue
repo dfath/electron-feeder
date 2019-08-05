@@ -9,27 +9,34 @@
       </el-col>
     </el-row>
 
-    <el-table size=mini v-loading="listLoading" border :data="tablelistPenugasanSemuaDosen" :cell-style="{padding: '0px', height: '26px'}">
+    <el-table 
+      size=mini 
+      v-loading="listLoading" 
+      border 
+      stripe 
+      :data="tablelistPenugasanSemuaDosen" 
+      :cell-style="{padding: '0px', height: '26px'}"
+    >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column min-width="200" prop="nama_dosen"
                       label="Nama">
       </el-table-column>
-      <el-table-column min-width="110" prop="nidn"
+      <el-table-column min-width="90" prop="nidn"
                       label="NIDN/NUP/NIDK">
       </el-table-column>
       <el-table-column min-width="35" prop="jenis_kelamin"
                       label="L/P">
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_tahun_ajaran"
+      <el-table-column min-width="75" prop="nama_tahun_ajaran"
                       label="Tahun Ajaran">
       </el-table-column>
-      <el-table-column min-width="150" prop="program_studi"
+      <el-table-column min-width="125" prop="program_studi"
                       label="Program Studi">
       </el-table-column>
-      <el-table-column min-width="105" prop="nomor_surat_tugas"
+      <el-table-column min-width="125" prop="nomor_surat_tugas"
                       label="No Surat Tugas">
       </el-table-column>
-      <el-table-column min-width="100" prop="tanggal_surat_tugas"
+      <el-table-column min-width="77" prop="tanggal_surat_tugas"
                       label="Tanggal Surat Tugas">
       </el-table-column>
       <el-table-column min-width="90" prop="apakah_homebase"

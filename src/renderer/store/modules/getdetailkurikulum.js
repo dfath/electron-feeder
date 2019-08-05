@@ -27,7 +27,8 @@ const user = {
           console.log(response.data)
           const data = response.data
           commit('GET_DETAIL_KURIKULUM', data)
-          console.log('kurikulum di store', store.getters.updatekurikulum)
+          console.log('detail kurikulum di store', store.getters.updatekurikulum)
+          store.dispatch('GetMatkulKurikulum', data[0].id_kurikulum)
           resolve()
         }).catch(error => {
           console.log('error')

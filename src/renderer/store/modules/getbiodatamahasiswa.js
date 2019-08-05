@@ -28,6 +28,7 @@ const user = {
           const data = response.data
           commit('GET_BIODATA_MAHASISWA', data)
           console.log('biodata di store', store.getters.updatebiodatamahasiswa)
+          store.dispatch('GetListRiwayatPendidikanMahasiswa', data[0].id_mahasiswa)
           resolve()
         }).catch(error => {
           console.log('error')

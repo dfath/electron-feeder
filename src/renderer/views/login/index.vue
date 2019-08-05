@@ -29,7 +29,7 @@
       </el-form-item>
     </el-form>
 <el-dialog :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
+      <el-form size=mini ref="dataForm" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
         <el-form-item label="URL Feeder" prop="title">
          <el-input name="url" type="text" placeholder="http://localhost:8082"/>
         </el-form-item>
