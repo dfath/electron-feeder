@@ -28,6 +28,7 @@ const user = {
           const data = response.data
           commit('GET_DETAIL_KELAS_KULIAH', data)
           console.log('kelaskuliah di store', store.getters.updatekelaskuliah)
+          store.dispatch('GetPesertaKelasKuliah', data[0].id_kelas_kuliah)
           resolve()
         }).catch(error => {
           console.log('error')

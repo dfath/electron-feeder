@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { getPesertaKelasKuliah } from '@/api/getPesertaKelasKuliah'
 // import { updateKelasKuliah } from '@/api/updateKelasKuliah'
-import { deleteKelasKuliah } from '@/api/deleteKelasKuliah'
+import { deletePesertaKelasKuliah } from '@/api/deletePesertaKelasKuliah'
 // import { getListKelasKuliah } from '@/api/getListKelasKuliah'
 // import { Message } from 'element-ui'
 // import router from '@/router'
@@ -26,8 +26,9 @@ const user = {
         getPesertaKelasKuliah(token, id).then(response => {
           console.log(response.data)
           const data = response.data
+          console.log('ini data peserta', data)
           commit('GET_PESERTA_KELAS_KULIAH', data)
-          console.log('pesertakelaskuliah di store', store.getters.pesertakelaskuliah)
+          console.log('pesertakelaskuliah di store', store.getters.pesertaKelasKuliah)
           resolve()
         }).catch(error => {
           console.log('error')
@@ -35,13 +36,11 @@ const user = {
         })
       })
     },
-    DeleteKelasKuliah({ commit }, id) {
+    DeletePesertaKelasKuliah({ commit }, data) {
       const token = store.getters.token
-      console.log(id)
       return new Promise((resolve, reject) => {
-        deleteKelasKuliah(token, id).then(response => {
-          console.log('kelaskuliah di store', store.getters.pesertakelaskuliah)
-          console.log('sekarang mau didelete')
+        deletePesertaKelasKuliah(token, data.id_kelas_kuliah, data.id_registrasi_mahasiswa).then(response => {
+          console.log(response)
           resolve()
         })
       })

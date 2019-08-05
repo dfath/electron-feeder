@@ -1,8 +1,7 @@
 <template>
-  <div class="app-container">
-    <el-tabs >
-      <el-tab-pane>
-        <span slot="label"><i class="el-icon-location" /> Edit Kelas</span>
+       <el-tabs >
+          <el-tab-pane>
+            <span slot="label"><i class="el-icon-location"/> Edit Kelas</span>
           <el-form ref="form" :model="form" :rules="rules" label-width="120px" v-loading="loading">
             <el-form-item label="Program Studi" required="true">
               <el-input v-model="setKelasKuliah.nama_program_studi" disabled="true"></el-input>
@@ -52,11 +51,10 @@
           </el-form>
 
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane>   
         <span slot="label"><i class="el-icon-location" /> Peserta Kelas</span>
 
         <template>
-          <div class="app-container">
             <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
               <el-col :span="12">
                 <el-input v-model="listQuery.filter" placeholder="Nama Mata Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
@@ -71,11 +69,17 @@
                       Import Excel
                     </el-button>
                   </el-col>
+                  <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                    <el-button v-waves type="danger" icon="el-icon-delete" @click="deleteSelect" :disabled="disableDelete" >
+                      Delete Selected
+                    </el-button>
+                  </el-col>
                 </el-row>
               </el-col>
             </el-row>
 
-            <el-table v-loading="listLoading" border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}">
+            <el-table border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+              <el-table-column type="selection" width="55"></el-table-column>
               <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
               <el-table-column min-width="75" prop="kode_mata_kuliah"
                               label="Kode MK">
@@ -103,19 +107,17 @@
                   </el-button-group>
                 </template>
               </el-table-column>
-            </el-table>
-            <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
+                </el-table>
+            <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
 
-          </div>
         </template>
 
       </el-tab-pane>
 
       <el-tab-pane>
-      </el-tab-pane>
+          </el-tab-pane>
     </el-tabs>
 
-  </div>
 </template>
 
 <script>
@@ -140,10 +142,11 @@ export default {
         filter: null
       },
       downloadLoading: false,
-
+      multipleSelection: [],
       loading: false,
       checkList: ['selected and disabled', 'Option A'],
-      nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu']
+      nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu'],
+      disableDelete: true
       // rules: {
       //   butuh: [
       //     { required: true, message: 'Please input Activity name', trigger: 'blur' },
@@ -264,6 +267,23 @@ export default {
     },
     onCancel() {
       this.$router.push('/kelaskuliah/listkelaskuliah')
+    },
+    deleteSelect() {
+      console.log(this.multipleSelection)
+      const todelete = this.multipleSelection
+      todelete.forEach(data => {
+        console.log(data.id_kelas_kuliah)
+        store.dispatch('DeletePesertaKelasKuliah', data)
+        store.dispatch('GetPesertaKelasKuliah', data.id_kelas_kuliah)
+      })
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+      if (this.multipleSelection.length > 0) {
+        this.disableDelete = false
+      } else {
+        this.disableDelete = true
+      }
     }
   }
 }
