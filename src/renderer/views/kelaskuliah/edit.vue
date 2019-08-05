@@ -61,78 +61,56 @@
                 Search
               </el-button>
             </el-col>
-          </el-form-item>
-          <el-form-item label="Tanggal Akhir Efektif">
-            <el-col :span="11">
-              <el-date-picker type="date" placeholder="Pick a date" v-model="setKelasKuliah.tanggal_akhir_efektif" style="width: 100%;"></el-date-picker>
+            <el-col :span="12">
+              <el-row type="flex" justify="end">
+                <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                  <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
+                    Import Excel
+                  </el-button>
+                </el-col>
+                <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                  <el-button v-waves type="danger" icon="el-icon-delete" @click="deleteSelect" :disabled="disableDelete" >
+                    Delete Selected
+                  </el-button>
+                </el-col>
+              </el-row>
             </el-col>
-          </el-form-item>
+          </el-row>
 
-          <el-form-item>
-            <el-button type="primary" @click="onSubmit">Update</el-button>
-            <el-button @click="onCancel">Cancel</el-button>
-          </el-form-item>
-        </el-form>
-      </el-tab-pane>
-      <el-tab-pane>   
-        <span slot="label"><i class="el-icon-location" /> Peserta Kelas</span>
-        <template>
-            <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
-              <el-col :span="12">
-                <el-input v-model="listQuery.filter" placeholder="Nama Peserta Kelas Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-                <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
-                  Search
-                </el-button>
-              </el-col>
-              <el-col :span="12">
-                <el-row type="flex" justify="end">
-                  <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-                    <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
-                      Import Excel
-                    </el-button>
-                  </el-col>
-                  <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-                    <el-button v-waves type="danger" icon="el-icon-delete" @click="deleteSelect" :disabled="disableDelete" >
-                      Delete Selected
-                    </el-button>
-                  </el-col>
-                </el-row>
-              </el-col>
-            </el-row>
+          <el-table v-loading="listLoading" border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55"></el-table-column>
+            <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+            <el-table-column min-width="75" prop="nim"
+                            label="NIM">
+            </el-table-column>
+            <el-table-column min-width="150" prop="nama_mahasiswa"
+                            label="Nama Mahasiswa">
+            </el-table-column>
+            <el-table-column min-width="45" prop="nama_program_studi"
+                            label="Jurusan">
+            </el-table-column>
+            <el-table-column min-width="45" prop="angkatan"
+                            label="Angkatan">
+            </el-table-column>
+            <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
+              <template slot-scope="{row}">
+                <el-button-group>
+                  <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdate(row)"></el-button>
+                  <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDelete(row)"></el-button>
+                </el-button-group>
+              </template>
+            </el-table-column>
+              </el-table>
+          <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
 
-            <el-table size=mini v-loading="listLoading" border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
-              <el-table-column type="selection" width="55"></el-table-column>
-              <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-              <el-table-column min-width="75" prop="nim"
-                              label="NIM">
-              </el-table-column>
-              <el-table-column min-width="150" prop="nama_mahasiswa"
-                              label="Nama Mahasiswa">
-              </el-table-column>
-              <el-table-column min-width="45" prop="nama_program_studi"
-                              label="Jurusan">
-              </el-table-column>
-              <el-table-column min-width="45" prop="angkatan"
-                              label="Angkatan">
-              </el-table-column>
-              <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
-                <template slot-scope="{row}">
-                  <el-button-group>
-                    <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdate(row)"></el-button>
-                    <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDelete(row)"></el-button>
-                  </el-button-group>
-                </template>
-              </el-table-column>
-                </el-table>
-            <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
+      </template>
 
-        </template>
-      </el-tab-pane>
+    </el-tab-pane>
 
-      <el-tab-pane>
-      </el-tab-pane>
-    </el-tabs>
-  </div>
+    <el-tab-pane>
+    </el-tab-pane>
+  </el-tabs>
+
 </template>
 
 <script>
@@ -187,6 +165,7 @@ export default {
         store.commit('GET_DETAIL_KELAS_KULIAH', value)
       }
     },
+
     tablepesertaKelasKuliah() {
       return this.$store.getters.pesertaKelasKuliah
     }
@@ -226,7 +205,7 @@ export default {
       })
     },
     handleUpload() {
-      this.$router.push('/kelaskuliah/insertpesertakelaskuliah')
+      this.$router.push('/kelaskuliah/insertkelaskuliah')
     },
     handleClick(tab, event) {
       console.log(tab, event)
