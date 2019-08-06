@@ -66,9 +66,7 @@
         min-width="160" 
         prop="nama_program_studi"
         label="Program Studi"
-
         
-        column-key="nama_program_studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
       >
@@ -131,9 +129,8 @@ export default {
         { text: 'L', value: 'L' },
         { text: 'P', value: 'P' }
       ],
-      filterProdi: [
-        { text: '', value: '' }
-      ],
+      filterProdi: [],
+      filterAngkatan: [],
       prodi: null,
       // rules: {
       //   type: [{ required: true, message: 'type is required', trigger: 'change' }],
@@ -154,11 +151,27 @@ export default {
     tablelistMahasiswa() {
       return this.$store.getters.listMahasiswa
     }
-    // filterProdi() {
-    //   return this.$store.getters.prodi
-    // }
   },
   methods: {
+    getProdi() {
+      let i = 2019
+      console.log(i)
+      while (i > 1979) {
+        console.log(i)
+        this.filterAngkatan.push({ text: i.toString(), value: i.toString() })
+        i--
+      }
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     resetDateFilter() {
       this.$refs.filterTable.clearFilter('date')
     },
@@ -177,6 +190,7 @@ export default {
     },
 
     fetchData() {
+      this.getProdi()
       this.getData()
     },
     getData() {

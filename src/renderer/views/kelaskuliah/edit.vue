@@ -70,7 +70,7 @@
                     </el-button>
                   </el-col>
                   <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-                    <el-button v-waves type="danger" icon="el-icon-delete" @click="deleteSelect" :disabled="disableDelete">
+                    <el-button v-waves type="danger" icon="el-icon-delete" @click="deleteSelect" :disabled="disableDelete" >
                       Delete Selected
                     </el-button>
                   </el-col>
@@ -88,9 +88,13 @@
                               label="Nama Mahasiswa">
               </el-table-column>
               <el-table-column min-width="45" prop="nama_program_studi"
+                              :filters="filterProdi"
+                              :filter-method="filterHandler"
                               label="Jurusan">
               </el-table-column>
               <el-table-column min-width="45" prop="angkatan"
+                              :filters="filterAngkatan"
+                              :filter-method="filterHandler"
                               label="Angkatan">
               </el-table-column>
               <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
@@ -100,12 +104,14 @@
                   </el-button-group>
                 </template>
               </el-table-column>
-            </el-table>
-
+                </el-table>
             <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
 
         </template>
 
+      </el-tab-pane>
+
+      <el-tab-pane>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -124,6 +130,7 @@ export default {
   directives: { waves },
   data() {
     return {
+      prodi: [],
       pesertaKelasKuliah: null,
       total: 0,
       listLoading: false,
@@ -131,14 +138,17 @@ export default {
         page: 1,
         limit: 10,
         filter: null,
-        id: store.getters.updatekelaskuliah[0].id_kelas_kuliah
+        id: store.getters.updatekelaskuliah[0].id_kelas_kuliah,
+        nama_program_studi: null
       },
       downloadLoading: false,
       multipleSelection: [],
       loading: false,
       checkList: ['selected and disabled', 'Option A'],
       nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu'],
-      disableDelete: true
+      disableDelete: true,
+      filterProdi: [],
+      filterAngkatan: []
       // rules: {
       //   butuh: [
       //     { required: true, message: 'Please input Activity name', trigger: 'blur' },
@@ -153,6 +163,7 @@ export default {
   created() {
     this.fetchData()
   },
+
   computed: {
     setKelasKuliah: {
       get() {
@@ -162,12 +173,33 @@ export default {
         store.commit('GET_DETAIL_KELAS_KULIAH', value)
       }
     },
+
     tablepesertaKelasKuliah() {
       return this.$store.getters.pesertaKelasKuliah
     }
   },
   methods: {
+    getProdi() {
+      let i = 2019
+      console.log(i)
+      while (i > 1979) {
+        console.log(i)
+        this.filterAngkatan.push({ text: i.toString(), value: i.toString() })
+        i--
+      }
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     fetchData() {
+      this.getProdi()
       this.getData()
     },
     getData() {
@@ -201,7 +233,7 @@ export default {
       })
     },
     handleUpload() {
-      this.$router.push('/kelaskuliah/insertpesertakelaskuliah')
+      this.$router.push('/kelaskuliah/insertkelaskuliah')
     },
     handleClick(tab, event) {
       console.log(tab, event)
@@ -279,6 +311,10 @@ export default {
       } else {
         this.disableDelete = true
       }
+    },
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
     }
   }
 }

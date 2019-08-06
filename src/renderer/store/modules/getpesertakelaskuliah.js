@@ -25,7 +25,10 @@ const user = {
     GetPesertaKelasKuliah({ commit }, listQuery) {
       const token = store.getters.token
       console.log(listQuery.id)
-      const filter = `id_kelas_kuliah = '${listQuery.id}'`
+      let filter = `id_kelas_kuliah = '${listQuery.id}'`
+      if (listQuery.id_prodi) {
+        filter = filter + ` AND nama_program_studi = '${listQuery.nama_program_studi}'`
+      }
       const limit = listQuery.limit
       let offset = null
       if (listQuery.page === 1) {
