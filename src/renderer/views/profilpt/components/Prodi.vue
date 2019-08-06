@@ -5,36 +5,43 @@
       :data="prodi"
       border
       height="250"
-      style="width: 100%">
+      style="width: 100%"
+      :cell-style="{padding: '0px', height: '37px'}"
+      max-height="500"
+      size=mini
+      stripe
+    >
       <el-table-column
         prop="kode_program_studi"
         label="Kode Program Studi"
-        width="125">
+        min-width="100">
       </el-table-column>
       <el-table-column
         prop="nama_program_studi"
         label="Nama Program Studi"
-        width="170">
+        min-width="100">
       </el-table-column>
       <el-table-column
         prop="status"
         label="Status"
-        width="75">
+        min-width="100">
       </el-table-column>
       <el-table-column
         prop="nama_jenjang_pendidikan"
         label="Jenjang"
-        width="75">
+        min-width="100">
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         prop=""
-        label="Jumlah Mahasiswa">
+        label="Jumlah Mahasiswa"
+        min-width="100" 
+      >  
       </el-table-column>
       <el-table-column
         prop=""
         label="Jumlah Dosen"
-        width="80">
-      </el-table-column>
+        min-width="100">
+      </el-table-column> -->
     </el-table>
   </div>
 </template>

@@ -2,12 +2,12 @@
   <div class="app-container">
     <el-tabs>
       <el-tab-pane>
-        <span slot="label"><i class="el-icon-location" /> Edit Mahasiswa</span>
+        <span slot="label"><i class="el-icon-edit" /> Edit Mahasiswa</span>
         <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
-          <el-form-item label="Nama">
+          <el-form-item label="Nama" required>
             <el-input v-model="setName.nama_mahasiswa"></el-input>
           </el-form-item>
-          <el-form-item label="Tempat Lahir">
+          <el-form-item label="Tempat Lahir" required>
             <el-input v-model="setName.tempat_lahir"></el-input>
           </el-form-item>
           <el-form-item label="Jenis Kelamin">
@@ -16,15 +16,15 @@
               <el-radio label="P">Perempuan</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="Nama Ibu">
+          <el-form-item label="Nama Ibu" required>
             <el-input v-model="setName.nama_ibu"></el-input>
           </el-form-item>
-          <el-form-item label="Tanggal Lahir">
+          <el-form-item label="Tanggal Lahir" required>
             <el-col :span="11">
               <el-date-picker type="date" placeholder="Pick a date" v-model="setName.tanggal_lahir" style="width: 100%;"></el-date-picker>
             </el-col>
           </el-form-item>
-          <el-form-item label="Agama">
+          <el-form-item label="Agama" required>
             <el-select v-model="setName.nama_agama" placeholder="Please select your religion">
               <el-option label="Islam" value="Islam"></el-option>
               <el-option label="Kristen" value="Kristen"></el-option>
@@ -38,10 +38,9 @@
 
           <el-tabs type="border-card">
             <el-tab-pane>
-              <span slot="label"><i class="el-icon-location" /> Alamat</span>
-              Alamat
+              <span slot="label">Alamat</span>
 
-                <el-form-item label="NIK">
+                <el-form-item label="NIK" required>
                   <el-input v-model="setName.nik"></el-input>
                 </el-form-item>
                 <el-form-item label="NISN">
@@ -50,7 +49,7 @@
                 <el-form-item label="NPWP">
                   <el-input v-model="setName.npwp"></el-input>
                 </el-form-item>
-                <el-form-item label="Kewarganegaraan">
+                <el-form-item label="Kewarganegaraan" required>
                   <el-input v-model="setName.kewarganegaraan"></el-input>
                 </el-form-item>
                 <el-form-item label="Jalan">
@@ -65,20 +64,20 @@
                 <el-form-item label="RW">
                   <el-input v-model="setName.rw"></el-input>
                 </el-form-item>
-                <el-form-item label="Kelurahan">
+                <el-form-item label="Kelurahan" required>
                   <el-input v-model="setName.kelurahan"></el-input>
                 </el-form-item>
                 <el-form-item label="Kodepos">
                   <el-input v-model="setName.kode_pos"></el-input>
                 </el-form-item>
-                <el-form-item label="Kecamatan">
+                <el-form-item label="Kecamatan" required>
                   <el-input v-model="setName.nama_wilayah"></el-input>
                 </el-form-item>
 
                 <el-form-item label="Jenis Tinggal">
                   <el-select v-model="setName.nama_jenis_tinggal" placeholder="Pilih Jenis Tinggal">
-                    <el-option label="Bersama orang tua" value="Bersama orang tua"></el-option>
-                    <el-option label="Wali" value="Wali"></el-option>
+                    <el-option label="Bersama orang tua" value=1></el-option>
+                    <el-option label="2" value="2"></el-option>
                     <el-option label="Kost" value="Kost"></el-option>
                     <el-option label="Asrama" value="Asrama"></el-option>
                     <el-option label="Panti asuhan" value="Panti asuhan"></el-option>
@@ -107,7 +106,7 @@
                 <el-form-item label="Email">
                   <el-input v-model="setName.email"></el-input>
                 </el-form-item>
-                <el-form-item label="Penerima KPS?">
+                <el-form-item label="Penerima KPS?" required>
                   <el-radio-group v-model="setName.penerima_kps">
                     <el-radio label="0">Tidak</el-radio>
                     <el-radio label="1">Ya</el-radio>
@@ -117,13 +116,10 @@
                   <el-input v-model="setName.nomor_kps"></el-input>
                 </el-form-item>
 
-
             </el-tab-pane>
             <el-tab-pane>
-              <span slot="label"><i class="el-icon-location" /> Orang Tua</span>
-              Orang Tua
-
-              Ayah
+              <span slot="label">Orang Tua</span>
+              <h4>Ayah</h4>
               <el-form-item label="NIK">
                 <el-input v-model="setName.nik_ayah"></el-input>
               </el-form-item>        
@@ -195,8 +191,7 @@
                   <el-option label="Lebih dari Rp 20,000,000"></el-option>
                 </el-select>
               </el-form-item>
-
-              Ibu
+              <h4>Ibu</h4>
               <el-form-item label="NIK">
                 <el-input v-model="setName.nik_ibu"></el-input>
               </el-form-item>        
@@ -282,9 +277,8 @@
             </el-tab-pane>
 
             <el-tab-pane>
-              <span slot="label"><i class="el-icon-location" /> Wali</span>
-              Wali
-
+              <span slot="label">Wali</span>
+                <h4>Wali</h4>
                 <el-form-item label="NIK">
                   <el-input v-model="setName.nik_wali"></el-input>
                 </el-form-item>        
@@ -358,7 +352,7 @@
                 </el-form-item>
             </el-tab-pane>
             <!-- <el-tab-pane>
-              <span slot="label"><i class="el-icon-location" /> Kebutuhan Khusus</span>
+              <span slot="label">Kebutuhan Khusus</span>
               Kebutuhan Khusus
               <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
                 <el-form-item label="Mahasiswa">
@@ -433,7 +427,7 @@
             </el-tab-pane> -->
 
           </el-tabs>
-
+          <br>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">Update</el-button>
             <el-button @click="onCancel">Cancel</el-button>
@@ -442,16 +436,16 @@
 
       </el-tab-pane>
       <el-tab-pane>
-        <span slot="label"><i class="el-icon-location" /> History Pendidikan</span>
+        <span slot="label"><i class="el-icon-info" /> History Pendidikan</span>
         <template>
           <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
-            <el-col :span="12">
-              <el-input v-model="listQuery.filter" placeholder="Nama Peserta Kelas Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+            <el-col :span="10">
+              <!-- <el-input v-model="listQuery.filter" placeholder="Nama Peserta Kelas Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
               <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
                 Search
-              </el-button>
+              </el-button> -->
             </el-col>
-            <el-col :span="12">
+            <el-col :span="14">
               <el-row type="flex" justify="end">
                 <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
                   <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
@@ -467,7 +461,7 @@
             </el-col>
           </el-row>
 
-          <el-table size=mini v-loading="listLoading" border :data="tablelistriwayatpendidikanmahasiswa" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+          <el-table size=mini stripe v-loading="listLoading" border :data="tablelistriwayatpendidikanmahasiswa" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
             <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
             <el-table-column min-width="50" prop="nim"

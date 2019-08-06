@@ -12,31 +12,36 @@
       :data="periode"
       border
       height="250"
-      style="width: 100%">
+      style="width: 100%"
+      :cell-style="{padding: '0px', height: '37px'}"
+      max-height="500"
+      size=mini
+      stripe
+    >
       <el-table-column
         prop="kode_prodi"
         label="Kode Program Studi"
-        width="175">
+        min-width="150">
       </el-table-column>
       <el-table-column
         prop="nama_program_studi"
         label="Nama Program Studi"
-        width="170">
+        min-width="150">
       </el-table-column>
       <el-table-column
         prop="status_prodi"
         label="Status"
-        width="75">
+        min-width="100">
       </el-table-column>
       <el-table-column
         prop="jenjang_pendidikan"
         label="Jenjang"
-        width="88">
+        min-width="100">
       </el-table-column>
       <el-table-column
         prop="periode_pelaporan"
         label="Periode Pelaporan"
-        width="150">
+        min-width="150">
       </el-table-column>
     </el-table>
   </div>

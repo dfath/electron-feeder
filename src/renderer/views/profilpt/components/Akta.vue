@@ -1,6 +1,14 @@
 <template>
   <div class="block">
-    <el-table border :data='tableAkta' :show-header="false">
+    <el-table 
+      border 
+      :data='tableAkta' 
+      :show-header="false"
+      :cell-style="{padding: '0px', height: '37px'}"
+      max-height="500"
+      size=mini
+      stripe
+    >
       <el-table-column min-width='100' prop='name'></el-table-column>
       <el-table-column min-width='100' prop='isi'>
       </el-table-column>

@@ -5,28 +5,35 @@
       <el-col :span="24">
         <div class="grid-content">
           <el-row  type="flex" justify="end" >
-            <el-col :span="6">
+            <el-col :span="3">
               <div>
-                <el-button v-waves type="info" icon="el-icon-download" @click="handleDownload">
+                <el-button v-waves type="warning" icon="el-icon-download" @click.prevent.stop="guide">
+                  Tutorial
+                </el-button>
+              </div>
+            </el-col>
+            <el-col :span="5">
+              <div>
+                <el-button id="tombol-contoh" v-waves type="info" icon="el-icon-download" @click="handleDownload">
                   Download Contoh File Excel
                 </el-button>
               </div>
             </el-col>
-            <el-col :span="6">
+            <el-col :span="5">
               <div>
-                <el-button ref="kirim" v-waves type="success" icon="el-icon-upload2" @click="handleUpload" :disabled="disablekirim" >
+                <el-button id="tombol-ekspor" ref="kirim" v-waves type="success" icon="el-icon-upload2" @click="handleUpload" :disabled="disablekirim" >
                   Kirim ke Feeder PDDikti
                 </el-button>
               </div>
             </el-col>
           </el-row>
 
-        <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
+        <upload-excel-component id="upload" :on-success="handleSuccess" :before-upload="beforeUpload" />
         
         </div></el-col>
     </el-row>
     
-    <el-table :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
+    <el-table id="uploaded-table" :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
       <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
     </el-table>
     <div class="components-container">
@@ -47,6 +54,10 @@ import store from '@/store'
 import BackToTop from '@/components/BackToTop'
 import waves from '@/directive/waves'
 
+import Driver from 'driver.js' // import driver.js
+import 'driver.js/dist/driver.min.css' // import driver.js css
+import steps from './steps'
+
 export default {
   name: 'UploadExcel',
   components: { UploadExcelComponent, BackToTop },
@@ -66,8 +77,12 @@ export default {
         'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         background: '#e7eaf1'// 按钮的背景颜色 The background color of the button
       },
+      driver: null,
       disablekirim: true
     }
+  },
+  mounted() {
+    this.driver = new Driver()
   },
   computed: {
     loading() {
@@ -75,6 +90,10 @@ export default {
     }
   },
   methods: {
+    guide() {
+      this.driver.defineSteps(steps)
+      this.driver.start()
+    },
     beforeUpload(file) {
       const isLt1M = file.size / 1024 / 1024 < 1
       if (isLt1M) {

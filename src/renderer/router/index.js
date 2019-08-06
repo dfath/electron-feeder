@@ -52,7 +52,7 @@ export const constantRouterMap = [
   {
     path: '/mahasiswa',
     component: Layout,
-    redirect: '/mahasiswa/excel',
+    redirect: '/mahasiswa/data',
     name: 'Mahasiswa',
     meta: { title: 'Mahasiswa', icon: 'user' },
     children: [
@@ -106,7 +106,7 @@ export const constantRouterMap = [
   {
     path: '/dosen',
     component: Layout,
-    redirect: '/dosen/dosen',
+    redirect: '/dosen/listdosen',
     name: 'Dosen',
     meta: { title: 'Dosen', icon: 'user' },
     children: [
@@ -133,7 +133,7 @@ export const constantRouterMap = [
   {
     path: '/matakuliah',
     component: Layout,
-    redirect: '/listmatakuliah',
+    redirect: '/matakuliah/listmatakuliah',
     name: 'Mata Kuliah',
     meta: { title: 'Mata Kuliah', icon: 'eye' },
     children: [
@@ -167,7 +167,7 @@ export const constantRouterMap = [
   {
     path: '/kurikulum',
     component: Layout,
-    redirect: '/listkurikulum',
+    redirect: '/kurikulum/listkurikulum',
     name: 'Kurikulum',
     meta: { title: 'Kurikulum', icon: 'table' },
     children: [
@@ -175,7 +175,7 @@ export const constantRouterMap = [
         path: 'listkurikulum',
         name: 'List Kurikulum',
         component: () => import('@/views/kurikulum/index'),
-        meta: { title: 'List Kurikulum', icon: 'education' }
+        meta: { title: 'List Kurikulum', icon: 'documentation' }
       },
       {
         path: 'insertkurikulum',
@@ -201,7 +201,7 @@ export const constantRouterMap = [
   {
     path: '/kelaskuliah',
     component: Layout,
-    redirect: '/listkelaskuliah',
+    redirect: '/kelaskuliah/listkelaskuliah',
     name: 'Kelas',
     meta: { title: 'Kelas', icon: 'table' },
     children: [
@@ -236,15 +236,15 @@ export const constantRouterMap = [
   {
     path: '/perkuliahan',
     component: Layout,
-    redirect: '/perkuliahan/matakuliah',
+    redirect: '/perkuliahan/nilaikuliah',
     name: 'Perkuliahan',
-    meta: { title: 'Perkuliahan', icon: 'table' },
+    meta: { title: 'Perkuliahan', icon: 'education' },
     children: [
       {
         path: 'nilaikuliah',
         name: 'List Nilai Perkuliahan',
         component: () => import('@/views/nilaikuliah/index'),
-        meta: { title: 'List Nilai Perkuliahan', icon: 'star' }
+        meta: { title: 'List Nilai Perkuliahan', icon: 'chart' }
       },
       {
         path: 'edit',
@@ -289,7 +289,7 @@ export const constantRouterMap = [
   {
     path: '/aktivitas',
     component: Layout,
-    redirect: '/aktivitas/listaktivitas',
+    redirect: '/aktivitas/listaktivitasmahasiswa',
     name: 'Aktivitas',
     meta: { title: 'Aktivitas', icon: 'skill' },
     children: [
@@ -341,15 +341,15 @@ export const constantRouterMap = [
   {
     path: '/lulusdo',
     component: Layout,
-    redirect: '/listlulusdo',
+    redirect: '/lulusdo/listlulusdo',
     name: 'Lulus/Drop Out',
-    meta: { title: 'Lulus/Drop Out', icon: 'table' },
+    meta: { title: 'Lulus/Drop Out', icon: 'education' },
     children: [
       {
         path: 'listlulusdo',
         name: 'Daftar Mahasiswa Lulus/Drop Out',
         component: () => import('@/views/lulusdo/index'),
-        meta: { title: 'Daftar Mahasiswa Lulus/Drop Out', icon: 'message' }
+        meta: { title: 'Daftar Mahasiswa Lulus/Drop Out', icon: 'list' }
       },
       {
         path: 'insertmahasiswalulusdo',
@@ -363,6 +363,28 @@ export const constantRouterMap = [
         hidden: true,
         component: () => import('@/views/lulusdo/edit'),
         meta: { title: 'Edit Mahasiswa Lulus/Drop Out', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/guide',
+    component: Layout,
+    redirect: '/guide/uploadmahasiswa',
+    name: 'Guide',
+    meta: { title: 'Guide', icon: 'table' },
+    children: [
+      {
+        path: 'uploadmahasiswa',
+        name: 'Guide Upload Mahasiswa',
+        component: () => import('@/views/guide/index'),
+        meta: { title: 'Guide Upload Mahasiswa', icon: 'message' }
+      },
+      {
+        path: 'uploadlain',
+        name: 'Guide Upload Lain',
+        hidden: true,
+        component: () => import('@/views/guide/index'),
+        meta: { title: 'Guide Upload Lain', icon: 'form' }
       }
     ]
   },

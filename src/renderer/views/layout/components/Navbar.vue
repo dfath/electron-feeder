@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <breadcrumb></breadcrumb>
+    <breadcrumb id="breadcrumb-container" class="breadcrumb-container"></breadcrumb>
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
@@ -16,7 +16,8 @@
         </el-tooltip> -->
 
       </template>
-      <el-dropdown class="avatar-container" trigger="click">
+
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img class="user-avatar"  src="/src/renderer/icons/svg/openfeederlogo.svg">
           <i class="el-icon-caret-bottom"></i>
@@ -96,6 +97,10 @@ export default {
     float: left;
     padding: 0 10px;
   }
+  .breadcrumb-container {
+    float: left;
+  }
+
   .screenfull {
     position: absolute;
     right: 90px;

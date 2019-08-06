@@ -34,6 +34,7 @@ import getpesertakelaskuliah from './modules/getpesertakelaskuliah'
 import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Aktivitas Kuliah Mahasiswa
 // Aktivitas Mahasiswa
 import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa' // List Aktivitas Mahasiswa
+import getlistanggotaaktivitasmahasiswa from './modules/getlistanggotaaktivitasmahasiswa' // List Aktivitas Mahasiswa
 import getdetailaktivitasmahasiswa from './modules/getdetailaktivitasmahasiswa'
 // Mahasiswa Lulus/Drop Out
 import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/Drop Out
@@ -79,6 +80,8 @@ const store = new Vuex.Store({
     // Aktivitas Mahasiswa
     listaktivitasmahasiswa,
     getdetailaktivitasmahasiswa,
+
+    getlistanggotaaktivitasmahasiswa,
     // Mahasiswa Lulus DO
     listmahasiswalulusdo,
     getdetailmahasiswalulusdo,

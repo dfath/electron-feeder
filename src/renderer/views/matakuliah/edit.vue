@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
     <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
-      <el-form-item label="Kode Mata Kuliah">
+      <el-form-item label="Kode Mata Kuliah" required>
         <el-input v-model="setMatkul.kode_mata_kuliah"></el-input>
       </el-form-item>
-      <el-form-item label="Nama Mata Kuliah">
+      <el-form-item label="Nama Mata Kuliah" required>
         <el-input v-model="setMatkul.nama_mata_kuliah"></el-input>
       </el-form-item>
-      <el-form-item label="Program Studi Pengampu">
+      <el-form-item label="Program Studi Pengampu" required>
         <!-- https://github.com/vuejs/vue-loader/issues/715 -->
         <el-select v-model="setMatkul.id_prodi" placeholder="Please select your program studi pengampu">
           <el-option v-for="item of prodioption" :key="item" :label="item.nama_jenjang_pendidikan + ' ' + item.nama_program_studi" :value="item.id_prodi"></el-option>
@@ -23,7 +23,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="Bobot Mata Kuliah (sks)">
-        <el-input v-model="setMatkul.sks_mata_kuliah"></el-input>
+        <el-input v-model="setMatkul.sks_mata_kuliah" disabled></el-input>
       </el-form-item>
       <el-form-item label="Bobot Tatap Muka (sks)">
         <el-input v-model="setMatkul.sks_tatap_muka"></el-input>

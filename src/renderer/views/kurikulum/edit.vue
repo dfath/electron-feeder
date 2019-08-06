@@ -1,17 +1,17 @@
 <template>
   <div class="app-container">
     <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
-      <el-form-item label="Nama Kurikulum">
+      <el-form-item label="Nama Kurikulum" required>
         <el-input v-model="setKurikulum.nama_kurikulum"></el-input>
       </el-form-item>
-      <el-form-item label="Program Studi">
+      <el-form-item label="Program Studi" required>
         <el-select v-model="setKurikulum.id_prodi" placeholder="Please select your program studi pengampu">
           <el-option label="D3 Farmasi" value="92992de3-c887-46d5-804d-c4dbec7c553a"></el-option>
           <el-option label="S1 Farmasi" value="02771288-85aa-4ded-ad39-cadfb8760861"></el-option>
           <el-option label="Profesi Profesi Apoteker" value="123904d9-a75c-45a8-8141-fc655ba0c486"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="Mulai Berlaku">
+      <el-form-item label="Mulai Berlaku" required>
         <el-select v-model="setKurikulum.semester_mulai_berlaku" placeholder="Please select your semester">
           <el-option label="2019/2020 Ganjil" value="2019\/2020 Ganjil"></el-option>
           <el-option label="2018/2019 Genap" value="2018\/2019 Genap"></el-option>
@@ -19,12 +19,12 @@
         </el-select>
       </el-form-item>
       <el-form-item label="Jumlah sks">
-        <el-input v-model="setKurikulum.jumlah_sks_lulus"></el-input>
+        <el-input v-model="setKurikulum.jumlah_sks_lulus" disabled></el-input>
       </el-form-item>
-      <el-form-item label="Jumlah Bobot Matakuliah Wajib">
+      <el-form-item label="Jumlah Bobot Matakuliah Wajib" required>
         <el-input v-model="setKurikulum.jumlah_sks_wajib"></el-input> sks
       </el-form-item>
-      <el-form-item label="Jumlah Bobot Matakuliah Pilihan">
+      <el-form-item label="Jumlah Bobot Matakuliah Pilihan" required>
         <el-input v-model="setKurikulum.jumlah_sks_pilihan"></el-input> sks
       </el-form-item>
 

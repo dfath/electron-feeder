@@ -1,9 +1,5 @@
 import { getPesertaKelasKuliah } from '@/api/getPesertaKelasKuliah'
-// import { updateKelasKuliah } from '@/api/updateKelasKuliah'
 import { deletePesertaKelasKuliah } from '@/api/deletePesertaKelasKuliah'
-// import { getListKelasKuliah } from '@/api/getListKelasKuliah'
-// import { Message } from 'element-ui'
-// import router from '@/router'
 import store from '@/store'
 
 const user = {

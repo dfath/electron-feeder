@@ -1,0 +1,470 @@
+[33mcommit cd71e08a946ebd8b7c3c419d20703da018600722[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m)[m
+Merge: 529e4ae d4f8d5a
+Author: unknown <>
+Date:   Mon Aug 5 09:47:30 2019 +0700
+
+    merge 7
+
+[33mcommit d4f8d5ae9a17c12c6d2844cd67c88a95793c54df[m[33m ([m[1;31morigin/deletelecturemember[m[33m)[m
+Author: unknown <luthfisandi@gmail.com>
+Date:   Mon Aug 5 16:15:23 2019 +0700
+
+    fix request bug
+
+[33mcommit 4ba28f85ac10b75c3e7db86a245986108473dcc6[m
+Author: unknown <luthfisandi@gmail.com>
+Date:   Mon Aug 5 11:55:01 2019 +0700
+
+    add total peserta kelas kuliah
+
+[33mcommit 529e4ae52cc67a87eb239a94d1f270f8d95af017[m
+Author: unknown <>
+Date:   Mon Aug 5 09:21:24 2019 +0700
+
+    ui table
+
+[33mcommit 8947cc0f1409dfc280182b9f5171803ef9a2d585[m
+Author: unknown <>
+Date:   Mon Aug 5 03:28:39 2019 +0700
+
+    delete debug
+
+[33mcommit e144ceee7f717f51bb44faf970bac3565015bcd3[m
+Author: unknown <>
+Date:   Mon Aug 5 03:06:55 2019 +0700
+
+    delete hampir selesai
+
+[33mcommit 8bc9a2abf7e2a407f87c39ece3f559c2ded82372[m
+Author: unknown <luthfisandi@gmail.com>
+Date:   Mon Aug 5 09:24:35 2019 +0700
+
+    coba delete peserta kuliah
+
+[33mcommit a8792c6f379dab6178650d28e948cdff11642636[m
+Author: unknown <>
+Date:   Fri Aug 2 03:42:43 2019 +0700
+
+    luth bantu yg berkaitan API view pesertakelaskuliah
+
+[33mcommit 1c2010e69ac3c836d5a26d88814a260927371d0e[m
+Author: unknown <>
+Date:   Thu Aug 1 10:18:17 2019 +0700
+
+    filter setengah gagal
+
+[33mcommit c88fbf4a3aad61d0a374a89c6601b7c31e055f82[m
+Merge: 0332c82 c33bebe
+Author: unknown <>
+Date:   Thu Aug 1 01:49:31 2019 +0700
+
+    Merge branch 'develop' of https://github.com/lfreeza/electron-feeder into develop
+
+[33mcommit 0332c82ff6814720915077b6b01e5dbcb9795525[m
+Author: unknown <>
+Date:   Wed Jul 31 10:20:16 2019 +0700
+
+    kecilin semua table
+
+[33mcommit c33bebe0638cf7ff0d411a4d3dabe0ff9b683fbb[m[33m ([m[1;32mrow[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Wed Jul 31 03:45:44 2019 +0700
+
+    add logo
+
+[33mcommit b72f83278e3ad177e6729eb4133e4c5af337b41c[m[33m ([m[1;31morigin/row[m[33m)[m
+Merge: 8d193c5 198b02d
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Mon Jul 29 17:00:24 2019 +0700
+
+    Merge branch 'loading' into develop
+
+[33mcommit 198b02d50e200e2eaa9bbeb75b0586c65fa1d77f[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Mon Jul 29 16:58:43 2019 +0700
+
+    loading muncul
+
+[33mcommit 8d193c536bc3ddc04882584411bf8c67f1299013[m
+Author: unknown <>
+Date:   Mon Jul 29 07:05:48 2019 +0700
+
+    semua file contoh kecuali dosen
+
+[33mcommit 7b791635f2434a299d919dc8757c03b15ca04ea2[m[33m ([m[1;31morigin/fixmatakuliah[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Fri Jul 26 09:01:04 2019 +0700
+
+    fixmatakuliah
+
+[33mcommit 5e72bb43cfb0ebf0d45a18086dbdba1f48d21f2a[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Fri Jul 26 07:39:36 2019 +0700
+
+    berhasil tambah setting URL
+
+[33mcommit 45092717280f315db238ecc5a6a9ddc3b19e7ca5[m[33m ([m[1;31morigin/settingurl[m[33m, [m[1;32msettingurl[m[33m)[m
+Author: unknown <>
+Date:   Thu Jul 25 08:01:40 2019 +0700
+
+    edit dan delete semua
+
+[33mcommit de8ccc92a4ad3d7385321b4bde2abdd4e7eca803[m
+Merge: f91214b 3b77f2c
+Author: unknown <>
+Date:   Wed Jul 24 09:46:34 2019 +0700
+
+    Merge branch 'installer' of https://github.com/lfreeza/electron-feeder into develop
+
+[33mcommit 3b77f2c4696f40edc7536bfab071c328ccf05c9f[m[33m ([m[1;31morigin/installer[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Wed Jul 24 15:42:25 2019 +0700
+
+    berhasil buat installer
+
+[33mcommit f91214bf6821537ec854e7cc7cc45d2520bdbda6[m
+Author: unknown <>
+Date:   Wed Jul 24 09:45:10 2019 +0700
+
+    semua search dan contoh
+
+[33mcommit 28143a2de954fcdb4c5f4c89970bb63936b59555[m
+Author: unknown <>
+Date:   Tue Jul 23 03:48:30 2019 +0700
+
+    perbaikan merge 6
+
+[33mcommit 393d6b92d88bf29e697f8852ca2b29f74703d9fe[m
+Merge: 2337852 141e135
+Author: unknown <>
+Date:   Tue Jul 23 03:38:09 2019 +0700
+
+    merge 6
+
+[33mcommit 2337852138d66be12454561f5302fc36d1c10c69[m
+Author: unknown <>
+Date:   Tue Jul 23 03:36:06 2019 +0700
+
+    selesai semua insert
+
+[33mcommit 141e1353093a2e9d9a906d4712795db0eef36c76[m[33m ([m[1;31morigin/insertmatkul[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 23 03:33:16 2019 +0700
+
+    prestasimahasiswa
+
+[33mcommit 21f48d85853a1419987d1257152054ba40745be1[m
+Merge: 59a145e 52186f9
+Author: unknown <>
+Date:   Mon Jul 22 04:49:46 2019 +0700
+
+    Merge branch 'insertmatkul' of https://github.com/lfreeza/electron-feeder into develop
+
+[33mcommit 59a145e29339e7955fc88007db16c734910642f6[m
+Author: unknown <>
+Date:   Mon Jul 22 04:49:08 2019 +0700
+
+    perbaikan insert dan contoh
+
+[33mcommit 52186f9b146180647699b031ff4214d83f2dfab4[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Mon Jul 22 04:47:55 2019 +0700
+
+    insertriwayat
+
+[33mcommit f606f8dfc157cfe8afcda628e29be64557f1632e[m
+Author: unknown <>
+Date:   Fri Jul 19 09:56:03 2019 +0700
+
+    insert kelas kuliah
+
+[33mcommit 917246b442eba229f13452de3e05d4ac1772e2bd[m
+Merge: 7acc91c c653b66
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Fri Jul 19 02:16:10 2019 +0700
+
+    Merge branch 'develop' of https://github.com/lfreeza/electron-feeder into insertmatkul
+
+[33mcommit 60b7f2ad08e03437f595d851a811da9e1a61963f[m
+Merge: c653b66 7acc91c
+Author: unknown <>
+Date:   Fri Jul 19 02:15:36 2019 +0700
+
+    Merge branch 'insertmatkul' of https://github.com/lfreeza/electron-feeder into develop
+
+[33mcommit c653b665741f2aee6e227cf739af0c9743b6ea9a[m
+Author: unknown <>
+Date:   Fri Jul 19 02:14:43 2019 +0700
+
+    edit mahasiswa
+
+[33mcommit 7acc91c0ea2452154fa594252750a60e82202ef6[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Fri Jul 19 02:13:40 2019 +0700
+
+    insert matkul done
+
+[33mcommit 862fcc933e4947b7e0095af79ae2e8bea5b2f76f[m
+Author: unknown <>
+Date:   Thu Jul 18 09:26:59 2019 +0700
+
+    delete matakuliah
+
+[33mcommit af9f9d303f5823c1159ef9341a6d7ec1fc687da4[m
+Author: unknown <>
+Date:   Wed Jul 17 09:31:30 2019 +0700
+
+    destination debug
+
+[33mcommit 43646b2e30629563c964ac18ca9eed06438e3760[m
+Merge: 04770d4 580758e
+Author: unknown <>
+Date:   Wed Jul 17 09:26:36 2019 +0700
+
+    merge 6
+
+[33mcommit 04770d4349f42f0a48b6cd33ae2250bf05cfd7c2[m
+Author: unknown <>
+Date:   Wed Jul 17 09:22:58 2019 +0700
+
+    perkuliahan done
+
+[33mcommit 580758eb8c1df2465d11113a2888ebf420a505e6[m[33m ([m[1;31morigin/editdone[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Wed Jul 17 09:17:12 2019 +0700
+
+    permission.js solved
+
+[33mcommit 9cb4264e99db46c82fe1ab2ae558f9272204ca39[m
+Merge: 571df28 7254392
+Author: unknown <>
+Date:   Tue Jul 16 04:20:17 2019 +0700
+
+    Merge branch 'editdone' of https://github.com/lfreeza/electron-feeder into develop
+
+[33mcommit 571df2868a374e6d6f2de877d23a9fad8fb53925[m
+Author: unknown <>
+Date:   Tue Jul 16 04:19:49 2019 +0700
+
+    kelas kuliah
+
+[33mcommit e655e1830fc2e905d6ed3f40f5faa5a2c7e94956[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 16 07:12:19 2019 +0700
+
+    edit fixed
+
+[33mcommit 7254392ba444060f63f22681664dbbde1abf7ca0[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 16 04:17:33 2019 +0700
+
+    editdone bagus
+
+[33mcommit df9a6c48f0d620a67db6f57accdba9a3acb320b3[m
+Merge: 24cc1f9 8d39aa4
+Author: unknown <>
+Date:   Mon Jul 15 09:44:42 2019 +0700
+
+    merge 4
+
+[33mcommit 8d39aa450052ae7dd77eae71aba19a8bbb24cd27[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Mon Jul 15 09:29:19 2019 +0700
+
+    edit done
+
+[33mcommit 24cc1f93dbfa6708cd9686c43808732064c693b4[m
+Author: unknown <>
+Date:   Mon Jul 15 09:25:53 2019 +0700
+
+    nambah delete
+
+[33mcommit 77d9b628d385cdfc857a1605a438d259e0d4de33[m[33m ([m[1;31morigin/delete[m[33m, [m[1;32mdelete[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Mon Jul 15 02:12:25 2019 +0700
+
+    berhasil passing ke element edit
+
+[33mcommit 6ba9e21d42ba1a53291ad9cf18f9815d661e6024[m
+Merge: 4c15ddc 3898699
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Mon Jul 15 01:52:20 2019 +0700
+
+    merge perkuliahan
+
+[33mcommit 3898699ede0a43ff1ded9cb7a1061e3ae8adc213[m[33m ([m[1;31morigin/tomboledit[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Mon Jul 15 01:48:51 2019 +0700
+
+    edit belum berhasil
+
+[33mcommit 4c15ddc7edb67068bfa738e17451b7d798a4f742[m[33m ([m[1;31morigin/perkuliahan[m[33m, [m[1;32mperkuliahan[m[33m)[m
+Author: unknown <>
+Date:   Fri Jul 12 09:09:08 2019 +0700
+
+    nambah beberapa fungsi di perkuliahan, ada beberapa masih error
+
+[33mcommit eb8dd0f00ac12af780b42e7c3415f1d2b6b19873[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Thu Jul 11 08:17:52 2019 +0700
+
+    fixed token bug
+
+[33mcommit 1f1a4ea28b53ff92ed5a651bfa60cd6f99ade5b9[m
+Merge: d713070 cca8819
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Wed Jul 10 09:17:36 2019 +0700
+
+    merge v3
+
+[33mcommit d7130704960021cace3fa97a57d6839c6482bdc5[m[33m ([m[1;31morigin/matakuliah[m[33m, [m[1;32mmatakuliah[m[33m)[m
+Author: unknown <>
+Date:   Wed Jul 10 08:56:07 2019 +0700
+
+    matakuliah dan kurikulum
+
+[33mcommit cca8819b7c93ac6ffd472759e9e08801c79d3e37[m[33m ([m[1;31morigin/downloadcontoh[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Wed Jul 10 08:20:22 2019 +0700
+
+    fix token bug dan download contoh
+
+[33mcommit cf752c84ca3a0a50205f4ed1338924adad1183ec[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Wed Jul 10 02:20:04 2019 +0700
+
+    fixed sidebar
+
+[33mcommit 6e6c3dcb8284f8a48d647791b520668207bd79da[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 9 15:19:57 2019 +0700
+
+    api mahasiswa success
+
+[33mcommit 0ff3a69a25ce3e8fb9e1c3117fde957e2056c0af[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 9 11:38:18 2019 +0700
+
+    trying to fix v2
+
+[33mcommit 0f25da8acb8b2f88d1cd269e569bfc290a8afe02[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 9 11:34:08 2019 +0700
+
+    trying to fix
+
+[33mcommit c835fed8eff065fe4be9ab18a29ca38a5f9c9535[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 9 01:30:50 2019 +0700
+
+    merge v2.1.1
+
+[33mcommit a0a4cbcd339204f44bf74ce91e2d0979390c0d39[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 9 01:30:05 2019 +0700
+
+    merge v2.1
+
+[33mcommit 3e6d7758387c5b70ff11c5f0ad2027c2f49e4000[m
+Merge: cf7fcce 45d4760
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 9 01:28:36 2019 +0700
+
+    merge v2
+
+[33mcommit cf7fcce428bc7c31b387424ebe5835a6927c9eaa[m[33m ([m[1;31morigin/profil[m[33m, [m[1;32mprofil[m[33m)[m
+Author: unknown <>
+Date:   Tue Jul 9 01:18:35 2019 +0700
+
+    edit dosen
+
+[33mcommit 45d4760d3a49bd918095168eb56f2908747ded3a[m[33m ([m[1;31morigin/viewmahasiswa[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 9 01:17:37 2019 +0700
+
+    view mahasiswa pagination
+
+[33mcommit ea6519420b695e5852a1ec08fb615554bc7e099e[m
+Author: unknown <>
+Date:   Mon Jul 8 06:54:44 2019 +0700
+
+    profil ada data semua tinggal dicantikkan UI-nya
+
+[33mcommit db04649cec2020753612e7edf367bc44cc325763[m
+Author: unknown <>
+Date:   Fri Jul 5 09:56:09 2019 +0700
+
+    menambah UI dan backend Profil PT
+
+[33mcommit 8c69efa9d27ffe324c81050510ee7bea0b9a0cae[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Fri Jul 5 08:59:44 2019 +0700
+
+    berhasil profil PT
+
+[33mcommit c11868830308281ac7d586b84df9a6373ababf65[m
+Author: unknown <>
+Date:   Thu Jul 4 12:03:57 2019 +0700
+
+    berhasil tampilkan kode PT
+
+[33mcommit bb68b207811875f88c0f893257d30e0fd02b7960[m
+Author: unknown <>
+Date:   Thu Jul 4 11:44:09 2019 +0700
+
+    load profil dari API
+
+[33mcommit aaa96be84ec36eaf61beb2ca3a4c7605c7621911[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Thu Jul 4 07:45:27 2019 +0700
+
+    debug merge 1
+
+[33mcommit 5a88489a8ed6b295fcbff819d74a1dc3feb7a044[m
+Merge: 0011a4b f501248
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Thu Jul 4 07:13:21 2019 +0700
+
+    merge 4/7/19
+
+[33mcommit f501248653e4588f3a2a747cb716df0748070d69[m
+Author: unknown <>
+Date:   Thu Jul 4 07:06:27 2019 +0700
+
+    mencoba menambah UI tapi masih gagal
+
+[33mcommit 0011a4bbbb253a84325e0f591e9266fe8485ca2c[m[33m ([m[1;31morigin/luthfi[m[33m)[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Thu Jul 4 06:24:21 2019 +0700
+
+    logout dan icon user
+
+[33mcommit c2cc37bc15875a4d119fa9dbe4276e4750ae6d07[m
+Author: unknown <>
+Date:   Thu Jul 4 03:57:20 2019 +0700
+
+    menambahkan UI
+
+[33mcommit 8355f4f2b029410ef2c3ec69e5b95bbf412c442a[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Thu Jul 4 03:55:37 2019 +0700
+
+    sukses login
+
+[33mcommit 090c0c977fae9958a6d925e7f311d912a404f07d[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 2 07:42:42 2019 +0700
+
+    ui upload done
+
+[33mcommit 6c865769b5b02e87bd4b95b98c271d5b03b8455d[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: unknown <>
+Date:   Tue Jul 2 06:11:35 2019 +0700
+
+    add excel and 2 buttons
+
+[33mcommit 6b5efbd541bc4e3f0f3ed262dbe1f10b5a0fc2e4[m
+Author: Luthfi Sandi <luthfisandi@gmail.com>
+Date:   Tue Jul 2 02:25:48 2019 +0700
+
+    first commit

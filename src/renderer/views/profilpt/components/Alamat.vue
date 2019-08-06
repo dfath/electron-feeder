@@ -1,9 +1,17 @@
 <template>
   <div class="user-activity">
     <div class="post">
-      <el-table border :data='tableAlamat' :show-header="false">
-        <el-table-column min-width='50' prop='name'></el-table-column>
-        <el-table-column min-width='150' prop='isi'>
+      <el-table 
+        border 
+        :data='tableAlamat' 
+        :show-header="false"
+        :cell-style="{padding: '0px', height: '37px'}"
+        max-height="500"
+        size=mini
+        stripe
+      >
+        <el-table-column min-width='100' prop='name'></el-table-column>
+        <el-table-column min-width='100' prop='isi'>
         </el-table-column>
       </el-table>
     </div>
