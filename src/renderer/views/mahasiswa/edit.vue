@@ -76,8 +76,8 @@
 
                 <el-form-item label="Jenis Tinggal">
                   <el-select v-model="setName.nama_jenis_tinggal" placeholder="Pilih Jenis Tinggal">
-                    <el-option label="Bersama orang tua" value=1></el-option>
-                    <el-option label="2" value="2"></el-option>
+                    <el-option label="Bersama orang tua" value="Bersama orang tua"></el-option>
+                    <el-option label="Wali" value="Wali"></el-option>
                     <el-option label="Kost" value="Kost"></el-option>
                     <el-option label="Asrama" value="Asrama"></el-option>
                     <el-option label="Panti asuhan" value="Panti asuhan"></el-option>
