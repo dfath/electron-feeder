@@ -63,12 +63,6 @@ export const constantRouterMap = [
         meta: { title: ' Data Mahasiswa', icon: 'peoples' }
       },
       {
-        path: 'upload',
-        name: 'Upload Biodata Mahasiswa',
-        component: () => import('@/views/excel/index'),
-        meta: { title: ' Upload Biodata', icon: 'excel' }
-      },
-      {
         path: 'edit',
         name: 'Edit Mahasiswa',
         hidden: true,
@@ -77,9 +71,9 @@ export const constantRouterMap = [
       },
       {
         path: 'riwayatpendidikan',
-        name: 'Upload Riwayat Pendidikan Mahasiswa',
+        name: 'Upload Biodata Riwayat Pendidikan Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: ' Upload Riwayat Pendidikan', icon: 'excel' }
+        meta: { title: ' Upload Biodata Riwayat Pendidikan', icon: 'excel' }
       },
       {
         path: 'prestasimahasiswa',

@@ -87,9 +87,13 @@
                             label="Nama Mahasiswa">
             </el-table-column>
             <el-table-column min-width="45" prop="nama_program_studi"
+                            :filters="filterProdi"
+                            :filter-method="filterHandler"
                             label="Jurusan">
             </el-table-column>
             <el-table-column min-width="45" prop="angkatan"
+                            :filters="filterAngkatan"
+                            :filter-method="filterHandler"
                             label="Angkatan">
             </el-table-column>
             <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
@@ -126,6 +130,7 @@ export default {
   directives: { waves },
   data() {
     return {
+      prodi: [],
       pesertaKelasKuliah: null,
       total: 0,
       listLoading: false,
@@ -133,14 +138,18 @@ export default {
         page: 1,
         limit: 10,
         filter: null,
-        id: store.getters.updatekelaskuliah[0].id_kelas_kuliah
+        id: store.getters.updatekelaskuliah[0].id_kelas_kuliah,
+        nama_program_studi: null
       },
       downloadLoading: false,
       multipleSelection: [],
       loading: false,
       checkList: ['selected and disabled', 'Option A'],
       nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu'],
-      disableDelete: true
+      disableDelete: true,
+      filterProdi: [],
+      filterAngkatan: [
+      ]
       // rules: {
       //   butuh: [
       //     { required: true, message: 'Please input Activity name', trigger: 'blur' },
@@ -171,7 +180,27 @@ export default {
     }
   },
   methods: {
+    getProdi() {
+      let i = 2019
+      console.log(i)
+      while (i > 1979) {
+        console.log(i)
+        this.filterAngkatan.push({ text: i.toString(), value: i.toString() })
+        i--
+      }
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     fetchData() {
+      this.getProdi()
       this.getData()
     },
     getData() {
@@ -283,6 +312,10 @@ export default {
       } else {
         this.disableDelete = true
       }
+    },
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
     }
   }
 }
