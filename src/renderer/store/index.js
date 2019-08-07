@@ -2,6 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
+// Other
+import getstatusmahasiswa from './modules/getstatusmahasiswa'
+import gettahunajaran from './modules/gettahunajaran'
+import getsemester from './modules/getsemester'
+import getjenisaktivitasmahasiswa from './modules/getjenisaktivitasmahasiswa'
+import getjeniskeluar from './modules/getjeniskeluar'
 // Profil Perguruan Tinggi
 import profil from './modules/profil'
 import prodi from './modules/prodi'
@@ -50,6 +56,12 @@ const store = new Vuex.Store({
   modules: {
     app,
     user,
+    // Other
+    getstatusmahasiswa,
+    gettahunajaran,
+    getsemester,
+    getjenisaktivitasmahasiswa,
+    getjeniskeluar,
     // Profil PT
     profil,
     prodi,

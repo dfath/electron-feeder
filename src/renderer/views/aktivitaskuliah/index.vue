@@ -26,35 +26,73 @@
       :cell-style="{padding: '0px', height: '33px'}"
     >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="50" prop="nim"
-                      label="NIM">
+      <el-table-column 
+        min-width="50" 
+        prop="nim"
+        label="NIM"
+      >
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_mahasiswa"
-                      label="Nama Mahasiswa">
+      <el-table-column 
+        min-width="100" 
+        prop="nama_mahasiswa"
+        label="Nama Mahasiswa"
+      >
       </el-table-column>
-      <el-table-column min-width="53" prop="nama_program_studi"
-                      label="Program Studi">
+      <el-table-column 
+        min-width="53" 
+        prop="nama_program_studi"
+        label="Program Studi"
+        :filters="filterProdi"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="40" prop="angkatan"
-                      label="Angkatan">
+      <el-table-column 
+        min-width="40" 
+        prop="angkatan"
+        label="Angkatan"
+        :filters="filterAngkatan"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="60" prop="nama_semester"
-                      label="Semester">
+      <el-table-column 
+        min-width="60" 
+        prop="nama_semester"
+        label="Semester"
+        :filters="filterSemester"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="50" prop="nama_status_mahasiswa"
-                      label="Status">
+      <el-table-column 
+        min-width="50" 
+        prop="nama_status_mahasiswa"
+        label="Status"
+        :filters="filterStatus"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="32" prop="ips"
-                      label="IPS">
+      <el-table-column 
+        min-width="32" 
+        prop="ips"
+        label="IPS"
+      >
       </el-table-column>
-      <el-table-column min-width="32" prop="ipk"
-                      label="IPK">
+      <el-table-column 
+        min-width="32" 
+        prop="ipk"
+        label="IPK"
+      >
       </el-table-column>
-      <el-table-column min-width="25" prop="sks_semester"
-                      label="sks Semester">
+      <el-table-column 
+        min-width="25" 
+        prop="sks_semester"
+        label="sks Semester"
+      >
       </el-table-column>
-      <el-table-column min-width="23" prop="sks_total"
-                      label="sks Total">
+      <el-table-column 
+        min-width="23" 
+        prop="sks_total"
+        label="sks Total"
+      >
       </el-table-column>
       <!-- <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -90,8 +128,19 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        filter: null
+        filter: null,
+        nama_program_studi: null,
+        nama_semester: null,
+        nama_status_mahasiswa: null
       },
+      filterProdi: [],
+      filterAngkatan: [],
+      filterSemester: [],
+      filterStatus: [],
+      prodi: [],
+      angkatan: [],
+      semester: [],
+      status: [],
       downloadLoading: false
     }
   },
@@ -104,7 +153,53 @@ export default {
     }
   },
   methods: {
+    getProdi() {
+      let i = new Date().getFullYear()
+      console.log(i)
+      while (i > 1979) {
+        console.log(i)
+        this.filterAngkatan.push({ text: i.toString(), value: i.toString() })
+        i--
+      }
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
+    getSemester() {
+      this.$store.dispatch('GetSemester').then(() => {
+        if (this.semester.length === 0) {
+          this.semester = this.$store.getters.semester
+          console.log('ini semester yg ada di filter', this.semester)
+          this.semester.forEach(semester => {
+            this.filterSemester.push({ text: `${semester.nama_semester}`, value: `${semester.nama_semester}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
+    getStatus() {
+      this.$store.dispatch('GetStatusMahasiswa').then(() => {
+        if (this.status.length === 0) {
+          this.status = this.$store.getters.statusmahasiswa
+          console.log('ini status yg ada di filter', this.status)
+          this.status.forEach(status => {
+            this.filterStatus.push({ text: `${status.nama_status_mahasiswa}`, value: `${status.nama_status_mahasiswa}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     fetchData() {
+      this.getProdi()
+      this.getStatus()
+      this.getSemester()
       this.getData()
     },
     getData() {
@@ -265,6 +360,10 @@ export default {
           return v[j]
         }
       }))
+    },
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
     }
   }
 }

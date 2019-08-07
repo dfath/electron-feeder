@@ -56,19 +56,23 @@
         :filter-method="filterHandler"  
       >
       </el-table-column>
-      <el-table-column min-width="80" prop="nama_agama"
-                      label="Agama">
+      <el-table-column 
+        min-width="80" 
+        prop="nama_agama"
+        label="Agama"
+        :filters="filterAgama"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="105" prop="tanggal_lahir"
-                      label="Tanggal Lahir">
+      <el-table-column 
+        min-width="105" 
+        prop="tanggal_lahir"
+        label="Tanggal Lahir">
       </el-table-column>
       <el-table-column 
         min-width="160" 
         prop="nama_program_studi"
         label="Program Studi"
-
-        
-        column-key="nama_program_studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
       >
@@ -79,7 +83,7 @@
         label="Status"
         
         column-key="nama_status_mahasiswa"
-        :filters="[{text: 'AKTIF', value: 'AKTIF'}, {text: 'Lulus', value: 'Lulus'}, {text: 'Lainnya', value: 'Lainnya'}]"
+        :filters="filterStatus"
         :filter-method="filterHandler"  
       >
       </el-table-column>
@@ -88,9 +92,7 @@
         prop="nama_periode_masuk"
         label="Periode Masuk"
 
-        
-        column-key="nama_periode_masuk"
-        :filters="[{text: '2018/2019 Genap', value: '2018/2019 Genap'}, {text: '2019/2020 Ganjil', value: '2019/2020 Ganjil'}, {text: '2018/2019 Ganjil', value: '2018/2019 Ganjil'}]"
+        :filters="filterPeriode"
         :filter-method="filterHandler"
       >
       </el-table-column>
@@ -125,16 +127,39 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        filter: null
+        filter: null,
+        nama_program_studi: null
       },
       filterJenisKelamin: [
-        { text: 'L', value: 'L' },
-        { text: 'P', value: 'P' }
+        { text: 'Laki-laki', value: 'L' },
+        { text: 'Perempuan', value: 'P' }
       ],
-      filterProdi: [
-        { text: '', value: '' }
+      filterProdi: [],
+      filterPeriode: [],
+      filterStatus: [
+        { text: 'AKTIF', value: 'AKTIF' },
+        { text: 'Lulus', value: 'Lulus' },
+        { text: 'Mutasi', value: 'Mutasi' },
+        { text: 'Dikeluarkan', value: 'Dikeluarkan' },
+        { text: 'Mengundurkan diri', value: 'Mengundurkan diri' },
+        { text: 'Putus sekolah', value: 'Putus sekolah' },
+        { text: 'Wafat', value: 'Wafat' },
+        { text: 'Hilang', value: 'Hilang' },
+        { text: 'Lainnya', value: 'Lainnya' }
       ],
-      prodi: null,
+      filterAgama: [
+        { text: 'Islam', value: 'Islam' },
+        { text: 'Kristen', value: 'Kristen' },
+        { text: 'Katholik', value: 'Katholik' },
+        { text: 'Hindu', value: 'Hindu' },
+        { text: 'Budha', value: 'Budha' },
+        { text: 'Konghucu', value: 'Konghucu' },
+        { text: 'Tidak diisi', value: 'Tidak diisi' },
+        { text: 'Lainnya', value: 'Lainnya' }
+      ],
+      prodi: [],
+      periode: [],
+      status: [],
       // rules: {
       //   type: [{ required: true, message: 'type is required', trigger: 'change' }],
       //   timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
@@ -145,20 +170,33 @@ export default {
   },
   created() {
     this.fetchData()
-    // store.dispatch('GetProdi').then(() => {
-    //   this.prodioption = store.getters.prodi
-    //   console.log('ini prodi dari store ' + this.prodioption)
-    // })
   },
   computed: {
     tablelistMahasiswa() {
       return this.$store.getters.listMahasiswa
     }
-    // filterProdi() {
-    //   return this.$store.getters.prodi
-    // }
   },
   methods: {
+    getProdi() {
+      // https://stackoverflow.com/questions/45757724/how-to-get-current-year-in-vue-js
+      let i = new Date().getFullYear()
+      console.log(i)
+      while (i > 1979) {
+        console.log(i)
+        this.filterAngkatan.push({ text: i.toString(), value: i.toString() })
+        i--
+      }
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     resetDateFilter() {
       this.$refs.filterTable.clearFilter('date')
     },
@@ -175,8 +213,8 @@ export default {
       const property = column['property']
       return row[property] === value
     },
-
     fetchData() {
+      this.getProdi()
       this.getData()
     },
     getData() {
@@ -199,20 +237,6 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetProdi').then(() => {
-        this.prodi = this.$store.getters.prodi
-        console.log('ini filter prodi ' + this.prodi[0].nama_jenjang_pendidikan)
-        this.filterProdi[0].text = this.prodi[1].nama_jenjang_pendidikan + ' ' + this.prodi[1].nama_program_studi
-        this.filterProdi[0].value = this.prodi[1].nama_jenjang_pendidikan + ' ' + this.prodi[1].nama_program_studi
-        console.log('ini textnya filter prodi ' + this.filterProdi.text)
-        console.log('ini value-nya filter prodi ' + this.filterProdi.value)
-        this.filterProdi.text = this.prodi[1].nama_jenjang_pendidikan
-        console.log('ini textnya filter prodi setelah diubah ' + this.filterProdi.text)
-        console.log(this.filterProdi)
-      }).catch(() => {
-        this.listLoading = false
-      })
-
       this.$store.dispatch('GetTotalMahasiswa', this.listQuery).then(() => {
         this.listLoading = false
         this.total = this.$store.getters.totalMahasiswa

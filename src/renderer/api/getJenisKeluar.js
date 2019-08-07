@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getListMahasiswaLulusDO(token, limit, offset, filter) {
+export function getJenisKeluar(token, filter) {
   return request({
     url: '/ws/live2.php',
     method: 'post',
@@ -9,12 +9,11 @@ export function getListMahasiswaLulusDO(token, limit, offset, filter) {
       'Access-Control-Allow-Origin': '*'
     },
     data: {
-      // Harusnya List, tapi diganti jadi Detail biar dapat data Prodi lengkap
-      'act': 'GetDetailMahasiswaLulusDO',
+      'act': 'GetJenisKeluar',
       token,
       filter,
-      limit,
-      offset
+      'limit': '',
+      'offset': 0
     }
   })
 }

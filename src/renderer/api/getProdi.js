@@ -12,7 +12,7 @@ export function getProdi(token, filter) {
       'act': 'GetProdi',
       token,
       filter,
-      'limit': 20,
+      'limit': '',
       'offset': 0
     }
   })

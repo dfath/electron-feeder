@@ -5,7 +5,7 @@
         <span slot="label"><i class="el-icon-edit"/> Edit Kelas</span>
         <el-form size=mini ref="form" label-width="120px" v-loading="loading">
           <el-form-item label="Program Studi" required>
-            <el-input v-model="setAktivitas.id_prodi" disabled></el-input>
+            <el-input v-model="setAktivitas.nama_prodi" disabled></el-input>
           </el-form-item>
           <el-form-item label="Semester" required>
             <el-input v-model="setAktivitas.id_semester" disabled></el-input>

@@ -18,23 +18,47 @@
       :cell-style="{padding: '0px', height: '37px'}"
     >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="200" prop="nama_dosen"
-                      label="Nama">
+      <el-table-column 
+        min-width="200" 
+        prop="nama_dosen"
+        label="Nama"
+      >
       </el-table-column>
-      <el-table-column min-width="125" prop="nidn"
-                      label="NIDN/NUP/NIDK">
+      <el-table-column 
+        min-width="125" 
+        prop="nidn"
+        label="NIDN/NUP/NIDK"
+      >
       </el-table-column>
-      <el-table-column min-width="50" prop="jenis_kelamin"
-                      label="L/P">
+      <el-table-column 
+        min-width="50" 
+        prop="jenis_kelamin"
+        label="L/P"
+        :filters="filterJenisKelamin"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_agama"
-                      label="Agama">
+      <el-table-column 
+        min-width="100" 
+        prop="nama_agama"
+        label="Agama"
+        :filters="filterAgama"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="100" prop="tanggal_lahir"
-                      label="Tanggal Lahir">
+      <el-table-column 
+        min-width="100" 
+        prop="tanggal_lahir"
+        label="Tanggal Lahir"
+      >
       </el-table-column>
-      <el-table-column min-width="50" prop="nama_status"
-                      label="Status">
+      <el-table-column 
+        min-width="50" 
+        prop="nama_status_aktif"
+        label="Status"
+        :filters="filterStatus"
+        :filter-method="filterHandler"  
+      >
       </el-table-column>
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
@@ -71,23 +95,34 @@ export default {
         limit: 10,
         filter: null
       },
-      dialogFormVisible: false,
-      dialogStatus: '',
-      textMap: {
-        update: 'Edit',
-        create: 'Create'
-      },
-      temp: {
-        id: undefined,
-        importance: 1,
-        remark: '',
-        timestamp: new Date(),
-        title: '',
-        type: '',
-        status: 'published'
-      },
-
-      dialogPvVisible: false,
+      filterJenisKelamin: [
+        { text: 'Laki-laki', value: 'L' },
+        { text: 'Perempuan', value: 'P' }
+      ],
+      filterStatus: [
+        { text: 'Aktif', value: 'Aktif' },
+        { text: 'Tidak Aktif', value: 'Tidak Aktif' },
+        { text: 'CUTI', value: 'CUTI' },
+        { text: 'KELUAR', value: 'KELUAR' },
+        { text: 'ALMARHUM', value: 'ALMARHUM' },
+        { text: 'PENSIUN', value: 'PENSIUN' },
+        { text: 'IZIN BELAJAR', value: 'IZIN BELAJAR' },
+        { text: 'TUGAS DI INSTANSI LAIN', value: 'TUGAS DI INSTANSI LAIN' },
+        { text: 'GANTI NIDN', value: 'GANTI NIDN' },
+        { text: 'TUGAS BELAJAR', value: 'TUGAS BELAJAR' },
+        { text: 'HAPUS NIDN', value: 'HAPUS NIDN' },
+        { text: 'Lainnya', value: 'Lainnya' }
+      ],
+      filterAgama: [
+        { text: 'Islam', value: 'Islam' },
+        { text: 'Kristen', value: 'Kristen' },
+        { text: 'Katholik', value: 'Katholik' },
+        { text: 'Hindu', value: 'Hindu' },
+        { text: 'Budha', value: 'Budha' },
+        { text: 'Konghucu', value: 'Konghucu' },
+        { text: 'Tidak diisi', value: 'Tidak diisi' },
+        { text: 'Lainnya', value: 'Lainnya' }
+      ],
       downloadLoading: false
     }
   },
@@ -100,6 +135,10 @@ export default {
     }
   },
   methods: {
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
+    },
     fetchData() {
       this.getData()
     },

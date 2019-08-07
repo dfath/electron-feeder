@@ -27,26 +27,51 @@
       :cell-style="{padding: '0px', height: '38px'}"
     >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="100" prop="nim"
-                      label="NIM">
+      <el-table-column 
+        min-width="100" 
+        prop="nim"
+        label="NIM"
+      >
       </el-table-column>
-      <el-table-column min-width="200" prop="nama_mahasiswa"
-                      label="Nama Mahasiswa">
+      <el-table-column 
+        min-width="200" 
+        prop="nama_mahasiswa"
+        label="Nama Mahasiswa"
+      >
       </el-table-column>
-      <el-table-column min-width="150" prop="nama_program_studi"
-                      label="Program Studi">
+      <el-table-column 
+        min-width="150" 
+        prop="nama_program_studi"
+        label="Program Studi"
+        :filters="filterProdi"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="85" prop="angkatan"
-                      label="Angkatan">
+      <el-table-column 
+        min-width="85" 
+        prop="angkatan"
+        label="Angkatan"
+        :filters="filterAngkatan"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="122" prop="nama_jenis_keluar"
-                      label="Jenis Keluar">
+      <el-table-column 
+        min-width="122" 
+        prop="nama_jenis_keluar"
+        label="Jenis Keluar"
+        :filters="filterJenisKeluar"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="122" prop="tanggal_keluar"
-                      label="Tanggal Keluar">
+      <el-table-column 
+        min-width="122" 
+        prop="tanggal_keluar"
+        label="Tanggal Keluar">
       </el-table-column>
-      <el-table-column min-width="100" prop="keterangan"
-                      label="Keterangan">
+      <el-table-column 
+        min-width="100" 
+        prop="keterangan"
+        label="Keterangan">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -80,8 +105,15 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        filter: null
+        filter: null,
+        nama_program_studi: null,
+        jenis_keluar: null
       },
+      filterProdi: [],
+      filterAngkatan: [],
+      filterJenisKeluar: [],
+      prodi: [],
+      jeniskeluar: [],
       downloadLoading: false
     }
   },
@@ -94,7 +126,40 @@ export default {
     }
   },
   methods: {
+    getProdi() {
+      let i = new Date().getFullYear()
+      console.log(i)
+      while (i > 1979) {
+        console.log(i)
+        this.filterAngkatan.push({ text: i.toString(), value: i.toString() })
+        i--
+      }
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
+    getJenisKeluar() {
+      this.$store.dispatch('GetJenisKeluar').then(() => {
+        if (this.jeniskeluar.length === 0) {
+          this.jeniskeluar = this.$store.getters.jeniskeluar
+          console.log('ini jeniskeluar yg ada di filter', this.jeniskeluar)
+          this.jeniskeluar.forEach(jeniskeluar => {
+            this.filterJenisKeluar.push({ text: `${jeniskeluar.jenis_keluar}`, value: `${jeniskeluar.jenis_keluar}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     fetchData() {
+      this.getProdi()
+      this.getJenisKeluar()
       this.getData()
     },
     getData() {
@@ -107,6 +172,10 @@ export default {
       }).catch(() => {
         this.listLoading = false
       })
+    },
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
     },
     indexMethod(index) {
       if (this.listQuery.page > 1) {

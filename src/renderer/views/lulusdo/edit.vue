@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
       <el-form-item label="Mahasiswa" required="true">
-        <el-input v-model="setLulusDO.id_registrasi_mahasiswa" disabled="true"></el-input>
+        <el-input v-model="setLulusDO.nama_mahasiswa" disabled="true"></el-input>
       </el-form-item>
       <!-- gimana masukin nim coba -->
       <el-form-item label="Jenis Keluar" required="true">
