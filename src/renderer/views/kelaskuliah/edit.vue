@@ -119,10 +119,6 @@
             <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
 
         </template>
-
-      </el-tab-pane>
-
-      <el-tab-pane>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -155,20 +151,9 @@ export default {
       downloadLoading: false,
       multipleSelection: [],
       loading: false,
-      checkList: ['selected and disabled', 'Option A'],
-      nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu'],
       disableDelete: true,
       filterProdi: [],
       filterAngkatan: []
-      // rules: {
-      //   butuh: [
-      //     { required: true, message: 'Please input Activity name', trigger: 'blur' },
-      //     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
-      //   ],
-      //   takbisa: [
-      //     { disabled: true }
-      //   ]
-      // }
     }
   },
   created() {
@@ -183,7 +168,6 @@ export default {
         store.commit('GET_DETAIL_KELAS_KULIAH', value)
       }
     },
-
     tablepesertaKelasKuliah() {
       return this.$store.getters.pesertaKelasKuliah
     }
@@ -254,21 +238,21 @@ export default {
       this.getTotal()
       this.getData()
     },
-    handleUpdate(row) {
-      this.$store.dispatch('GetDetailKelasKuliah', row.id_kelas_kuliah).then(() => {
-        this.$router.push('/kelaskuliah/edit')
-        console.log('edit kelaskuliah ini')
-      })
-      console.log(row)
-    },
+    // handleUpdate(row) {
+    //   this.$store.dispatch('GetDetailKelasKuliah', row.id_kelas_kuliah).then(() => {
+    //     this.$router.push('/kelaskuliah/edit')
+    //     console.log('edit kelaskuliah ini')
+    //   })
+    //   console.log(row)
+    // },
     handleDelete(row) {
       MessageBox.confirm('Apakah Anda ingin menghapus Kelas Kuliah ini?', 'Confirm Delete', {
         confirmButtonText: 'Ya',
         cancelButtonText: 'Tidak',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch('DeleteKelasKuliah', row.id_kelas_kuliah).then(() => {
-          console.log('delete kelaskuliah ini')
+        this.$store.dispatch('DeletePesertaKelasKuliah', row.id_kelas_kuliah).then(() => {
+          console.log('delete pesertakelaskuliah ini')
           console.log(row)
           Message({
             message: 'Delete Successfully',

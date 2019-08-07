@@ -36,13 +36,13 @@
       <el-table-column min-width="55" prop="nama_kelas_kuliah"
                       label="Nama Kelas">
       </el-table-column>
-      <el-table-column min-width="45" prop="sks"
+      <el-table-column min-width="40" prop="sks"
                       label="Bobot MK (sks)">
       </el-table-column>
       <el-table-column min-width="100" prop="nama_dosen"
                       label="Dosen Pengajar">
       </el-table-column>
-      <el-table-column min-width="38" prop="jumlah_mahasiswa"
+      <el-table-column min-width="30" prop="jumlah_mahasiswa"
                       label="Peserta Kelas">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">

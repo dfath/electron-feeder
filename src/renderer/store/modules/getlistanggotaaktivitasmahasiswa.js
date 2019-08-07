@@ -1,6 +1,5 @@
 import { getListAnggotaAktivitasMahasiswa } from '@/api/getListAnggotaAktivitasMahasiswa'
 import { deleteAnggotaAktivitasMahasiswa } from '@/api/deleteAnggotaAktivitasMahasiswa'
-
 import store from '@/store'
 
 const user = {
@@ -26,7 +25,13 @@ const user = {
     GetListAnggotaAktivitasMahasiswa({ commit, state }, listQuery) {
       const token = store.getters.token
       console.log(listQuery.id)
-      const filter = `id_aktivitas = '${listQuery.id}'`
+      let filter = `id_aktivitas = '${listQuery.id}'`
+      if (listQuery.id_aktivitas) {
+        filter = filter + ` AND judul = '${listQuery.judul}'`
+      }
+      if (listQuery.filter) {
+        filter = filter + ` AND nama_mahasiswa LIKE '%${listQuery.filter}%'`
+      }
       const limit = listQuery.limit
       let offset = null
       if (listQuery.page === 1) {

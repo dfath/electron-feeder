@@ -31,7 +31,7 @@
       >
       </el-table-column>
       <el-table-column 
-        min-width="35" 
+        min-width="40" 
         prop="jenis_kelamin"
         label="L/P"
         :filters="filterJenisKelamin"
@@ -39,7 +39,7 @@
       >
       </el-table-column>
       <el-table-column 
-        min-width="75" 
+        min-width="90" 
         prop="nama_tahun_ajaran"
         label="Tahun Ajaran"
         :filters="filterTahunAjaran"
@@ -61,7 +61,7 @@
       >
       </el-table-column>
       <el-table-column 
-        min-width="77" 
+        min-width="80" 
         prop="tanggal_surat_tugas"
         label="Tanggal Surat Tugas"
       >

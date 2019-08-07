@@ -81,7 +81,15 @@
               </el-col>
             </el-row>
 
-            <el-table size=mini stripe v-loading="listLoading" border :data="tablelistAnggotaAktivitasMahasiswa" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+            <el-table 
+              size=mini 
+              stripe 
+              v-loading="listLoading" 
+              border 
+              :data="tablelistAnggotaAktivitasMahasiswa"
+              :cell-style="{padding: '0px', height: '35px'}"
+              @selection-change="handleSelectionChange"
+            >
               <el-table-column type="selection" width="55"></el-table-column>
               <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
               <el-table-column min-width="70" prop="nim"
@@ -105,7 +113,6 @@
             <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
 
         </template>
-
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -132,6 +139,7 @@ export default {
         filter: null,
         id: store.getters.updateaktivitas[0].id_aktivitas
       },
+      loading: false,
       downloadLoading: false,
       multipleSelection: [],
       disableDelete: true

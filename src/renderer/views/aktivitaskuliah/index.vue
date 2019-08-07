@@ -27,13 +27,13 @@
     >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
       <el-table-column 
-        min-width="50" 
+        min-width="45" 
         prop="nim"
         label="NIM"
       >
       </el-table-column>
       <el-table-column 
-        min-width="100" 
+        min-width="80" 
         prop="nama_mahasiswa"
         label="Nama Mahasiswa"
       >
@@ -55,7 +55,7 @@
       >
       </el-table-column>
       <el-table-column 
-        min-width="60" 
+        min-width="55" 
         prop="nama_semester"
         label="Semester"
         :filters="filterSemester"
@@ -71,25 +71,25 @@
       >
       </el-table-column>
       <el-table-column 
-        min-width="32" 
+        min-width="25" 
         prop="ips"
         label="IPS"
       >
       </el-table-column>
       <el-table-column 
-        min-width="32" 
+        min-width="25" 
         prop="ipk"
         label="IPK"
       >
       </el-table-column>
       <el-table-column 
-        min-width="25" 
+        min-width="40" 
         prop="sks_semester"
         label="sks Semester"
       >
       </el-table-column>
       <el-table-column 
-        min-width="23" 
+        min-width="30" 
         prop="sks_total"
         label="sks Total"
       >

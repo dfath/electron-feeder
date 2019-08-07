@@ -32,7 +32,15 @@ const getters = {
   // deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa,
   listriwayatpendidikanmahasiswa: state => state.getlistriwayatpendidikanmahasiswa.listriwayatpendidikanmahasiswa,
   contohriwayatpendidikanmahasiswa: state => state.contoh.contohriwayatpendidikanmahasiswa.contohriwayatpendidikanmahasiswa,
+  updateriwayatpendidikanmahasiswa: state => state.getlistriwayatpendidikanmahasiswa.updateriwayatpendidikanmahasiswa,
+
+  // // Prestasi
+  listprestasimahasiswa: state => state.getlistprestasimahasiswa.listprestasimahasiswa,
+  totalPrestasiMahasiswa: state => state.getlistprestasimahasiswa.totalPrestasiMahasiswa,
   contohprestasimahasiswa: state => state.contoh.contohprestasimahasiswa.contohprestasimahasiswa,
+  updateprestasimahasiswa: state => state.getlistprestasimahasiswa.listprestasimahasiswa,
+  listQueryPrestasiMahasiswa: state => state.getlistprestasimahasiswa.listQueryPrestasiMahasiswa,
+
   // Dosen
   listDosen: state => state.listdosen.listDosen,
   totalDosen: state => state.listdosen.totalDosen,

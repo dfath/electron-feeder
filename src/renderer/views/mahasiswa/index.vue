@@ -47,7 +47,7 @@
       >
       </el-table-column>
       <el-table-column 
-        min-width="40" 
+        min-width="50" 
         prop="jenis_kelamin"
         label="L/P"
         
@@ -78,7 +78,7 @@
       >
       </el-table-column>
       <el-table-column 
-        min-width="110" 
+        min-width="113" 
         prop="nama_status_mahasiswa"
         label="Status"
         
@@ -135,6 +135,7 @@ export default {
         { text: 'Perempuan', value: 'P' }
       ],
       filterProdi: [],
+      filterAngkatan: [],
       filterPeriode: [],
       filterStatus: [
         { text: 'AKTIF', value: 'AKTIF' },
@@ -245,8 +246,17 @@ export default {
         this.listLoading = false
       })
     },
+    getTotalPrestasi() {
+      this.$store.dispatch('GetTotalPrestasiMahasiswa', this.listQuery).then(() => {
+        this.listLoading = false
+        this.totalPrestasiMahasiswa = this.$store.getters.totalPrestasiMahasiswa
+        console.log('ini total prestasi ' + this.total)
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
     handleUpload() {
-      this.$router.push('/mahasiswa/upload')
+      this.$router.push('/mahasiswa/riwayatpendidikan')
     },
     handleFilter() {
       this.listQuery.page = 1

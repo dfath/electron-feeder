@@ -7,7 +7,7 @@
           <el-row  type="flex" justify="end" >
             <el-col :span="3">
               <div>
-                <el-button v-waves type="warning" icon="el-icon-download" @click.prevent.stop="guide">
+                <el-button v-waves type="warning" icon="el-icon-info" @click.prevent.stop="guide">
                   Tutorial
                 </el-button>
               </div>

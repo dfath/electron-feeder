@@ -17,7 +17,8 @@ import destination from './modules/destination'
 // Mahasiswa
 import list from './modules/list' // List Mahasiswa
 import getbiodatamahasiswa from './modules/getbiodatamahasiswa'
-import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa' // List Kurikulum
+import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa' // List Riwayat Pendidikan Mahasiswa
+import getlistprestasimahasiswa from './modules/getlistprestasimahasiswa' // List Prestasi
 // Dosen
 import listdosen from './modules/listdosen'
 import listpenugasandosen from './modules/listpenugasandosen' // List Penugasan Dosen
@@ -70,6 +71,7 @@ const store = new Vuex.Store({
     list,
     getbiodatamahasiswa,
     getlistriwayatpendidikanmahasiswa,
+    getlistprestasimahasiswa,
     // Dosen
     listdosen,
     listpenugasandosen,

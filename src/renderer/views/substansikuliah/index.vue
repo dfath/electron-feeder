@@ -49,37 +49,34 @@
         prop="nama_substansi"
         label="Nama Substansi"
         sortable
-        column-key="nama_substansi"
-        :filters="[{text: 'tes4', value: 'tes4'}, {text: 'Substansi 02', value: 'Substansi 02'}, {text: 'Substansi 03', value: 'Substansi 03'}]"
-        :filter-method="filterHandler"
       >
       </el-table-column>
       <el-table-column
-        min-width="75"
+        min-width="88"
         prop="sks_mata_kuliah"
         label="Bobot Mata Kuliah (sks)"
       >
       </el-table-column>
       <el-table-column
-        min-width="75"
+        min-width="88"
         prop="sks_tatap_muka"
         label="Bobot Tatap Muka (sks)"
       >
       </el-table-column>
       <el-table-column
-        min-width="75"
+        min-width="88"
         prop="sks_praktek"
         label="Bobot Praktek (sks)"
       >
       </el-table-column>
       <el-table-column
-        min-width="75"
+        min-width="88"
         prop="sks_praktek_lapangan"
         label="Bobot Praktek Lapangan (sks)"
       >
       </el-table-column>
       <el-table-column
-        min-width="75"
+        min-width="88"
         prop="sks_simulasi"
         label="Bobot Simulasi (sks)"
       >
@@ -188,10 +185,10 @@ export default {
     filterTag(value, row) {
       return row.tag === value
     },
-    filterHandler(value, row, column) {
-      const property = column['property']
-      return row[property] === value
-    },
+    // filterHandler(value, row, column) {
+    //   const property = column['property']
+    //   return row[property] === value
+    // },
 
     fetchData() {
       this.getData()

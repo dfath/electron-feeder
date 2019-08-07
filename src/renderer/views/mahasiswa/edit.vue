@@ -494,6 +494,65 @@
           <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
         </template>
       </el-tab-pane>
+      <el-tab-pane>
+        <span slot="label"><i class="el-icon-info" /> Prestasi</span>
+        <template>
+          <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
+            <el-col :span="10">
+              <!-- <el-input v-model="listQuery.filter" placeholder="Nama Peserta Kelas Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+              <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
+                Search
+              </el-button> -->
+            </el-col>
+            <el-col :span="14">
+              <el-row type="flex" justify="end">
+                <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                  <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUploadPrestasi">
+                    Import Excel
+                  </el-button>
+                </el-col>
+                <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+                  <el-button v-waves type="danger" icon="el-icon-delete" @click="deleteSelectPrestasi" :disabled="disableDelete" >
+                    Delete Selected
+                  </el-button>
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+
+          <el-table size=mini stripe v-loading="listLoading" border :data="tablelistprestasimahasiswa" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="55"></el-table-column>
+            <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+            <el-table-column min-width="50" prop="nama_jenis_prestasi"
+                            label="Jenis Prestasi">
+            </el-table-column>
+            <el-table-column min-width="80" prop="nama_tingkat_prestasi"
+                            label="Tingkat Prestasi">
+            </el-table-column>
+            <el-table-column min-width="60" prop="nama_prestasi"
+                            label="Nama Prestasi">
+            </el-table-column>
+            <el-table-column min-width="60" prop="tahun_prestasi"
+                            label="Tahun Prestasi">
+            </el-table-column>
+            <el-table-column min-width="100" prop="penyelenggara"
+                            label="Penyelenggara">
+            </el-table-column>
+            <el-table-column min-width="50" prop="peringkat"
+                            label="Peringkat">
+            </el-table-column>
+            <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
+              <template slot-scope="{row}">
+                <el-button-group>
+                  <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdatePrestasi(row)"></el-button>
+                  <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDeletePrestasi(row)"></el-button>
+                </el-button-group>
+              </template>
+            </el-table-column>
+              </el-table>
+          <pagination v-show="totalPrestasi>0" :totalPrestasi="totalPrestasi" :page.sync="listQueryPrestasi.page" :limit.sync="listQueryPrestasi.limit" @pagination="fetchData"/>
+        </template>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -521,7 +580,15 @@ export default {
       },
       downloadLoading: false,
       multipleSelection: [],
-      disableDelete: true
+      disableDelete: true,
+      // Prestasi
+      listprestasimahasiswa: null,
+      totalPrestasi: 0,
+      listQueryPrestasi: {
+        page: 1,
+        limit: 10,
+        filter: null
+      }
     }
   },
   created() {
@@ -538,19 +605,36 @@ export default {
     },
     tablelistriwayatpendidikanmahasiswa() {
       return this.$store.getters.listriwayatpendidikanmahasiswa
+    },
+    tablelistprestasimahasiswa() {
+      return this.$store.getters.listprestasimahasiswa
     }
   },
   methods: {
     fetchData() {
-      this.getData()
+      this.getDataRiwayat()
+      this.getDataPrestasi()
     },
-    getData() {
+    getDataRiwayat() {
       if (this.total === 0) {
         this.getTotal()
       }
       this.listLoading = true
       this.$store.dispatch('GetListRiwayatPendidikanMahasiswa', this.listQuery).then(() => {
         console.log('getlistriwayatpendidikanmahasiswa done')
+        this.listLoading = false
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
+    getDataPrestasi() {
+      if (this.totalPrestasi === 0) {
+        this.getTotalPrestasi()
+      }
+      this.listLoading = true
+      console.log('getdataprestasi')
+      this.$store.dispatch('GetListPrestasiMahasiswa', this.listQueryPrestasi).then(() => {
+        console.log('getlistprestasimahasiswa done')
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
@@ -566,13 +650,19 @@ export default {
     handleUpload() {
       this.$router.push('/mahasiswa/riwayatpendidikan')
     },
+    handleUploadPrestasi() {
+      this.$router.push('/mahasiswa/prestasimahasiswa')
+    },
     handleClick(tab, event) {
       console.log(tab, event)
     },
     handleFilter() {
       this.listQuery.page = 1
+      this.listQueryPrestasi.page = 1
       this.getTotal()
-      this.getData()
+      this.getTotalPrestasi()
+      this.getDataRiwayat()
+      this.getDataPrestasi()
     },
     // handleUpdate(row) {
     //   this.$store.dispatch('GetDetailKelasKuliah', row.id_registrasi_mahasiswa).then(() => {
@@ -595,7 +685,7 @@ export default {
             type: 'success',
             duration: 2000
           })
-          this.getData()
+          this.getDataRiwayat()
         })
       }).catch(() => {
         Message({
@@ -621,9 +711,22 @@ export default {
         console.log(data.id_registrasi_mahasiswa)
         store.dispatch('DeleteRiwayatPendidikanMahasiswa', data)
         store.dispatch('GetListRiwayatPendidikanMahasiswa', data.id_registrasi_mahasiswa)
-        // this.getData()
+        // this.getDataRiwayat()
       })
-      this.getData()
+      this.getDataRiwayat()
+      this.listLoading = false
+    },
+    deleteSelectPrestasi() {
+      console.log(this.multipleSelection)
+      const todelete = this.multipleSelection
+      this.listLoading = true
+      todelete.forEach(data => {
+        console.log(data.id_registrasi_mahasiswa)
+        store.dispatch('DeletePrestasiMahasiswa', data)
+        store.dispatch('GetListPrestasiMahasiswa', data.id_registrasi_mahasiswa)
+        // this.getDataRiwayat()
+      })
+      this.getDataRiwayat()
       this.listLoading = false
     },
     handleSelectionChange(val) {

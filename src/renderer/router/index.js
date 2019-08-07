@@ -71,9 +71,9 @@ export const constantRouterMap = [
       },
       {
         path: 'riwayatpendidikan',
-        name: 'Upload Biodata Riwayat Pendidikan Mahasiswa',
+        name: 'Upload Data Mahasiswa',
         component: () => import('@/views/excel/index'),
-        meta: { title: ' Upload Biodata Riwayat Pendidikan', icon: 'excel' }
+        meta: { title: ' Upload Data Mahasiswa', icon: 'excel' }
       },
       {
         path: 'prestasimahasiswa',
@@ -106,15 +106,15 @@ export const constantRouterMap = [
     children: [
       {
         path: 'listdosen',
-        name: 'List Dosen',
+        name: 'Data Dosen',
         component: () => import('@/views/dosen/index'),
-        meta: { title: 'List Dosen', icon: 'user' }
+        meta: { title: 'Data Dosen', icon: 'user' }
       },
       {
         path: 'listpenugasan',
-        name: 'List Penugasan Dosen',
+        name: 'Data Penugasan Dosen',
         component: () => import('@/views/penugasan/index'),
-        meta: { title: 'List Penugasan Dosen', icon: 'tree' }
+        meta: { title: 'Data Penugasan Dosen', icon: 'tree' }
       },
       {
         path: 'insertdosenpengajarkelaskuliah',
@@ -133,9 +133,9 @@ export const constantRouterMap = [
     children: [
       {
         path: 'listmatakuliah',
-        name: 'List Mata Kuliah',
+        name: 'Data Mata Kuliah',
         component: () => import('@/views/matakuliah/index'),
-        meta: { title: 'List Mata Kuliah', icon: 'eye' }
+        meta: { title: 'Data Mata Kuliah', icon: 'eye' }
       },
       {
         path: 'insertmatakuliah',
@@ -167,9 +167,9 @@ export const constantRouterMap = [
     children: [
       {
         path: 'listkurikulum',
-        name: 'List Kurikulum',
+        name: 'Data Kurikulum',
         component: () => import('@/views/kurikulum/index'),
-        meta: { title: 'List Kurikulum', icon: 'documentation' }
+        meta: { title: 'Data Kurikulum', icon: 'documentation' }
       },
       {
         path: 'insertkurikulum',
@@ -201,9 +201,9 @@ export const constantRouterMap = [
     children: [
       {
         path: 'listkelaskuliah',
-        name: 'List Kelas Perkuliahan',
+        name: 'Data Kelas Perkuliahan',
         component: () => import('@/views/kelaskuliah/index'),
-        meta: { title: 'List Kelas Perkuliahan', icon: 'peoples' }
+        meta: { title: 'Data Kelas Perkuliahan', icon: 'peoples' }
       },
       {
         path: 'insertkelaskuliah',
@@ -236,9 +236,9 @@ export const constantRouterMap = [
     children: [
       {
         path: 'nilaikuliah',
-        name: 'List Nilai Perkuliahan',
+        name: 'Data Nilai Perkuliahan',
         component: () => import('@/views/nilaikuliah/index'),
-        meta: { title: 'List Nilai Perkuliahan', icon: 'chart' }
+        meta: { title: 'Data Nilai Perkuliahan', icon: 'chart' }
       },
       {
         path: 'edit',
@@ -289,9 +289,9 @@ export const constantRouterMap = [
     children: [
       {
         path: 'listaktivitasmahasiswa',
-        name: 'List Aktivitas Mahasiswa',
+        name: 'Data Aktivitas Mahasiswa',
         component: () => import('@/views/aktivitas/index'),
-        meta: { title: 'List Aktivitas Mahasiswa', icon: 'skill' }
+        meta: { title: 'Data Aktivitas Mahasiswa', icon: 'skill' }
       },
       {
         path: 'insertaktivitasmahasiswa',
@@ -308,9 +308,9 @@ export const constantRouterMap = [
       },
       // {
       //   path: 'listanggotaaktivitasmahasiswa',
-      //   name: 'List Anggota Aktivitas Mahasiswa',
+      //   name: 'Data Anggota Aktivitas Mahasiswa',
       //   component: () => import('@/views/aktivitas/index'), // perlu diganti nanti jangan lupa
-      //   meta: { title: 'List Anggota Aktivitas Mahasiswa', icon: 'skill' }
+      //   meta: { title: 'Data Anggota Aktivitas Mahasiswa', icon: 'skill' }
       // },
       {
         path: 'insertanggotaaktivitasmahasiswa',
@@ -341,9 +341,9 @@ export const constantRouterMap = [
     children: [
       {
         path: 'listlulusdo',
-        name: 'Daftar Mahasiswa Lulus/Drop Out',
+        name: 'Data Mahasiswa Lulus/Drop Out',
         component: () => import('@/views/lulusdo/index'),
-        meta: { title: 'Daftar Mahasiswa Lulus/Drop Out', icon: 'list' }
+        meta: { title: 'Data Mahasiswa Lulus/Drop Out', icon: 'list' }
       },
       {
         path: 'insertmahasiswalulusdo',
