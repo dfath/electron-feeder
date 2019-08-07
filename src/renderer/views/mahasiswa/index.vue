@@ -178,16 +178,14 @@ export default {
   },
   methods: {
     getProdi() {
-      // this.$store.dispatch('GetStatusMahasiswa').then(() => {
-      //   if (this.status.length === 0) {
-      //     this.status = this.$store.getters.statusmahasiswa
-      //     console.log('ini status yg ada di filter', this.status)
-      //     this.status.forEach(status => {
-      //       this.filterStatus.push({ text: `${status.nama_status_mahasiswa}`, value: `${status.nama_status_mahasiswa}` })
-      //     })
-      //   }
-      // }).catch(() => {
-      // })
+      // https://stackoverflow.com/questions/45757724/how-to-get-current-year-in-vue-js
+      let i = new Date().getFullYear()
+      console.log(i)
+      while (i > 1979) {
+        console.log(i)
+        this.filterAngkatan.push({ text: i.toString(), value: i.toString() })
+        i--
+      }
       this.$store.dispatch('GetProdi').then(() => {
         if (this.prodi.length === 0) {
           this.prodi = this.$store.getters.prodi

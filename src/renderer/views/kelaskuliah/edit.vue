@@ -190,7 +190,8 @@ export default {
   },
   methods: {
     getProdi() {
-      let i = 2019
+      // https://stackoverflow.com/questions/45757724/how-to-get-current-year-in-vue-js
+      let i = new Date().getFullYear()
       console.log(i)
       while (i > 1979) {
         console.log(i)
