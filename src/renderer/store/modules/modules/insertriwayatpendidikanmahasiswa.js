@@ -1,5 +1,5 @@
 import { insertRiwayatPendidikanMahasiswa } from '@/api/insertRiwayatPendidikanMahasiswa'
-import { getListMahasiswa } from '@/api/getListMahasiswa'
+import { insertBiodataMahasiswa } from '@/api/insertBiodataMahasiswa'
 import { getProfilPT, getAllPT } from '@/api/getProfilPT'
 import { getProdi, getAllProdi } from '@/api/getProdi'
 import store from '@/store'
@@ -31,15 +31,85 @@ const insertriwayatpendidikanmahasiswa = {
       console.log('insertriwayatpendidikanmahasiswa', riwayatpendidikanmahasiswa)
       async function insertriwayatpendidikanmahasiswa(token, data) {
         try {
-          let filter = `nama_mahasiswa LIKE '%${data.nama_mahasiswa}%' AND jenis_kelamin LIKE '%${data.jenis_kelamin}%' AND tanggal_lahir='${data.tanggal_lahir}'`
-          let res = await getListMahasiswa(token, '', '', filter)
-          data.id_mahasiswa = res.data[0].id_mahasiswa
+          const biodata = {
+            nama_mahasiswa: data.nama_mahasiswa,
+            jenis_kelamin: data.jenis_kelamin,
+            jalan: data.jalan,
+            rt: data.rt,
+            rw: data.rw,
+            kelurahan: data.kelurahan,
+            kode_pos: data.kode_pos,
+            nisn: data.nisn,
+            nik: data.nik,
+            tempat_lahir: data.tempat_lahir,
+            tanggal_lahir: data.tanggal_lahir,
+            nama_ayah: data.nama_ayah,
+            tanggal_lahir_ayah: data.tanggal_lahir_ayah,
+            id_pendidikan_ayah: data.id_pendidikan_ayah,
+            id_pekerjaan_ayah: data.id_pekerjaan_ayah,
+            id_penghasilan_ayah: data.id_penghasilan_ayah,
+            id_kebutuhan_khusus_ayah: data.id_kebutuhan_khusus_ayah,
+            nama_ibu_kandung: data.nama_ibu_kandung,
+            tanggal_lahir_ibu: data.tanggal_lahir_ibu,
+            id_pendidikan_ibu: data.id_pendidikan_ibu,
+            id_pekerjaan_ibu: data.id_pekerjaan_ibu,
+            id_penghasilan_ibu: data.id_penghasilan_ibu,
+            id_kebutuhan_khusus_ibu: data.id_kebutuhan_khusus_ibu,
+            nama_wali: data.nama_wali,
+            tanggal_lahir_wali: data.tanggal_lahir_wali,
+            id_pendidikan_wali: data.id_pendidikan_wali,
+            id_pekerjaan_wali: data.id_pekerjaan_wali,
+            id_penghasilan_wali: data.id_penghasilan_wali,
+            id_kebutuhan_khusus_mahasiswa: data.id_kebutuhan_khusus_mahasiswa,
+            telepon: data.telepon,
+            handphone: data.handphone,
+            email: data.email,
+            penerima_kps: data.penerima_kps,
+            id_wilayah: data.id_wilayah,
+            id_agama: data.id_agama,
+            kewarganegaraan: data.kewarganegaraan
+          }
+          let res = await insertBiodataMahasiswa(token, biodata)
+          data.id_mahasiswa = res.data.id_mahasiswa
 
           delete data.nama_mahasiswa
           delete data.jenis_kelamin
+          delete data.jalan
+          delete data.rt
+          delete data.rw
+          delete data.kelurahan
+          delete data.kode_pos
+          delete data.nisn
+          delete data.nik
+          delete data.tempat_lahir
           delete data.tanggal_lahir
+          delete data.nama_ayah
+          delete data.tanggal_lahir_ayah
+          delete data.id_pendidikan_ayah
+          delete data.id_pekerjaan_ayah
+          delete data.id_penghasilan_ayah
+          delete data.id_kebutuhan_khusus_ayah
+          delete data.nama_ibu_kandung
+          delete data.tanggal_lahir_ibu
+          delete data.id_pendidikan_ibu
+          delete data.id_pekerjaan_ibu
+          delete data.id_penghasilan_ibu
+          delete data.id_kebutuhan_khusus_ibu
+          delete data.nama_wali
+          delete data.tanggal_lahir_wali
+          delete data.id_pendidikan_wali
+          delete data.id_pekerjaan_wali
+          delete data.id_penghasilan_wali
+          delete data.id_kebutuhan_khusus_mahasiswa
+          delete data.telepon
+          delete data.handphone
+          delete data.email
+          delete data.penerima_kps
+          delete data.id_wilayah
+          delete data.id_agama
+          delete data.kewarganegaraan
 
-          filter = `kode_perguruan_tinggi LIKE '%${data.kode_perguruan_tinggi}%' AND nama_perguruan_tinggi LIKE '%${data.nama_perguruan_tinggi}%'`
+          let filter = `kode_perguruan_tinggi LIKE '%${data.kode_perguruan_tinggi}%' AND nama_perguruan_tinggi LIKE '%${data.nama_perguruan_tinggi}%'`
           res = await getProfilPT(token, filter)
           data.id_perguruan_tinggi = res.data[0].id_perguruan_tinggi
 
