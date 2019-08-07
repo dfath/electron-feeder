@@ -43,6 +43,7 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
+        // harusnya list tapi ganti detail untuk dapat data yang dibutuhkan, cek API
         getListMahasiswaLulusDO(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data

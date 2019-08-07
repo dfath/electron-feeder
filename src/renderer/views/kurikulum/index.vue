@@ -27,34 +27,66 @@
       :cell-style="{padding: '0px', height: '34px'}"
     >
       <el-table-column min-width="45" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="168" prop="nama_kurikulum"
-                      label="Nama Kurikulum">
+      <el-table-column
+        min-width="168" 
+        prop="nama_kurikulum"
+        label="Nama Kurikulum"
+      >
       </el-table-column>
-      <el-table-column min-width="85" prop="nama_program_studi"
-                      label="Program Studi">
+      <el-table-column 
+        min-width="85" 
+        prop="nama_program_studi"
+        label="Program Studi"
+        :filters="filterProdi"
+        :filter-method="filterHandler"
+       >
       </el-table-column>
-      <el-table-column min-width="100" prop="semester_mulai_berlaku"
-                      label="Mulai Berlaku">
+      <el-table-column 
+        min-width="100" 
+        prop="semester_mulai_berlaku"
+        label="Mulai Berlaku"
+      >
       </el-table-column>
-      <el-table-column min-width="50" prop=""
-                      label="Aturan Jumlah sks">
-        <el-table-column min-width="45" prop="jumlah_sks_lulus"
-                        label="Lulus">
+      <el-table-column 
+        min-width="50" 
+        prop=""
+        label="Aturan Jumlah sks"
+      >
+        <el-table-column 
+          min-width="45" 
+          prop="jumlah_sks_lulus"
+          label="Lulus"
+        >
         </el-table-column>
-        <el-table-column min-width="45" prop="jumlah_sks_wajib"
-                        label="Wajib">
+        <el-table-column 
+          min-width="45" 
+          prop="jumlah_sks_wajib"
+          label="Wajib"
+        >
         </el-table-column>
-        <el-table-column min-width="50" prop="jumlah_sks_pilihan"
-                        label="Pilihan">
+        <el-table-column 
+          min-width="50" 
+          prop="jumlah_sks_pilihan"
+          label="Pilihan"
+        >
         </el-table-column>
-      </el-table-column>
-      <el-table-column min-width="50" prop=""
-                      label="Jumlah sks Matakuliah">
-        <el-table-column min-width="52" prop="jumlah_sks_mata_kuliah_wajib"
-                        label="Wajib">
         </el-table-column>
-        <el-table-column min-width="52" prop="jumlah_sks_mata_kuliah_pilihan"
-                        label="Pilihan">
+      <el-table-column 
+        min-width="50" 
+        prop=""
+        label="Jumlah sks Matakuliah"
+      >
+        <el-table-column 
+          min-width="52" 
+          prop="jumlah_sks_mata_kuliah_wajib"
+          label="Wajib"
+        >
+        </el-table-column>
+        <el-table-column 
+          min-width="52" 
+          prop="jumlah_sks_mata_kuliah_pilihan"
+                        label="Pilihan"
+        >
         </el-table-column>
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
@@ -89,8 +121,11 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        filter: null
+        filter: null,
+        nama_program_studi: null
       },
+      filterProdi: [],
+      prodi: [],
       downloadLoading: false
     }
   },
@@ -103,8 +138,25 @@ export default {
     }
   },
   methods: {
+    getProdi() {
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
+    },
     fetchData() {
       this.getData()
+      this.getProdi()
     },
     getData() {
       if (this.total === 0) {

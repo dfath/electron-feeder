@@ -78,7 +78,15 @@
               </el-col>
             </el-row>
 
-            <el-table size=mini stripe v-loading="listLoading" border :data="tablepesertaKelasKuliah" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
+            <el-table 
+              size=mini 
+              stripe 
+              v-loading="listLoading" 
+              border 
+              :data="tablepesertaKelasKuliah" 
+              :cell-style="{padding: '0px', height: '35px'}"
+              @selection-change="handleSelectionChange"
+            >
               <el-table-column type="selection" width="55"></el-table-column>
               <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
               <el-table-column min-width="75" prop="nim"
@@ -87,10 +95,13 @@
               <el-table-column min-width="150" prop="nama_mahasiswa"
                               label="Nama Mahasiswa">
               </el-table-column>
-              <el-table-column min-width="45" prop="nama_program_studi"
-                              :filters="filterProdi"
-                              :filter-method="filterHandler"
-                              label="Jurusan">
+              <el-table-column 
+                min-width="45" 
+                prop="nama_program_studi"
+                label="Jurusan"
+                :filters="filterProdi"
+                :filter-method="filterHandler"
+              >
               </el-table-column>
               <el-table-column min-width="45" prop="angkatan"
                               :filters="filterAngkatan"
@@ -163,7 +174,6 @@ export default {
   created() {
     this.fetchData()
   },
-
   computed: {
     setKelasKuliah: {
       get() {

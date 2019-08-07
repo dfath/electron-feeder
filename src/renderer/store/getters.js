@@ -13,6 +13,12 @@ const getters = {
   introduction: state => state.user.introduction,
   roles: state => state.user.roles,
   permission_routes: state => state.permission.routes,
+  // Other
+  statusmahasiswa: state => state.getstatusmahasiswa.statusmahasiswa,
+  tahunajaran: state => state.gettahunajaran.tahunajaran,
+  semester: state => state.getsemester.semester,
+  jenisaktivitasmahasiswa: state => state.getjenisaktivitasmahasiswa.jenisaktivitasmahasiswa,
+  jeniskeluar: state => state.getjeniskeluar.jeniskeluar,
   // Profil Perguruan Tinggi
   profilPT: state => state.profil.profilPT,
   prodi: state => state.prodi.prodi,

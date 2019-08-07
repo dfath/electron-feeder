@@ -27,20 +27,40 @@
       :cell-style="{padding: '0px', height: '29px'}"
     >
       <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="75" prop="nama_prodi"
-                      label="Program Studi">
+      <el-table-column 
+        min-width="75" 
+        prop="nama_prodi"
+        label="Program Studi"
+        :filters="filterProdi"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="74" prop="nama_semester"
-                      label="Semester">
+      <el-table-column 
+        min-width="74" 
+        prop="nama_semester"
+        label="Semester"
+        :filters="filterSemester"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_jenis_aktivitas"
-                      label="Jenis">
+      <el-table-column 
+        min-width="100" 
+        prop="nama_jenis_aktivitas"
+        label="Jenis"
+        :filters="filterJenisAktivitas"
+        :filter-method="filterHandler"
+      >
       </el-table-column>
-      <el-table-column min-width="225" prop="judul"
-                      label="Judul">
+      <el-table-column 
+        min-width="225" 
+        prop="judul"
+        label="Judul"
+      >
       </el-table-column>
-      <el-table-column min-width="55" prop="tanggal_sk_tugas"
-                      label="Tanggal SK">
+      <el-table-column 
+        min-width="55" 
+        prop="tanggal_sk_tugas"
+        label="Tanggal SK">
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
@@ -74,8 +94,17 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        filter: null
+        filter: null,
+        nama_program_studi: null,
+        nama_semester: null,
+        nama_jenis_aktivitas_mahasiswa: null
       },
+      filterProdi: [],
+      filterJenisAktivitas: [],
+      filterSemester: [],
+      prodi: [],
+      jenisaktivitas: [],
+      semester: [],
       downloadLoading: false
     }
   },
@@ -88,7 +117,46 @@ export default {
     }
   },
   methods: {
+    getProdi() {
+      this.$store.dispatch('GetProdi').then(() => {
+        if (this.prodi.length === 0) {
+          this.prodi = this.$store.getters.prodi
+          console.log('ini prodi yg ada di filter', this.prodi)
+          this.prodi.forEach(prodi => {
+            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
+    getSemester() {
+      this.$store.dispatch('GetSemester').then(() => {
+        if (this.semester.length === 0) {
+          this.semester = this.$store.getters.semester
+          console.log('ini semester yg ada di filter', this.semester)
+          this.semester.forEach(semester => {
+            this.filterSemester.push({ text: `${semester.nama_semester}`, value: `${semester.nama_semester}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
+    getJenisAktivitas() {
+      this.$store.dispatch('GetJenisAktivitasMahasiswa').then(() => {
+        if (this.jenisaktivitas.length === 0) {
+          this.jenisaktivitas = this.$store.getters.jenisaktivitasmahasiswa
+          console.log('ini jenisaktivitas yg ada di filter', this.jenisaktivitas)
+          this.jenisaktivitas.forEach(jenisaktivitas => {
+            this.filterJenisAktivitas.push({ text: `${jenisaktivitas.nama_jenis_aktivitas_mahasiswa}`, value: `${jenisaktivitas.nama_jenis_aktivitas_mahasiswa}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     fetchData() {
+      this.getProdi()
+      this.getSemester()
+      this.getJenisAktivitas()
       this.getData()
     },
     getData() {
@@ -101,6 +169,10 @@ export default {
       }).catch(() => {
         this.listLoading = false
       })
+    },
+    filterHandler(value, row, column) {
+      const property = column['property']
+      return row[property] === value
     },
     indexMethod(index) {
       if (this.listQuery.page > 1) {
