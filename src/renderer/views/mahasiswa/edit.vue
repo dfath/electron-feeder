@@ -3,7 +3,7 @@
     <el-tabs>
       <el-tab-pane>
         <span slot="label"><i class="el-icon-edit" /> Edit Mahasiswa</span>
-        <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
+        <el-form size=mini ref="form" label-width="120px" v-loading="listLoading">
           <el-form-item label="Nama" required>
             <el-input v-model="setName.nama_mahasiswa"></el-input>
           </el-form-item>
@@ -491,7 +491,6 @@
               </template>
             </el-table-column>
               </el-table>
-          <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
         </template>
       </el-tab-pane>
       <el-tab-pane>
@@ -550,7 +549,6 @@
               </template>
             </el-table-column>
               </el-table>
-          <pagination v-show="totalPrestasi>0" :totalPrestasi="totalPrestasi" :page.sync="listQueryPrestasi.page" :limit.sync="listQueryPrestasi.limit" @pagination="fetchData"/>
         </template>
       </el-tab-pane>
     </el-tabs>
@@ -591,9 +589,6 @@ export default {
       }
     }
   },
-  created() {
-    this.fetchData()
-  },
   computed: {
     setName: {
       get() {
@@ -611,35 +606,6 @@ export default {
     }
   },
   methods: {
-    fetchData() {
-      this.getDataRiwayat()
-      this.getDataPrestasi()
-    },
-    getDataRiwayat() {
-      if (this.total === 0) {
-        this.getTotal()
-      }
-      this.listLoading = true
-      this.$store.dispatch('GetListRiwayatPendidikanMahasiswa', this.listQuery).then(() => {
-        console.log('getlistriwayatpendidikanmahasiswa done')
-        this.listLoading = false
-      }).catch(() => {
-        this.listLoading = false
-      })
-    },
-    getDataPrestasi() {
-      if (this.totalPrestasi === 0) {
-        this.getTotalPrestasi()
-      }
-      this.listLoading = true
-      console.log('getdataprestasi')
-      this.$store.dispatch('GetListPrestasiMahasiswa', this.listQueryPrestasi).then(() => {
-        console.log('getlistprestasimahasiswa done')
-        this.listLoading = false
-      }).catch(() => {
-        this.listLoading = false
-      })
-    },
     indexMethod(index) {
       if (this.listQuery.page > 1) {
         return index + 1 + (this.listQuery.limit * (this.listQuery.page - 1))
@@ -659,8 +625,6 @@ export default {
     handleFilter() {
       this.listQuery.page = 1
       this.listQueryPrestasi.page = 1
-      this.getTotal()
-      this.getTotalPrestasi()
       this.getDataRiwayat()
       this.getDataPrestasi()
     },
@@ -739,9 +703,9 @@ export default {
     },
     onSubmit() {
       console.log(store.getters.updatebiodatamahasiswa[0])
-      this.loading = true
+      this.listLoading = true
       store.dispatch('UpdateBiodataMahasiswa').then(() => {
-        this.loading = false
+        this.listLoading = false
       })
     },
     onCancel() {
