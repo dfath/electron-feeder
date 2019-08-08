@@ -7,7 +7,7 @@ const contohpesertakelaskuliah = {
         'nama_program_studi',
         'id_semester',
         'nama_mata_kuliah',
-        'nama_kelas'
+        'nama_kelas_kuliah'
       ],
       data: [[
         'ADITYA PRATAMA',

@@ -76,10 +76,24 @@ export const constantRouterMap = [
         meta: { title: ' Upload Data Mahasiswa', icon: 'excel' }
       },
       {
+        path: 'editriwayat',
+        name: 'Edit Riwayat Pendidikan Mahasiswa',
+        hidden: true,
+        component: () => import('@/views/mahasiswa/editriwayat'),
+        meta: { title: 'Edit Riwayat Pendidikan Mahasiswa', icon: 'form' }
+      },
+      {
         path: 'prestasimahasiswa',
         name: 'Upload Prestasi Mahasiswa',
         component: () => import('@/views/excel/index'),
         meta: { title: ' Upload Prestasi Mahasiswa', icon: 'excel' }
+      },
+      {
+        path: 'editprestasi',
+        name: 'Edit Prestasi Mahasiswa',
+        hidden: true,
+        component: () => import('@/views/mahasiswa/editprestasi'),
+        meta: { title: 'Edit Prestasi Mahasiswa', icon: 'form' }
       }
     ]
   },
