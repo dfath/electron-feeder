@@ -4,6 +4,7 @@ import app from './modules/app'
 import user from './modules/user'
 // Other
 import getstatusmahasiswa from './modules/getstatusmahasiswa'
+import getjenispendaftaran from './modules/getjenispendaftaran'
 import gettahunajaran from './modules/gettahunajaran'
 import getsemester from './modules/getsemester'
 import getjenisaktivitasmahasiswa from './modules/getjenisaktivitasmahasiswa'
@@ -59,6 +60,7 @@ const store = new Vuex.Store({
     user,
     // Other
     getstatusmahasiswa,
+    getjenispendaftaran,
     gettahunajaran,
     getsemester,
     getjenisaktivitasmahasiswa,

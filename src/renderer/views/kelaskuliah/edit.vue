@@ -251,7 +251,7 @@ export default {
         cancelButtonText: 'Tidak',
         type: 'warning'
       }).then(() => {
-        this.$store.dispatch('DeletePesertaKelasKuliah', row.id_kelas_kuliah).then(() => {
+        this.$store.dispatch('DeletePesertaKelasKuliah', row).then(() => {
           console.log('delete pesertakelaskuliah ini')
           console.log(row)
           Message({

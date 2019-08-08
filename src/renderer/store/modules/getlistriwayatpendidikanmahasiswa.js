@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import { getListRiwayatPendidikanMahasiswa } from '@/api/getListRiwayatPendidikanMahasiswa'
+import { getRiwayatPendidikanMahasiswa } from '@/api/getRiwayatPendidikanMahasiswa'
 import { deleteRiwayatPendidikanMahasiswa } from '@/api/deleteRiwayatPendidikanMahasiswa'
+import { updateRiwayatPendidikanMahasiswa } from '@/api/updateRiwayatPendidikanMahasiswa'
+import { Message } from 'element-ui'
+import router from '@/router'
 import store from '@/store'
 
 const user = {
@@ -26,6 +30,56 @@ const user = {
           commit('GET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
           console.log('listriwayatpendidikanmahasiswa di store', store.getters.listriwayatpendidikanmahasiswa)
           resolve()
+        }).catch(error => {
+          console.log('error')
+          reject(error)
+        })
+      })
+    },
+    // By id_registrasi_mahasiswa not by id_mahasiswa like above
+    GetRiwayatPendidikanMahasiswa({ commit }, id) {
+      const token = store.getters.token
+      console.log(id)
+      return new Promise((resolve, reject) => {
+        getRiwayatPendidikanMahasiswa(token, id).then(response => {
+          console.log(response.data)
+          const data = response.data
+          console.log('ini data riwayat pendidikan mahasiswa', data)
+          commit('GET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
+          console.log('listriwayatpendidikanmahasiswa di store', store.getters.listriwayatpendidikanmahasiswa)
+          resolve()
+        }).catch(error => {
+          console.log('error')
+          reject(error)
+        })
+      })
+    },
+    UpdateRiwayatPendidikanMahasiswa({ commit }) {
+      const token = store.getters.token
+      const riwayatpendidikan = store.getters.listriwayatpendidikanmahasiswa[0]
+      return new Promise((resolve, reject) => {
+        updateRiwayatPendidikanMahasiswa(token, riwayatpendidikan).then(response => {
+          console.log(response.data)
+          console.log('riwayatpendidikan updatean di store', store.getters.listriwayatpendidikanmahasiswa)
+        }).then(() => {
+          const listQuery = store.getters.listQueryRiwayatPendidikanMahasiswa
+          const limit = listQuery.limit
+          const offset = listQuery.offset
+          getListRiwayatPendidikanMahasiswa(token, limit, offset).then(response => {
+            console.log(response.data)
+            const data = response.data
+            commit('SET_LIST_MAHASISWA', data)
+            Message({
+              message: 'Berhasil Update Biodata RiwayatPendidikanMahasiswa',
+              type: 'success',
+              duration: 5 * 1000
+            })
+            router.push('/mahasiswa/data')
+            resolve()
+          }).catch(error => {
+            console.log('error')
+            reject(error)
+          })
         }).catch(error => {
           console.log('error')
           reject(error)

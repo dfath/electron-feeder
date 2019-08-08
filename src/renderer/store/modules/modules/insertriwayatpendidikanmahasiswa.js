@@ -134,11 +134,16 @@ const insertriwayatpendidikanmahasiswa = {
               res = await getAllProdi(token, filter)
               data.id_prodi_asal = res.data[0].id_prodi
 
-              delete (data.nama_jenjang_pendidikan_asal)
-              delete (data.nama_program_studi_asal)
+              // delete (data.nama_jenjang_pendidikan_asal)
+              // delete (data.nama_program_studi_asal)
             }
-            delete (data.nama_perguruan_tinggi_asal)
+            // delete (data.nama_perguruan_tinggi_asal)
           }
+
+          delete (data.nama_jenjang_pendidikan_asal)
+          delete (data.nama_program_studi_asal)
+          delete (data.nama_perguruan_tinggi_asal)
+
           res = await insertRiwayatPendidikanMahasiswa(token, data)
           Message({
             message: 'Berhasil Input Riwayat Pendidikan Mahasiswa',

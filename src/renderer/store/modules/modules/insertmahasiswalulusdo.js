@@ -1,5 +1,5 @@
 import { insertMahasiswaLulusDO } from '@/api/insertMahasiswaLulusDO'
-import { getListRiwayatPendidikanMahasiswa } from '@/api/getListRiwayatPendidikanMahasiswa'
+import { getDetailListRiwayatPendidikanMahasiswa } from '@/api/getDetailListRiwayatPendidikanMahasiswa'
 import store from '@/store'
 import { Message } from 'element-ui'
 
@@ -32,7 +32,7 @@ const insertmahasiswalulusdo = {
           try {
             const filter = `nama_mahasiswa LIKE '%${data.nama_mahasiswa}%' AND nim LIKE '%${data.nim}%'`
 
-            const response_riwayat = await getListRiwayatPendidikanMahasiswa(token, '', 0, filter)
+            const response_riwayat = await getDetailListRiwayatPendidikanMahasiswa(token, '', 0, filter)
             data.id_registrasi_mahasiswa = response_riwayat.data[0].id_registrasi_mahasiswa
             console.log(data)
             delete (data.nama_mahasiswa)

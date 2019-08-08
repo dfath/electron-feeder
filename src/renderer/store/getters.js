@@ -19,6 +19,8 @@ const getters = {
   semester: state => state.getsemester.semester,
   jenisaktivitasmahasiswa: state => state.getjenisaktivitasmahasiswa.jenisaktivitasmahasiswa,
   jeniskeluar: state => state.getjeniskeluar.jeniskeluar,
+  jenispendaftaran: state => state.getjenispendaftaran.jenispendaftaran,
+
   // Profil Perguruan Tinggi
   profilPT: state => state.profil.profilPT,
   prodi: state => state.prodi.prodi,
@@ -32,7 +34,6 @@ const getters = {
   // deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa,
   listriwayatpendidikanmahasiswa: state => state.getlistriwayatpendidikanmahasiswa.listriwayatpendidikanmahasiswa,
   contohriwayatpendidikanmahasiswa: state => state.contoh.contohriwayatpendidikanmahasiswa.contohriwayatpendidikanmahasiswa,
-  updateriwayatpendidikanmahasiswa: state => state.getlistriwayatpendidikanmahasiswa.updateriwayatpendidikanmahasiswa,
 
   // // Prestasi
   listprestasimahasiswa: state => state.getlistprestasimahasiswa.listprestasimahasiswa,

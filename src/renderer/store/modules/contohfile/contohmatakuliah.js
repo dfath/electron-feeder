@@ -27,7 +27,7 @@ const contohmatakuliah = {
         '48201',
         'Farmasi',
         'S1',
-        'APT000',
+        'APT100',
         'Pemrograman Web',
         'A',
         'A',
