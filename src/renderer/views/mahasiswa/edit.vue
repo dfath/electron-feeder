@@ -3,7 +3,7 @@
     <el-tabs>
       <el-tab-pane>
         <span slot="label"><i class="el-icon-edit" /> Edit Mahasiswa</span>
-        <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
+        <el-form size=mini ref="form" label-width="120px" v-loading="listLoading">
           <el-form-item label="Nama" required>
             <el-input v-model="setName.nama_mahasiswa"></el-input>
           </el-form-item>
@@ -25,14 +25,14 @@
             </el-col>
           </el-form-item>
           <el-form-item label="Agama" required>
-            <el-select v-model="setName.nama_agama" placeholder="Please select your religion">
-              <el-option label="Islam" value="Islam"></el-option>
-              <el-option label="Kristen" value="Kristen"></el-option>
-              <el-option label="Katholik" value="Katholik"></el-option>
-              <el-option label="Hindu" value="Hindu"></el-option>
-              <el-option label="Budha" value="Budha"></el-option>
-              <el-option label="Konghucu" value="Konghucu"></el-option>
-              <el-option label="Lainnya" value="Lainnya"></el-option>
+            <el-select v-model="setName.id_agama" placeholder="Please select your religion">
+              <el-option label="Islam" value="1"></el-option>
+              <el-option label="Kristen" value="2"></el-option>
+              <el-option label="Katholik" value="3"></el-option>
+              <el-option label="Hindu" value="4"></el-option>
+              <el-option label="Budha" value="5"></el-option>
+              <el-option label="Konghucu" value="6"></el-option>
+              <el-option label="Lainnya" value="99"></el-option>
             </el-select>
           </el-form-item>
 
@@ -75,29 +75,29 @@
                 </el-form-item>
 
                 <el-form-item label="Jenis Tinggal">
-                  <el-select v-model="setName.nama_jenis_tinggal" placeholder="Pilih Jenis Tinggal">
-                    <el-option label="Bersama orang tua" value="Bersama orang tua"></el-option>
-                    <el-option label="Wali" value="Wali"></el-option>
-                    <el-option label="Kost" value="Kost"></el-option>
-                    <el-option label="Asrama" value="Asrama"></el-option>
-                    <el-option label="Panti asuhan" value="Panti asuhan"></el-option>
-                    <el-option label="Lainnya" value="Lainnya"></el-option>
+                  <el-select v-model="setName.id_jenis_tinggal" placeholder="Pilih Jenis Tinggal">
+                    <el-option label="Bersama orang tua" value="1"></el-option>
+                    <el-option label="Wali" value="2"></el-option>
+                    <el-option label="Kost" value="3"></el-option>
+                    <el-option label="Asrama" value="4"></el-option>
+                    <el-option label="Panti asuhan" value="5"></el-option>
+                    <el-option label="Lainnya" value="99"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="Alat Transportasi">
-                  <el-select v-model="setName.nama_alat_transportasi" placeholder="Pilih Alat Transportasi">
-                    <el-option label="Jalan kaki" value="Jalan kaki"></el-option>
-                    <el-option label="Angkutan umum/bus/pete-pete" value="Angkutan umum/bus/pete-pete"></el-option>
-                    <el-option label="Mobil/bus antar jemput" value="Mobil/bus antar jemput"></el-option>
-                    <el-option label="Kereta api" value="Kereta api"></el-option>
-                    <el-option label="Ojek" value="Ojek"></el-option>
-                    <el-option label="Andong/bendi/sado/dokar/delman/becak" value="Andong/bendi/sado/dokar/delman/becak"></el-option>
-                    <el-option label="Perahu penyeberangan/rakit/getek" value="Perahu penyeberangan/rakit/getek"></el-option>
-                    <el-option label="Kuda" value="Kuda"></el-option>
-                    <el-option label="Sepeda" value="Sepeda"></el-option>
-                    <el-option label="Sepeda motor" value="Sepeda motor"></el-option>
-                    <el-option label="Mobil pribadi" value="Mobil pribadi"></el-option>
-                    <el-option label="Lainnya" value="Lainnya"></el-option>
+                  <el-select v-model="setName.id_alat_transportasi" placeholder="Pilih Alat Transportasi">
+                    <el-option label="Jalan kaki" value="1"></el-option>
+                    <el-option label="Angkutan umum/bus/pete-pete" value="3"></el-option>
+                    <el-option label="Mobil/bus antar jemput" value="4"></el-option>
+                    <el-option label="Kereta api" value="5"></el-option>
+                    <el-option label="Ojek" value="6"></el-option>
+                    <el-option label="Andong/bendi/sado/dokar/delman/becak" value="7"></el-option>
+                    <el-option label="Perahu penyeberangan/rakit/getek" value="8"></el-option>
+                    <el-option label="Kuda" value="11"></el-option>
+                    <el-option label="Sepeda" value="12"></el-option>
+                    <el-option label="Sepeda motor" value="13"></el-option>
+                    <el-option label="Mobil pribadi" value="14"></el-option>
+                    <el-option label="Lainnya" value="99"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="Telepon">
@@ -132,63 +132,61 @@
                 </el-col>
               </el-form-item>
               <el-form-item label="Pendidikan">
-                <el-select v-model="setName.nama_pendidikan_ayah" placeholder="Pilih Jenjang">
-                  <el-option label="Tidak sekolah"></el-option>
-                  <el-option label="PAUD"></el-option>
-                  <el-option label="TK / sederajat"></el-option>
-                  <el-option label="Putus SD"></el-option>
-                  <el-option label="SD / sederajat"></el-option>
-                  <el-option label="SMP / sederajat"></el-option>
-                  <el-option label="SMA / sederajat"></el-option>
-                  <el-option label="Paket A"></el-option>
-                  <el-option label="Paket B"></el-option>
-                  <el-option label="Paket C"></el-option>
-                  <el-option label="D1"></el-option>
-                  <el-option label="D2"></el-option>
-                  <el-option label="D3"></el-option>
-                  <el-option label="D4"></el-option>
-                  <el-option label="S1"></el-option>
-                  <el-option label="Profesi"></el-option>
-                  <el-option label="Sp-1"></el-option>
-                  <el-option label="S2"></el-option>
-                  <el-option label="S2 Terapan"></el-option>
-                  <el-option label="Sp-2"></el-option>
-                  <el-option label="S3"></el-option>
-                  <el-option label="S3 Terapan"></el-option>
-                  <el-option label="Non formal"></el-option>
-                  <el-option label="Informal"></el-option>
-                  <el-option label="Lainnya"></el-option>
+                <el-select v-model="setName.id_pendidikan_ayah" placeholder="Pilih Jenjang">
+                  <el-option label="Tidak sekolah" value="0"></el-option>
+                  <el-option label="PAUD" value="1"></el-option>
+                  <el-option label="TK / sederajat" value="2"></el-option>
+                  <el-option label="Putus SD" value="3"></el-option>
+                  <el-option label="SD / sederajat" value="4"></el-option>
+                  <el-option label="SMP / sederajat" value="5"></el-option>
+                  <el-option label="SMA / sederajat" value="6"></el-option>
+                  <el-option label="Paket A" value="7"></el-option>
+                  <el-option label="Paket B" value="8"></el-option>
+                  <el-option label="Paket C" value="9"></el-option>
+                  <el-option label="D1" value="20"></el-option>
+                  <el-option label="D2" value="21"></el-option>
+                  <el-option label="D3" value="22"></el-option>
+                  <el-option label="D4" value="23"></el-option>
+                  <el-option label="S1" value="30"></el-option>
+                  <el-option label="Profesi" value="31"></el-option>
+                  <el-option label="Sp-1" value="32"></el-option>
+                  <el-option label="S2" value="35"></el-option>
+                  <el-option label="S2 Terapan" value="36"></el-option>
+                  <el-option label="Sp-2" value="37"></el-option>
+                  <el-option label="S3" value="40"></el-option>
+                  <el-option label="S3 Terapan" value="41"></el-option>
+                  <el-option label="Non formal" value="90"></el-option>
+                  <el-option label="Informal" value="91"></el-option>
+                  <el-option label="Lainnya" value="99"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="Pekerjaan">
-                <el-select v-model="setName.nama_pekerjaan_ayah" placeholder="Pilih Pekerjaan">
-                  <el-option label=""></el-option>
-                  <el-option label="Tidak bekerja"></el-option>
-                  <el-option label="Nelayan"></el-option>
-                  <el-option label="Petani"></el-option>
-                  <el-option label="Peternak"></el-option>
-                  <el-option label="PNS/TNI/Polri"></el-option>
-                  <el-option label="Karyawan Swasta"></el-option>
-                  <el-option label="Pedagang Kecil"></el-option>
-                  <el-option label="Pedagang Besar"></el-option>
-                  <el-option label="Wiraswasta"></el-option>
-                  <el-option label="Wirausaha"></el-option>
-                  <el-option label="Buruh"></el-option>
-                  <el-option label="Pensiunan"></el-option>
-                  <el-option label="Sudah Meninggal"></el-option>
-                  <el-option label="Lainnya"></el-option>
+                <el-select v-model="setName.id_pekerjaan_ayah" placeholder="Pilih Pekerjaan">
+                  <el-option label="Tidak bekerja" value="1"></el-option>
+                  <el-option label="Nelayan" value="2"></el-option>
+                  <el-option label="Petani" value="3"></el-option>
+                  <el-option label="Peternak" value="4"></el-option>
+                  <el-option label="PNS/TNI/Polri" value="5"></el-option>
+                  <el-option label="Karyawan Swasta" value="6"></el-option>
+                  <el-option label="Pedagang Kecil" value="7"></el-option>
+                  <el-option label="Pedagang Besar" value="8"></el-option>
+                  <el-option label="Wiraswasta" value="9"></el-option>
+                  <el-option label="Wirausaha" value="10"></el-option>
+                  <el-option label="Buruh" value="11"></el-option>
+                  <el-option label="Pensiunan" value="12"></el-option>
+                  <el-option label="Sudah Meninggal" value="98"></el-option>
+                  <el-option label="Lainnya" value="99"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="Penghasilan">
-                <el-select v-model="setName.nama_penghasilan_ayah" placeholder="Pilih Penghasilan">
-                  <el-option label=""></el-option>
-                  <el-option label="Kurang dari Rp 1.000.000"></el-option>
-                  <el-option label="Kurang dari Rp 500,000"></el-option>
-                  <el-option label="Rp 500,000 - Rp 999,999"></el-option>
-                  <el-option label="Rp 1,000,000 - Rp 1,999,999"></el-option>
-                  <el-option label="Rp 2,000,000 - Rp 4,999,999"></el-option>
-                  <el-option label="Rp 5,000,000 - Rp 20,000,000"></el-option>
-                  <el-option label="Lebih dari Rp 20,000,000"></el-option>
+                <el-select v-model="setName.id_penghasilan_ayah" placeholder="Pilih Penghasilan">
+                  <el-option label=" " value="0"></el-option>
+                  <el-option label="Kurang dari Rp 500,000" value="11"></el-option>
+                  <el-option label="Rp 500,000 - Rp 999,999" value="12"></el-option>
+                  <el-option label="Rp 1,000,000 - Rp 1,999,999" value="13"></el-option>
+                  <el-option label="Rp 2,000,000 - Rp 4,999,999" value="14"></el-option>
+                  <el-option label="Rp 5,000,000 - Rp 20,000,000" value="15"></el-option>
+                  <el-option label="Lebih dari Rp 20,000,000" value="16"></el-option>
                 </el-select>
               </el-form-item>
               <h4>Ibu</h4>
@@ -204,63 +202,61 @@
                 </el-col>
               </el-form-item>
               <el-form-item label="Pendidikan">
-                <el-select v-model="setName.nama_pendidikan_ibu" placeholder="Pilih Jenjang">
-                  <el-option label="Tidak sekolah"></el-option>
-                  <el-option label="PAUD"></el-option>
-                  <el-option label="TK / sederajat"></el-option>
-                  <el-option label="Putus SD"></el-option>
-                  <el-option label="SD / sederajat"></el-option>
-                  <el-option label="SMP / sederajat"></el-option>
-                  <el-option label="SMA / sederajat"></el-option>
-                  <el-option label="Paket A"></el-option>
-                  <el-option label="Paket B"></el-option>
-                  <el-option label="Paket C"></el-option>
-                  <el-option label="D1"></el-option>
-                  <el-option label="D2"></el-option>
-                  <el-option label="D3"></el-option>
-                  <el-option label="D4"></el-option>
-                  <el-option label="S1"></el-option>
-                  <el-option label="Profesi"></el-option>
-                  <el-option label="Sp-1"></el-option>
-                  <el-option label="S2"></el-option>
-                  <el-option label="S2 Terapan"></el-option>
-                  <el-option label="Sp-2"></el-option>
-                  <el-option label="S3"></el-option>
-                  <el-option label="S3 Terapan"></el-option>
-                  <el-option label="Non formal"></el-option>
-                  <el-option label="Informal"></el-option>
-                  <el-option label="Lainnya"></el-option>
+                <el-select v-model="setName.id_pendidikan_ibu" placeholder="Pilih Jenjang">
+             <el-option label="Tidak sekolah" value="0"></el-option>
+                  <el-option label="PAUD" value="1"></el-option>
+                  <el-option label="TK / sederajat" value="2"></el-option>
+                  <el-option label="Putus SD" value="3"></el-option>
+                  <el-option label="SD / sederajat" value="4"></el-option>
+                  <el-option label="SMP / sederajat" value="5"></el-option>
+                  <el-option label="SMA / sederajat" value="6"></el-option>
+                  <el-option label="Paket A" value="7"></el-option>
+                  <el-option label="Paket B" value="8"></el-option>
+                  <el-option label="Paket C" value="9"></el-option>
+                  <el-option label="D1" value="20"></el-option>
+                  <el-option label="D2" value="21"></el-option>
+                  <el-option label="D3" value="22"></el-option>
+                  <el-option label="D4" value="23"></el-option>
+                  <el-option label="S1" value="30"></el-option>
+                  <el-option label="Profesi" value="31"></el-option>
+                  <el-option label="Sp-1" value="32"></el-option>
+                  <el-option label="S2" value="35"></el-option>
+                  <el-option label="S2 Terapan" value="36"></el-option>
+                  <el-option label="Sp-2" value="37"></el-option>
+                  <el-option label="S3" value="40"></el-option>
+                  <el-option label="S3 Terapan" value="41"></el-option>
+                  <el-option label="Non formal" value="90"></el-option>
+                  <el-option label="Informal" value="91"></el-option>
+                  <el-option label="Lainnya" value="99"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="Pekerjaan">
-                <el-select v-model="setName.nama_pekerjaan_ibu" placeholder="Pilih Pekerjaan">
-                  <el-option label=""></el-option>
-                  <el-option label="Tidak bekerja"></el-option>
-                  <el-option label="Nelayan"></el-option>
-                  <el-option label="Petani"></el-option>
-                  <el-option label="Peternak"></el-option>
-                  <el-option label="PNS/TNI/Polri"></el-option>
-                  <el-option label="Karyawan Swasta"></el-option>
-                  <el-option label="Pedagang Kecil"></el-option>
-                  <el-option label="Pedagang Besar"></el-option>
-                  <el-option label="Wiraswasta"></el-option>
-                  <el-option label="Wirausaha"></el-option>
-                  <el-option label="Buruh"></el-option>
-                  <el-option label="Pensiunan"></el-option>
-                  <el-option label="Sudah Meninggal"></el-option>
-                  <el-option label="Lainnya"></el-option>
+                <el-select v-model="setName.id_pekerjaan_ibu" placeholder="Pilih Pekerjaan">
+                  <el-option label="Tidak bekerja" value="1"></el-option>
+                  <el-option label="Nelayan" value="2"></el-option>
+                  <el-option label="Petani" value="3"></el-option>
+                  <el-option label="Peternak" value="4"></el-option>
+                  <el-option label="PNS/TNI/Polri" value="5"></el-option>
+                  <el-option label="Karyawan Swasta" value="6"></el-option>
+                  <el-option label="Pedagang Kecil" value="7"></el-option>
+                  <el-option label="Pedagang Besar" value="8"></el-option>
+                  <el-option label="Wiraswasta" value="9"></el-option>
+                  <el-option label="Wirausaha" value="10"></el-option>
+                  <el-option label="Buruh" value="11"></el-option>
+                  <el-option label="Pensiunan" value="12"></el-option>
+                  <el-option label="Sudah Meninggal" value="98"></el-option>
+                  <el-option label="Lainnya" value="99"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="Penghasilan">
-                <el-select v-model="setName.nama_penghasilan_ibu" placeholder="Pilih Penghasilan">
-                  <el-option label=""></el-option>
-                  <el-option label="Kurang dari Rp 1.000.000"></el-option>
-                  <el-option label="Kurang dari Rp 500,000"></el-option>
-                  <el-option label="Rp 500,000 - Rp 999,999"></el-option>
-                  <el-option label="Rp 1,000,000 - Rp 1,999,999"></el-option>
-                  <el-option label="Rp 2,000,000 - Rp 4,999,999"></el-option>
-                  <el-option label="Rp 5,000,000 - Rp 20,000,000"></el-option>
-                  <el-option label="Lebih dari Rp 20,000,000"></el-option>
+                <el-select v-model="setName.id_penghasilan_ibu" placeholder="Pilih Penghasilan">
+                  <el-option label=" " value="0"></el-option>
+                  <el-option label="Kurang dari Rp 500,000" value="11"></el-option>
+                  <el-option label="Rp 500,000 - Rp 999,999" value="12"></el-option>
+                  <el-option label="Rp 1,000,000 - Rp 1,999,999" value="13"></el-option>
+                  <el-option label="Rp 2,000,000 - Rp 4,999,999" value="14"></el-option>
+                  <el-option label="Rp 5,000,000 - Rp 20,000,000" value="15"></el-option>
+                  <el-option label="Lebih dari Rp 20,000,000" value="16"></el-option>
                 </el-select>
               </el-form-item>
 
@@ -291,63 +287,60 @@
                   </el-col>
                 </el-form-item>
                 <el-form-item label="Pendidikan">
-                  <el-select v-model="setName.nama_pendidikan_wali" placeholder="Pilih Jenjang">
-                    <el-option label="Tidak sekolah"></el-option>
-                    <el-option label="PAUD"></el-option>
-                    <el-option label="TK / sederajat"></el-option>
-                    <el-option label="Putus SD"></el-option>
-                    <el-option label="SD / sederajat"></el-option>
-                    <el-option label="SMP / sederajat"></el-option>
-                    <el-option label="SMA / sederajat"></el-option>
-                    <el-option label="Paket A"></el-option>
-                    <el-option label="Paket B"></el-option>
-                    <el-option label="Paket C"></el-option>
-                    <el-option label="D1"></el-option>
-                    <el-option label="D2"></el-option>
-                    <el-option label="D3"></el-option>
-                    <el-option label="D4"></el-option>
-                    <el-option label="S1"></el-option>
-                    <el-option label="Profesi"></el-option>
-                    <el-option label="Sp-1"></el-option>
-                    <el-option label="S2"></el-option>
-                    <el-option label="S2 Terapan"></el-option>
-                    <el-option label="Sp-2"></el-option>
-                    <el-option label="S3"></el-option>
-                    <el-option label="S3 Terapan"></el-option>
-                    <el-option label="Non formal"></el-option>
-                    <el-option label="Informal"></el-option>
-                    <el-option label="Lainnya"></el-option>
+                  <el-select v-model="setName.id_pendidikan_wali" placeholder="Pilih Jenjang">
+                    <el-option label="PAUD" value="1"></el-option>
+                    <el-option label="TK / sederajat" value="2"></el-option>
+                    <el-option label="Putus SD" value="3"></el-option>
+                    <el-option label="SD / sederajat" value="4"></el-option>
+                    <el-option label="SMP / sederajat" value="5"></el-option>
+                    <el-option label="SMA / sederajat" value="6"></el-option>
+                    <el-option label="Paket A" value="7"></el-option>
+                    <el-option label="Paket B" value="8"></el-option>
+                    <el-option label="Paket C" value="9"></el-option>
+                    <el-option label="D1" value="20"></el-option>
+                    <el-option label="D2" value="21"></el-option>
+                    <el-option label="D3" value="22"></el-option>
+                    <el-option label="D4" value="23"></el-option>
+                    <el-option label="S1" value="30"></el-option>
+                    <el-option label="Profesi" value="31"></el-option>
+                    <el-option label="Sp-1" value="32"></el-option>
+                    <el-option label="S2" value="35"></el-option>
+                    <el-option label="S2 Terapan" value="36"></el-option>
+                    <el-option label="Sp-2" value="37"></el-option>
+                    <el-option label="S3" value="40"></el-option>
+                    <el-option label="S3 Terapan" value="41"></el-option>
+                    <el-option label="Non formal" value="90"></el-option>
+                    <el-option label="Informal" value="91"></el-option>
+                    <el-option label="Lainnya" value="99"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="Pekerjaan">
-                  <el-select v-model="setName.nama_pekerjaan_wali" placeholder="Pilih Pekerjaan">
-                    <el-option label=""></el-option>
-                    <el-option label="Tidak bekerja"></el-option>
-                    <el-option label="Nelayan"></el-option>
-                    <el-option label="Petani"></el-option>
-                    <el-option label="Peternak"></el-option>
-                    <el-option label="PNS/TNI/Polri"></el-option>
-                    <el-option label="Karyawan Swasta"></el-option>
-                    <el-option label="Pedagang Kecil"></el-option>
-                    <el-option label="Pedagang Besar"></el-option>
-                    <el-option label="Wiraswasta"></el-option>
-                    <el-option label="Wirausaha"></el-option>
-                    <el-option label="Buruh"></el-option>
-                    <el-option label="Pensiunan"></el-option>
-                    <el-option label="Sudah Meninggal"></el-option>
-                    <el-option label="Lainnya"></el-option>
+                  <el-select v-model="setName.id_pekerjaan_wali" placeholder="Pilih Pekerjaan">
+                    <el-option label="Tidak bekerja" value="1"></el-option>
+                    <el-option label="Nelayan" value="2"></el-option>
+                    <el-option label="Petani" value="3"></el-option>
+                    <el-option label="Peternak" value="4"></el-option>
+                    <el-option label="PNS/TNI/Polri" value="5"></el-option>
+                    <el-option label="Karyawan Swasta" value="6"></el-option>
+                    <el-option label="Pedagang Kecil" value="7"></el-option>
+                    <el-option label="Pedagang Besar" value="8"></el-option>
+                    <el-option label="Wiraswasta" value="9"></el-option>
+                    <el-option label="Wirausaha" value="10"></el-option>
+                    <el-option label="Buruh" value="11"></el-option>
+                    <el-option label="Pensiunan" value="12"></el-option>
+                    <el-option label="Sudah Meninggal" value="98"></el-option>
+                    <el-option label="Lainnya" value="99"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="Penghasilan">
-                  <el-select v-model="setName.nama_penghasilan_wali" placeholder="Pilih Penghasilan">
-                    <el-option label=""></el-option>
-                    <el-option label="Kurang dari Rp 1.000.000"></el-option>
-                    <el-option label="Kurang dari Rp 500,000"></el-option>
-                    <el-option label="Rp 500,000 - Rp 999,999"></el-option>
-                    <el-option label="Rp 1,000,000 - Rp 1,999,999"></el-option>
-                    <el-option label="Rp 2,000,000 - Rp 4,999,999"></el-option>
-                    <el-option label="Rp 5,000,000 - Rp 20,000,000"></el-option>
-                    <el-option label="Lebih dari Rp 20,000,000"></el-option>
+                  <el-select v-model="setName.id_penghasilan_wali" placeholder="Pilih Penghasilan">
+                    <el-option label=" " value="0"></el-option>
+                    <el-option label="Kurang dari Rp 500,000" value="11"></el-option>
+                    <el-option label="Rp 500,000 - Rp 999,999" value="12"></el-option>
+                    <el-option label="Rp 1,000,000 - Rp 1,999,999" value="13"></el-option>
+                    <el-option label="Rp 2,000,000 - Rp 4,999,999" value="14"></el-option>
+                    <el-option label="Rp 5,000,000 - Rp 20,000,000" value="15"></el-option>
+                    <el-option label="Lebih dari Rp 20,000,000" value="16"></el-option>
                   </el-select>
                 </el-form-item>
             </el-tab-pane>
@@ -491,7 +484,6 @@
               </template>
             </el-table-column>
               </el-table>
-          <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"/>
         </template>
       </el-tab-pane>
       <el-tab-pane>
@@ -550,7 +542,6 @@
               </template>
             </el-table-column>
               </el-table>
-          <pagination v-show="totalPrestasi>0" :totalPrestasi="totalPrestasi" :page.sync="listQueryPrestasi.page" :limit.sync="listQueryPrestasi.limit" @pagination="fetchData"/>
         </template>
       </el-tab-pane>
     </el-tabs>
@@ -591,9 +582,6 @@ export default {
       }
     }
   },
-  created() {
-    this.fetchData()
-  },
   computed: {
     setName: {
       get() {
@@ -611,35 +599,6 @@ export default {
     }
   },
   methods: {
-    fetchData() {
-      this.getDataRiwayat()
-      this.getDataPrestasi()
-    },
-    getDataRiwayat() {
-      if (this.total === 0) {
-        this.getTotal()
-      }
-      this.listLoading = true
-      this.$store.dispatch('GetListRiwayatPendidikanMahasiswa', this.listQuery).then(() => {
-        console.log('getlistriwayatpendidikanmahasiswa done')
-        this.listLoading = false
-      }).catch(() => {
-        this.listLoading = false
-      })
-    },
-    getDataPrestasi() {
-      if (this.totalPrestasi === 0) {
-        this.getTotalPrestasi()
-      }
-      this.listLoading = true
-      console.log('getdataprestasi')
-      this.$store.dispatch('GetListPrestasiMahasiswa', this.listQueryPrestasi).then(() => {
-        console.log('getlistprestasimahasiswa done')
-        this.listLoading = false
-      }).catch(() => {
-        this.listLoading = false
-      })
-    },
     indexMethod(index) {
       if (this.listQuery.page > 1) {
         return index + 1 + (this.listQuery.limit * (this.listQuery.page - 1))
@@ -659,8 +618,6 @@ export default {
     handleFilter() {
       this.listQuery.page = 1
       this.listQueryPrestasi.page = 1
-      this.getTotal()
-      this.getTotalPrestasi()
       this.getDataRiwayat()
       this.getDataPrestasi()
     },
@@ -739,9 +696,9 @@ export default {
     },
     onSubmit() {
       console.log(store.getters.updatebiodatamahasiswa[0])
-      this.loading = true
+      this.listLoading = true
       store.dispatch('UpdateBiodataMahasiswa').then(() => {
-        this.loading = false
+        this.listLoading = false
       })
     },
     onCancel() {
