@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import { getListRiwayatPendidikanMahasiswa } from '@/api/getListRiwayatPendidikanMahasiswa'
 import { getRiwayatPendidikanMahasiswa } from '@/api/getRiwayatPendidikanMahasiswa'
+import { updateRiwayatPendidikanMahasiswa } from '@/api/updateRiwayatPendidikanMahasiswa'
 import { deleteRiwayatPendidikanMahasiswa } from '@/api/deleteRiwayatPendidikanMahasiswa'
 import { getListPrestasiMahasiswa } from '@/api/getListPrestasiMahasiswa'
+import { Message } from 'element-ui'
+import router from '@/router'
 import store from '@/store'
 
 const user = {
@@ -13,6 +16,9 @@ const user = {
   mutations: {
     GET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, listriwayatpendidikanmahasiswa) => {
       Vue.set(state, 'listriwayatpendidikanmahasiswa', listriwayatpendidikanmahasiswa)
+    },
+    SET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, listriwayatpendidikanmahasiswa) => {
+      state.listriwayatpendidikanmahasiswa = listriwayatpendidikanmahasiswa
     }
   },
 
@@ -28,6 +34,55 @@ const user = {
           commit('GET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
           console.log('listriwayatpendidikanmahasiswa di store', store.getters.listriwayatpendidikanmahasiswa)
           resolve()
+        }).catch(error => {
+          console.log('error')
+          reject(error)
+        })
+      })
+    },
+    // By id_registrasi_mahasiswa not by id_mahasiswa like above
+    GetRiwayatPendidikanMahasiswa({ commit }, id) {
+      const token = store.getters.token
+      console.log(id)
+      return new Promise((resolve, reject) => {
+        getRiwayatPendidikanMahasiswa(token, id).then(response => {
+          console.log(response.data)
+          const data = response.data
+          console.log('ini data riwayat pendidikan mahasiswa', data)
+          commit('GET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
+          console.log('listriwayatpendidikanmahasiswa di store', store.getters.listriwayatpendidikanmahasiswa)
+          resolve()
+        }).catch(error => {
+          console.log('error')
+          reject(error)
+        })
+      })
+    },
+    UpdateRiwayatPendidikanMahasiswa({ commit }) {
+      const token = store.getters.token
+      const riwayatpendidikan = store.getters.listriwayatpendidikanmahasiswa[0]
+      return new Promise((resolve, reject) => {
+        updateRiwayatPendidikanMahasiswa(token, riwayatpendidikan).then(response => {
+          console.log(response.data)
+          console.log('riwayatpendidikan updatean di store', store.getters.listriwayatpendidikanmahasiswa)
+        }).then(() => {
+          const listQuery = store.getters.listriwayatpendidikanmahasiswa
+          const id_mahasiswa = listQuery[0].id_mahasiswa
+          getListRiwayatPendidikanMahasiswa(token, id_mahasiswa).then(response => {
+            console.log(response.data)
+            const data = response.data
+            commit('SET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
+            Message({
+              message: 'Berhasil Update Riwayat Pendidikan Mahasiswa',
+              type: 'success',
+              duration: 5 * 1000
+            })
+            router.push('/mahasiswa/edit')
+            resolve()
+          }).catch(error => {
+            console.log('error')
+            reject(error)
+          })
         }).catch(error => {
           console.log('error')
           reject(error)

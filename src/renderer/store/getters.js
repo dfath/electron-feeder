@@ -20,6 +20,10 @@ const getters = {
   jenisaktivitasmahasiswa: state => state.getjenisaktivitasmahasiswa.jenisaktivitasmahasiswa,
   jeniskeluar: state => state.getjeniskeluar.jeniskeluar,
   jenispendaftaran: state => state.getjenispendaftaran.jenispendaftaran,
+  jalurmasuk: state => state.getjalurmasuk.jalurmasuk,
+  pembiayaan: state => state.getpembiayaan.pembiayaan,
+  jenisprestasi: state => state.getjenisprestasi.jenisprestasi,
+  tingkatprestasi: state => state.gettingkatprestasi.tingkatprestasi,
 
   // Profil Perguruan Tinggi
   profilPT: state => state.profil.profilPT,
@@ -39,8 +43,7 @@ const getters = {
   listprestasimahasiswa: state => state.getlistprestasimahasiswa.listprestasimahasiswa,
   totalPrestasiMahasiswa: state => state.getlistprestasimahasiswa.totalPrestasiMahasiswa,
   contohprestasimahasiswa: state => state.contoh.contohprestasimahasiswa.contohprestasimahasiswa,
-  updateprestasimahasiswa: state => state.getlistprestasimahasiswa.listprestasimahasiswa,
-  listQueryPrestasiMahasiswa: state => state.getlistprestasimahasiswa.listQueryPrestasiMahasiswa,
+  // listQueryPrestasiMahasiswa: state => state.getlistprestasimahasiswa.listQueryPrestasiMahasiswa,
 
   // Dosen
   listDosen: state => state.listdosen.listDosen,

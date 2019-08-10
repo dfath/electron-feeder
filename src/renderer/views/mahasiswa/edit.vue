@@ -621,13 +621,14 @@ export default {
       this.getDataRiwayat()
       this.getDataPrestasi()
     },
-    // handleUpdate(row) {
-    //   this.$store.dispatch('GetDetailKelasKuliah', row.id_registrasi_mahasiswa).then(() => {
-    //     this.$router.push('/riwayatpendidikanmahasiswa/edit')
-    //     console.log('edit riwayatpendidikanmahasiswa ini')
-    //   })
-    //   console.log(row)
-    // },
+    handleUpdate(row) {
+      this.$store.dispatch('GetRiwayatPendidikanMahasiswa', row.id_registrasi_mahasiswa).then(() => {
+        console.log('apa sih yang undefined ', row.id_registrasi_mahasiswa)
+        this.$router.push('/mahasiswa/editriwayat')
+        console.log('edit riwayatpendidikanmahasiswa ini')
+      })
+      console.log(row)
+    },
     handleDelete(row) {
       MessageBox.confirm('Apakah Anda ingin menghapus Riwayat Pendidikan Mahasiswa ini?', 'Confirm Delete', {
         confirmButtonText: 'Ya',
@@ -650,6 +651,14 @@ export default {
           message: 'Delete canceled'
         })
       })
+    },
+    handleUpdatePrestasi(row) {
+      this.$store.dispatch('GetListPrestasiMahasiswa', row.id_mahasiswa).then(() => {
+        // console.log('apa sih yang undefined ', row.id_mahasiswa)
+        this.$router.push('/mahasiswa/editprestasi')
+        console.log('edit prestasimahasiswa ini')
+      })
+      console.log(row)
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => {

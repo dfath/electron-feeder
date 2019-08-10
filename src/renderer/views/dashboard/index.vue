@@ -27,6 +27,7 @@ export default {
   &-text {
     font-size: 30px;
     line-height: 46px;
+    margin-top: 1.5rem;
   }
 }
 </style>

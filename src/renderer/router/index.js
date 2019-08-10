@@ -374,28 +374,6 @@ export const constantRouterMap = [
       }
     ]
   },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/uploadmahasiswa',
-    name: 'Guide',
-    meta: { title: 'Guide', icon: 'table' },
-    children: [
-      {
-        path: 'uploadmahasiswa',
-        name: 'Guide Upload Mahasiswa',
-        component: () => import('@/views/guide/index'),
-        meta: { title: 'Guide Upload Mahasiswa', icon: 'message' }
-      },
-      {
-        path: 'uploadlain',
-        name: 'Guide Upload Lain',
-        hidden: true,
-        component: () => import('@/views/guide/index'),
-        meta: { title: 'Guide Upload Lain', icon: 'form' }
-      }
-    ]
-  },
 
   // {
   //   path: '/form',

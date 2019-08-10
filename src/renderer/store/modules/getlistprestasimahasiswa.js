@@ -14,6 +14,9 @@ const user = {
   mutations: {
     GET_LIST_PRESTASI_MAHASISWA: (state, listprestasimahasiswa) => {
       Vue.set(state, 'listprestasimahasiswa', listprestasimahasiswa)
+    },
+    SET_LIST_PRESTASI_MAHASISWA: (state, listprestasimahasiswa) => {
+      state.listprestasimahasiswa = listprestasimahasiswa
     }
   },
 
@@ -37,17 +40,18 @@ const user = {
     },
     UpdatePrestasiMahasiswa({ commit }) {
       const token = store.getters.token
-      const prestasimahasiswa = store.getters.updateprestasimahasiswa[0]
+      const prestasimahasiswa = store.getters.listprestasimahasiswa[0]
       return new Promise((resolve, reject) => {
         updatePrestasiMahasiswa(token, prestasimahasiswa).then(response => {
           console.log(response.data)
-          console.log('prestasimahasiswa updatean di store', store.getters.updateprestasimahasiswa)
+          console.log('prestasimahasiswa updatean di store', store.getters.listprestasimahasiswa)
         }).then(() => {
-          const listQuery = store.getters.listQueryPrestasiMahasiswa
+          const listQuery = store.getters.listprestasimahasiswa
           // console.log(listQuery)
-          const limit = listQuery.limit
-          const offset = listQuery.offset
-          getListPrestasiMahasiswa(token, limit, offset).then(response => {
+          // const limit = listQuery.limit
+          // const offset = listQuery.offset
+          const id_mahasiswa = listQuery[0].id_mahasiswa
+          getListPrestasiMahasiswa(token, id_mahasiswa).then(response => {
             console.log(response.data)
             const data = response.data
             commit('SET_LIST_PRESTASI_MAHASISWA', data)
@@ -56,7 +60,7 @@ const user = {
               type: 'success',
               duration: 5 * 1000
             })
-            router.push('/mahasiswa/prestasimahasiswa')
+            router.push('/mahasiswa/edit')
             resolve()
           }).catch(error => {
             console.log('error')

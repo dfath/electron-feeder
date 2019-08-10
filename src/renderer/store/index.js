@@ -5,6 +5,11 @@ import user from './modules/user'
 // Other
 import getstatusmahasiswa from './modules/getstatusmahasiswa'
 import getjenispendaftaran from './modules/getjenispendaftaran'
+import getjalurmasuk from './modules/getjalurmasuk'
+import getpembiayaan from './modules/getpembiayaan'
+import getjenisprestasi from './modules/getjenisprestasi'
+import gettingkatprestasi from './modules/gettingkatprestasi'
+
 import gettahunajaran from './modules/gettahunajaran'
 import getsemester from './modules/getsemester'
 import getjenisaktivitasmahasiswa from './modules/getjenisaktivitasmahasiswa'
@@ -61,6 +66,10 @@ const store = new Vuex.Store({
     // Other
     getstatusmahasiswa,
     getjenispendaftaran,
+    getjalurmasuk,
+    getpembiayaan,
+    getjenisprestasi,
+    gettingkatprestasi,
     gettahunajaran,
     getsemester,
     getjenisaktivitasmahasiswa,
