@@ -1,6 +1,6 @@
 <template>
   <div style="text-align: center;" class="dashboard-container">
-    <img style=" width: 100px; height: 100px;"  src="/src/renderer/icons/svg/openfeederlogo.svg">
+    <img style=" width: 100px; height: 100px;"  src="static/openfeederlogo.svg">
     <div class="dashboard-text">Selamat Datang di OpenFeeder v1.0.0</div>
   </div>
 </template>

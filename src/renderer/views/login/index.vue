@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form style="text-align: center;" class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
-      <img style=" width: 100px; height: 100px;"  src="/src/renderer/icons/svg/openfeederlogo.svg">
+      <img style=" width: 100px; height: 100px;"  src="static/openfeederlogo.svg">
       <h3 class="title">OpenFeeder</h3>
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
