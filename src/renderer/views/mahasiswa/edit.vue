@@ -622,8 +622,7 @@ export default {
       this.getDataPrestasi()
     },
     handleUpdate(row) {
-      this.$store.dispatch('GetRiwayatPendidikanMahasiswa', row.id_registrasi_mahasiswa).then(() => {
-        console.log('apa sih yang undefined ', row.id_registrasi_mahasiswa)
+      this.$store.dispatch('GetListRiwayatPendidikanMahasiswa', row.id_mahasiswa).then(() => {
         this.$router.push('/mahasiswa/editriwayat')
         console.log('edit riwayatpendidikanmahasiswa ini')
       })

@@ -54,7 +54,6 @@ const user = {
         }
       }
       getIDs()
-    // By id_registrasi_mahasiswa not by id_mahasiswa like above
     },
     UpdateRiwayatPendidikanMahasiswa({ commit }) {
       const token = store.getters.token
