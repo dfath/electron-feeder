@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       title: 'OpenFeeder',
-      logo: '/src/renderer/icons/svg/openfeederlogo.svg'
+      logo: 'static/openfeederlogo.svg'
     }
   }
 }

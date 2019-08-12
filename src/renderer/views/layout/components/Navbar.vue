@@ -19,7 +19,7 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img class="user-avatar"  src="/src/renderer/icons/svg/openfeederlogo.svg">
+          <img class="user-avatar"  src="static/openfeederlogo.svg">
           <i class="el-icon-caret-bottom"></i>
         </div>
         <el-dropdown-menu class="user-dropdown" slot="dropdown">
