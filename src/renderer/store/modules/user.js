@@ -29,7 +29,7 @@ const user = {
   },
 
   actions: {
-    // 登录
+    // log in
     Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
@@ -47,9 +47,9 @@ const user = {
       })
     },
 
-    // 获取用户信息
+    // Get user information
 
-    // 登出
+    // Sign out
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
@@ -62,7 +62,7 @@ const user = {
         })
       })
     },
-    // 前端 登出
+    // Front end
     FedLogOut({ commit }) {
       return new Promise(resolve => {
         removeToken()

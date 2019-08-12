@@ -23,9 +23,6 @@
       </el-col>
     </el-row>
 
-    <!-- <el-button @click="resetDateFilter">reset date filter</el-button>
-    <el-button @click="clearFilter">reset all filters</el-button> -->
-
     <el-table 
       v-loading="listLoading" 
       border 
@@ -121,7 +118,6 @@ export default {
   directives: { waves },
   data() {
     return {
-      // listMahasiswa: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -161,11 +157,6 @@ export default {
       prodi: [],
       periode: [],
       status: [],
-      // rules: {
-      //   type: [{ required: true, message: 'type is required', trigger: 'change' }],
-      //   timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
-      //   title: [{ required: true, message: 'title is required', trigger: 'blur' }]
-      // },
       downloadLoading: false
     }
   },
@@ -179,7 +170,6 @@ export default {
   },
   methods: {
     getProdi() {
-      // https://stackoverflow.com/questions/45757724/how-to-get-current-year-in-vue-js
       let i = new Date().getFullYear()
       console.log(i)
       while (i > 1979) {
@@ -197,18 +187,6 @@ export default {
         }
       }).catch(() => {
       })
-    },
-    resetDateFilter() {
-      this.$refs.filterTable.clearFilter('date')
-    },
-    clearFilter() {
-      this.$refs.filterTable.clearFilter()
-    },
-    formatter(row, column) {
-      return row.address
-    },
-    filterTag(value, row) {
-      return row.tag === value
     },
     filterHandler(value, row, column) {
       const property = column['property']
