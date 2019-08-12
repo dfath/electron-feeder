@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import pathToRegexp from 'path-to-regexp'
+// import pathToRegexp from 'path-to-regexp'
 export default {
   data() {
     return {
@@ -49,8 +49,8 @@ export default {
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
       const { params } = this.$route
-      var toPath = pathToRegexp.compile(path)
-      return toPath(params)
+      // var toPath = pathToRegexp.compile(path)
+      return params
     },
     handleLink(item) {
       const { redirect, path } = item
@@ -58,7 +58,7 @@ export default {
         this.$router.push(redirect)
         return
       }
-      this.$router.push(this.pathCompile(path))
+      this.$router.push(path)
     }
   }
 }

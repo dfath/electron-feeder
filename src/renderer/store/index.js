@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
-// Other
+// Support
 import getstatusmahasiswa from './modules/getstatusmahasiswa'
 import getjenispendaftaran from './modules/getjenispendaftaran'
 import getjalurmasuk from './modules/getjalurmasuk'
@@ -21,36 +21,36 @@ import periode from './modules/periode'
 import contoh from './modules/contoh'
 import destination from './modules/destination'
 // Mahasiswa
-import list from './modules/list' // List Mahasiswa
+import list from './modules/list'
 import getbiodatamahasiswa from './modules/getbiodatamahasiswa'
-import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa' // List Riwayat Pendidikan Mahasiswa
-import getlistprestasimahasiswa from './modules/getlistprestasimahasiswa' // List Prestasi
+import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa'
+import getlistprestasimahasiswa from './modules/getlistprestasimahasiswa'
 // Dosen
 import listdosen from './modules/listdosen'
-import listpenugasandosen from './modules/listpenugasandosen' // List Penugasan Dosen
-import listpenugasansemuadosen from './modules/listpenugasansemuadosen' // List Penugasan Semua Dosen
+import listpenugasandosen from './modules/listpenugasandosen'
+import listpenugasansemuadosen from './modules/listpenugasansemuadosen'
 // Mata Kuliah
-import listmatakuliah from './modules/listmatakuliah' // List MataKuliah
+import listmatakuliah from './modules/listmatakuliah'
 import getdetailmatakuliah from './modules/getdetailmatakuliah'
 // Substansi Kuliah
 import listsubstansikuliah from './modules/listsubstansikuliah'
 // Kurikulum
-import listkurikulum from './modules/listkurikulum' // List Kurikulum
+import listkurikulum from './modules/listkurikulum'
 import getdetailkurikulum from './modules/getdetailkurikulum'
 // Kelas Perkuliahan
-import listkelaskuliah from './modules/listkelaskuliah' // List Kelas Kuliah
+import listkelaskuliah from './modules/listkelaskuliah'
 import getdetailkelaskuliah from './modules/getdetailkelaskuliah'
-import listnilaiperkuliahankelas from './modules/listnilaiperkuliahankelas' // List Nilai Perkuliahan Kelas
+import listnilaiperkuliahankelas from './modules/listnilaiperkuliahankelas'
 
 import getpesertakelaskuliah from './modules/getpesertakelaskuliah'
 // Aktivitas Kuliah Mahasiswa
-import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa' // Aktivitas Kuliah Mahasiswa
+import aktivitaskuliahmahasiswa from './modules/aktivitaskuliahmahasiswa'
 // Aktivitas Mahasiswa
-import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa' // List Aktivitas Mahasiswa
-import getlistanggotaaktivitasmahasiswa from './modules/getlistanggotaaktivitasmahasiswa' // List Aktivitas Mahasiswa
+import listaktivitasmahasiswa from './modules/listaktivitasmahasiswa'
+import getlistanggotaaktivitasmahasiswa from './modules/getlistanggotaaktivitasmahasiswa'
 import getdetailaktivitasmahasiswa from './modules/getdetailaktivitasmahasiswa'
 // Mahasiswa Lulus/Drop Out
-import listmahasiswalulusdo from './modules/listmahasiswalulusdo' // List Mahasiswa Lulus/Drop Out
+import listmahasiswalulusdo from './modules/listmahasiswalulusdo'
 import getdetailmahasiswalulusdo from './modules/getdetailmahasiswalulusdo'
 
 import insert from './modules/insert'
@@ -63,7 +63,7 @@ const store = new Vuex.Store({
   modules: {
     app,
     user,
-    // Other
+    // Support
     getstatusmahasiswa,
     getjenispendaftaran,
     getjalurmasuk,

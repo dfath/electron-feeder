@@ -53,7 +53,6 @@
       </el-tab-pane>
       <el-tab-pane>   
         <span slot="label"><i class="el-icon-info" /> Peserta Kelas</span>
-
         <template>
             <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
               <el-col :span="10">
@@ -127,7 +126,6 @@
 <script>
 import store from '@/store'
 import waves from '@/directive/waves' // waves directive
-import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import { Message, MessageBox } from 'element-ui'
 
@@ -174,7 +172,6 @@ export default {
   },
   methods: {
     getProdi() {
-      // https://stackoverflow.com/questions/45757724/how-to-get-current-year-in-vue-js
       let i = new Date().getFullYear()
       console.log(i)
       while (i > 1979) {
@@ -228,7 +225,7 @@ export default {
       })
     },
     handleUpload() {
-      this.$router.push('/kelaskuliah/insertkelaskuliah')
+      this.$router.push('/kelaskuliah/insertpesertakelaskuliah')
     },
     handleClick(tab, event) {
       console.log(tab, event)
@@ -238,13 +235,6 @@ export default {
       this.getTotal()
       this.getData()
     },
-    // handleUpdate(row) {
-    //   this.$store.dispatch('GetDetailKelasKuliah', row.id_kelas_kuliah).then(() => {
-    //     this.$router.push('/kelaskuliah/edit')
-    //     console.log('edit kelaskuliah ini')
-    //   })
-    //   console.log(row)
-    // },
     handleDelete(row) {
       MessageBox.confirm('Apakah Anda ingin menghapus Kelas Kuliah ini?', 'Confirm Delete', {
         confirmButtonText: 'Ya',
@@ -264,20 +254,10 @@ export default {
       }).catch(() => {
         Message({
           type: 'info',
-          message: 'Delete canceled'
+          message: 'Delete Canceled'
         })
       })
     },
-    formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
-    },
-
     onSubmit() {
       console.log(store.getters.updatekelaskuliah[0])
       this.loading = true
@@ -295,7 +275,6 @@ export default {
       todelete.forEach(data => {
         store.dispatch('DeletePesertaKelasKuliah', data)
         store.dispatch('GetPesertaKelasKuliah', this.listQuery)
-        // this.getData()
       })
       this.getData()
     },

@@ -44,16 +44,16 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 // import ErrorLog from '@/components/ErrorLog'
 // import Screenfull from '@/components/Screenfull'
-import SizeSelect from '@/components/SizeSelect'
+// import SizeSelect from '@/components/SizeSelect'
 // import Search from '@/components/HeaderSearch'
 
 export default {
   components: {
     Breadcrumb,
-    Hamburger,
+    Hamburger
     // ErrorLog,
     // Screenfull,
-    SizeSelect
+    // SizeSelect
     // Search
   },
   computed: {
@@ -69,7 +69,7 @@ export default {
     },
     logout() {
       this.$store.dispatch('FedLogOut').then(() => {
-        location.reload() // 为了重新实例化vue-router对象 避免bug
+        location.reload() // In order to re-instantiate the vue-router object to avoid bugs
       })
     }
   }

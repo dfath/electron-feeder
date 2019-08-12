@@ -3,7 +3,6 @@ const getters = {
   size: state => state.app.size,
   device: state => state.app.device,
   visitedViews: state => state.tagsView.visitedViews,
-  // cachedViews: state => state.tagsView.cachedViews,
   token: state => state.user.token,
   username: state => state.user.username,
   password: state => state.user.password,
@@ -13,7 +12,7 @@ const getters = {
   introduction: state => state.user.introduction,
   roles: state => state.user.roles,
   permission_routes: state => state.permission.routes,
-  // Other
+  // Support
   statusmahasiswa: state => state.getstatusmahasiswa.statusmahasiswa,
   tahunajaran: state => state.gettahunajaran.tahunajaran,
   semester: state => state.getsemester.semester,
@@ -35,20 +34,16 @@ const getters = {
   totalMahasiswa: state => state.list.totalMahasiswa,
   contohbiodatamahasiswa: state => state.contoh.contohbiodatamahasiswa.contohbiodatamahasiswa,
   updatebiodatamahasiswa: state => state.getbiodatamahasiswa.updatebiodatamahasiswa,
-  // deletebiodatamahasiswa: state => state.getbiodatamahasiswa.deletebiodatamahasiswa,
   listriwayatpendidikanmahasiswa: state => state.getlistriwayatpendidikanmahasiswa.listriwayatpendidikanmahasiswa,
   contohriwayatpendidikanmahasiswa: state => state.contoh.contohriwayatpendidikanmahasiswa.contohriwayatpendidikanmahasiswa,
-
   // // Prestasi
   listprestasimahasiswa: state => state.getlistprestasimahasiswa.listprestasimahasiswa,
   totalPrestasiMahasiswa: state => state.getlistprestasimahasiswa.totalPrestasiMahasiswa,
   contohprestasimahasiswa: state => state.contoh.contohprestasimahasiswa.contohprestasimahasiswa,
-  // listQueryPrestasiMahasiswa: state => state.getlistprestasimahasiswa.listQueryPrestasiMahasiswa,
-
   // Dosen
   listDosen: state => state.listdosen.listDosen,
   totalDosen: state => state.listdosen.totalDosen,
-  listPenugasanSemuaDosen: state => state.listpenugasansemuadosen.listPenugasanSemuaDosen, // List Penugasan Semua Dosen
+  listPenugasanSemuaDosen: state => state.listpenugasansemuadosen.listPenugasanSemuaDosen,
   totalPenugasanSemuaDosen: state => state.listpenugasansemuadosen.totalPenugasanSemuaDosen,
   contohdosenpengajarkelaskuliah: state => state.contoh.contohdosenpengajarkelaskuliah.contohdosenpengajarkelaskuliah,
   // Mata Kuliah
@@ -57,7 +52,6 @@ const getters = {
   totalMataKuliah: state => state.listmatakuliah.totalMataKuliah,
   contohmatakuliah: state => state.contoh.contohmatakuliah.contohmatakuliah,
   updatematakuliah: state => state.getdetailmatakuliah.updatematakuliah,
-  // deletematakuliah: state => state.getdetailmatakuliah.deletematakuliah,
   // Substansi Kuliah
   listSubstansiKuliah: state => state.listsubstansikuliah.listSubstansiKuliah,
   totalSubstansiKuliah: state => state.listsubstansikuliah.totalSubstansiKuliah,
@@ -67,9 +61,8 @@ const getters = {
   totalKurikulum: state => state.listkurikulum.totalKurikulum,
   contohkurikulum: state => state.contoh.contohkurikulum.contohkurikulum,
   updatekurikulum: state => state.getdetailkurikulum.updatekurikulum,
-  // deletekurikulum: state => state.getdetailkurikulum.deletekurikulum,
   // Matkul Kurikulum
-  matkulkurikulum: state => state.getmatkulkurikulum.matkulkurikulum,
+  // matkulkurikulum: state => state.getmatkulkurikulum.matkulkurikulum,
   contohmatkulkurikulum: state => state.contoh.contohmatkulkurikulum.contohmatkulkurikulum,
   // Kelas Perkuliahan
   listKelasKuliah: state => state.listkelaskuliah.listKelasKuliah, // List Kelas Kuliah
@@ -80,29 +73,28 @@ const getters = {
 
   pesertaKelasKuliah: state => state.getpesertakelaskuliah.pesertakelaskuliah,
   totalPesertaKelasKuliah: state => state.getpesertakelaskuliah.totalPesertaKelasKuliah,
-  // deletekelaskuliah: state => state.listkelaskuliah.deletekelaskuliah,
   contohpesertakelaskuliah: state => state.contoh.contohpesertakelaskuliah.contohpesertakelaskuliah,
   // Aktivitas Kuliah Mahasiswa
-  aktivitasKuliahMahasiswa: state => state.aktivitaskuliahmahasiswa.aktivitasKuliahMahasiswa, // Aktivitas Kuliah Mahasiswa
+  aktivitasKuliahMahasiswa: state => state.aktivitaskuliahmahasiswa.aktivitasKuliahMahasiswa,
   totalAktivitasKuliahMahasiswa: state => state.aktivitaskuliahmahasiswa.totalAktivitasKuliahMahasiswa,
   contohperkuliahan: state => state.contoh.contohperkuliahan.contohperkuliahan,
   // Nilai Perkuliahan Kelas
-  listNilaiPerkuliahanKelas: state => state.listnilaiperkuliahankelas.listNilaiPerkuliahanKelas, // List Nilai Perkuliahan Kelas
+  listNilaiPerkuliahanKelas: state => state.listnilaiperkuliahankelas.listNilaiPerkuliahanKelas,
   totalNilaiPerkuliahanKelas: state => state.listnilaiperkuliahankelas.totalNilaiPerkuliahanKelas,
   // Aktivitas Mahasiswa
-  listAktivitasMahasiswa: state => state.listaktivitasmahasiswa.listAktivitasMahasiswa, // List Aktivitas Mahasiswa
+  listAktivitasMahasiswa: state => state.listaktivitasmahasiswa.listAktivitasMahasiswa,
   listQueryAktivitasMahasiswa: state => state.listaktivitasmahasiswa.listQueryAktivitasMahasiswa,
   totalAktivitasMahasiswa: state => state.listaktivitasmahasiswa.totalAktivitasMahasiswa,
   contohaktivitasmahasiswa: state => state.contoh.contohaktivitasmahasiswa.contohaktivitasmahasiswa,
   updateaktivitas: state => state.getdetailaktivitasmahasiswa.updateaktivitas,
 
-  listAnggotaAktivitasMahasiswa: state => state.getlistanggotaaktivitasmahasiswa.listAnggotaAktivitasMahasiswa, // List Anggota Aktivitas Mahasiswa
+  listAnggotaAktivitasMahasiswa: state => state.getlistanggotaaktivitasmahasiswa.listAnggotaAktivitasMahasiswa,
   totalAnggotaAktivitasMahasiswa: state => state.getlistanggotaaktivitasmahasiswa.totalAnggotaAktivitasMahasiswa,
   contohanggotaaktivitasmahasiswa: state => state.contoh.contohanggotaaktivitasmahasiswa.contohanggotaaktivitasmahasiswa,
   contohbimbingmahasiswa: state => state.contoh.contohbimbingmahasiswa.contohbimbingmahasiswa,
   contohujimahasiswa: state => state.contoh.contohujimahasiswa.contohujimahasiswa,
   // Mahasiswa Lulus/Drop Out
-  listMahasiswaLulusDO: state => state.listmahasiswalulusdo.listMahasiswaLulusDO, // List Mahasiswa Lulus/Drop Out
+  listMahasiswaLulusDO: state => state.listmahasiswalulusdo.listMahasiswaLulusDO,
   listQueryMahasiswaLulusDO: state => state.listmahasiswalulusdo.listQueryMahasiswaLulusDO,
   totalMahasiswaLulusDO: state => state.listmahasiswalulusdo.totalMahasiswaLulusDO,
   contohmahasiswalulusdo: state => state.contoh.contohmahasiswalulusdo.contohmahasiswalulusdo,

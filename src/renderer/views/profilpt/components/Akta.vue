@@ -26,7 +26,6 @@ export default {
   data() {
     return {
       listLoading: true,
-      activeName: 'first',
       profil: null,
       tableAkta: [{
         name: 'No SK Pendirian',
@@ -52,29 +51,6 @@ export default {
         name: 'Tanggal Izin Operasional',
         isi: ''
       }]
-
-      // timeline: [
-      //   {
-      //     timestamp: '2019/4/20',
-      //     title: 'Update Github template',
-      //     content: 'PanJiaChen committed 2019/4/20 20:46'
-      //   },
-      //   {
-      //     timestamp: '2019/4/21',
-      //     title: 'Update Github template',
-      //     content: 'PanJiaChen committed 2019/4/21 20:46'
-      //   },
-      //   {
-      //     timestamp: '2019/4/22',
-      //     title: 'Build Template',
-      //     content: 'PanJiaChen committed 2019/4/22 20:46'
-      //   },
-      //   {
-      //     timestamp: '2019/4/23',
-      //     title: 'Release New Version',
-      //     content: 'PanJiaChen committed 2019/4/23 20:46'
-      //   }
-      // ]
     }
   },
   methods: {
@@ -93,12 +69,12 @@ export default {
         console.log(this.profil)
 
         // Informasi PT
-        this.tableAkta[0].isi = this.profil.sk_pendirian
-        this.tableAkta[1].isi = this.profil.tanggal_sk_pendirian
-        this.tableAkta[2].isi = this.profil.nama_status_milik
-        this.tableAkta[3].isi = this.profil.status_perguruan_tinggi
-        this.tableAkta[4].isi = this.profil.sk_izin_operasional
-        this.tableAkta[5].isi = this.profil.tanggal_izin_operasional
+        this.tableAkta[0].isi = this.profil[0].sk_pendirian
+        this.tableAkta[1].isi = this.profil[0].tanggal_sk_pendirian
+        this.tableAkta[2].isi = this.profil[0].nama_status_milik
+        this.tableAkta[3].isi = this.profil[0].status_perguruan_tinggi
+        this.tableAkta[4].isi = this.profil[0].sk_izin_operasional
+        this.tableAkta[5].isi = this.profil[0].tanggal_izin_operasional
       }).catch(() => {
         this.listLoading = false
       })

@@ -9,51 +9,43 @@
           <div class="user-name"><svg-icon class-name="size-icon" icon-class="peoples" /></div>
       </div>
       <div class="box-center">
-        <div class="user-name text-center">{{ user.name }}</div>
+        <!-- <div class="user-name text-center">{{ user.name }}</div> -->
       </div>
     </div>
 
     <div class="user-bio">
-      <!-- <div class="user-education user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>Profil PT</span></div>
-        <div class="user-bio-section-body">
-          <div class="text-muted">
-            JS in Computer Science from the University of Technology
-          </div>
-        </div>
-      </div> -->
 
       <div class="user-skills user-bio-section">
         <!-- <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>Profil PT</span></div> -->
         <div class="user-bio-section-body">
           <div class="progress-item">
             <span class="bold">Kode PT</span>
-            <span class="right">{{ this.profil.kode_perguruan_tinggi }}</span>
+            <span class="right">{{ this.profil[0].kode_perguruan_tinggi }}</span>
             <hr>
           </div>
           <div class="progress-item">
             <span class="bold">Nama PT</span>
-            <span class="right">{{ this.profil.nama_perguruan_tinggi }}</span>
+            <span class="right">{{ this.profil[0].nama_perguruan_tinggi }}</span>
             <hr>
           </div>
           <div class="progress-item">
             <span class="bold">Telepon</span>
-            <span class="right">{{ this.profil.telepon }}</span>
+            <span class="right">{{ this.profil[0].telepon }}</span>
             <hr>
           </div>
           <div class="progress-item">
             <span class="bold">Faxmile</span>
-            <span class="right">{{ this.profil.faximile }}</span>
+            <span class="right">{{ this.profil[0].faximile }}</span>
             <hr>
           </div>
           <div class="progress-item">
             <span class="bold">Email</span>
-            <span class="right">{{ this.profil.email }}</span>
+            <span class="right">{{ this.profil[0].email }}</span>
             <hr>
           </div>
           <div class="progress-item">
             <span class="bold">Website</span>
-            <span class="right">{{ this.profil.website }}</span>
+            <span class="right">{{ this.profil[0].website }}</span>
             <hr>
           </div>
         </div>
@@ -66,53 +58,27 @@
 import PanThumb from '@/components/PanThumb'
 export default {
   components: { PanThumb },
-  props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {
-          name: '',
-          email: '',
-          avatar: '',
-          roles: ''
-        }
-      }
-    }
-  },
+  // props: {
+  //   user: {
+  //     type: Object,
+  //     default: () => {
+  //       return {
+  //         name: '',
+  //         email: '',
+  //         avatar: '',
+  //         roles: ''
+  //       }
+  //     }
+  //   }
+  // },
 
   created() {
     this.getProfilPT()
   },
   data() {
     return {
-      list: null,
       listLoading: true,
-      activeName: 'first',
-      profil: null,
-      tableProfilPT: [{
-        name: 'Kode PT',
-        isi: ''
-      },
-      {
-        name: 'Nama PT',
-        isi: ''
-      },
-      {
-        name: 'Telepon',
-        isi: ''
-      },
-      {
-        name: 'Faxmile',
-        isi: ''
-      },
-      {
-        name: 'Email',
-        isi: ''
-      },
-      {
-        name: 'Website',
-        isi: ''
-      }]
+      profil: null
     }
   },
   methods: {
@@ -127,12 +93,6 @@ export default {
       this.$store.dispatch('GetProfilPT').then(() => {
         this.listLoading = true
         this.profil = this.$store.getters.profilPT
-        // this.tableProfilPT[0].isi = this.profil.kode_perguruan_tinggi
-        // this.tableProfilPT[1].isi = this.profil.nama_perguruan_tinggi
-        // this.tableProfilPT[2].isi = this.profil.telepon
-        // this.tableProfilPT[3].isi = this.profil.faximile
-        // this.tableProfilPT[4].isi = this.profil.email
-        // this.tableProfilPT[5].isi = this.profil.website
       }).catch(() => {
         this.listLoading = false
       })

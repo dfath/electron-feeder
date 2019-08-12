@@ -3,13 +3,11 @@ import store from '@/store'
 
 const user = {
   state: {
-    profilPT: {
-      nama_PT: 'STFB'
-    }
+    profilPT: null
   },
 
   mutations: {
-    SET_PROFILPT: (state, profilPT) => {
+    SET_PROFIL_PT: (state, profilPT) => {
       state.profilPT = profilPT
     }
   },
@@ -21,7 +19,8 @@ const user = {
         getProfilPT(token, '').then(response => {
           console.log(response.data)
           const data = response.data
-          commit('SET_PROFILPT', data[0])
+          commit('SET_PROFIL_PT', data)
+          console.log('ini profil di store' + data)
           console.log(store.getters.profilPT)
           resolve()
         }).catch(error => {

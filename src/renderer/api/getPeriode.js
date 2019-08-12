@@ -12,7 +12,7 @@ export function getPeriode(token) {
       'act': 'GetPeriode',
       token,
       'filter': '',
-      'limit': 20,
+      'limit': '',
       'offset': 0
     }
   })

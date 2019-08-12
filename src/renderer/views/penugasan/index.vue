@@ -73,8 +73,7 @@
       >
       </el-table-column>
     </el-table>
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
-
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
   </div>
 </template>
 
@@ -184,23 +183,6 @@ export default {
       this.getTotal()
       this.getData()
     }
-    // handleModifyStatus(row, status) {
-    //   this.$message({
-    //     message: '操作Success',
-    //     type: 'success'
-    //   })
-    //   row.status = status
-    // },
-    // handleDelete(row) {
-    //   this.$notify({
-    //     title: 'Success',
-    //     message: 'Delete Successfully',
-    //     type: 'success',
-    //     duration: 2000
-    //   })
-    //   const index = this.list.indexOf(row)
-    //   this.list.splice(index, 1)
-    // },
   }
 }
 </script>

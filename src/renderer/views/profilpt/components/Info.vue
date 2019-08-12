@@ -1,14 +1,5 @@
 <template>
   <div class="block">
-    <!-- <el-timeline>
-      <el-timeline-item v-for="(item,index) of timeline" :key="index" :timestamp="item.timestamp" placement="top">
-        <el-card>
-          <h4>{{ item.title }}</h4>
-          <p>{{ item.content }}</p>
-        </el-card>
-      </el-timeline-item>
-    </el-timeline> -->
-
     <el-table 
       border 
       :data='tableInfoPT' 
@@ -34,7 +25,6 @@ export default {
   data() {
     return {
       listLoading: true,
-      activeName: 'first',
       profil: null,
       tableInfoPT: [{
         name: 'Bank',
@@ -60,29 +50,6 @@ export default {
         name: 'Luas Tanah Bukan Milik',
         isi: ''
       }]
-
-      // timeline: [
-      //   {
-      //     timestamp: '2019/4/20',
-      //     title: 'Update Github template',
-      //     content: 'PanJiaChen committed 2019/4/20 20:46'
-      //   },
-      //   {
-      //     timestamp: '2019/4/21',
-      //     title: 'Update Github template',
-      //     content: 'PanJiaChen committed 2019/4/21 20:46'
-      //   },
-      //   {
-      //     timestamp: '2019/4/22',
-      //     title: 'Build Template',
-      //     content: 'PanJiaChen committed 2019/4/22 20:46'
-      //   },
-      //   {
-      //     timestamp: '2019/4/23',
-      //     title: 'Release New Version',
-      //     content: 'PanJiaChen committed 2019/4/23 20:46'
-      //   }
-      // ]
     }
   },
   methods: {
@@ -101,13 +68,13 @@ export default {
         console.log(this.profil)
 
         // Informasi PT
-        this.tableInfoPT[0].isi = this.profil.bank
-        this.tableInfoPT[1].isi = this.profil.unit_cabang
-        this.tableInfoPT[2].isi = this.profil.nomor_rekening
-        this.tableInfoPT[3].isi = this.profil.kelurahan
-        this.tableInfoPT[4].isi = this.profil.mbs
-        this.tableInfoPT[5].isi = this.profil.luas_tanah_milik
-        this.tableInfoPT[6].isi = this.profil.luas_tanah_bukan_milik
+        this.tableInfoPT[0].isi = this.profil[0].bank
+        this.tableInfoPT[1].isi = this.profil[0].unit_cabang
+        this.tableInfoPT[2].isi = this.profil[0].nomor_rekening
+        this.tableInfoPT[3].isi = this.profil[0].kelurahan
+        this.tableInfoPT[4].isi = this.profil[0].mbs
+        this.tableInfoPT[5].isi = this.profil[0].luas_tanah_milik
+        this.tableInfoPT[6].isi = this.profil[0].luas_tanah_bukan_milik
       }).catch(() => {
         this.listLoading = false
       })

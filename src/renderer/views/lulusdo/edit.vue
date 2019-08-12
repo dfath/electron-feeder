@@ -1,11 +1,10 @@
 <template>
   <div class="app-container">
-    <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
-      <el-form-item label="Mahasiswa" required="true">
-        <el-input v-model="setLulusDO.nama_mahasiswa" disabled="true"></el-input>
+    <el-form size=mini label-width="120px" v-loading="loading">
+      <el-form-item label="Mahasiswa" required>
+        <el-input v-model="setLulusDO.nama_mahasiswa" disabled></el-input>
       </el-form-item>
-      <!-- gimana masukin nim coba -->
-      <el-form-item label="Jenis Keluar" required="true">
+      <el-form-item label="Jenis Keluar" required>
         <el-select v-model="setLulusDO.id_jenis_keluar" placeholder="Please select your activity">
           <el-option label="Lulus" value="1"></el-option>
           <el-option label="Mutasi" value="2"></el-option>
@@ -17,7 +16,7 @@
           <el-option label="Lainnya" value="Z"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="Tanggal Keluar" required="true">
+      <el-form-item label="Tanggal Keluar" required>
         <el-date-picker type="date" placeholder="Pick a date" v-model="setLulusDO.tanggal_keluar" style="width: 100%;"></el-date-picker>
       </el-form-item>
       <el-form-item label="Keterangan">
@@ -37,23 +36,6 @@
       <el-form-item label="No seri Ijazah / No sertifikat profesi">
         <el-input v-model="setLulusDO.nomor_ijazah"></el-input>
       </el-form-item>
-      <!-- <el-form-item label="No seri Ijazah / No sertifikat profesi">
-        <el-input v-model="setLulusDO.nomor_ijazah"></el-input>
-      </el-form-item>
-      <el-form-item label="No seri Ijazah / No sertifikat profesi">
-        <el-input v-model="setLulusDO.nomor_ijazah"></el-input>
-      </el-form-item>
-      <el-form-item label="Tanggal SK">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="Pick a date" v-model="setLulusDO.tanggal_sk_yudisium" style="width: 100%;"></el-date-picker>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="Tanggal SK">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="Pick a date" v-model="setLulusDO.tanggal_sk_yudisium" style="width: 100%;"></el-date-picker>
-        </el-col>
-      </el-form-item> -->
-
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Update</el-button>
         <el-button @click="onCancel">Cancel</el-button>
@@ -67,28 +49,7 @@ import store from '@/store'
 export default {
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      },
-      loading: false,
-      checkList: ['selected and disabled', 'Option A'],
-      nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu']
-      // rules: {
-      //   butuh: [
-      //     { required: true, message: 'Please input Activity name', trigger: 'blur' },
-      //     { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
-      //   ],
-      //   takbisa: [
-      //     { disabled: true }
-      //   ]
-      // }
+      loading: false
     }
   },
   computed: {

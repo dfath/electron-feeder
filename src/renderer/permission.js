@@ -1,15 +1,15 @@
 import router from './router'
 import store from './store'
-import NProgress from 'nprogress' // Progress 进度条
-import 'nprogress/nprogress.css'// Progress 进度条样式
+import NProgress from 'nprogress' // Progress bar
+import 'nprogress/nprogress.css'// Progress style
 import { Message } from 'element-ui'
 
-const whiteList = ['/login'] // 不重定向白名单
+const whiteList = ['/login'] // Do not redirect whitelist
 router.beforeEach((to, from, next) => {
   NProgress.start()
   console.log('ini dari', from.path)
   if (store.getters.token) {
-    console.log('ada token', to.path)
+    console.log('menuju ke', to.path)
     if (to.path === '/login') {
       next({ path: '/' })
       NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
@@ -55,5 +55,5 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done() // 结束Progress
+  NProgress.done() // End Progress
 })

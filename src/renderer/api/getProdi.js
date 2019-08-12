@@ -29,7 +29,7 @@ export function getAllProdi(token, filter) {
       'act': 'GetAllProdi',
       token,
       filter,
-      'limit': 20,
+      'limit': '',
       'offset': 0
     }
   })

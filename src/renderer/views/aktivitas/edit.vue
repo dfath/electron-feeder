@@ -11,17 +11,8 @@
             <el-input v-model="setAktivitas.id_semester" disabled></el-input>
           </el-form-item>
           <el-form-item label="Jenis Aktivitas" required>
-            <el-select v-model="setAktivitas.id_jenis_aktivitas" placeholder="Please select your activity">
-              <el-option label="Laporan akhir studi" value="1"></el-option>
-              <el-option label="Tugas akhir" value="2"></el-option>
-              <el-option label="Tesis" value="3"></el-option>
-              <el-option label="Disertasi" value="4"></el-option>
-              <el-option label="Kuliah kerja nyata" value="5"></el-option>
-              <el-option label="Kerja praktek\/PKL" value="6"></el-option>
-              <el-option label="Bimbingan akademis" value="7"></el-option>
-              <el-option label="Aktivitas kemahasiswaan" value="10"></el-option>
-              <el-option label="Program kreativitas mahasiswa" value="11"></el-option>
-              <el-option label="Kompetisi" value="12"></el-option>
+            <el-select v-model="setAktivitas.id_jenis_aktivitas" placeholder="Pilih Jenis Aktivitas">
+              <el-option v-for="aktivitas of jenisaktivitasoption" :key="aktivitas.id_jenis_aktivitas_mahasiswa" :label="aktivitas.nama_jenis_aktivitas_mahasiswa" :value="aktivitas.id_jenis_aktivitas_mahasiswa"></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="Judul" required>
@@ -130,6 +121,7 @@ export default {
   directives: { waves },
   data() {
     return {
+      jenisaktivitasoption: [],
       listAnggotaAktivitasMahasiswa: null,
       total: 0,
       listLoading: false,
@@ -164,6 +156,13 @@ export default {
   methods: {
     fetchData() {
       this.getData()
+      this.getJenisAktivitasMahasiswa()
+    },
+    getJenisAktivitasMahasiswa() {
+      store.dispatch('GetJenisAktivitasMahasiswa').then(() => {
+        this.jenisaktivitasoption = store.getters.jenisaktivitasmahasiswa
+        console.log('ini jenisaktivitasmahasiswa dari store ke sini ', this.jenisaktivitasmahasiswa)
+      })
     },
     getData() {
       if (this.total === 0) {
@@ -232,7 +231,7 @@ export default {
       }).catch(() => {
         Message({
           type: 'info',
-          message: 'Delete canceled'
+          message: 'Delete Canceled'
         })
       })
     },

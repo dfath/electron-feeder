@@ -33,7 +33,10 @@ export const constantRouterMap = [
     hidden: true,
     children: [{
       path: 'dashboard',
+      hidden: true,
+      // name: 'Isi Dashboard',
       component: () => import('@/views/dashboard/index')
+      // meta: { title: 'Isi Dashboard', icon: 'clipboard' }
     }]
   },
   {
@@ -97,20 +100,6 @@ export const constantRouterMap = [
       }
     ]
   },
-
-  // {
-  //   path: '/excel',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'excel',
-  //       name: 'Upload Mahasiswa',
-  //       component: () => import('@/views/excel/index'),
-  //       meta: { title: 'Excel', icon: 'table' }
-  //     }
-  //   ]
-  // },
-
   {
     path: '/dosen',
     component: Layout,
@@ -254,13 +243,13 @@ export const constantRouterMap = [
         component: () => import('@/views/nilaikuliah/index'),
         meta: { title: 'Data Nilai Perkuliahan', icon: 'chart' }
       },
-      {
-        path: 'edit',
-        name: 'Edit Nilai Perkuliahan',
-        hidden: true,
-        component: () => import('@/views/nilaikuliah/edit'),
-        meta: { title: 'Edit Nilai Perkuliahan', icon: 'form' }
-      },
+      // {
+      //   path: 'edit',
+      //   name: 'Edit Nilai Perkuliahan',
+      //   hidden: true,
+      //   component: () => import('@/views/nilaikuliah/edit'),
+      //   meta: { title: 'Edit Nilai Perkuliahan', icon: 'form' }
+      // },
       {
         path: 'aktivitaskuliah',
         name: 'Aktivitas Kuliah Mahasiswa',
@@ -320,12 +309,6 @@ export const constantRouterMap = [
         component: () => import('@/views/aktivitas/edit'),
         meta: { title: 'Edit Aktivitas Mahasiswa', icon: 'form' }
       },
-      // {
-      //   path: 'listanggotaaktivitasmahasiswa',
-      //   name: 'Data Anggota Aktivitas Mahasiswa',
-      //   component: () => import('@/views/aktivitas/index'), // perlu diganti nanti jangan lupa
-      //   meta: { title: 'Data Anggota Aktivitas Mahasiswa', icon: 'skill' }
-      // },
       {
         path: 'insertanggotaaktivitasmahasiswa',
         name: 'Upload Anggota Aktivitas Mahasiswa',
@@ -374,25 +357,11 @@ export const constantRouterMap = [
       }
     ]
   },
-
-  // {
-  //   path: '/form',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Form',
-  //       component: () => import('@/views/form/index'),
-  //       meta: { title: 'Form', icon: 'form' }
-  //     }
-  //   ]
-  // },
-
   { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({
-  // mode: 'history', //后端支持可开
+  // mode: 'history', //Backend support can be opened
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })

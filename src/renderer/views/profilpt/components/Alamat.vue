@@ -19,25 +19,13 @@
 </template>
 
 <script>
-// const avatarPrefix = '?imageView2/1/w/80/h/80'
-// const carouselPrefix = '?imageView2/2/h/440'
 export default {
   created() {
     this.getProfilPT()
   },
   data() {
     return {
-      // carouselImages: [
-      //   'https://wpimg.wallstcn.com/9679ffb0-9e0b-4451-9916-e21992218054.jpg',
-      //   'https://wpimg.wallstcn.com/bcce3734-0837-4b9f-9261-351ef384f75a.jpg',
-      //   'https://wpimg.wallstcn.com/d1d7b033-d75e-4cd6-ae39-fcd5f1c0a7c5.jpg',
-      //   'https://wpimg.wallstcn.com/50530061-851b-4ca5-9dc5-2fead928a939.jpg'
-      // ],
-      // avatarPrefix,
-      // carouselPrefix,
-      // list: null,
       listLoading: true,
-      activeName: 'first',
       profil: null,
       tableAlamat: [{
         name: 'Jalan',
@@ -82,13 +70,13 @@ export default {
         this.listLoading = true
         this.profil = this.$store.getters.profilPT
         // Alamat
-        this.tableAlamat[0].isi = this.profil.jalan
-        this.tableAlamat[1].isi = this.profil.dusun
-        this.tableAlamat[2].isi = this.profil.rt_rw
-        this.tableAlamat[3].isi = this.profil.kelurahan
-        this.tableAlamat[4].isi = this.profil.kode_pos
-        this.tableAlamat[5].isi = this.profil.nama_wilayah
-        this.tableAlamat[6].isi = this.profil.lintang_bujur
+        this.tableAlamat[0].isi = this.profil[0].jalan
+        this.tableAlamat[1].isi = this.profil[0].dusun
+        this.tableAlamat[2].isi = this.profil[0].rt_rw
+        this.tableAlamat[3].isi = this.profil[0].kelurahan
+        this.tableAlamat[4].isi = this.profil[0].kode_pos
+        this.tableAlamat[5].isi = this.profil[0].nama_wilayah
+        this.tableAlamat[6].isi = this.profil[0].lintang_bujur
       }).catch(() => {
         this.listLoading = false
       })

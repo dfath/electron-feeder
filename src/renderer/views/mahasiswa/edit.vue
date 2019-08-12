@@ -648,7 +648,7 @@ export default {
       }).catch(() => {
         Message({
           type: 'info',
-          message: 'Delete canceled'
+          message: 'Delete Canceled'
         })
       })
     },

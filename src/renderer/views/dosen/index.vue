@@ -62,13 +62,11 @@
       </el-table-column>
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
-
   </div>
 </template>
 
 <script>
 import waves from '@/directive/waves' // waves directive
-import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 // import { Message, MessageBox } from 'element-ui'
 
@@ -76,17 +74,8 @@ export default {
   name: 'ComplexTable',
   components: { Pagination },
   directives: { waves },
-  props: {
-    items: {
-      type: Array,
-      default: () => []
-    }
-  },
   data() {
     return {
-      activeName: 'first',
-      tableKey: 0,
-      list: null,
       listDosen: null,
       total: 0,
       listLoading: true,
@@ -176,32 +165,6 @@ export default {
       this.listQuery.page = 1
       this.getTotal()
       this.getData()
-    },
-    handleModifyStatus(row, status) {
-      this.$message({
-        message: '操作Success',
-        type: 'success'
-      })
-      row.status = status
-    },
-    // handleDelete(row) {
-    //   this.$notify({
-    //     title: 'Success',
-    //     message: 'Delete Successfully',
-    //     type: 'success',
-    //     duration: 2000
-    //   })
-    //   const index = this.list.indexOf(row)
-    //   this.list.splice(index, 1)
-    // },
-    formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
     }
   }
 }

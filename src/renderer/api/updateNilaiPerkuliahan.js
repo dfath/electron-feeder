@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-
+// API ini gagal
 export function updateNilaiPerkuliahan(token, key, record) {
   return request({
     url: '/ws/live2.php',

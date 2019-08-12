@@ -29,7 +29,7 @@ export function getAllPT(token, filter) {
       'act': 'GetAllPT',
       token,
       filter,
-      'limit': 1,
+      'limit': '',
       'offset': 0
     }
   })
