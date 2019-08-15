@@ -34,8 +34,9 @@
       </el-col>
     </el-row>
     <!-- Uploaded Table -->
+    <!-- https://codepen.io/Event_Horizon/pen/WodMjp -->
     <el-table id="uploaded-table" :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
-      <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
+      <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" :width="(String(tableData[0][item]).length + item.length + 1) * 10"/>
     </el-table>
     <div class="components-container">
       <!-- you can add element-ui's tooltip -->
