@@ -26,17 +26,26 @@
       :data="tablelistMahasiswaLulusDO" 
       :cell-style="{padding: '0px', height: '38px'}"
     >
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column 
+        min-width="50" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
       <el-table-column 
         min-width="100" 
         prop="nim"
         label="NIM"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="200" 
         prop="nama_mahasiswa"
         label="Nama Mahasiswa"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -45,6 +54,7 @@
         label="Program Studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -53,6 +63,7 @@
         label="Angkatan"
         :filters="filterAngkatan"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -61,17 +72,22 @@
         label="Jenis Keluar"
         :filters="filterJenisKeluar"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="122" 
         prop="tanggal_keluar"
-        label="Tanggal Keluar">
+        label="Tanggal Keluar"
+        align="center"      
+      >
       </el-table-column>
       <el-table-column 
         min-width="100" 
         prop="keterangan"
-        label="Keterangan">
+        label="Keterangan"
+        header-align="center"
+      >
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">

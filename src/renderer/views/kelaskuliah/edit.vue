@@ -87,25 +87,45 @@
               @selection-change="handleSelectionChange"
             >
               <el-table-column type="selection" width="55"></el-table-column>
-              <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-              <el-table-column min-width="75" prop="nim"
-                              label="NIM">
-              </el-table-column>
-              <el-table-column min-width="150" prop="nama_mahasiswa"
-                              label="Nama Mahasiswa">
+              <el-table-column 
+                min-width="50" 
+                type="index" 
+                :index="indexMethod" 
+                label="No."
+                align="center"
+              >
               </el-table-column>
               <el-table-column 
-                min-width="45" 
+                min-width="75" 
+                prop="nim"
+                label="NIM"
+                align="center"
+              >
+              </el-table-column>
+              <el-table-column 
+                min-width="175" 
+                prop="nama_mahasiswa"
+                label="Nama Mahasiswa"
+                header-align="center"
+              >
+              </el-table-column>
+              <el-table-column 
+                min-width="150" 
                 prop="nama_program_studi"
                 label="Jurusan"
                 :filters="filterProdi"
                 :filter-method="filterHandler"
+                header-align="center"
               >
               </el-table-column>
-              <el-table-column min-width="45" prop="angkatan"
-                              :filters="filterAngkatan"
-                              :filter-method="filterHandler"
-                              label="Angkatan">
+              <el-table-column 
+                min-width="45" 
+                prop="angkatan"
+                :filters="filterAngkatan"
+                :filter-method="filterHandler"
+                label="Angkatan"
+                align="center"
+              >
               </el-table-column>
               <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
                 <template slot-scope="{row}">

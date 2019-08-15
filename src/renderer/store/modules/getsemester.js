@@ -15,7 +15,7 @@ const user = {
   actions: {
     GetSemester({ commit, state }) {
       const token = store.getters.token
-      const filter = ''
+      const filter = ``
       return new Promise((resolve, reject) => {
         getSemester(token, filter).then(response => {
           console.log(response.data)

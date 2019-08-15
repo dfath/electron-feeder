@@ -82,15 +82,34 @@
               @selection-change="handleSelectionChange"
             >
               <el-table-column type="selection" width="55"></el-table-column>
-              <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-              <el-table-column min-width="70" prop="nim"
-                              label="NIM">
+              <el-table-column 
+                min-width="50" 
+                type="index" 
+                :index="indexMethod" 
+                label="No."
+                align="center"
+              >
               </el-table-column>
-              <el-table-column min-width="125" prop="nama_mahasiswa"
-                              label="Nama Peserta">
+              <el-table-column 
+                min-width="70" 
+                prop="nim"
+                label="NIM"
+                align="center"
+              >
               </el-table-column>
-              <el-table-column min-width="75" prop="nama_jenis_peran"
-                              label="Jenis">
+              <el-table-column 
+                min-width="125" 
+                prop="nama_mahasiswa"
+                label="Nama Peserta"
+                header-align="center"
+              >
+              </el-table-column>
+              <el-table-column 
+                min-width="75" 
+                prop="nama_jenis_peran"
+                label="Jenis"
+                align="center"
+              >
               </el-table-column>
               <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
                 <template slot-scope="{row}">

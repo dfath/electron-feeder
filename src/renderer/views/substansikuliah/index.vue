@@ -38,44 +38,55 @@
         min-width="20" 
         type=index
         label="No."
+        align="center"
       >
       </el-table-column>
-
       <el-table-column
         min-width="150"
         prop="nama_substansi"
         label="Nama Substansi"
         sortable
+        header-align="center"
       >
       </el-table-column>
       <el-table-column
         min-width="88"
         prop="sks_mata_kuliah"
         label="Bobot Mata Kuliah (sks)"
+        header-align="center"
+        align="right"
       >
       </el-table-column>
       <el-table-column
         min-width="88"
         prop="sks_tatap_muka"
         label="Bobot Tatap Muka (sks)"
+        header-align="center"
+        align="right"
       >
       </el-table-column>
       <el-table-column
         min-width="88"
         prop="sks_praktek"
         label="Bobot Praktek (sks)"
+        header-align="center"
+        align="right"
       >
       </el-table-column>
       <el-table-column
         min-width="88"
         prop="sks_praktek_lapangan"
         label="Bobot Praktek Lapangan (sks)"
+        header-align="center"
+        align="right"
       >
       </el-table-column>
       <el-table-column
         min-width="88"
         prop="sks_simulasi"
         label="Bobot Simulasi (sks)"
+        header-align="center"
+        align="right"
       >
       </el-table-column>
     </el-table>

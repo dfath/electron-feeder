@@ -26,11 +26,19 @@
       :data="tablelistKurikulum" 
       :cell-style="{padding: '0px', height: '34px'}"
     >
-      <el-table-column min-width="45" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column 
+        min-width="45" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
       <el-table-column
         min-width="168" 
         prop="nama_kurikulum"
         label="Nama Kurikulum"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -39,35 +47,41 @@
         label="Program Studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
+        header-align="center"
        >
       </el-table-column>
       <el-table-column 
         min-width="100" 
         prop="semester_mulai_berlaku"
         label="Mulai Berlaku"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="50" 
         prop=""
         label="Aturan Jumlah sks"
+        header-align="center"
       >
         <el-table-column 
           min-width="45" 
           prop="jumlah_sks_lulus"
           label="Lulus"
+          align="center"
         >
         </el-table-column>
         <el-table-column 
           min-width="45" 
           prop="jumlah_sks_wajib"
           label="Wajib"
+          align="center"
         >
         </el-table-column>
         <el-table-column 
           min-width="50" 
           prop="jumlah_sks_pilihan"
           label="Pilihan"
+          align="center"
         >
         </el-table-column>
         </el-table-column>
@@ -75,17 +89,20 @@
         min-width="50" 
         prop=""
         label="Jumlah sks Matakuliah"
+        header-align="center"
       >
         <el-table-column 
           min-width="52" 
           prop="jumlah_sks_mata_kuliah_wajib"
           label="Wajib"
+          align="center"
         >
         </el-table-column>
         <el-table-column 
           min-width="52" 
           prop="jumlah_sks_mata_kuliah_pilihan"
-                        label="Pilihan"
+          label="Pilihan"
+          align="center"
         >
         </el-table-column>
       </el-table-column>

@@ -456,24 +456,55 @@
 
           <el-table size=mini stripe v-loading="listLoading" border :data="tablelistriwayatpendidikanmahasiswa" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-            <el-table-column min-width="50" prop="nim"
-                            label="NIM">
+            <el-table-column 
+              min-width="50" 
+              type="index" 
+              :index="indexMethod" 
+              label="No."
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="80" prop="nama_jenis_daftar"
-                            label="Jenis Pendaftaran">
+            <el-table-column 
+              min-width="50" 
+              prop="nim"
+              label="NIM"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="60" prop="nama_periode_masuk"
-                            label="Periode">
+            <el-table-column 
+              min-width="80" 
+              prop="nama_jenis_daftar"
+              label="Jenis Pendaftaran"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="60" prop="tanggal_daftar"
-                            label="Tanggal Masuk">
+            <el-table-column 
+              min-width="60" 
+              prop="nama_periode_masuk"
+              label="Periode"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="100" prop="nama_perguruan_tinggi"
-                            label="Perguruan Tinggi">
+            <el-table-column 
+              min-width="60" 
+              prop="tanggal_daftar"
+              label="Tanggal Masuk"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="50" prop="nama_program_studi"
-                            label="Program Studi">
+            <el-table-column 
+              min-width="100" 
+              prop="nama_perguruan_tinggi"
+              label="Perguruan Tinggi"
+              align="center"
+            >
+            </el-table-column>
+            <el-table-column 
+              min-width="50" 
+              prop="nama_program_studi"
+              label="Program Studi"
+              align="center"
+            >
             </el-table-column>
             <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
               <template slot-scope="{row}">
@@ -514,24 +545,55 @@
 
           <el-table size=mini stripe v-loading="listLoading" border :data="tablelistprestasimahasiswa" :cell-style="{padding: '0px', height: '35px'}" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"></el-table-column>
-            <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-            <el-table-column min-width="50" prop="nama_jenis_prestasi"
-                            label="Jenis Prestasi">
+            <el-table-column 
+              min-width="50" 
+              type="index" 
+              :index="indexMethod" 
+              label="No."
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="80" prop="nama_tingkat_prestasi"
-                            label="Tingkat Prestasi">
+            <el-table-column 
+              min-width="50" 
+              prop="nama_jenis_prestasi"
+              label="Jenis Prestasi"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="60" prop="nama_prestasi"
-                            label="Nama Prestasi">
+            <el-table-column 
+              min-width="80" 
+              prop="nama_tingkat_prestasi"
+              label="Tingkat Prestasi"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="60" prop="tahun_prestasi"
-                            label="Tahun Prestasi">
+            <el-table-column 
+              min-width="60" 
+              prop="nama_prestasi"
+              label="Nama Prestasi"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="100" prop="penyelenggara"
-                            label="Penyelenggara">
+            <el-table-column 
+              min-width="60" 
+              prop="tahun_prestasi"
+              label="Tahun Prestasi"
+              align="center"
+            >
             </el-table-column>
-            <el-table-column min-width="50" prop="peringkat"
-                            label="Peringkat">
+            <el-table-column 
+              min-width="100" 
+              prop="penyelenggara"
+              label="Penyelenggara"
+              align="center"
+            >
+            </el-table-column>
+            <el-table-column 
+              min-width="50" 
+              prop="peringkat"
+              label="Peringkat"
+              align="center"
+            >
             </el-table-column>
             <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
               <template slot-scope="{row}">

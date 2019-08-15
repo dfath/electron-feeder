@@ -25,17 +25,26 @@
       stripe :data="tableaktivitasKuliahMahasiswa" 
       :cell-style="{padding: '0px', height: '33px'}"
     >
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column 
+        min-width="50" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
       <el-table-column 
         min-width="45" 
         prop="nim"
         label="NIM"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="80" 
         prop="nama_mahasiswa"
         label="Nama Mahasiswa"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -44,6 +53,7 @@
         label="Program Studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -52,6 +62,7 @@
         label="Angkatan"
         :filters="filterAngkatan"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -60,6 +71,7 @@
         label="Semester"
         :filters="filterSemester"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -68,30 +80,37 @@
         label="Status"
         :filters="filterStatus"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="25" 
         prop="ips"
         label="IPS"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="25" 
         prop="ipk"
         label="IPK"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="40" 
         prop="sks_semester"
         label="sks Semester"
+        header-align="center"
+        align="right"
       >
       </el-table-column>
       <el-table-column 
         min-width="30" 
         prop="sks_total"
         label="sks Total"
+        header-align="center"
+        align="right"
       >
       </el-table-column>
       <!-- <el-table-column label="Actions" align="center" width="200" class-name="small-padding fixed-width">

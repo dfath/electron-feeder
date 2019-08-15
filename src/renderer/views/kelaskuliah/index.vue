@@ -26,24 +26,57 @@
       :data="tablelistKelasKuliah" 
       :cell-style="{padding: '0px', height: '35px'}"
     >
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="75" prop="kode_mata_kuliah"
-                      label="Kode MK">
+      <el-table-column 
+        min-width="50" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
       </el-table-column>
-      <el-table-column min-width="150" prop="nama_mata_kuliah"
-                      label="Nama MK">
+      <el-table-column 
+        min-width="75" 
+        prop="kode_mata_kuliah"
+        label="Kode MK"
+        align="center"
+      >
       </el-table-column>
-      <el-table-column min-width="55" prop="nama_kelas_kuliah"
-                      label="Nama Kelas">
+      <el-table-column 
+        min-width="150" 
+        prop="nama_mata_kuliah"
+        label="Nama MK"
+        header-align="center"
+      >
       </el-table-column>
-      <el-table-column min-width="40" prop="sks"
-                      label="Bobot MK (sks)">
+      <el-table-column 
+        min-width="55" 
+        prop="nama_kelas_kuliah"
+        label="Nama Kelas"
+        align="center"
+      >
       </el-table-column>
-      <el-table-column min-width="100" prop="nama_dosen"
-                      label="Dosen Pengajar">
+      <el-table-column 
+        min-width="40" 
+        prop="sks"
+        label="Bobot MK (sks)"
+        header-align="center"
+        align="right"
+      >
       </el-table-column>
-      <el-table-column min-width="30" prop="jumlah_mahasiswa"
-                      label="Peserta Kelas">
+      <el-table-column 
+        min-width="100" 
+        prop="nama_dosen"
+        label="Dosen Pengajar"
+        header-align="center"
+      >
+      </el-table-column>
+      <el-table-column 
+        min-width="30" 
+        prop="jumlah_mahasiswa"
+        label="Peserta Kelas"
+        header-align="center"
+        align="right"
+      >
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">

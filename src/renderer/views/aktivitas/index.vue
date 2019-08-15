@@ -26,13 +26,21 @@
       :data="tablelistAktivitasMahasiswa" 
       :cell-style="{padding: '0px', height: '29px'}"
     >
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column 
+        min-width="50" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
       <el-table-column 
         min-width="75" 
         prop="nama_prodi"
         label="Program Studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -41,6 +49,7 @@
         label="Semester"
         :filters="filterSemester"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -49,18 +58,22 @@
         label="Jenis"
         :filters="filterJenisAktivitas"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="225" 
         prop="judul"
         label="Judul"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="55" 
         prop="tanggal_sk_tugas"
-        label="Tanggal SK">
+        label="Tanggal SK"
+        align="center"
+      >
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
         <template slot-scope="{row}">

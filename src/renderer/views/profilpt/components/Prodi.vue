@@ -14,22 +14,30 @@
       <el-table-column
         prop="kode_program_studi"
         label="Kode Program Studi"
-        min-width="100">
+        min-width="100"
+        align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="nama_program_studi"
         label="Nama Program Studi"
-        min-width="100">
+        min-width="100"
+        header-align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="status"
         label="Status"
-        min-width="100">
+        min-width="100"
+        align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="nama_jenjang_pendidikan"
         label="Jenjang"
-        min-width="100">
+        min-width="100"
+        align="center"
+      >
       </el-table-column>
       <!-- <el-table-column
         prop=""

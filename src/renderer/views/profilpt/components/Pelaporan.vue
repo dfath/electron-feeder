@@ -21,27 +21,37 @@
       <el-table-column
         prop="kode_prodi"
         label="Kode Program Studi"
-        min-width="150">
+        min-width="150"
+        align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="nama_program_studi"
         label="Nama Program Studi"
-        min-width="150">
+        min-width="150"
+        header-align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="status_prodi"
         label="Status"
-        min-width="100">
+        min-width="100"
+        align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="jenjang_pendidikan"
         label="Jenjang"
-        min-width="100">
+        min-width="100"
+        align="center"
+      >
       </el-table-column>
       <el-table-column
         prop="periode_pelaporan"
         label="Periode Pelaporan"
-        min-width="150">
+        min-width="150"
+        align="center"
+      >
       </el-table-column>
     </el-table>
   </div>

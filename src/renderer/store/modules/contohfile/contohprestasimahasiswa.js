@@ -4,7 +4,6 @@ const contohprestasimahasiswa = {
       header: [
         'nama_mahasiswa',
         'jenis_kelamin',
-        'tanggal_lahir',
         'nim',
         'id_jenis_prestasi',
         'id_tingkat_prestasi',

@@ -15,7 +15,7 @@
         </span>
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
           placeholder="password"></el-input>
-          <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
+          <span class="show-pwd" @click="showPwd(); changeIcon();"><svg-icon :icon-class="iconNow" /></span>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
@@ -89,16 +89,16 @@ export default {
         type: '',
         status: 'published'
       },
-      dialogFormVisible: false
+      dialogFormVisible: false,
+      iconNow: 'eye'
     }
   },
   methods: {
     showPwd() {
-      if (this.pwdType === 'password') {
-        this.pwdType = ''
-      } else {
-        this.pwdType = 'password'
-      }
+      this.pwdType = this.pwdType === 'password' ? 'text' : 'password'
+    },
+    changeIcon() {
+      this.iconNow = this.iconNow === 'eye' ? 'eye-open' : 'eye'
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
@@ -137,7 +137,8 @@ export default {
       MessageBox.prompt('Masukkan URL Feeder PDDIKTI', 'Setting URL', {
         confirmButtonText: 'OK',
         cancelButtonText: 'Cancel',
-        inputErrorMessage: 'Invalid Email'
+        inputPlaceholder: 'Example: http://localhost:8082',
+        inputErrorMessage: 'Invalid URL'
       }).then(({ value }) => {
         this.handleSave(value)
         this.$message({
