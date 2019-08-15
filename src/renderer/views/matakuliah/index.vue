@@ -27,23 +27,33 @@
       :data="tablelistMataKuliah" 
       :cell-style="{padding: '0px', height: '37px'}"
     >
-      <el-table-column min-width="75" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column 
+        min-width="75" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
       <el-table-column 
         min-width="50" 
         prop="kode_mata_kuliah"
         label="Kode MK"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="200" 
         prop="nama_mata_kuliah"
         label="Nama MK"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="75" 
         prop="sks_mata_kuliah"
         label="Bobot MK (sks)"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -52,6 +62,7 @@
         label="Program Studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -60,6 +71,7 @@
         label="Jenis MK"
         :filters="filterJenisMatkul"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">

@@ -17,17 +17,26 @@
       :data="tablelistDosen" 
       :cell-style="{padding: '0px', height: '37px'}"
     >
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column 
+        min-width="50" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
       <el-table-column 
         min-width="200" 
         prop="nama_dosen"
         label="Nama"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="125" 
         prop="nidn"
         label="NIDN/NUP/NIDK"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -36,6 +45,7 @@
         label="L/P"
         :filters="filterJenisKelamin"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -44,12 +54,14 @@
         label="Agama"
         :filters="filterAgama"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="100" 
         prop="tanggal_lahir"
         label="Tanggal Lahir"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -58,6 +70,7 @@
         label="Status"
         :filters="filterStatus"
         :filter-method="filterHandler"  
+        align="center"
       >
       </el-table-column>
     </el-table>

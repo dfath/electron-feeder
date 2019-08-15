@@ -4,16 +4,11 @@
       <el-col :span="12">
         <el-input v-model="listQuery.filter" placeholder="Nama Mahasiswa" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
-        Search
+          Search
         </el-button>
       </el-col>
       <el-col :span="12">
         <el-row type="flex" justify="end">
-          <!-- <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
-            <el-button class="filter-item" style="margin-left: 10px;" type="warning" icon="el-icon-plus" @click="handleCreate">
-              Buat Baru
-            </el-button>
-          </el-col> -->
            <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
               Import Excel
@@ -24,33 +19,42 @@
     </el-row>
 
     <el-table 
+      size=mini
       v-loading="listLoading" 
       border 
+      stripe
       :data="tablelistMahasiswa" 
       :cell-style="{padding: '0px', height: '37px'}"
-      max-height="500"
-      size=mini
-      stripe
-      ref="filterTable"
     >
-      <el-table-column min-width="100" type="index" :index="indexMethod" label="No."></el-table-column>
-      <el-table-column min-width="200" prop="nama_mahasiswa"
-                      label="Nama">
+      <el-table-column 
+        min-width="100" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
+      <el-table-column 
+        min-width="200" 
+        prop="nama_mahasiswa" 
+        label="Nama"
+        header-align="center"
+      >
       </el-table-column>
       <el-table-column 
         min-width="100" 
         prop="nim"
         label="NIM"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="50" 
         prop="jenis_kelamin"
         label="L/P"
-        
-        column-key="jenis_kelamin"
         :filters="filterJenisKelamin"
         :filter-method="filterHandler"  
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -59,12 +63,15 @@
         label="Agama"
         :filters="filterAgama"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="105" 
         prop="tanggal_lahir"
-        label="Tanggal Lahir">
+        label="Tanggal Lahir"
+        align="center"
+      >
       </el-table-column>
       <el-table-column 
         min-width="160" 
@@ -72,25 +79,25 @@
         label="Program Studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="113" 
         prop="nama_status_mahasiswa"
         label="Status"
-        
-        column-key="nama_status_mahasiswa"
         :filters="filterStatus"
         :filter-method="filterHandler"  
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="125" 
         prop="nama_periode_masuk"
         label="Periode Masuk"
-
-        :filters="filterPeriode"
+        :filters="filterSemester"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
@@ -103,6 +110,11 @@
       </el-table-column>
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" size="mini"/>
+    <div class="components-container">
+      <el-tooltip disabled>
+        <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="50" transition-name="fade" />
+      </el-tooltip>
+    </div>
   </div>
 </template>
 
@@ -110,11 +122,12 @@
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import { Message, MessageBox } from 'element-ui'
+import BackToTop from '@/components/BackToTop'
 // import store from '@/store'
 
 export default {
   name: 'ComplexTable',
-  components: { Pagination },
+  components: { Pagination, BackToTop },
   directives: { waves },
   data() {
     return {
@@ -124,7 +137,8 @@ export default {
         page: 1,
         limit: 10,
         filter: null,
-        nama_program_studi: null
+        nama_program_studi: null,
+        nama_semester: null
       },
       filterJenisKelamin: [
         { text: 'Laki-laki', value: 'L' },
@@ -132,7 +146,7 @@ export default {
       ],
       filterProdi: [],
       filterAngkatan: [],
-      filterPeriode: [],
+      filterSemester: [],
       filterStatus: [
         { text: 'AKTIF', value: 'AKTIF' },
         { text: 'Lulus', value: 'Lulus' },
@@ -157,7 +171,17 @@ export default {
       prodi: [],
       periode: [],
       status: [],
-      downloadLoading: false
+      semester: [],
+      downloadLoading: false,
+      myBackToTopStyle: {
+        right: '50px',
+        bottom: '50px',
+        width: '40px',
+        height: '40px',
+        'border-radius': '4px',
+        'line-height': '45px', // Please keep consistent with height to center vertically
+        background: '#e7eaf1'// The background color of the button
+      }
     }
   },
   created() {
@@ -188,12 +212,25 @@ export default {
       }).catch(() => {
       })
     },
+    getSemester() {
+      this.$store.dispatch('GetSemester').then(() => {
+        if (this.semester.length === 0) {
+          this.semester = this.$store.getters.semester
+          console.log('ini semester yg ada di filter', this.semester)
+          this.semester.forEach(semester => {
+            this.filterSemester.push({ text: `${semester.nama_semester}`, value: `${semester.nama_semester}` })
+          })
+        }
+      }).catch(() => {
+      })
+    },
     filterHandler(value, row, column) {
       const property = column['property']
       return row[property] === value
     },
     fetchData() {
       this.getProdi()
+      this.getSemester()
       this.getData()
     },
     getData() {
@@ -274,4 +311,3 @@ export default {
   }
 }
 </script>
-

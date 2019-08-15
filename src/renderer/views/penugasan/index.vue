@@ -17,17 +17,26 @@
       :data="tablelistPenugasanSemuaDosen" 
       :cell-style="{padding: '0px', height: '26px'}"
     >
-      <el-table-column min-width="50" type="index" :index="indexMethod" label="No."></el-table-column>
+      <el-table-column 
+        min-width="50" 
+        type="index" 
+        :index="indexMethod" 
+        label="No."
+        align="center"
+      >
+      </el-table-column>
       <el-table-column 
         min-width="200" 
         prop="nama_dosen"
         label="Nama"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="90" 
         prop="nidn"
         label="NIDN/NUP/NIDK"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -36,6 +45,7 @@
         label="L/P"
         :filters="filterJenisKelamin"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -44,6 +54,7 @@
         label="Tahun Ajaran"
         :filters="filterTahunAjaran"
         :filter-method="filterHandler"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
@@ -52,24 +63,28 @@
         label="Program Studi"
         :filters="filterProdi"
         :filter-method="filterHandler"
+        header-align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="125" 
         prop="nomor_surat_tugas"
         label="No Surat Tugas"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="80" 
         prop="tanggal_surat_tugas"
         label="Tanggal Surat Tugas"
+        align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="90" 
         prop="apakah_homebase"
         label="Homebase?"
+        align="center"
       >
       </el-table-column>
     </el-table>
