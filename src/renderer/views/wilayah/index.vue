@@ -28,41 +28,23 @@
       </el-table-column>
       <el-table-column 
         min-width="50" 
-        prop="kode_mata_kuliah"
-        label="Kode MK"
+        prop="id_wilayah"
+        label="ID Wilayah"
+        align="center"
+      >
+      </el-table-column>
+      <el-table-column 
+        min-width="50" 
+        prop="id_negara"
+        label="ID Negara"
         align="center"
       >
       </el-table-column>
       <el-table-column 
         min-width="200" 
-        prop="nama_mata_kuliah"
-        label="Nama MK"
+        prop="nama_wilayah"
+        label="Nama Wilayah"
         header-align="center"
-      >
-      </el-table-column>
-      <el-table-column 
-        min-width="75" 
-        prop="sks_mata_kuliah"
-        label="Bobot MK (sks)"
-        align="center"
-      >
-      </el-table-column>
-      <el-table-column 
-        min-width="150" 
-        prop="nama_program_studi"
-        label="Program Studi"
-        :filters="filterProdi"
-        :filter-method="filterHandler"
-        header-align="center"
-      >
-      </el-table-column>
-      <el-table-column 
-        min-width="50" 
-        prop="id_jenis_mata_kuliah"
-        label="Jenis MK"
-        :filters="filterJenisMatkul"
-        :filter-method="filterHandler"
-        align="center"
       >
       </el-table-column>
     </el-table>
@@ -87,18 +69,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        filter: null,
-        nama_program_studi: null
+        filter: null
       },
-      filterProdi: [],
-      filterJenisMatkul: [
-        { text: 'Wajib Program Studi', value: 'A' },
-        { text: 'Pilihan', value: 'B' },
-        { text: 'Peminatan', value: 'C' },
-        { text: 'Wajib Nasional', value: 'D' },
-        { text: 'Tugas akhir/Skripsi/Tesis/Disertasi', value: 'S' }
-      ],
-      prodi: [],
       downloadLoading: false
     }
   },
@@ -111,24 +83,7 @@ export default {
     }
   },
   methods: {
-    getProdi() {
-      this.$store.dispatch('GetProdi').then(() => {
-        if (this.prodi.length === 0) {
-          this.prodi = this.$store.getters.prodi
-          console.log('ini prodi yg ada di filter', this.prodi)
-          this.prodi.forEach(prodi => {
-            this.filterProdi.push({ text: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}`, value: `${prodi.nama_jenjang_pendidikan} ${prodi.nama_program_studi}` })
-          })
-        }
-      }).catch(() => {
-      })
-    },
-    filterHandler(value, row, column) {
-      const property = column['property']
-      return row[property] === value
-    },
     fetchData() {
-      this.getProdi()
       this.getData()
     },
     getData() {

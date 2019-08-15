@@ -100,6 +100,13 @@ const getters = {
   contohmahasiswalulusdo: state => state.contoh.contohmahasiswalulusdo.contohmahasiswalulusdo,
   updatelulusdo: state => state.getdetailmahasiswalulusdo.updatelulusdo,
   // Lainnya
+  negara: state => state.getnegara.negara,
+  wilayah: state => state.getwilayah.wilayah,
+  listQueryNegara: state => state.getnegara.listQueryNegara,
+  listQueryWilayah: state => state.getwilayah.listQueryWilayah,
+  totalNegara: state => state.getnegara.totalNegara,
+  totalWilayah: state => state.getwilayah.totalWilayah,
+
   destination: state => state.destination.destination,
   loading: state => state.loading.loading,
   errorLogs: state => state.errorLog.logs

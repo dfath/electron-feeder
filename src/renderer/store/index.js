@@ -3,13 +3,14 @@ import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
 // Support
+import getnegara from './modules/getnegara'
+import getwilayah from './modules/getwilayah'
 import getstatusmahasiswa from './modules/getstatusmahasiswa'
 import getjenispendaftaran from './modules/getjenispendaftaran'
 import getjalurmasuk from './modules/getjalurmasuk'
 import getpembiayaan from './modules/getpembiayaan'
 import getjenisprestasi from './modules/getjenisprestasi'
 import gettingkatprestasi from './modules/gettingkatprestasi'
-
 import gettahunajaran from './modules/gettahunajaran'
 import getsemester from './modules/getsemester'
 import getjenisaktivitasmahasiswa from './modules/getjenisaktivitasmahasiswa'
@@ -64,6 +65,8 @@ const store = new Vuex.Store({
     app,
     user,
     // Support
+    getnegara,
+    getwilayah,
     getstatusmahasiswa,
     getjenispendaftaran,
     getjalurmasuk,

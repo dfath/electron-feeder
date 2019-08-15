@@ -357,6 +357,27 @@ export const constantRouterMap = [
       }
     ]
   },
+  {
+    path: '/lainnya',
+    component: Layout,
+    redirect: '/lainnya/negara',
+    name: 'Lainnya',
+    meta: { title: 'Lainnya', icon: 'search' },
+    children: [
+      {
+        path: 'negara',
+        name: 'Data ID Negara',
+        component: () => import('@/views/negara/index'),
+        meta: { title: 'Data ID Negara', icon: 'international' }
+      },
+      {
+        path: 'wilayah',
+        name: 'Data ID Wilayah',
+        component: () => import('@/views/wilayah/index'),
+        meta: { title: 'Data ID Wilayah', icon: 'component' }
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

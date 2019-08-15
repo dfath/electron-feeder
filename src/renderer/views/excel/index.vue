@@ -50,15 +50,18 @@
 <script>
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
 import store from '@/store'
-import BackToTop from '@/components/BackToTop'
 import waves from '@/directive/waves'
 import Driver from 'driver.js' // import driver.js
 import 'driver.js/dist/driver.min.css' // import driver.js css
 import steps from './steps'
+import fs from 'fs'
+import path from 'path'
+// import XLSX from 'xlsx'
+import { saveAs } from 'file-saver'
 
 export default {
   name: 'UploadExcel',
-  components: { UploadExcelComponent, BackToTop },
+  components: { UploadExcelComponent },
   directives: { waves },
   data() {
     return {
@@ -66,15 +69,6 @@ export default {
       tableHeader: [],
       visible: false,
       destination: null,
-      // myBackToTopStyle: {
-      //   right: '50px',
-      //   bottom: '50px',
-      //   width: '40px',
-      //   height: '40px',
-      //   'border-radius': '4px',
-      //   'line-height': '45px', // Please keep consistent with height to center vertically
-      //   background: '#e7eaf1'// The background color of the button
-      // },
       driver: null,
       disablekirim: true
     }
@@ -159,7 +153,41 @@ export default {
       }
     },
     handleDownload() {
-      store.dispatch('GetContoh')
+      this.destination = store.getters.destination
+      const dispatchdest = {
+        'riwayatpendidikan': 'riwayat-pendidikan-mahasiswa',
+        'matakuliah': 'mata-kuliah',
+        'kurikulum': 'kurikulum',
+        'matkulkurikulum': 'matkul-kurikulum',
+        'kelaskuliah': 'kelas-kuliah',
+        'pesertakelaskuliah': 'peserta-kelas-kuliah',
+        'dosenpengajarkelaskuliah': 'dosen-pengajar-kelas-kuliah',
+        'perkuliahanmahasiswa': 'aktivitas-kuliah-mahasiswa',
+        'aktivitas': 'aktivitas-mahasiswa',
+        'anggotaaktivitas': 'anggota-aktivitas-mahasiswa',
+        'lulusdo': 'mahasiswa-lulus-do',
+        'bimbing': 'bimbing-mahasiswa',
+        'uji': 'uji-mahasiswa',
+        'prestasimahasiswa': 'prestasi-mahasiswa'
+      }
+      if (this.destination !== null) {
+        // store.dispatch(dispatchdest[this.destination])
+        // this.tableData = []
+        // this.tableHeader = []
+        // this.disablekirim = true
+        // test
+        const remote = require('electron').remote
+        const fileContents = fs.readFileSync(path.join(remote.getGlobal('__static'), `/contoh-${dispatchdest[this.destination]}.xlsx`))
+        console.log(fileContents)
+        const blob = new Blob([fileContents], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
+        saveAs(blob, `contoh-${dispatchdest[this.destination]}.xlsx`)
+      }
+      // store.dispatch('GetContoh')
+      // const remote = require('electron').remote
+      // const fileContents = fs.readFileSync(path.join(remote.getGlobal('__static'), '/contoh-aktivitas.xlsx'))
+      // console.log(fileContents)
+      // const blob = new Blob([fileContents], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
+      // saveAs(blob, `contohakt.xlsx`)
     }
   }
 }
