@@ -158,9 +158,12 @@ const insertriwayatpendidikanmahasiswa = {
           console.log(err)
         }
       }
-      riwayatpendidikanmahasiswa.forEach(function(data) {
-        insertriwayatpendidikanmahasiswa(token, data).then()
-      })
+      async function insertriwayatbiodata(token, data) {
+        for (const record of data) {
+          await insertriwayatpendidikanmahasiswa(token, record)
+        }
+      }
+      insertriwayatbiodata(token, riwayatpendidikanmahasiswa)
     }
   }
 }
