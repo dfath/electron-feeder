@@ -25,6 +25,7 @@ import destination from './modules/destination'
 import list from './modules/list'
 import getbiodatamahasiswa from './modules/getbiodatamahasiswa'
 import getlistriwayatpendidikanmahasiswa from './modules/getlistriwayatpendidikanmahasiswa'
+import getfilteredriwayatpendidikanmahasiswa from './modules/getfilteredriwayatpendidikanmahasiswa'
 import getlistprestasimahasiswa from './modules/getlistprestasimahasiswa'
 // Dosen
 import listdosen from './modules/listdosen'
@@ -85,6 +86,7 @@ const store = new Vuex.Store({
     list,
     getbiodatamahasiswa,
     getlistriwayatpendidikanmahasiswa,
+    getfilteredriwayatpendidikanmahasiswa,
     getlistprestasimahasiswa,
     // Dosen
     listdosen,

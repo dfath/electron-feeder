@@ -60,9 +60,14 @@ const insertmatkulkurikulum = {
           console.log(err)
         }
       }
-      matkulkurikulum.forEach(function(data) {
-        insertmatkulkurikulum(token, data).then()
-      })
+      // matkulkurikulum.forEach(function(data) {
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertmatkulkurikulumdata(token, data) {
+        for (const record of data) {
+          await insertmatkulkurikulum(token, record)
+        }
+      }
+      insertmatkulkurikulumdata(token, matkulkurikulum)
     }
   }
 }

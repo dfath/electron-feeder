@@ -27,35 +27,40 @@ const insertaktivitasmahasiswa = {
       const token = store.getters.token
       const aktivitasmahasiswa = state.aktivitasmahasiswa
       console.log('insertaktivitasmahasiswa', aktivitasmahasiswa)
-      aktivitasmahasiswa.forEach(function(data) {
-        async function getIDs() {
-          try {
-            const filter_prodi = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
+      // aktivitasmahasiswa.forEach(function(data) {
+      async function insertaktivitasmahasiswa(token, data) {
+        try {
+          const filter_prodi = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
 
-            const response_prodi = await getProdi(token, filter_prodi)
-            data.id_prodi = response_prodi.data[0].id_prodi
-            console.log(data)
-            delete (data.kode_program_studi)
-            delete (data.nama_program_studi)
-            delete (data.nama_jenjang_pendidikan)
+          const response_prodi = await getProdi(token, filter_prodi)
+          data.id_prodi = response_prodi.data[0].id_prodi
+          console.log(data)
+          delete (data.kode_program_studi)
+          delete (data.nama_program_studi)
+          delete (data.nama_jenjang_pendidikan)
 
-            const response_insert = await insertAktivitasMahasiswa(token, data)
-            Message({
-              message: 'Berhasil Input Aktivitas Mahasiswa',
-              type: 'success',
-              duration: 5 * 1000
-            })
-            console.log(response_insert.data)
-            commit('INSERT_AKTIVITAS_MAHASISWA')
-            console.log('setelahinsert', state.aktivitasmahasiswa)
-            commit('SET_LOADING', false)
-          } catch (err) {
-            commit('SET_LOADING', false)
-            alert(err) // TypeError: failed to get IDs
-          }
+          const response_insert = await insertAktivitasMahasiswa(token, data)
+          Message({
+            message: 'Berhasil Input Aktivitas Mahasiswa',
+            type: 'success',
+            duration: 5 * 1000
+          })
+          console.log(response_insert.data)
+          commit('INSERT_AKTIVITAS_MAHASISWA')
+          console.log('setelahinsert', state.aktivitasmahasiswa)
+          commit('SET_LOADING', false)
+        } catch (err) {
+          commit('SET_LOADING', false)
+          alert(err) // TypeError: failed to get IDs
         }
-        getIDs()
-      })
+      }
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertaktivitasmahasiswadata(token, data) {
+        for (const record of data) {
+          await insertaktivitasmahasiswa(token, record)
+        }
+      }
+      insertaktivitasmahasiswadata(token, aktivitasmahasiswa)
     }
   }
 }

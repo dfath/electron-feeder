@@ -61,9 +61,13 @@ const insertbimbingmahasiswa = {
           console.log(err)
         }
       }
-      bimbingmahasiswa.forEach(function(data) {
-        insertbimbingmahasiswa(token, data).then()
-      })
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertbimbingmahasiswadata(token, data) {
+        for (const record of data) {
+          await insertbimbingmahasiswa(token, record)
+        }
+      }
+      insertbimbingmahasiswadata(token, bimbingmahasiswa)
     }
   }
 }

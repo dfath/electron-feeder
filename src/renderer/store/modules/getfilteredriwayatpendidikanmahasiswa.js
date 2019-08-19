@@ -1,27 +1,27 @@
-import { getListMahasiswa } from '@/api/getListMahasiswa'
+import { getFilteredRiwayatPendidikanMahasiswa } from '@/api/getListRiwayatPendidikanMahasiswa'
 import store from '@/store'
 
 const user = {
   state: {
-    listQueryMahasiswa: null,
-    listMahasiswa: null,
-    totalMahasiswa: null
+    listQueryRiwayatPendidikanMahasiswa: null,
+    listRiwayatPendidikanMahasiswa: null,
+    totalRiwayatPendidikanMahasiswa: null
   },
 
   mutations: {
-    SET_LIST_QUERY_MAHASISWA: (state, listQueryMahasiswa) => {
-      state.listQueryMahasiswa = listQueryMahasiswa
+    SET_LIST_QUERY_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, listQueryRiwayatPendidikanMahasiswa) => {
+      state.listQueryRiwayatPendidikanMahasiswa = listQueryRiwayatPendidikanMahasiswa
     },
-    SET_LIST_MAHASISWA: (state, listMahasiswa) => {
-      state.listMahasiswa = listMahasiswa
+    SET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, listRiwayatPendidikanMahasiswa) => {
+      state.listRiwayatPendidikanMahasiswa = listRiwayatPendidikanMahasiswa
     },
-    SET_TOTAL_MAHASISWA: (state, totalMahasiswa) => {
-      state.totalMahasiswa = totalMahasiswa
+    SET_TOTAL_RIWAYAT_PENDIDIKAN_MAHASISWA: (state, totalRiwayatPendidikanMahasiswa) => {
+      state.totalRiwayatPendidikanMahasiswa = totalRiwayatPendidikanMahasiswa
     }
   },
 
   actions: {
-    GetListMahasiswa({ commit, state }, listQuery) {
+    GetListRiwayatPendidikanMahasiswa({ commit, state }, listQuery) {
       console.log(store.getters.username)
       const token = store.getters.token
       const limit = listQuery.limit
@@ -36,19 +36,19 @@ const user = {
         offset = listQuery.limit * (listQuery.page - 1)
       }
       listQuery.offset = offset
-      commit('SET_LIST_QUERY_MAHASISWA', listQuery)
+      commit('SET_LIST_QUERY_RIWAYAT_PENDIDIKAN_MAHASISWA', listQuery)
       console.log(listQuery.page)
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListMahasiswa(token, limit, offset, filter).then(response => {
+        getFilteredRiwayatPendidikanMahasiswa(token, limit, offset, filter).then(response => {
           const data = response.data
           // data.forEach(function(e) {
           //   e.nama_mahasiswa = e.nama_mahasiswa.toUpperCase()
           // })
-          console.log('ini respons dari getListMahasiswa ', data)
-          commit('SET_LIST_MAHASISWA', data)
-          console.log(store.getters.listMahasiswa)
+          console.log('ini respons dari getListRiwayatPendidikanMahasiswa ', data)
+          commit('SET_LIST_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
+          console.log(store.getters.listRiwayatPendidikanMahasiswa)
           resolve()
         }).catch(error => {
           console.log('error')
@@ -56,7 +56,7 @@ const user = {
         })
       })
     },
-    GetTotalMahasiswa({ commit }, listQuery) {
+    GetTotalRiwayatPendidikanMahasiswa({ commit }, listQuery) {
       const token = store.getters.token
       const limit = 0
       let filter = '1=1 ORDER BY id_periode DESC, nim'
@@ -74,11 +74,11 @@ const user = {
       console.log(listQuery.limit)
       console.log(offset)
       return new Promise((resolve, reject) => {
-        getListMahasiswa(token, limit, offset, filter).then(response => {
+        getFilteredRiwayatPendidikanMahasiswa(token, limit, offset, filter).then(response => {
           console.log(response.data)
           const data = response.data.length
-          commit('SET_TOTAL_MAHASISWA', data)
-          console.log(store.getters.totalMahasiswa)
+          commit('SET_TOTAL_RIWAYAT_PENDIDIKAN_MAHASISWA', data)
+          console.log(store.getters.totalRiwayatPendidikanMahasiswa)
           resolve()
         }).catch(error => {
           console.log('error')

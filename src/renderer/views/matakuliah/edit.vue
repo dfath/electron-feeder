@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form size=mini ref="form" :model="form" label-width="120px" v-loading="loading">
+    <el-form size=mini label-width="120px" v-loading="loading">
       <el-form-item label="Kode Mata Kuliah" required>
         <el-input v-model="setMatkul.kode_mata_kuliah"></el-input>
       </el-form-item>
@@ -10,7 +10,7 @@
       <el-form-item label="Program Studi Pengampu" required>
         <!-- https://github.com/vuejs/vue-loader/issues/715 -->
         <el-select v-model="setMatkul.id_prodi" placeholder="Please select your program studi pengampu">
-          <el-option v-for="item of prodioption" :key="item" :label="item.nama_jenjang_pendidikan + ' ' + item.nama_program_studi" :value="item.id_prodi"></el-option>
+          <el-option v-for="item of prodioption" :key="item.id_prodi" :label="item.nama_jenjang_pendidikan + ' ' + item.nama_program_studi" :value="item.id_prodi"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Jenis Mata Kuliah">
@@ -43,9 +43,9 @@
       <el-form-item label="Tanggal Mulai Efektif">
         <el-date-picker type="date" placeholder="Pick a date" v-model="setMatkul.tanggal_mulai_efektif" style="width: 100%;"></el-date-picker>
       </el-form-item>
-      <el-form-item label="Tanggal Akhir Efektif">
+      <!-- <el-form-item label="Tanggal Akhir Efektif">
         <el-date-picker type="date" placeholder="Pick a date" v-model="setMatkul.tanggal_selesai_efektif" style="width: 100%;"></el-date-picker>
-      </el-form-item>
+      </el-form-item> -->
 
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Update</el-button>
@@ -60,21 +60,8 @@ import store from '@/store'
 export default {
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      },
       prodioption: [],
-      loading: false,
-      checkList: ['selected and disabled', 'Option A'],
-      nama_kebutuhan_khusus: ['A - Tuna netra', 'B - Tuna rungu']
-
+      loading: false
     }
   },
   created() {

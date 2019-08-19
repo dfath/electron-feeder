@@ -3,10 +3,19 @@
   <div class="app-container">
     <el-row style="margin-bottom: 20px;" type="flex" class="filter-container">
       <el-col :span="12">
-        <el-input v-model="listQuery.filter" placeholder="Nama Wilayah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        <el-input v-model="listQuery.filter" placeholder="Nama Mata Kuliah" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
         <el-button v-waves class="filter-item" type="info" icon="el-icon-search" @click="handleFilter">
-        Search
+          Search
         </el-button>
+      </el-col>
+      <el-col :span="12">
+        <el-row type="flex" justify="end">
+           <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <el-button v-waves :loading="downloadLoading" class="filter-item" type="success" icon="el-icon-upload2" @click="handleUpload">
+              Import Excel
+            </el-button>
+           </el-col>
+        </el-row>
       </el-col>
     </el-row>
 
@@ -15,7 +24,7 @@
       v-loading="listLoading" 
       border 
       stripe
-      :data="tableWilayah" 
+      :data="tableListMataKuliah" 
       :cell-style="{padding: '0px', height: '37px'}"
     >
       <el-table-column 
@@ -65,6 +74,14 @@
         align="center"
       >
       </el-table-column>
+      <el-table-column label="Actions" align="center" width="80" class-name="small-padding fixed-width">
+        <template slot-scope="{row}">
+          <el-button-group>
+            <el-button size="mini" type="warning" icon="el-icon-edit" circle @click="handleUpdate(row)"></el-button>
+            <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="handleDelete(row)"></el-button>
+          </el-button-group>
+        </template>
+      </el-table-column>
     </el-table>
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData"  />
 
@@ -74,6 +91,7 @@
 <script>
 import waves from '@/directive/waves' // waves directive
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { Message, MessageBox } from 'element-ui'
 
 export default {
   name: 'ComplexTable',
@@ -81,7 +99,7 @@ export default {
   directives: { waves },
   data() {
     return {
-      wilayah: null,
+      listMataKuliah: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -106,8 +124,8 @@ export default {
     this.fetchData()
   },
   computed: {
-    tableWilayah() {
-      return this.$store.getters.wilayah
+    tableListMataKuliah() {
+      return this.$store.getters.listMataKuliah
     }
   },
   methods: {
@@ -136,7 +154,7 @@ export default {
         this.getTotal()
       }
       this.listLoading = true
-      this.$store.dispatch('GetWilayah', this.listQuery).then(() => {
+      this.$store.dispatch('GetListMataKuliah', this.listQuery).then(() => {
         this.listLoading = false
       }).catch(() => {
         this.listLoading = false
@@ -150,18 +168,60 @@ export default {
       }
     },
     getTotal() {
-      this.$store.dispatch('GetTotalWilayah', this.listQuery).then(() => {
+      this.$store.dispatch('GetTotalMataKuliah', this.listQuery).then(() => {
         this.listLoading = false
-        this.total = this.$store.getters.totalWilayah
+        this.total = this.$store.getters.totalMataKuliah
         console.log(this.total)
       }).catch(() => {
         this.listLoading = false
       })
     },
+    getTotalMataKuliah() {
+      this.$store.dispatch('GetTotalMataKuliah', this.listQuery).then(() => {
+        this.listLoading = false
+        this.totalMataKuliah = this.$store.getters.totalMataKuliah
+        console.log('ini total matakuliah ' + this.total)
+      }).catch(() => {
+        this.listLoading = false
+      })
+    },
+    handleUpload() {
+      this.$router.push('/matakuliah/insertmatakuliah')
+    },
     handleFilter() {
       this.listQuery.page = 1
       this.getTotal()
       this.getData()
+    },
+    handleUpdate(row) {
+      this.$store.dispatch('GetDetailMataKuliah', row.id_matkul).then(() => {
+        this.$router.push('/matakuliah/edit')
+        console.log('edit matakuliah ini')
+      })
+      console.log(row)
+    },
+    handleDelete(row) {
+      MessageBox.confirm('Apakah Anda ingin menghapus Mata Kuliah ini?', 'Confirm Delete', {
+        confirmButtonText: 'Ya',
+        cancelButtonText: 'Tidak',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('DeleteMataKuliah', row.id_matkul).then(() => {
+          console.log('delete matakuliah ini')
+          console.log(row)
+          Message({
+            message: 'Delete Successfully',
+            type: 'success',
+            duration: 2000
+          })
+          this.getData()
+        })
+      }).catch(() => {
+        Message({
+          type: 'info',
+          message: 'Delete Canceled'
+        })
+      })
     }
   }
 }

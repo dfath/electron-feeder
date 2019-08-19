@@ -61,9 +61,13 @@ const insertujimahasiswa = {
           console.log(err)
         }
       }
-      ujimahasiswa.forEach(function(data) {
-        insertujimahasiswa(token, data).then()
-      })
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertujimahasiswadata(token, data) {
+        for (const record of data) {
+          await insertujimahasiswa(token, record)
+        }
+      }
+      insertujimahasiswadata(token, ujimahasiswa)
     }
   }
 }

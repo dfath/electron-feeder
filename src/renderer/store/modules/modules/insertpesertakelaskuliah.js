@@ -60,9 +60,14 @@ const insertpesertakelaskuliah = {
           console.log(err)
         }
       }
-      pesertakelaskuliah.forEach(function(data) {
-        insertpesertakelaskuliah(token, data).then()
-      })
+      // pesertakelaskuliah.forEach(function(data) {
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertpesertakelaskuliahdata(token, data) {
+        for (const record of data) {
+          await insertpesertakelaskuliah(token, record)
+        }
+      }
+      insertpesertakelaskuliahdata(token, pesertakelaskuliah)
     }
   }
 }

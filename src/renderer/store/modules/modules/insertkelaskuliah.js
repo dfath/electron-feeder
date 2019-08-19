@@ -28,44 +28,50 @@ const insertkelaskuliah = {
       const token = store.getters.token
       const kelaskuliah = state.kelaskuliah
       console.log('insertkelaskuliah', kelaskuliah)
-      kelaskuliah.forEach(function(data) {
-        async function getIDs() {
-          try {
-            commit('SET_LOADING', true)
-            const filter_prodi = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
+      // kelaskuliah.forEach(function(data) {
+      async function insertkelaskuliah(token, data) {
+      // async function getIDs() {
+        try {
+          commit('SET_LOADING', true)
+          const filter_prodi = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
 
-            const response_prodi = await getProdi(token, filter_prodi)
-            data.id_prodi = response_prodi.data[0].id_prodi
-            console.log(data)
-            delete (data.kode_program_studi)
-            delete (data.nama_program_studi)
-            delete (data.nama_jenjang_pendidikan)
+          const response_prodi = await getProdi(token, filter_prodi)
+          data.id_prodi = response_prodi.data[0].id_prodi
+          console.log(data)
+          delete (data.kode_program_studi)
+          delete (data.nama_program_studi)
+          delete (data.nama_jenjang_pendidikan)
 
-            const filter_matkul = `kode_mata_kuliah LIKE '%${data.kode_mata_kuliah}%' AND nama_mata_kuliah LIKE '%${data.nama_mata_kuliah}%' AND sks_mata_kuliah = '${data.sks_mata_kuliah}'`
+          const filter_matkul = `kode_mata_kuliah LIKE '%${data.kode_mata_kuliah}%' AND nama_mata_kuliah LIKE '%${data.nama_mata_kuliah}%' AND sks_mata_kuliah = '${data.sks_mata_kuliah}'`
 
-            const response_matkul = await getListMataKuliah(token, '', 0, filter_matkul)
-            data.id_matkul = response_matkul.data[0].id_matkul
-            delete (data.kode_mata_kuliah)
-            delete (data.nama_mata_kuliah)
-            delete (data.sks_mata_kuliah)
+          const response_matkul = await getListMataKuliah(token, '', 0, filter_matkul)
+          data.id_matkul = response_matkul.data[0].id_matkul
+          delete (data.kode_mata_kuliah)
+          delete (data.nama_mata_kuliah)
+          delete (data.sks_mata_kuliah)
 
-            const response_insert = await insertKelasKuliah(token, data)
-            Message({
-              message: 'Berhasil Input Kelas Kuliah',
-              type: 'success',
-              duration: 5 * 1000
-            })
-            console.log(response_insert.data)
-            commit('INSERT_KELAS_KULIAH')
-            console.log('setelahinsert', state.kelaskuliah)
-            commit('SET_LOADING', false)
-          } catch (err) {
-            commit('SET_LOADING', false)
-            alert(err) // TypeError: failed to get IDs
-          }
+          const response_insert = await insertKelasKuliah(token, data)
+          Message({
+            message: 'Berhasil Input Kelas Kuliah',
+            type: 'success',
+            duration: 5 * 1000
+          })
+          console.log(response_insert.data)
+          commit('INSERT_KELAS_KULIAH')
+          console.log('setelahinsert', state.kelaskuliah)
+          commit('SET_LOADING', false)
+        } catch (err) {
+          commit('SET_LOADING', false)
+          alert(err) // TypeError: failed to get IDs
         }
-        getIDs()
-      })
+      }
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertkelaskuliahdata(token, data) {
+        for (const record of data) {
+          await insertkelaskuliah(token, record)
+        }
+      }
+      insertkelaskuliahdata(token, kelaskuliah)
     }
   }
 }

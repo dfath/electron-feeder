@@ -40,13 +40,12 @@ const insertdosenpengajarkelaskuliah = {
           delete data.id_tahun_ajaran
           delete data.nama_program_studi
 
-          filter = `id_semester LIKE '%${data.id_semester}%' AND nama_mata_kuliah LIKE '%${data.nama_mata_kuliah}%' AND kode_kelas_kuliah LIKE '%${data.kode_kelas_kuliah}%' AND nama_kelas_kuliah LIKE '%${data.nama_kelas_kuliah}%'`
+          filter = `id_semester LIKE '%${data.id_semester}%' AND nama_mata_kuliah LIKE '%${data.nama_mata_kuliah}%' AND nama_kelas_kuliah LIKE '%${data.nama_kelas_kuliah}%'`
           res = await getListKelasKuliah(token, '', '', filter)
           data.id_kelas_kuliah = res.data[0].id_kelas_kuliah
 
           delete (data.id_semester)
           delete (data.nama_mata_kuliah)
-          delete (data.kode_kelas_kuliah)
           delete (data.nama_kelas_kuliah)
 
           filter = `nama_substansi LIKE '%${data.nama_substansi}%' AND id_jenis_substansi LIKE '%${data.id_jenis_substansi}%' AND sks_mata_kuliah = '${data.sks_mata_kuliah}'`
@@ -71,9 +70,14 @@ const insertdosenpengajarkelaskuliah = {
           console.log(err)
         }
       }
-      dosenpengajarkelaskuliah.forEach(function(data) {
-        insertdosenpengajarkelaskuliah(token, data).then()
-      })
+      // dosenpengajarkelaskuliah.forEach(function(data) {
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertdosenpengajarkelaskuliahdata(token, data) {
+        for (const record of data) {
+          await insertdosenpengajarkelaskuliah(token, record)
+        }
+      }
+      insertdosenpengajarkelaskuliahdata(token, dosenpengajarkelaskuliah)
     }
   }
 }

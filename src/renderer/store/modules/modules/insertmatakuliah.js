@@ -27,7 +27,7 @@ const insertmatakuliah = {
       const token = store.getters.token
       const matakuliah = state.matakuliah
       console.log('insertmatakuliah', matakuliah)
-      matakuliah.forEach(function(data) {
+      function insertmatakuliahdata(token, data) {
         return new Promise((resolve, reject) => {
           const filter = `kode_program_studi LIKE '%${data.kode_program_studi}%' AND nama_program_studi LIKE '%${data.nama_program_studi}%' AND nama_jenjang_pendidikan LIKE '%${data.nama_jenjang_pendidikan}%'`
           getProdi(token, filter).then(response => {
@@ -58,7 +58,14 @@ const insertmatakuliah = {
             reject(error)
           })
         })
-      })
+      }
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertmatakuliah(token, data) {
+        for (const record of data) {
+          await insertmatakuliahdata(token, record)
+        }
+      }
+      insertmatakuliah(token, matakuliah)
     }
   }
 }

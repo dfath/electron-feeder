@@ -35,8 +35,23 @@
     </el-row>
     <!-- Uploaded Table -->
     <!-- https://codepen.io/Event_Horizon/pen/WodMjp -->
-    <el-table id="uploaded-table" :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
-      <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" :width="(String(tableData[0][item]).length + item.length + 1) * 10"/>
+    <el-table 
+      id="uploaded-table" 
+      :data="tableData" 
+      border 
+      stripe
+      :cell-style="{padding: '0px', height: '20px'}"
+      size=mini
+      max-height="500"
+    >
+      <el-table-column 
+        align="center"
+        v-for="item of tableHeader" 
+        :key="item" 
+        :prop="item" 
+        :label="item" 
+        :min-width="(String(tableData[0][item]).length + item.length + 4) * 7"
+      />
     </el-table>
     <div class="components-container">
       <!-- you can add element-ui's tooltip -->

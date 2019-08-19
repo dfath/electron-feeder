@@ -158,6 +158,7 @@ const insertriwayatpendidikanmahasiswa = {
           console.log(err)
         }
       }
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
       async function insertriwayatbiodata(token, data) {
         for (const record of data) {
           await insertriwayatpendidikanmahasiswa(token, record)

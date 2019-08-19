@@ -1,6 +1,6 @@
 import { insertAnggotaAktivitasMahasiswa } from '@/api/insertAnggotaAktivitasMahasiswa'
 import { getListAktivitasMahasiswa } from '@/api/getListAktivitasMahasiswa'
-import { getListRiwayatPendidikanMahasiswa } from '@/api/getListRiwayatPendidikanMahasiswa'
+import { getFilteredRiwayatPendidikanMahasiswa } from '@/api/getListRiwayatPendidikanMahasiswa'
 
 import store from '@/store'
 import { Message } from 'element-ui'
@@ -40,7 +40,7 @@ const insertanggotaaktivitasmahasiswa = {
           delete data.judul
 
           filter = `nama_mahasiswa LIKE '%${data.nama_mahasiswa}%' AND nim LIKE '%${data.nim}%'`
-          res = await getListRiwayatPendidikanMahasiswa(token, '', '', filter)
+          res = await getFilteredRiwayatPendidikanMahasiswa(token, filter)
           data.id_registrasi_mahasiswa = res.data[0].id_registrasi_mahasiswa
 
           delete (data.nama_mahasiswa)
@@ -60,9 +60,14 @@ const insertanggotaaktivitasmahasiswa = {
           console.log(err)
         }
       }
-      anggotaaktivitasmahasiswa.forEach(function(data) {
-        insertanggotaaktivitasmahasiswa(token, data).then()
-      })
+      // anggotaaktivitasmahasiswa.forEach(function(data) {
+      // https://lavrton.com/javascript-loops-how-to-handle-async-await-6252dd3c795/
+      async function insertanggotaaktivitasmahasiswadata(token, data) {
+        for (const record of data) {
+          await insertanggotaaktivitasmahasiswa(token, record)
+        }
+      }
+      insertanggotaaktivitasmahasiswadata(token, anggotaaktivitasmahasiswa)
     }
   }
 }
